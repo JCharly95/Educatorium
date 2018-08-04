@@ -1,0 +1,100 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 17/05/2018, 08:18:21 AM
+    Author     : juanc
+*/
+body
+{
+    background-color: lightblue;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100vh;
+    flex-wrap: wrap;
+}
+
+.title
+{
+    margin-top: 2%;
+}
+
+footer
+{
+    align-self: flex-end;
+    background-color: lightgray;
+    line-height: 3;
+    text-align: center;
+    width: 100%;
+}
+
+#help:link
+{
+    color: black;
+}
+
+#help:visited
+{
+    color: black;
+}
+
+#help:hover
+{
+    color: gray;
+}
+
+#help:active
+{
+    color: coral;
+}
+
+img
+{
+    max-width: 132.617px;
+    max-height: 250px;
+    min-height: 199px;
+}
+
+
+#Img_Sel
+{
+    display: table;
+    vertical-align: bottom;
+}
+
+.opciones ul
+{
+    overflow: hidden;
+    background-color: #333;
+    width: 80%;
+    margin: auto;
+    margin-top: 15px;
+}
+
+.opciones li 
+{
+    border-right: 1px solid #bbb;
+    align-items: justify;
+    text-align: center;
+}
+
+.opciones li a 
+{
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.opciones li a:hover 
+{
+    background-color: gray;
+}
+
+.regreso
+{
+    margin-top: 20px;
+}

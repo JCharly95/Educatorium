@@ -1,0 +1,63 @@
+
+body
+{
+    background-color: lightblue;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100vh;
+    flex-wrap: wrap;
+}
+
+.title
+{
+    margin-top: 2%;
+    margin-bottom: 3%;
+}
+
+footer
+{
+    align-self: flex-end;
+    background-color: lightgray;
+    line-height: 3;
+    text-align: center;
+    width: 100%;
+}
+
+a.link:link
+{
+    color: brown;
+}
+
+a.link:visited
+{
+    color: brown;
+}
+
+a.link:hover
+{
+    color: blue;
+}
+
+a.link:active
+{
+    color:green;
+}
+
+.error
+{
+    color: #FF0000;
+}
+
+.bien
+{
+    color: #008000;
+}
+
+.thumb
+{
+     max-height: 300px;
+     max-width: 300px;
+     border: 1px solid #000;
+     margin: 10px 5px 0 0;
+}
