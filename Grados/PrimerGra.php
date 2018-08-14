@@ -26,13 +26,13 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-3 col-md-offset-1">
-                        <a href="" class="btn btn-lg btn-warning" <?php echo $BtnMatsPri[0];?>>Español I</a>
+                        <a href="Materias/Primero/Esp_1.php" class="btn btn-lg btn-warning" <?php echo $BtnMatsPri[0];?>>Español I</a>
                     </div>
                     <div class="col-md-3 col-md-offset-1">
-                        <a href="" class="btn btn-lg btn-warning" <?php echo $BtnMatsPri[1];?>>Matematicas I</a>
+                        <a href="Materias/Primero/Mat_1.php" class="btn btn-lg btn-warning" <?php echo $BtnMatsPri[1];?>>Matematicas I</a>
                     </div>
                     <div class="col-md-3 col-md-offset-1">
-                        <a href="" class="btn btn-lg btn-warning" <?php echo $BtnMatsPri[2];?>>Ciencias I: Biologia</a>
+                        <a href="Materias/Primero/Bio.php" class="btn btn-lg btn-warning" <?php echo $BtnMatsPri[2];?>>Ciencias I: Biologia</a>
                     </div>
                 </div>
             </div>
@@ -40,13 +40,13 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-3 col-md-offset-1">
-                        <a href="" class="btn btn-lg btn-warning" <?php echo $BtnMatsPri[3];?>>Geografia</a>
+                        <a href="Materias/Primero/Geo.php" class="btn btn-lg btn-warning" <?php echo $BtnMatsPri[3];?>>Geografia</a>
                     </div>
                     <div class="col-md-3 col-md-offset-1">
-                        <a href="" class="btn btn-lg btn-warning" <?php echo $BtnMatsPri[4];?>>Ingles I</a>
+                        <a href="Materias/Primero/Esp_1.php" class="btn btn-lg btn-warning" <?php echo $BtnMatsPri[4];?>>Ingles I</a>
                     </div>
                     <div class="col-md-3 col-md-offset-1">
-                        <a href="" class="btn btn-lg btn-warning" <?php echo $BtnMatsPri[5];?>>Civica y Etica I: Parte I</a>
+                        <a href="Materias/Primero/CyE_1.php" class="btn btn-lg btn-warning" <?php echo $BtnMatsPri[5];?>>Civica y Etica I: Parte I</a>
                     </div>
                 </div>
             </div>
@@ -54,7 +54,7 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-3 col-md-offset-5">
-                        <a href="" class="btn btn-lg btn-warning" <?php echo $BtnMatsPri[6];?>>Historia I: Parte I</a>
+                        <a href="Materias/Primero/His_11.php" class="btn btn-lg btn-warning" <?php echo $BtnMatsPri[6];?>>Historia I: Parte I</a>
                     </div>
                 </div>
             </div>

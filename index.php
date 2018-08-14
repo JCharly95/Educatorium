@@ -37,9 +37,6 @@
                         </div>
                     </div>
                 </div>
-                <!--<div class="col-md-2">
-                    <abbr title="Ayuda"><a href="#" id="help" onclick="MostrarAyuda();"><i class="fas fa-question-circle fa-4x"></i></a></abbr>
-                </div>-->
             </div>
             <p class="cuerpo">Te damos la bienvenida a nuestra aplicacion web de trabajo. Creada para las 
                 comunidades estudiantiles de secundaria. Dentro de educatorium encontraras
@@ -70,7 +67,6 @@
             @Copyright Educatorium 2018. Todos los derechos reservados
         </footer>
         <script type="text/javascript" src="CmpVis/jquery/jquery-3.3.1.js"></script>
-	<script type="text/javascript" src="CmpVis/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
-        <script type="text/javascript" src="Funcionamiento/Javascripts/Pag_Info.js"></script>
+	    <script type="text/javascript" src="CmpVis/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
     </body>
 </html>

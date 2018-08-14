@@ -18,9 +18,6 @@
                 <div class="col-md-8 col-md-offset-2">
                     <h3 align="center">Bienvenido o Bienvenida</h3>
                 </div>
-               <!-- <div class="col-md-2">
-                    <abbr title="Ayuda"><a href="#" id="help"><i class="fas fa-question-circle fa-4x"></i></a></abbr>
-                </div>-->
                 <div class="col-md-2">
                     <a data-toggle="modal" href="#ayuda"><i class="fas fa-question-circle fa-4x"></i></a>
                 </div>

@@ -159,7 +159,7 @@
                                                         <option hidden value="N/A" selected>Lista de secundarias</option>
                                                         <?php
                                                             require '../Funcionamiento/PHPs/conexion.php';
-                                                            $sql = "SELECT * FROM escuela;";
+                                                            $sql = "Select * from escuela where ID_Escuela>1;";
                                                             $ver = $conexion->query($sql);
 
                                                             while ($cont=$ver->fetch_assoc())
