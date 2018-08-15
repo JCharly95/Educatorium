@@ -10,7 +10,7 @@
         <link rel="stylesheet" type="text/css" href="../../../CmpVis/bootstrap-3.3.7-dist/css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="../../../CmpVis/fontawesome-free-5.0.10/web-fonts-with-css/css/fontawesome-all.css">
         <link rel="stylesheet" type="text/css" href="../../../Funcionamiento/Estilos_Extras/Pag_Pri_Est.css">
-        <title>Civica y &Eacute;tica 1: Parte 1</title>
+        <title>Formacion civica y &Eacute;tica 1: Parte 1</title>
     </head>
     <body>
         <div class="container"> 

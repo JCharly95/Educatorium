@@ -42,6 +42,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <br>
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-md-6">
@@ -54,6 +55,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <br>
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-md-6">
@@ -89,18 +91,23 @@
                         </ul>
                     </div>                    
                 </div>-->
-                <div class="form-group">
-                    <div class="row">
-                        <div class="opciones">
-                            <ul class="nav nav-justified">
-                                <li><a href="mod_info.php">Modificar Informacion</a></li>
-                                <li><a href="">Consultar Estadísticas de mi hijo</a></li>
-                                <li><a href="buscar.php">Realizar Parentesco</a></li>
-                            </ul>                        
-                        </div>                    
-                    </div>
-                </div>
             </div>
+            <div class="form-group">
+                <div class="row text-center">
+                    <h1>Que tal, bienvenido</h1>   
+                    <h4>Por favor, elija una de las opciones disponibles para comenzar</h4>
+                </div>                        
+            </div>
+            <div class="form-group">
+                <div class="row">
+                    <div class="opciones">
+                        <ul class="nav nav-justified">
+                            <li><a href="mod_info.php">Modificar Informacion</a></li>
+                            <li><a href="">Consultar Estadísticas de mi hijo</a></li>
+                            <li><a href="buscar.php">Realizar Parentesco</a></li>
+                        </ul>                        
+                    </div>                    
+                </div>
             </div>
         </div>            
         <footer>
