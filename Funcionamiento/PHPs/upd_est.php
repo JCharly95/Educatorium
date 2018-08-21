@@ -9,8 +9,9 @@
     $user = $_SESSION['Username'];
 
 /*Archivos que requerimos
-    require 'conexion.php';*/
-    require 'CDatosEst.php';
+    require 'conexion.php';
+    require 'CDatosEst.php';*/ 
+    //Pero no es necesario solicitarlos ya que estos se conectan en mod_info de estudiante
 
 //Variables para almacenar datos, variables de error
     $nombre = $ap_pat = $ap_mat = $tel = $correo = $user2 = $pass = $cpass = $clave = $esc = $grado = "";
@@ -152,22 +153,34 @@
         $sel2 = $conexion->query("SELECT ID_Escuela FROM escuela WHERE ID_Escuela = '$esc' ");
         $r = $sel2->num_rows;
         if($r != 0)
-        $actualizar = "UPDATE estudiante SET Escuela_ID = $esc WHERE Username = '$user' ";
-        if(!$conexion->query($actualizar) === TRUE)
         {
-            echo "<script>alert('No se pudo modificar la escuela.');</script>";
+            $actualizar="UPDATE estudiante SET Escuela_ID = $esc WHERE Username = '$user' ";
+            if(!$conexion->query($actualizar) === TRUE)
+            {
+                echo "<script>alert('No se pudo modificar la escuela.');</script>";
+            }
         }
-
+        else
+        {
+            $esc_err="* Seleccionar una escuela diferente";
+        }
 
         $grado = validar($_POST['grado']);
         $sel = $conexion->query("SELECT ID_Grado FROM grado WHERE ID_Grado = '$grado' ");
         $result = $sel->num_rows;
         if($result != 0)
-        $actualizar = "UPDATE estudiante SET Grado_ID = $grado WHERE Username = '$user' ";
-        if(!$conexion->query($actualizar) === TRUE)
         {
-            echo "<script>alert('No se pudo modificar el grado.');</script>";
+            $actualizar = "UPDATE estudiante SET Grado_ID = $grado WHERE Username = '$user' ";
+            if(!$conexion->query($actualizar) === TRUE)
+            {
+                echo "<script>alert('No se pudo modificar el grado.');</script>";
+            }
         }
+        else
+        {
+            $grado_err="* Favor de seleccionar un grado diferente";
+        }
+        
         
 
         $user2 = validar($_POST['usuario']);
@@ -235,16 +248,16 @@
         }
 
         $clave = $_POST['key'];
-        $fecha = explode('/', $clave);        
+        $fecha2 = explode('/', $clave);        
         if(empty($clave))
         {
             $key_err = "* La fecha de nacimiento no puede ir vacía";
         }
-        elseif(count($fecha) == 3 && checkdate($fecha[1], $fecha[0], $fecha[2]))
+        elseif(count($fecha2) == 3 && checkdate($fecha2[1], $fecha2[0], $fecha2[2]))
         {
-            $fecha2 = $fecha[2]."/".$fecha[1]."/".$fecha[0];
+            $fecha = $fecha2[2]."/".$fecha2[1]."/".$fecha2[0];
 
-            $actualizar = "UPDATE estudiante SET Keyword = '$fecha2' WHERE Username = '$user' ";     
+            $actualizar = "UPDATE estudiante SET Keyword = '$fecha' WHERE Username = '$user' ";     
             if(!$conexion->query($actualizar) === TRUE)
             {
                  echo "<script>alert('No se pudo modificar la fecha');</script>";

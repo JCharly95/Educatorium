@@ -159,7 +159,7 @@
                                                         <option hidden value="N/A" selected>Lista de secundarias</option>
                                                         <?php
                                                             require '../Funcionamiento/PHPs/conexion.php';
-                                                            $sql = "SELECT * FROM escuela;";
+                                                            $sql = "Select * from escuela where ID_Escuela>1;";
                                                             $ver = $conexion->query($sql);
 
                                                             while ($cont=$ver->fetch_assoc())
@@ -182,7 +182,7 @@
                                                         Si tu institucion se encuentra en la lista anterior, favor de seleccionarla 
                                                         y confirmar tu selecci&oacute;n en los siguientes botones
                                                     </label>
-                                                </div>                                                
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-group">

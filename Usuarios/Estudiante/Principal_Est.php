@@ -108,7 +108,7 @@
             </div>
             <div class="form-group">
                 <div class="row text-center">
-                    <h1>Que tal, bienvenid@</h1>   
+                    <h1>Que tal, bienvenido</h1>   
                     <h4>Elige una de las opciones disponibles para comenzar</h4>
                 </div>                        
             </div>
@@ -136,9 +136,9 @@
                     <div class="opciones">
                         <ul class="nav nav-justified">
                             <li><a href="mod_info.php">Modificar Informacion</a></li>
-                            <li><a href="">Eliminacion de cursos</a></li>
-                            <li><a href="">Consultar reportes de errores</a></li>
-                            <li><a href="parentesco.php">Parentesco</a></li>
+                            <li><a href="">Salir De Cursos</a></li>
+                            <li><a href="">Consultar Estadisticas De Mis Cursos</a></li>
+                            <li><a href="parentesco.php">Consultar Parentesco</a></li>
                         </ul>                        
                     </div>                    
                 </div>

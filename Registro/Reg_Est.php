@@ -208,7 +208,7 @@
                                                     <option hidden value="">Secundarias registradas en educatorium:</option>
                                                     <?php
                                                         require '../Funcionamiento/PHPs/conexion.php';
-                                                        $sql = "SELECT * FROM escuela;";
+                                                        $sql = "Select * from escuela where ID_Escuela>1;";
                                                         $ver = $conexion->query($sql);
                                                         
                                                         while ($cont=$ver->fetch_assoc())

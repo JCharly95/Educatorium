@@ -102,8 +102,8 @@
             </div>
             <div class="form-group">
                 <div class="row text-center">
-                    <h1>Que tal, bienvenid@</h1>   
-                    <h4>Elige una de las opciones disponibles para comenzar</h4>
+                    <h1>Que tal, bienvenido</h1>   
+                    <h4>Por favor, elija una de las opciones disponibles para comenzar</h4>
                 </div>                        
             </div>
             <div class="form-group">

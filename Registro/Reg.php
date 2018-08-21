@@ -15,10 +15,6 @@
                 <div class="col-md-10">
                     <h3 align="center">Es un gran honor para nosotros que te unas a nuestra comunidad virtual.</h3>
                 </div>
-               <!-- <div class="col-md-2">
-                    <abbr title="Ayuda"><a href="#" id="help"><i class="fas fa-question-circle fa-4x"></i></a></abbr>
-                </div>
-            </div>-->
             <div class="col-md-2">
                     <a data-toggle="modal" href="#ayuda"><i class="fas fa-question-circle fa-4x"></i></a>
                 </div>
@@ -43,7 +39,7 @@
                                     </div>
                                     <div id="prof" class="tab-pane fade">
                                         <h4 style="color: silver;">Profesor</h4>
-                                        <p style="color: lightblue;">Podrás crear cursos para tus alumnos, realizar distintos quiz por materia, subir material de apoyo, etc. Selecciona esta opción para responder el formulario correspondiente a los profesores.</p>
+                                        <p style="color: lightblue;">Podrás crear, editar y borrar cursos para tus alumnos que constaran de preguntas y material didactico de apoyo, entre otras cosas. Selecciona esta opción para responder el formulario correspondiente a los profesores.</p>
                                     </div>
                                     <div id="pad" class="tab-pane fade">
                                         <h4 style="color: silver;">Padre/Tutor</h4>
