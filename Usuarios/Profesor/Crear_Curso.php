@@ -1,5 +1,5 @@
 <?php
-    //Colocar require con el archivo php para la creacion de un curso
+    require '../../Funcionamiento/PHPs/Crea_Curso.php';
 ?>
 <!DOCTYPE html>
 <html>
