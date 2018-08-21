@@ -1,5 +1,5 @@
 <?php
-    //require '../Funcionamiento/PHPs/CPriG.php';
+        require '../../../Funcionamiento/PHPs/CEsp1.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -16,13 +16,23 @@
         <div class="container"> 
             <div class="row title">
                 <div class="col-md-10">
-                    <h1 align="center">Seleccione la materia a la que desea acceder</h1>
+                    <h1 align="center">Estos son los cursos disponibles para: Español I</h1>
                 </div>
                 <div class="col-md-2">
                     <abbr title="Ayuda"><a href="#" id="help" onclick="MostrarAyuda();"><i class="fas fa-question-circle fa-4x"></i></a></abbr>
                 </div>
             </div>
+            <div class="form-group">
                 <!--Cuerpo de la pagina-->
+            </div>
+            <div class="form-group" <?php echo $Opc_Profe; ?>>
+                <div class="col-md-3 col-md-offset-2">
+                    <a href="../../../Usuarios/Profesor/Crear_Curso.php" class="btn btn-success"><i class="fas fa-plus-circle fa-2x"></i>&nbsp; <b>Crear Curso</b></a>
+                </div>
+                <div class="col-md-3 col-md-offset-3">
+                    <a href="#" class="btn btn-warning"><i class="fas fa-wrench fa-2x"></i>&nbsp; <b>Editar mis cursos</b></a>
+                </div>
+            </div>
             <div class="form-group">
                 <div class="col-md-3 col-md-offset-5 regreso">
                     <a href="#" class="btn btn-danger" onclick="javascript:window.history.back();"><i class="fas fa-arrow-left"></i> Regresar</a>

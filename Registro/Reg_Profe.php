@@ -182,7 +182,7 @@
                                                         Si tu institucion se encuentra en la lista anterior, favor de seleccionarla 
                                                         y confirmar tu selecci&oacute;n en los siguientes botones
                                                     </label>
-                                                </div>                                                
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="form-group">

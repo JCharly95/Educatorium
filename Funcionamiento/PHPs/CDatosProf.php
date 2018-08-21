@@ -112,7 +112,7 @@
 
         if($NomMat=='Espa 2')
         {
-            $NomMat='Español 2';
+            $NomMat='Español II';
         }
 
         if($NomMat=='Mate 2')
