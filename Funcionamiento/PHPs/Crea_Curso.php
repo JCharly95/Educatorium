@@ -8,19 +8,26 @@
     }
 
     //Variables que almacenaran los datos recibidos por el formulario
-    $NomCur = $MsgBienvenida = $StatusContra = $Contra = $CfnContra = "";
+    $NomCur = $OpcMsg = $MsgBienvenida = $OpcContra = $Contra = $CfnContra = "";
+    //Variables de avisos
+    $NomCurAd = $ImgBienAd = $MsgBienAd = $PassAd = $CfnPassAd= "";
+    //Variables de ID´s usadas posteriormente
+    $Tip_Archi=$ID_Img=0;// ID del tipo de archivo a subir\ID de la imagen una vez que se subio
+    $ID_Mat=$ID_Prof=0;// ID de la materia\ID del profesor
 
-    //Variables de errores
-    $NomC_err = $Msg_err = $StaPass_err = $Pass_err = $CfnPass_err = "";
-    //Variables de aciertos
-    $NomC_right = $Msg_right = $StaPass_right = $Pass_right = $CfnPass_right = "";
+    //Variables para impresiones de avisos
+    $AdSuc='<span class="label label-success">';
+    $AdWar='<span class="label label-warning">';
+    $AdDan='<span class="label label-danger">';
+    $AdClo='</span>';
 
-    //Confirmacion de existencia de las variables
-    if(isset($_POST['nombre']) && isset($_POST['MsgBi']) && isset($_POST['Resp']) && isset($_POST['pass']) && isset($_POST['cpass']))
+    //Confirmacion de existencia de las variables del formulario y su asignacion
+    if(isset($_POST['nombre']) && isset($_POST['RespMsg']) && isset($_POST['MsgBi']) && isset($_POST['Resp']) && isset($_POST['pass']) && isset($_POST['cpass']))
     {
         $NomCur=$_POST['nombre'];
+        $OpcMsg=$_POST['RespMsg'];
         $MsgBienvenida=$_POST['MsgBi'];
-        $StatusContra=$_POST['Resp'];
+        $OpcContra=$_POST['Resp'];
         $Contra=$_POST['pass'];
         $CfnContra=$_POST['cpass'];
     }
@@ -28,19 +35,6 @@
     $user=$_SESSION['Username'];
     $MatGen=$_SESSION['Mat'];
 
-    /*
-    $sql="select ID_Curso,curso.Nombre,Materia_ID,Profesor_ID from curso inner join profesor on"
-     ."(ID_Profesor=Profesor_ID) inner join materia on (Materia_ID=ID_Materia) where Username='".$user."'"
-     ."and materia.Nombre='".$MatGen."';";
-    $consulta=$conexion->query($sql);    
-    if($consulta->num_rows>0)    
-    {
-        while($res=$consulta->fetch_assoc())
-        {
-            $rutaSav=$res['Ruta'];
-            $RutaImg=substr($rutaSav,36);
-        }
-    }*/
 
     //Inicio de peticion de datos
     if(isset($_POST['enviar']))
@@ -49,99 +43,142 @@
         $NomCur=validar($NomCur); //Se "limpia" el nombre de curso, adaptando los caracteres especiales.
         
         if(empty($NomCur))//Comprobar si se introdujo un nombre
-            $NomC_err = "* El campo nombre está vacío\n";
-        elseif(!preg_match("/^[0-9a-zA-Z]+$/", $NomCur))//Comprobar si no se tienen caracteres extraños
-            $NomC_err = "* Solo se permiten numeros, letras y espacios";
-        elseif(strlen($nombre) > 30)//Comprobar si el nombre cumple con una determinada longitud
-            $NomC_err = "* El nombre es muy largo, se permiten 30 caracteres como maximo (incluidos los espacios)";
+            $NomCurAd=$AdDan.'El campo nombre está vacío'.$AdClo;
+        else if(!preg_match("/^[0-9a-zA-Z]+$/", $NomCur))//Comprobar si no se tienen caracteres extraños
+            $NomCurAd=$AdDan.'Solo se permiten numeros, letras y espacios'.$AdClo;
+        else if(strlen($nombre) > 30)//Comprobar si el nombre cumple con una determinada longitud
+            $NomCurAd=$AdDan.'El nombre es muy largo, se permiten 30 caracteres como maximo (incluidos los espacios)'.$AdClo;
         else //Si se cumplio con todo lo anterior, sale el aviso de excelente
-            $NomC_right = " Nombre adecuado";
+            $NomCurAd=$AdSuc.'Nombre adecuado'.$AdClo;
 
-        //Mensaje de bienvenida
-        $MsgBienvenida=validar($MsgBienvenida);//Se "limpia" el mensaje de bienvenida, adaptando los caracteres especiales.
-
-        if(empty($MsgBienvenida))
-            $Msg_err="* Favor de colocar un mensaje de bienvenida para el curso, no mayor a 100 caracteres";
-        elseif(strlen($Msg_err) > 99)
-            $Msg_err="* Mensaje demasiado largo, favor de ingresar uno mas corto";
-        else
-            $Msg_right=" Mensaje adecuado";
-
-        //Imagen de bienvenida
-        if(!empty($_FILES['imagen']['name']))
+        //Verificar si se opto por ingresar un mensaje de bienvenida y una imagen de bienvenida
+        if($OpcMsg=="Si")
         {
-            $nombre_imagen = $_FILES['imagen']['name'];
-            $tipo_imagen = $_FILES['imagen']['type'];
-            $tam_imagen = $_FILES['imagen']['size'];
+            //Mensaje de bienvenida
+            $MsgBienvenida=validar($MsgBienvenida);//Se "limpia" el mensaje de bienvenida, adaptando los caracteres especiales.
 
-            if($tipo_imagen="image/jpeg" || $tipo_imagen="image/jpg" || $tipo_imagen="image/png" || $tipo_imagen="image/gif")
+            if(empty($MsgBienvenida))
+                $MsgBienAd=$AdDan.'Favor de colocar un mensaje de bienvenida para el curso, no mayor a 100 caracteres'.$AdClo;
+            elseif(strlen($Msg_err) > 99)
+                $MsgBienAd=$AdDan.'Mensaje demasiado largo, favor de ingresar uno mas corto'.$AdClo;
+            else
+                $MsgBienAd=$AdSuc.'Mensaje adecuado'.$AdClo;
+
+            //Imagen de bienvenida
+            if(!empty($_FILES['imagen']['name']))
             {
-                if($tam_imagen <= 5000000)
-                {                
-                    //Cambiar el nombre de la imagen para saber de quien es y el curso que corresponde
-                    //$nom_img_ser=explode('.', $nombre_imagen);
-                    $Img_Cur_Ser=explode('.', $nombre_imagen);
-                    $Img_Cur_Ser1=explode('.', $NomCur);
-                    //Img_Cur_Comencemos_Espa 1_Molina250.jpg
-                    //Nombre de la imagen para almacenar en el servidor
-                    $Nom_Img_Ser='Img_Cur_'.$Img_Cur_Ser1[0].'_'.$MatGen.'_'.$user.'.'.$Img_Cur_Ser[1];
-                    //$nombre_imagen='Img_'.$user.'.'.$nom_img_ser[1];
-                    $nom_img_bus='Img_'.$user;
-                    //Solo si todas las validaciones anteriores son positivas, se almacena la imagen en el servidor                    
-                    $destino = $_SERVER['DOCUMENT_ROOT'].'/Educatorium/imagenes/';
-                    $dir_ruta=$destino.$nombre_imagen;
-                    move_uploaded_file($_FILES['imagen']['tmp_name'], $dir_ruta);
-                    //$id_img = mysqli_insert_id();
+                $nombre_imagen = $_FILES['imagen']['name'];
+                $tipo_imagen = $_FILES['imagen']['type'];
+                $tam_imagen = $_FILES['imagen']['size'];
+
+                if($tipo_imagen="image/jpeg" || $tipo_imagen="image/jpg" || $tipo_imagen="image/png" || $tipo_imagen="image/gif")
+                {
+                    if($tam_imagen <= 5000000)
+                    {                
+                        //Cambiar el nombre de la imagen para saber de quien es y el curso que corresponde
+                        $Img_Cur_Ser=explode('.', $nombre_imagen);
+                        $Img_Cur_Ser1=explode('.', $NomCur);
+                        //Nombre de la imagen para almacenar en el servidor
+                        $Nom_Img_Ser='Img_Cur_'.$Img_Cur_Ser1[0].'_'.$MatGen.'_'.$user.'.'.$Img_Cur_Ser[1];
+                        $Nom_Img_BD='Cur_'.$Img_Cur_Ser1[0].'_'.$MatGen.'_'.$user;
+                        //Ruta donde se almacena la imagen en el servidor
+                        $RutaSav = $_SERVER['DOCUMENT_ROOT'].'/Educatorium/imagenes/';
+                        $Dir_Sav=$RutaSav.$Nom_Img_Ser;
+                        if(move_uploaded_file($_FILES['imagen']['tmp_name'], $Dir_Sav))
+                            $HavImgBien=true;//Esta variable me ayudara a saber si hubo una imagen para proceder primero con su registro
+                        else
+                            $ImgBienAd=$AdDan.'Ocurrio algun error al subir la imagen al servidor'.$AdClo;
+                    }
+                    else
+                        $ImgBienAd=$AdDan.'La imagen es muy grande'.$AdClo;
                 }
                 else
-                {
-                    $Img_err="La imagen es muy grande";
-                }
+                    $ImgBienAd=$AdDan.'Solo se pueden subir imágenes'.$AdClo;
             }
             else
-            {
-                $Img_err="Solo se pueden subir imágenes";
-            }
+                $ImgBienAd=$AdDan.'No se ha seleccionado una imagen de bienvenida'.$AdClo;
         }
-        
-        /*Contraseña
-        Revisar si se introdujo contraseña*/
-        if($StatusContra=="Si")
+                       
+        //Contraseña
+        //Revisar si se introdujo contraseña
+        if($OpcContra=="Si")
         {
             $Contra=validar($Contra);
             $CfnContra=validar($CfnContra);
-            //Si se introdujo contraseña, revisar su contenido
-            $Check_Pass=RevContra($Contra,$CfnContra);
-            //$Arr_Res = array($ErrPass,$NErrPass,$ErrCfnPass,$NErrCfnPass,$cifrado);
-            $Pass_err=$Check_Pass[0];
-            $Pass_right=$Check_Pass[1];
-            $CfnPass_err=$Check_Pass[2];
-            $CfnPass_right=$Check_Pass[3];
-            $Contra=$Check_Pass[4];
+            //Revisar si se confirmo la contraseña ingresada
+            $Check_Pass=RevContra($Contra,$CfnContra,$AdSuc,$AdWar,$AdDan,$AdClo);
+            //$Arr_Res = array($AdPass,$AdCfnPass,$cifrado);
+            $PassAd=$Check_Pass[0];
+            $CfnPassAd=$Check_Pass[1];
+            $Contra=$Check_Pass[2];
         }
         else
         {
             $Contra="";
-        }        
-
-        /**/
-
-        /*$user=$_SESSION['Username'];
-        $MatGen=$_SESSION['Mat'];*/
-
-         /*
-    $sql="select ID_Curso,curso.Nombre,Materia_ID,Profesor_ID from curso inner join profesor on"
-     ."(ID_Profesor=Profesor_ID) inner join materia on (Materia_ID=ID_Materia) where Username='".$user."'"
-     ."and materia.Nombre='".$MatGen."';";
-    $consulta=$conexion->query($sql);    
-    if($consulta->num_rows>0)    
-    {
-        while($res=$consulta->fetch_assoc())
-        {
-            $rutaSav=$res['Ruta'];
-            $RutaImg=substr($rutaSav,36);
         }
-    }*/
+
+        //Antes de crear el curso, revisar si se subio una imagen de bienvenida en el servidor y obtener si ID si fuera asi
+        if($HavImgBien==true)
+        {
+            $Tip_Archi=TipArchi($conexion);//ID del tipo de archivo a subir, en este caso imagen
+            $ID_Img=SavImg($Nom_Img_BD,$Tip_Archi,$Dir_Sav,$conexion);//ID de la imagen ya almacenada
+        }
+        
+        //Creacion del curso
+        //Obteniendo el id de la materia
+        $sql="select ID_Materia from materia where Nombre='".$MatGen."';";
+        $consulta=$conexion->query($sql);    
+        if($consulta->num_rows>0)
+        {
+            while($res=$consulta->fetch_assoc())
+            {
+                $ID_Mat=$res['ID_Materia'];
+            }
+        }
+
+        //Obteniendo el id del profesor
+        $sql="select ID_Profesor from profesor where Username='".$user."';";
+        $consulta=$conexion->query($sql);
+        if($consulta->num_rows>0)
+        {
+            while($res=$consulta->fetch_assoc())
+            {
+                $ID_Prof=$res['ID_Profesor'];
+            }
+        }
+        
+        if($OpcMsg=="Si" && $OpcContra=="Si")//Si el curso tuvo contraseña y mensaje de bienvenida
+        {
+            $sql="Insert into curso (Nombre,Msg_Bien,Password,Materia_ID,Profesor_ID) values"
+                ."('".$NomCur."','".$MsgBienvenida."','".$Contra."',".$ID_Mat.",".$ID_Prof.")";
+            $consulta=$conexion->query($sql);
+            $ID_Curso=$conexion->insert_id;//Obtener el id del curso, para poder crear la relacion con la imagen que se subio
+            //Crear relacion de curso con la imagen del mensaje de bienvenida
+            $sql="Insert into apoyo_curso (Apoyo_ID,Curso_ID) values (".$ID_Img.",".$ID_Curso.")";
+            $consulta=$conexion->query($sql);
+        }
+        else if($OpcMsg=="Si")//Si solo se introdujo mensaje de bienvenida
+        {
+            $sql="Insert into curso (Nombre,Msg_Bien,Materia_ID,Profesor_ID) values"
+                ."('".$NomCur."','".$MsgBienvenida."',".$ID_Mat.",".$ID_Prof.")";
+            $consulta=$conexion->query($sql);
+            $ID_Curso=$conexion->insert_id;//Obtener el id del curso, para poder crear la relacion con la imagen que se subio
+            //Crear relacion de curso con la imagen del mensaje de bienvenida
+            $sql="Insert into apoyo_curso (Apoyo_ID,Curso_ID) values (".$ID_Img.",".$ID_Curso.")";
+            $consulta=$conexion->query($sql);
+        }
+        else if($OpcContra=="Si")//Si solo se introdujo contraseña
+        {
+            $sql="Insert into curso (Nombre,Password,Materia_ID,Profesor_ID) values"
+                ."('".$NomCur."','".$Contra."',".$ID_Mat.",".$ID_Prof.")";
+            $consulta=$conexion->query($sql);
+        }
+        else //Si solo se introdujo el nombre
+        {
+            $sql="Insert into curso (Nombre,Materia_ID,Profesor_ID) values"
+                ."('".$NomCur."',".$ID_Mat.",".$ID_Prof.")";
+            $consulta=$conexion->query($sql);
+        }
     }
 
     function validar($data)
@@ -152,41 +189,89 @@
         return $data;
     }
 
-    function RevContra($pass,$cpass)
+    function RevContra($pass,$cpass,$AdSuc,$AdWar,$AdDan,$AdClo)
     {
-        //Avisos de contraseña
-        $ErrPass=$NErrPass="";
-        //Avisos de confirmacion de contraseña
-        $ErrCfnPass=$NErrCfnPass="";
+        //Avisos de retorno para muestra de condicion de contraseña y su confirmacion
+        $AdPass=$AdCfnPass="";
 
         //Revision de contraseña        
         if(empty($pass))
-            $ErrPass = "* El campo contraseña está vacío";
+            $AdPass=$AdDan.'El campo contraseña no puede estar vacío'.$AdClo;
         else if(strlen($pass) < 8)
-            $ErrPass = "* La contraseña es muy corta, se solicita como minimo 8 caracteres";
+            $AdPass=$AdDan.'La contraseña es muy corta, se solicita como minimo 8 caracteres'.$AdClo;
         else if(!preg_match('/(?=\d)/', $pass))
-            $ErrPass = "* Debe contener al menos un dígito";
+            $AdPass=$AdDan.'La contraseña debe contener al menos un dígito'.$AdClo;
         else if(!preg_match('/(?=[a-z])/', $pass))
-            $ErrPass = "* Debe contener al menos una minúscula";
+            $AdPass=$AdDan.'La contraseña debe contener al menos una minúscula'.$AdClo;
         else if(!preg_match('/(?=[A-Z])/', $pass))
-            $ErrPass = "*Debe contener al menos una mayúscula";
+            $AdPass=$AdDan.'La contraseña debe contener al menos una mayúscula'.$AdClo;
         else
         {
-            $NErrPass = "¡Correcto!";
+            $AdPass=$AdSuc.'Contraseña adecuada'.$AdClo;
             $cifrado = password_hash($pass, PASSWORD_DEFAULT);
         }
 
         //Confirmacion de contraseña
-        $cpass = validar($_POST['cpass']);
         if(empty($cpass))
-            $ErrCfnPass = "* Favor de introducir otra vez su contraseña";
-        elseif($cpass!=$pass)
-            $ErrCfnPass = "* Las contraseñas no coinciden";
+            $AdCfnPass=$AdDan.'Favor de introducir otra vez su contraseña'.$AdClo;
+        else if($cpass!=$pass)
+            $AdCfnPass=$AdDan.'Las contraseñas ingresadas no coinciden'.$AdClo;
         else
-            $NErrCfnPass = "¡Correcto!";
+            $AdCfnPass=$AdSuc.'Las contraseñas coinciden'.$AdClo;
 
-        $Arr_Res = array($ErrPass,$NErrPass,$ErrCfnPass,$NErrCfnPass,$cifrado);
+        $Arr_Res = array($AdPass,$AdCfnPass,$cifrado);
         return $Arr_Res;
     }
 
+    //Funcion de busqueda de tipo de archivo subido
+    function TipArchi($link)
+    {
+        //Investigar si hay algun registro guardado sobre el tipo de apoyo imagen
+        $sql="Select * FROM tipo_apoyo WHERE Nombre='Imagen';";
+        $ver=$link->query($sql);
+        $result=$ver->num_rows;
+        
+        if($result==0)//En caso de que no, lo agregamos a la base de datos
+        {
+            $sql="Insert into tipo_apoyo (Nombre) values ('Imagen');";
+            $ver=$link->query($sql);
+        }
+        //Considerando que ya existe, buscamos el ID del tipo imagen
+        $sql="Select ID_Tipo FROM tipo_apoyo WHERE Nombre='Imagen';";
+        
+        if($ver=$link->query($sql))
+        {
+            while($cont=$ver->fetch_row())
+            {
+                return $cont[0];//Retornar el id del tipo de apoyo imagen para guardarlo junto con los datos
+            }
+        }
+    }
+
+    //Funcion de busqueda de imagen guardada
+    function SavImg($nombre,$TipoRecurso,$ruta,$link)
+    {
+        //Investigar si ya hay alguna imagen guardada con el mismo nombre en la BD
+        $sql="Select * from apoyo where Nombre='".$nombre."' and Tipo_Apoyo_ID =".$TipoRecurso.";";
+        $ver=$link->query($sql);
+        $result=$ver->num_rows;
+        
+        if($result==0)
+        {
+            //Se almacena la imagen, con el tipo de recurso imagen
+            $sql="Insert into apoyo (Nombre,Ruta,Tipo_Apoyo_ID) values ('".$nombre."','".$ruta."',".$TipoRecurso.");";
+            $ver=$link->query($sql);
+        }
+        
+        //Considerando que ya existe buscamos la imagen subida
+        $sql="Select ID_Apoyo from apoyo where Nombre='".$nombre."' and Tipo_Apoyo_ID=".$TipoRecurso.";";
+        
+        if($ver=$link->query($sql))
+        {
+            while($cont=$ver->fetch_row())
+            {
+                return $cont[0];//Retornar el id del tipo de apoyo imagen para guardarlo junto con los datos
+            }
+        }        
+    }
 ?>

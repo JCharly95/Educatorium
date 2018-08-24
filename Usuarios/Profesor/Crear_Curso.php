@@ -61,55 +61,79 @@
                                                 <input type="text" class="form-control" name="nombre" id="Name" placeholder="" value="">
                                             </div>
                                             <div class="col-md-3">
-                                                <span class="error"><?php //echo $nom_err;?></span>
-                                                <span class="bien"><?php //echo $nom_right;?></span>
+                                                <span><?php //echo $nom_err;?></span>
                                             </div>
                                         </div>                                        
                                     </div>
                                     <div class="col-md-10 col-md-offset-1">
                                         <div class="panel panel-success">
                                             <div class="panel-heading">
-                                                <b>Paso 2: Ingrese un mensaje de bienvenida</b>
+                                                <b>Paso 2: ¿Desea ingresar un mensaje de bienvenida?</b>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-md-2 col-md-offset-2">
-                                                <label for="files">Imagen del mensaje de bienvenida:</label>
-                                            </div>
-                                            <div class="col-md-4">
-                                                <output id="list">
-                                                    
-                                                </output>
-                                            </div>
-                                            <div class="col-md-3">
-                                                <label class="btn btn-primary">
-                                                    <input type="file" id="files" name="imagen" style="display: none;" />
-                                                    <i class="fas fa-plus-circle fa-2x"></i> &nbsp;Seleccionar imagen...
-                                                </label>
-                                                <div class="form-group">
-                                                    <div class="row">
-                                                        <span class="error"> <?php //echo $Img_err;?></span>
-                                                    </div>
+                                    <div id="SectMsgQues">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-1 col-md-offset-4">
+                                                    <label><input type="radio" name="RespMsg" value="Si" id="RMSi" onclick="ViewSec('RMSi','Msg_Bienve','SectMsgQues');"/> <b>Si</b></label>                                                    
+                                                </div>
+                                                <div class="col-md-1 radio-inline col-md-offset-2">
+                                                    <label><input type="radio" name="RespMsg" value="No" id="RMNo" onclick="ViewSec('RMNo','Msg_Bienve','SectMsgQues');"/> <b>No</b></label>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <span><?php// echo $esc_right;?></span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-md-2 col-md-offset-2">
-                                                <label for="MsgBien">Mensaje: </label>
-                                            </div>                                            
-                                            <div class="col-md-5">
-                                                <textarea class="form-control" name="MsgBi" id="MsgBien"></textarea>
+                                    <div id="Msg_Bienve" style="display: none;">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-2 col-md-offset-2">
+                                                    <label for="files">Imagen del mensaje de bienvenida:</label>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <output id="list">
+                                                        
+                                                    </output>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label class="btn btn-primary">
+                                                        <input type="file" id="files" name="imagen" style="display: none;" />
+                                                        <i class="fas fa-plus-circle fa-2x"></i> &nbsp;Seleccionar imagen...
+                                                    </label>                                                    
+                                                </div>
                                             </div>
-                                            <div class="col-md-3">
-                                                <span class="error"><?php //echo $app_err;?></span>
-                                                <span class="bien"><?php //echo $pat_right;?></span>
+                                            <div class="row">
+                                                <div class="form-group">
+                                                    <div class="col-md-3 col-md-offset-4">
+                                                        <span> <?php //echo $Img_err;?></span>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>                                        
-                                    </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-2 col-md-offset-2">
+                                                    <label for="MsgBien">Mensaje: </label>
+                                                </div>                                            
+                                                <div class="col-md-5">
+                                                    <textarea class="form-control" name="MsgBi" id="MsgBien"></textarea>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <span><?php //echo $pat_right;?></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-4 col-md-offset-4">
+                                                    <button type="button" class="form-control btn-danger" onclick="CancView('Msg_Bienve','SectMsgQues','RMNo');">Cancelar contenido de bienvenida</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>                                    
                                     <div class="col-md-10 col-md-offset-1">
                                         <div class="panel panel-success">
                                             <div class="panel-heading">
@@ -121,33 +145,31 @@
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-md-1 col-md-offset-4">
-                                                    <label><input type="radio" name="Resp" value="Si" id="RSi" onclick="VerPass('NewCurso','Resp');"/> <b>Si</b></label>                                                    
+                                                    <label><input type="radio" name="Resp" value="Si" id="RSi" onclick="ViewSec('RSi','IntPass','QuesPass');"/> <b>Si</b></label>                                                    
                                                 </div>
                                                 <div class="col-md-1 radio-inline col-md-offset-2">
-                                                    <label><input type="radio" name="Resp" value="No" id="RNo" onclick="VerPass('NewCurso','Resp');"/> <b>No</b></label>
+                                                    <label><input type="radio" name="Resp" value="No" id="RNo" onclick="ViewSec('RNo','IntPass','QuesPass');"/> <b>No</b></label>
                                                 </div>
                                                 <div class="col-md-3">
-                                                    <span class="error"><?php// echo $esc_err;?></span>
-                                                    <span class="bien"><?php// echo $esc_right;?></span>
+                                                    <span><?php// echo $esc_right;?></span>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>                                        
+                                    </div>
                                     <div id="IntPass" style="display: none;">
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-md-2 col-md-offset-2">
                                                     <label for="pass">Contrase&ntilde;a:</label>
-                                                </div>                                            
+                                                </div>
                                                 <div class="col-md-5">
                                                     <input type="password" class="form-control" name="pass" id="pass" placeholder="Introduce tu contraseña" value="">
                                                 </div>
                                                 <div class="col-md-1">
                                                     <input type="checkbox" onclick="showpass()"> Ver
                                                 </div>
-                                                <div class="col-md-2">                                                
-                                                    <span class="error"><?php// echo $pass_err;?></span>
-                                                    <span class="bien"><?php// echo $pas_right;?></span>
+                                                <div class="col-md-2">
+                                                    <span><?php// echo $pas_right;?></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -162,20 +184,19 @@
                                                 <div class="col-md-1">
                                                     <input type="checkbox" onclick="showcpass()"> Ver
                                                 </div>
-                                                <div class="col-md-2">                                                
-                                                    <span class="error"><?php// echo $cpa_err;?></span>
-                                                    <span class="bien"><?php// echo $cpa_right;?></span>
+                                                <div class="col-md-2">
+                                                    <span><?php// echo $cpa_right;?></span>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-md-4 col-md-offset-4">
-                                                    <button type="button" class="form-control btn-danger" onclick="CancContra();">Cancelar colocacion de contraseña</button>
+                                                    <button type="button" class="form-control btn-danger" onclick="CancView('IntPass','QuesPass','RNo');">Cancelar contraseña</button>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>                                    
+                                    </div>
                                 </div>
                             </div>
                         </div>

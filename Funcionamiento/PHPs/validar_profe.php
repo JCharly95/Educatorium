@@ -319,7 +319,7 @@
                 $sql = "Insert into profe_escu (Profesor_ID,Escuela_ID) values (".$ID_profe.",".$reg_esc.");";
                 $ver = $conexion->query($sql);
                 $_SESSION['Username']=$user;
-                $id_img = $conexion->insert_id;
+                //$id_img = $conexion->insert_id;
                 echo "<script>alert('Felicitaciones, todos sus datos son correctos, sera redirigido en 1 segundo');</script>";
                 echo '<META HTTP-EQUIV="REFRESH" CONTENT="1;URL=../Usuarios/Profesor/Principal_Prof.php">';
             }
