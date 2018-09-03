@@ -1,5 +1,5 @@
 <?php
-        require '../../../Funcionamiento/PHPs/CEsp1.php';
+    require '../../../Funcionamiento/PHPs/CEsp1.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -13,24 +13,57 @@
         <title>Espa&ntilde;ol 1</title>
     </head>
     <body>
-        <div class="container"> 
-            <div class="row title">
-                <div class="col-md-10">
-                    <h1 align="center">Estos son los cursos disponibles para: Español I</h1>
-                </div>
-                <div class="col-md-2">
-                    <abbr title="Ayuda"><a href="#" id="help" onclick="MostrarAyuda();"><i class="fas fa-question-circle fa-4x"></i></a></abbr>
-                </div>
-            </div>
+        <div class="container">
             <div class="form-group">
-                <!--Cuerpo de la pagina-->
+                <div class="row title">
+                    <div class="col-md-10">
+                        <h1 align="center">Estos son los cursos disponibles para: Español I</h1>
+                    </div>
+                    <div class="col-md-2">
+                        <abbr title="Ayuda"><a href="#" id="help" onclick="MostrarAyuda();"><i class="fas fa-question-circle fa-4x"></i></a></abbr>
+                    </div>
+                </div>
             </div>
+            <?php
+                $ArrConsul=array();
+                $sql="select curso.Nombre as NomCur, profesor.Nombre as NomProf, Ape_Pat from curso inner join profesor on (Profesor_ID=ID_Profesor);";
+                $consulta=$conexion->query($sql);
+                if($consulta->num_rows>0)    
+                {
+                    $cont=0;
+                    while($res=$consulta->fetch_assoc())
+                    {
+                        $ArrConsul[$cont]=$res;
+                        $cont++;
+                    }
+                    
+                    for($fils=0;$fils<$cont/3;$fils++)
+                    {
+                        echo '<div class="form-group">'.
+                            '<div class="row">';
+                        for($cols=$fils*3,$cont1=0;$cont1<=2;$cols++,$cont1++)
+                        {
+                            if($cols==$cont)
+                            {
+                                break;
+                            }
+                            echo '<a href="">'.
+                                '<div class="col-md-3 col-md-offset-1 text-center" style="border: 2px solid black; border-radius: 15px; background-color: lightgreen;">'.
+                                    '<span>'.$ArrConsul[$cols]['NomCur'].'<br>Impartido por: '.$ArrConsul[$cols]['NomProf'].' '.$ArrConsul[$cols]['Ape_Pat'].'</span>'.
+                                '</div>'.
+                                 '</a>';
+                        }
+                        echo    '</div>'.
+                        '</div>';
+                    }                    
+                }
+            ?>
             <div class="form-group" <?php echo $Opc_Profe; ?>>
                 <div class="col-md-3 col-md-offset-2">
                     <a href="../../../Usuarios/Profesor/Crear_Curso.php" class="btn btn-success"><i class="fas fa-plus-circle fa-2x"></i>&nbsp; <b>Crear Curso</b></a>
                 </div>
                 <div class="col-md-3 col-md-offset-3">
-                    <a href="#" class="btn btn-warning"><i class="fas fa-wrench fa-2x"></i>&nbsp; <b>Editar mis cursos</b></a>
+                    <a href="../../../Usuarios/Profesor/Sel_Edit_Curso.php" class="btn btn-warning"><i class="fas fa-wrench fa-2x"></i>&nbsp; <b>Editar mis cursos</b></a>
                 </div>
             </div>
             <div class="form-group">

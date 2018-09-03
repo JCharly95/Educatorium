@@ -7,6 +7,9 @@
         header("location: ../../Acceso/FAcces.php");
     }
 
+    $user=$_SESSION['Username'];
+    $MatGen=$_SESSION['Mat'];
+
     //Variables que almacenaran los datos recibidos por el formulario
     $NomCur = $OpcMsg = $MsgBienvenida = $OpcContra = $Contra = $CfnContra = "";
     //Variables de avisos
@@ -14,6 +17,8 @@
     //Variables de ID´s usadas posteriormente
     $Tip_Archi=$ID_Img=0;// ID del tipo de archivo a subir\ID de la imagen una vez que se subio
     $ID_Mat=$ID_Prof=0;// ID de la materia\ID del profesor
+    //Variables de confirmacion de validacion
+    $HNom=$HMsg=$HImg=$HContra=false;
 
     //Variables para impresiones de avisos
     $AdSuc='<span class="label label-success">';
@@ -31,11 +36,7 @@
         $Contra=$_POST['pass'];
         $CfnContra=$_POST['cpass'];
     }
-
-    $user=$_SESSION['Username'];
-    $MatGen=$_SESSION['Mat'];
-
-
+    
     //Inicio de peticion de datos
     if(isset($_POST['enviar']))
     {
@@ -44,12 +45,16 @@
         
         if(empty($NomCur))//Comprobar si se introdujo un nombre
             $NomCurAd=$AdDan.'El campo nombre está vacío'.$AdClo;
-        else if(!preg_match("/^[0-9a-zA-Z]+$/", $NomCur))//Comprobar si no se tienen caracteres extraños
+        else if(!preg_match("/^[a-z-A-Z0-9\s]*$/", $NomCur))//Comprobar si no se tienen caracteres extraños
             $NomCurAd=$AdDan.'Solo se permiten numeros, letras y espacios'.$AdClo;
-        else if(strlen($nombre) > 30)//Comprobar si el nombre cumple con una determinada longitud
-            $NomCurAd=$AdDan.'El nombre es muy largo, se permiten 30 caracteres como maximo (incluidos los espacios)'.$AdClo;
-        else //Si se cumplio con todo lo anterior, sale el aviso de excelente
+        else if(strlen($NomCur) > 30)//Comprobar si el nombre cumple con una determinada longitud
+            $NomCurAd=$AdDan.'El nombre es muy largo, solo se permiten 30 caracteres como maximo (incluidos los espacios)'.$AdClo;
+        else
+        {
+            //Si se cumplio con todo lo anterior, sale el aviso de excelente
             $NomCurAd=$AdSuc.'Nombre adecuado'.$AdClo;
+            $HNom=true;
+        }
 
         //Verificar si se opto por ingresar un mensaje de bienvenida y una imagen de bienvenida
         if($OpcMsg=="Si")
@@ -59,10 +64,13 @@
 
             if(empty($MsgBienvenida))
                 $MsgBienAd=$AdDan.'Favor de colocar un mensaje de bienvenida para el curso, no mayor a 100 caracteres'.$AdClo;
-            elseif(strlen($Msg_err) > 99)
-                $MsgBienAd=$AdDan.'Mensaje demasiado largo, favor de ingresar uno mas corto'.$AdClo;
+            elseif(strlen($MsgBienvenida)>99)
+                $MsgBienAd=$AdDan.'Mensaje demasiado largo, solo se permiten 100 caracteres'.$AdClo;
             else
+            {
                 $MsgBienAd=$AdSuc.'Mensaje adecuado'.$AdClo;
+                $HMsg=true;
+            }
 
             //Imagen de bienvenida
             if(!empty($_FILES['imagen']['name']))
@@ -84,10 +92,7 @@
                         //Ruta donde se almacena la imagen en el servidor
                         $RutaSav = $_SERVER['DOCUMENT_ROOT'].'/Educatorium/imagenes/';
                         $Dir_Sav=$RutaSav.$Nom_Img_Ser;
-                        if(move_uploaded_file($_FILES['imagen']['tmp_name'], $Dir_Sav))
-                            $HavImgBien=true;//Esta variable me ayudara a saber si hubo una imagen para proceder primero con su registro
-                        else
-                            $ImgBienAd=$AdDan.'Ocurrio algun error al subir la imagen al servidor'.$AdClo;
+                        $HImg=true;
                     }
                     else
                         $ImgBienAd=$AdDan.'La imagen es muy grande'.$AdClo;
@@ -106,23 +111,26 @@
             $Contra=validar($Contra);
             $CfnContra=validar($CfnContra);
             //Revisar si se confirmo la contraseña ingresada
-            $Check_Pass=RevContra($Contra,$CfnContra,$AdSuc,$AdWar,$AdDan,$AdClo);
-            //$Arr_Res = array($AdPass,$AdCfnPass,$cifrado);
+            $Check_Pass=RevContra($Contra,$CfnContra,$AdSuc,$AdWar,$AdDan,$AdClo,$HContra);
+            //$Arr_Res = array($AdPass,$AdCfnPass,$cifrado,$HContra);
             $PassAd=$Check_Pass[0];
             $CfnPassAd=$Check_Pass[1];
             $Contra=$Check_Pass[2];
-        }
-        else
-        {
-            $Contra="";
+            $HContra=$Check_Pass[3];
         }
 
         //Antes de crear el curso, revisar si se subio una imagen de bienvenida en el servidor y obtener si ID si fuera asi
-        if($HavImgBien==true)
+        if($HImg==true)
         {
+            if(move_uploaded_file($_FILES['imagen']['tmp_name'], $Dir_Sav))//Subir la imagen al servidor, solo si se introdujo una
+            {
+                $ImgBienAd=$AdSuc.'Imagen subida adecuadamente'.$AdClo;
+            }
             $Tip_Archi=TipArchi($conexion);//ID del tipo de archivo a subir, en este caso imagen
             $ID_Img=SavImg($Nom_Img_BD,$Tip_Archi,$Dir_Sav,$conexion);//ID de la imagen ya almacenada
         }
+        else
+            $ImgBienAd=$AdDan.'Favor de seleccionar una imagen'.$AdClo;
         
         //Creacion del curso
         //Obteniendo el id de la materia
@@ -147,37 +155,68 @@
             }
         }
         
+        /*echo "Opcion del Msg Bienvenida: ".$OpcMsg."<br>".
+        "Opcion de la contraseña: ".$OpcMsg."<br>".
+        "Nombre del curso: ".$NomCur."<br>".
+        "Msg del curso: ".$MsgBienvenida."<br>".
+        "Contraseña del curso: ".$Contra."<br>".
+        "ID Materia del curso: ".$ID_Mat."<br>".
+        "ID de profesor que hizo el curso: ".$ID_Prof."<br>";*/
         if($OpcMsg=="Si" && $OpcContra=="Si")//Si el curso tuvo contraseña y mensaje de bienvenida
         {
-            $sql="Insert into curso (Nombre,Msg_Bien,Password,Materia_ID,Profesor_ID) values"
-                ."('".$NomCur."','".$MsgBienvenida."','".$Contra."',".$ID_Mat.",".$ID_Prof.")";
-            $consulta=$conexion->query($sql);
-            $ID_Curso=$conexion->insert_id;//Obtener el id del curso, para poder crear la relacion con la imagen que se subio
-            //Crear relacion de curso con la imagen del mensaje de bienvenida
-            $sql="Insert into apoyo_curso (Apoyo_ID,Curso_ID) values (".$ID_Img.",".$ID_Curso.")";
-            $consulta=$conexion->query($sql);
+            if($HNom && $HMsg && $HImg && $HContra)
+            {
+                //echo "Si hubo contenido de bienvenida y contraseña";
+                $sql="Insert into curso (Nombre,Msg_Bien,Password,Materia_ID,Profesor_ID) values"
+                    ."('".$NomCur."','".$MsgBienvenida."','".$Contra."',".$ID_Mat.",".$ID_Prof.")";
+                $consulta=$conexion->query($sql);
+                $ID_Curso=$conexion->insert_id;//Obtener el id del curso, para poder crear la relacion con la imagen que se subio
+                //Crear relacion de curso con la imagen del mensaje de bienvenida
+                $sql="Insert into apoyo_curso (Apoyo_ID,Curso_ID) values (".$ID_Img.",".$ID_Curso.")";
+                $consulta=$conexion->query($sql);
+                echo "<script>alert('Curso creado satisfactoriamente');</script>";
+                echo '<META HTTP-EQUIV="REFRESH" CONTENT="1;URL=../../Usuarios/Profesor/Principal_Prof.php">';
+            }
         }
         else if($OpcMsg=="Si")//Si solo se introdujo mensaje de bienvenida
         {
-            $sql="Insert into curso (Nombre,Msg_Bien,Materia_ID,Profesor_ID) values"
-                ."('".$NomCur."','".$MsgBienvenida."',".$ID_Mat.",".$ID_Prof.")";
-            $consulta=$conexion->query($sql);
-            $ID_Curso=$conexion->insert_id;//Obtener el id del curso, para poder crear la relacion con la imagen que se subio
-            //Crear relacion de curso con la imagen del mensaje de bienvenida
-            $sql="Insert into apoyo_curso (Apoyo_ID,Curso_ID) values (".$ID_Img.",".$ID_Curso.")";
-            $consulta=$conexion->query($sql);
+            if($HNom && $HMsg && $HImg)
+            {
+                //echo "Solo hubo contenido de bienvenida";
+                $sql="Insert into curso (Nombre,Msg_Bien,Materia_ID,Profesor_ID) values"
+                    ."('".$NomCur."','".$MsgBienvenida."',".$ID_Mat.",".$ID_Prof.")";
+                $consulta=$conexion->query($sql);
+                $ID_Curso=$conexion->insert_id;//Obtener el id del curso, para poder crear la relacion con la imagen que se subio
+                //Crear relacion de curso con la imagen del mensaje de bienvenida
+                $sql="Insert into apoyo_curso (Apoyo_ID,Curso_ID) values (".$ID_Img.",".$ID_Curso.")";
+                $consulta=$conexion->query($sql);
+                echo "<script>alert('Curso creado satisfactoriamente');</script>";
+                echo '<META HTTP-EQUIV="REFRESH" CONTENT="1;URL=../../Usuarios/Profesor/Principal_Prof.php">';
+            }
         }
         else if($OpcContra=="Si")//Si solo se introdujo contraseña
         {
-            $sql="Insert into curso (Nombre,Password,Materia_ID,Profesor_ID) values"
-                ."('".$NomCur."','".$Contra."',".$ID_Mat.",".$ID_Prof.")";
-            $consulta=$conexion->query($sql);
+            if($HNom && $HContra)
+            {
+                //echo "Solo hubo contraseña";
+                $sql="Insert into curso (Nombre,Password,Materia_ID,Profesor_ID) values"
+                    ."('".$NomCur."','".$Contra."',".$ID_Mat.",".$ID_Prof.")";
+                $consulta=$conexion->query($sql);
+                echo "<script>alert('Curso creado satisfactoriamente');</script>";
+                echo '<META HTTP-EQUIV="REFRESH" CONTENT="1;URL=../../Usuarios/Profesor/Principal_Prof.php">';
+            }
         }
         else //Si solo se introdujo el nombre
         {
-            $sql="Insert into curso (Nombre,Materia_ID,Profesor_ID) values"
-                ."('".$NomCur."',".$ID_Mat.",".$ID_Prof.")";
-            $consulta=$conexion->query($sql);
+            if($HNom)
+            {
+                //echo "Solo hubo nombre";
+                $sql="Insert into curso (Nombre,Materia_ID,Profesor_ID) values"
+                    ."('".$NomCur."',".$ID_Mat.",".$ID_Prof.")";
+                $consulta=$conexion->query($sql);
+                echo "<script>alert('Curso creado satisfactoriamente');</script>";
+                echo '<META HTTP-EQUIV="REFRESH" CONTENT="1;URL=../../Usuarios/Profesor/Principal_Prof.php">';
+            }
         }
     }
 
@@ -189,10 +228,10 @@
         return $data;
     }
 
-    function RevContra($pass,$cpass,$AdSuc,$AdWar,$AdDan,$AdClo)
+    function RevContra($pass,$cpass,$AdSuc,$AdWar,$AdDan,$AdClo,$HContra)
     {
         //Avisos de retorno para muestra de condicion de contraseña y su confirmacion
-        $AdPass=$AdCfnPass="";
+        $AdPass=$AdCfnPass=$cifrado="";
 
         //Revision de contraseña        
         if(empty($pass))
@@ -208,6 +247,7 @@
         else
         {
             $AdPass=$AdSuc.'Contraseña adecuada'.$AdClo;
+            $HContra=true;
             $cifrado = password_hash($pass, PASSWORD_DEFAULT);
         }
 
@@ -219,7 +259,7 @@
         else
             $AdCfnPass=$AdSuc.'Las contraseñas coinciden'.$AdClo;
 
-        $Arr_Res = array($AdPass,$AdCfnPass,$cifrado);
+        $Arr_Res = array($AdPass,$AdCfnPass,$cifrado,$HContra);
         return $Arr_Res;
     }
 

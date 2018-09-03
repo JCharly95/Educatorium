@@ -29,7 +29,7 @@
                             <h3 class="modal-title text-danger text-center">Módulo de Ayuda</h3>
                           </div>
                             <div class="modal-body bg-info">
-                                <p class="text-primary lead">Completa todos los campos del formulario con la información requerida. De lo contrario, se te mostrará un mensaje de error y <strong style="text-decoration: underline;">NO</strong> podrás registrarte. Haz caso a las indicaciones que se te piden.</p>
+                                <p class="text-primary lead">Complete todos los campos del formulario con la información requerida. De lo contrario, se te mostrará un mensaje de error y <strong style="text-decoration: underline;">NO</strong> podrás registrarte. Haz caso a las indicaciones que se te piden.</p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-success" data-dismiss="modal">Entendido</button>
@@ -58,12 +58,16 @@
                                                 <label for="Name">Nombre: </label>
                                             </div>                                            
                                             <div class="col-md-5">
-                                                <input type="text" class="form-control" name="nombre" id="Name" placeholder="" value="">
-                                            </div>
-                                            <div class="col-md-3">
-                                                <span><?php //echo $nom_err;?></span>
+                                                <input type="text" class="form-control" name="nombre" id="Name">
                                             </div>
                                         </div>                                        
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-3 col-md-offset-4">
+                                                <span><?php echo $NomCurAd;?></span>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="col-md-10 col-md-offset-1">
                                         <div class="panel panel-success">
@@ -79,10 +83,7 @@
                                                     <label><input type="radio" name="RespMsg" value="Si" id="RMSi" onclick="ViewSec('RMSi','Msg_Bienve','SectMsgQues');"/> <b>Si</b></label>                                                    
                                                 </div>
                                                 <div class="col-md-1 radio-inline col-md-offset-2">
-                                                    <label><input type="radio" name="RespMsg" value="No" id="RMNo" onclick="ViewSec('RMNo','Msg_Bienve','SectMsgQues');"/> <b>No</b></label>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <span><?php// echo $esc_right;?></span>
+                                                    <label><input type="radio" name="RespMsg" value="No" id="RMNo" onclick="ViewSec('RMNo','Msg_Bienve','SectMsgQues');" checked/> <b>No</b></label>
                                                 </div>
                                             </div>
                                         </div>
@@ -104,12 +105,12 @@
                                                         <i class="fas fa-plus-circle fa-2x"></i> &nbsp;Seleccionar imagen...
                                                     </label>                                                    
                                                 </div>
-                                            </div>
+                                            </div>                                            
+                                        </div>
+                                        <div class="form-group">
                                             <div class="row">
-                                                <div class="form-group">
-                                                    <div class="col-md-3 col-md-offset-4">
-                                                        <span> <?php //echo $Img_err;?></span>
-                                                    </div>
+                                                <div class="col-md-3 col-md-offset-4">
+                                                    <span> <?php echo $ImgBienAd;?></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -121,8 +122,12 @@
                                                 <div class="col-md-5">
                                                     <textarea class="form-control" name="MsgBi" id="MsgBien"></textarea>
                                                 </div>
-                                                <div class="col-md-3">
-                                                    <span><?php //echo $pat_right;?></span>
+                                            </div>                                            
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-3 col-md-offset-4">
+                                                    <span><?php echo $MsgBienAd;?></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -148,10 +153,7 @@
                                                     <label><input type="radio" name="Resp" value="Si" id="RSi" onclick="ViewSec('RSi','IntPass','QuesPass');"/> <b>Si</b></label>                                                    
                                                 </div>
                                                 <div class="col-md-1 radio-inline col-md-offset-2">
-                                                    <label><input type="radio" name="Resp" value="No" id="RNo" onclick="ViewSec('RNo','IntPass','QuesPass');"/> <b>No</b></label>
-                                                </div>
-                                                <div class="col-md-3">
-                                                    <span><?php// echo $esc_right;?></span>
+                                                    <label><input type="radio" name="Resp" value="No" id="RNo" onclick="ViewSec('RNo','IntPass','QuesPass');" checked/> <b>No</b></label>
                                                 </div>
                                             </div>
                                         </div>
@@ -168,8 +170,12 @@
                                                 <div class="col-md-1">
                                                     <input type="checkbox" onclick="showpass()"> Ver
                                                 </div>
-                                                <div class="col-md-2">
-                                                    <span><?php// echo $pas_right;?></span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-md-3 col-md-offset-4">
+                                                    <span><?php echo $PassAd;?></span>
                                                 </div>
                                             </div>
                                         </div>
@@ -184,8 +190,12 @@
                                                 <div class="col-md-1">
                                                     <input type="checkbox" onclick="showcpass()"> Ver
                                                 </div>
-                                                <div class="col-md-2">
-                                                    <span><?php// echo $cpa_right;?></span>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-md-3 col-md-offset-4">
+                                                        <span><?php echo $CfnPassAd;?></span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -222,6 +232,7 @@
         </footer>
         <script src="../../Funcionamiento/Javascripts/Crear_Curso.js"></script>        
         <script src="../../Funcionamiento/Javascripts/ver-password.js"></script>
+        <script src="../../Funcionamiento/Javascripts/ver-foto.js"></script>
         <script type="text/javascript" src="../../CmpVis/jquery/jquery-3.3.1.js"></script>
 	    <script type="text/javascript" src="../../CmpVis/bootstrap-3.3.7-dist/js/bootstrap.js"></script>        
     </body>

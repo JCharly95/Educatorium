@@ -218,7 +218,7 @@
                                     <div class="col-md-3 col-md-offset-3">
                                         <label class="btn btn-success">
                                             <input type="submit" name="enviar" style="display: none;">
-                                            <i class="fas fa-check"></i> Confirmar datos y registrar
+                                            <i class="fas fa-check"></i> Confirmar seleccion y registrar
                                         </label>                                    
                                     </div>
                                     <div class="col-md-3 col-md-offset-2">
