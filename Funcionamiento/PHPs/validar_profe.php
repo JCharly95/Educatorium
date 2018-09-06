@@ -3,7 +3,7 @@
     session_start();
 
 //MANDAMOS A LLAMAR EL ARCHIVO DE LA CONEXION
-    require 'conexion.php';
+    require $_SERVER['DOCUMENT_ROOT'].'/Educatorium/Funcionamiento/PHPs/Conn_Ses/conexion.php';
 
 //DECLARAMOS LAS VARIABLES DEL FORM Y LAS VARIABLES DE ERROR COMO VACIAS
     $nombre = $ap_pat = $ap_mat = $tel = $correo = $Esc_Reg = $reg_esc = $Resp = $tipo = $num = $esc = $user = $pass = $cpass = $Img = $clave = "";

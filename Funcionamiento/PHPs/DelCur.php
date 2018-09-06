@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require 'conexion.php';
+    require $_SERVER['DOCUMENT_ROOT'].'/Educatorium/Funcionamiento/PHPs/Conn_Ses/conexion.php';
 
     $GradoDel=$_POST['BtnDel'];
     $User=$_SESSION['Username'];

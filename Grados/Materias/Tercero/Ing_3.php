@@ -1,5 +1,6 @@
 <?php
-    //require '../Funcionamiento/PHPs/CPriG.php';
+    require '../../../Funcionamiento/PHPs/Carga_Datos/Dat_Esc/CMaterias.php';
+    $_SESSION['Mat']='Ingl 3';
 ?>
 <!DOCTYPE html>
 <html>

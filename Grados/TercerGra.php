@@ -1,5 +1,5 @@
 <?php
-    require '../Funcionamiento/PHPs/CTerG.php';
+    require '../Funcionamiento/PHPs/Carga_Datos/Dat_Esc/CTerG.php';
 ?>
 <!DOCTYPE html>
 <html>

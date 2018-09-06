@@ -1,5 +1,6 @@
 <?php
-    require '../../../Funcionamiento/PHPs/CEsp1.php';
+    require '../../../Funcionamiento/PHPs/Carga_Datos/Dat_Esc/CMaterias.php';
+    $_SESSION['Mat']='Espa 1';
 ?>
 <!DOCTYPE html>
 <html>
@@ -63,7 +64,7 @@
                     <a href="../../../Usuarios/Profesor/Crear_Curso.php" class="btn btn-success"><i class="fas fa-plus-circle fa-2x"></i>&nbsp; <b>Crear Curso</b></a>
                 </div>
                 <div class="col-md-3 col-md-offset-3">
-                    <a href="../../../Usuarios/Profesor/Sel_Edit_Curso.php" class="btn btn-warning"><i class="fas fa-wrench fa-2x"></i>&nbsp; <b>Editar mis cursos</b></a>
+                    <a href="../../../Usuarios/Profesor/Edicion_Curso/Sel_Curso.php" class="btn btn-warning"><i class="fas fa-wrench fa-2x"></i>&nbsp; <b>Editar mis cursos</b></a>
                 </div>
             </div>
             <div class="form-group">

@@ -1,5 +1,5 @@
 <?php  
-  require '../../Funcionamiento/PHPs/CDatosProf.php';
+  require '../../Funcionamiento/PHPs/Carga_Datos/Usuarios/Profesores/CDatosProf.php';
   require '../../Funcionamiento/PHPs/upd_profe.php';
 
     $mostrarModal = false;

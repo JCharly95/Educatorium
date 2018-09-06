@@ -1,8 +1,8 @@
 <?php
 session_start();
-
+  
+    require '../../Funcionamiento/PHPs/Carga_Datos/Usuarios/Padres/CDatosPad.php';
     require '../../Funcionamiento/PHPs/upd_padre.php';
-    require '../../Funcionamiento/PHPs/CDatosPad.php';
 
     $mostrarModal = false;
     if(!isset($_COOKIE['mostrarModal']))

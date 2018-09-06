@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require 'conexion.php';
+    require $_SERVER['DOCUMENT_ROOT'].'/Educatorium/Funcionamiento/PHPs/Conn_Ses/conexion.php';
     
     if(!isset($_SESSION['Username']) || empty($_SESSION['Username']))
     {
@@ -9,25 +9,25 @@
 
     $user = $_SESSION['Username'];
     $Tipo_Usuario = $_SESSION['Tip_User'];
-    $BtnMatsSeg=['style="display: none;"','style="display: none;"','style="display: none;"',
+    $BtnMatsTer=['style="display: none;"','style="display: none;"','style="display: none;"',
     'style="display: none;"','style="display: none;"','style="display: none;"'];
     $BtnID=[];
     
     if($Tipo_Usuario=='Profe')
     {
         $BtnID=CondBtns($user,$conexion,$BtnID);
-        $BtnMatsSeg=ShowMats($BtnID, $BtnMatsSeg);
+        $BtnMatsTer=ShowMats($BtnID, $BtnMatsTer);
     }
     else
     {
-        $BtnMatsSeg=['','','','','','',''];
+        $BtnMatsTer=['','','','','','',''];
     }
 
     //Funcion para determinar que botones se van a mostrar al profesor
     function CondBtns($user,$conexion,$ArrBtn)
     {
         $sql="select ID_Materia from mat_profe inner join profesor on (Profe_ID=ID_Profesor)".
-        "inner join materia on (Materia_ID=ID_Materia)where Username='".$user."' and Grado_ID=2;";
+        "inner join materia on (Materia_ID=ID_Materia)where Username='".$user."' and Grado_ID=3;";
 
         if($consulta=$conexion->query($sql))
         {
@@ -45,38 +45,38 @@
         return $ArrBtn;
     }
 
-    function ShowMats($ArrBtn, $BtnMatsSeg)
+    function ShowMats($ArrBtn, $BtnMatsTer)
     {
         foreach($ArrBtn as $Materia)
         {
             switch($Materia)
             {
-                case 8:
-                $BtnMatsSeg[0]="";
+                case 14:
+                $BtnMatsTer[0]="";
                 break;
 
-                case 9:
-                $BtnMatsSeg[1]="";
+                case 15:
+                $BtnMatsTer[1]="";
                 break;
 
-                case 10:
-                $BtnMatsSeg[2]="";
+                case 16:
+                $BtnMatsTer[2]="";
                 break;
 
-                case 11:
-                $BtnMatsSeg[3]="";
+                case 17:
+                $BtnMatsTer[3]="";
                 break;
 
-                case 12:
-                $BtnMatsSeg[4]="";
+                case 18:
+                $BtnMatsTer[4]="";
                 break;
 
-                case 13:
-                $BtnMatsSeg[5]="";
+                case 19:
+                $BtnMatsTer[5]="";
                 break;
             }
         }
 
-        return $BtnMatsSeg;
+        return $BtnMatsTer;
     }
 ?>

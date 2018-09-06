@@ -1,5 +1,5 @@
 <?php
-    require 'conexion.php';
+    require $_SERVER['DOCUMENT_ROOT'].'/Educatorium/Funcionamiento/PHPs/Conn_Ses/conexion.php';
 
     //Variables del sistema
     $GradPri = $GradSeg = $GradTer = "";

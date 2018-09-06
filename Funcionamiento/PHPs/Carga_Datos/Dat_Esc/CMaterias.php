@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require 'conexion.php';
+    require $_SERVER['DOCUMENT_ROOT'].'/Educatorium/Funcionamiento/PHPs/Conn_Ses/conexion.php';
 
     if(!isset($_SESSION['Username']) || empty($_SESSION['Username']))
     {
@@ -9,7 +9,6 @@
 
     $Opc_Profe='style="display: none;"';
     $user = $_SESSION['Username'];
-    $_SESSION['Mat']='Espa 1';
 
     if($_SESSION['Tip_User']=='Profe')
     {

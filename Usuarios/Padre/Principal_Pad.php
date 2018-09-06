@@ -1,5 +1,5 @@
 <?php
-    require '../../Funcionamiento/PHPs/CDatosPad.php';
+    require '../../Funcionamiento/PHPs/Carga_Datos/Usuarios/Padres/CDatosPad.php';
 ?>
 
 <!DOCTYPE html>

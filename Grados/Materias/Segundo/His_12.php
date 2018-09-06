@@ -1,5 +1,6 @@
 <?php
-    //require '../Funcionamiento/PHPs/CPriG.php';
+    require '../../../Funcionamiento/PHPs/Carga_Datos/Dat_Esc/CMaterias.php';
+    $_SESSION['Mat']='Hist 12';
 ?>
 <!DOCTYPE html>
 <html>

@@ -1,5 +1,5 @@
 <?php
-    require '../../Funcionamiento/PHPs/CMatri_Mats.php';
+    require '../../Funcionamiento/PHPs/Carga_Datos/CMatri_Mats.php';
     require '../../Funcionamiento/PHPs/Prof_Reg_Mats.php';
 ?>
 <!DOCTYPE html>

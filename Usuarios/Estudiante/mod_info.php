@@ -1,5 +1,5 @@
 <?php
-  require '../../Funcionamiento/PHPs/CDatosEst.php';
+  require '../../Funcionamiento/PHPs/Carga_Datos/Usuarios/Estudiantes/CDatosEst.php';
   $NumTel=$tel;
   require '../../Funcionamiento/PHPs/upd_est.php';
 

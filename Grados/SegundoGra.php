@@ -1,5 +1,5 @@
 <?php
-    require '../Funcionamiento/PHPs/CSegG.php';
+    require '../Funcionamiento/PHPs/Carga_Datos/Dat_Esc/CSegG.php';
 ?>
 <!DOCTYPE html>
 <html>

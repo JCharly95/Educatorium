@@ -216,7 +216,7 @@
                                     <label class="btn btn-success">
                                         <input type="submit" name="enviar" style="display: none;">
                                         <i class="fas fa-check"></i> Confirmar datos y registrar
-                                    </label>                                    
+                                    </label>
                                 </div>
                                 <div class="col-md-3 col-md-offset-2">
                                     <a href="#" class="btn btn-danger" onclick="window.location.replace('../../Grados/Materias/Primero/Esp1.php')"><i class="fas fa-times"></i> Cancelar registro</a>

@@ -1,5 +1,5 @@
 <?php
-    require '../Funcionamiento/PHPs/CPriG.php';
+    require '../Funcionamiento/PHPs/Carga_Datos/Dat_Esc/CPriG.php';
 ?>
 <!DOCTYPE html>
 <html>
