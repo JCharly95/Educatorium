@@ -9,7 +9,7 @@
 
     $user = $_SESSION['Username'];//Nombre de usuario activo
     $CurBus=$_SESSION['NomCurBus'];//Nombre del curso que se va a editar
-    $EBien = $NCuest = $ECuest = $NRecur = $ERecur = '';//Variables para el muestreo de seccion
+    $EBien = $NCuest = $ECuest = $NRecur = $ERecur = 'style="display: none;"';//Variables para el muestreo de seccion
 
     if(isset($_POST['OpcSel']))//Opcion seleccionada para edicion (Bienvenida, Cuestionarios, Recursos)
     {
@@ -22,23 +22,23 @@
         switch ($DatEdit)
         {
             case 'Elem Bienve':
-                # code...
+                $EBien = 'style="display: block;"';
                 break;
             
             case 'New Cuestion':
-                # code...
+                $NCuest = 'style="display: block;"';
                 break;
 
             case 'Edit Cuestions':
-                # code...
+                $NCuest = 'style="display: block;"';
                 break;
             
             case 'New Recurso':
-                # code...
+                $NRecur = 'style="display: block;"';
                 break;
 
             case 'Edit Recursos':
-                # code...
+                $ERecur = 'style="display: block;"';
                 break;
         }
     }

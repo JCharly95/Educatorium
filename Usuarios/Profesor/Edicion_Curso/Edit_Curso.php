@@ -15,7 +15,7 @@
 <body class="bg-primary">
     <div class="container">
         <!--Vista para edicion de elementos de bienvenida-->
-        <div id="Elem_Bienve">
+        <div id="Elem_Bienve" <?php echo $EBien; ?>>
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="row">
@@ -96,7 +96,7 @@
             </div>
         </div>
         <!--Vista para crear un cuestionario-->
-        <div id="Add_Cuestion">
+        <div id="Add_Cuestion" <?php echo $NCuest; ?>>
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="row">
@@ -133,13 +133,32 @@
                     </div>
                     <div class="panel panel-info">
                         <div class="panel-heading">
-                            <span class="lead text-primary">Información de los elementos de bienvenida</span>
+                            <span class="lead text-primary">Creacion de cuestionario</span>
                         </div>
                         <div class="panel-body">
                             <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
                                 <div class="form-group">
                                     <div class="row">
-                                        <!--Contenido de la pagina-->
+                                        <div class="col-md-5 col-md-offset-1">
+                                            <h3><span class="label label-default">Nombre del cuestionario: </span></h3>
+                                            <input type="text" name="nombre" class="form-control" onfocus="this.value='' " placeholder="">
+                                            <span class="help-block">Introducir solo letras y espacios en blanco.</span>
+                                            <!--Variable de error-->
+                                        </div>
+                                        <div class="col-md-5 col-md-offset-1">
+                                            <h3><span class="label label-default">Cantidad de preguntas: </span></h3>
+                                            <select name="CantPreg" id="" class="selectpicker btn btn-default">
+                                                <option hidden value="0" selected>0</option>
+                                                <?php
+                                                    for ($i=1;$i<21;$i++) 
+                                                    {
+                                                        echo '<option value="'.$i.'">'.$i.'</option>';
+                                                    }
+                                                ?>
+                                            </select>
+                                            <span class="help-block">Seleccione la cantidad de preguntas que tendra el cuestionario.</span>
+                                            <!--Variable de error-->
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -159,7 +178,7 @@
             </div>
         </div>
         <!--Vista para editar los cuestionarios existentes-->
-        <div id="Add_Cuestion">
+        <div id="Edit_Cuestion" <?php echo $ECuest; ?>>
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="row">
@@ -222,7 +241,7 @@
             </div>
         </div>
         <!--Vista para agregar recursos-->
-        <div id="Add_Cuestion">
+        <div id="Add_Recur" <?php echo $NRecur; ?>>
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="row">
@@ -285,7 +304,7 @@
             </div>
         </div>
         <!--Vista para editar los recursos existentes-->
-        <div id="Add_Cuestion">
+        <div id="Edit_Recur" <?php echo $ERecur; ?>>
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <div class="row">

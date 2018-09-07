@@ -164,7 +164,7 @@
 
                                                             while ($cont=$ver->fetch_assoc())
                                                             {
-                                                                echo '<option value="'.$cont["ID_Escuela"].'">Secundaria '.$cont["Tipo"].' '.$cont["Num_Esc"].', '.$cont["Nombre"].'</option>';                                                                 
+                                                                echo '<option value="'.$cont["ID_Escuela"].'">Secundaria '.$cont["Tipo"].' '.$cont["Num_Esc"].', '.$cont["Nombre"].'</option>';
                                                             }
                                                         ?>
                                                     </select>
