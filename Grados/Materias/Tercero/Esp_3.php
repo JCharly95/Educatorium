@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require '../../../Funcionamiento/PHPs/Carga_Datos/Dat_Esc/CMaterias.php';
     $_SESSION['Mat']='Espa 3';
 ?>
@@ -26,7 +27,7 @@
                 <!--Cuerpo de la pagina-->
             <div class="form-group">
                 <div class="col-md-3 col-md-offset-5 regreso">
-                    <a href="#" class="btn btn-danger" onclick="javascript:window.history.back();"><i class="fas fa-arrow-left"></i> Regresar</a>
+                    <a href="../../TercerGra.php" class="btn btn-danger" ><i class="fas fa-arrow-left"></i> Regresar</a>
                 </div>
             </div>
         </div>

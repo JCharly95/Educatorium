@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require '../../../Funcionamiento/PHPs/Carga_Datos/Dat_Esc/CMaterias.php';
 ?>
 <!DOCTYPE html>
@@ -46,7 +47,7 @@
             <form action="Sel_Seccion.php" method="post">
                 <?php
                     $ArrConsul=array();
-                    $sql="select curso.Nombre as NomCur, profesor.Nombre as NomProf, Ape_Pat from curso inner join profesor on (Profesor_ID=ID_Profesor) where Username='".$user."';";
+                    $sql="select curso.Nombre as NomCur, profesor.Nombre as NomProf, Ape_Pat from curso inner join profesor on (Profesor_ID=ID_Profesor) where Username='".$user."' and Materia_ID=".$ID_Mat.";";
                     $consulta=$conexion->query($sql);
                     if($consulta->num_rows>0)    
                     {

@@ -219,7 +219,7 @@
                                     </label>
                                 </div>
                                 <div class="col-md-3 col-md-offset-2">
-                                    <a href="#" class="btn btn-danger" onclick="window.location.replace('../../Grados/Materias/Primero/Esp1.php')"><i class="fas fa-times"></i> Cancelar registro</a>
+                                    <a href="#" class="btn btn-danger" onclick="window.location.replace('../../Grados/Materias/Primero/Esp_1.php')"><i class="fas fa-times"></i> Cancelar registro</a>
                                 </div>
                             </div>                            
                         </div>

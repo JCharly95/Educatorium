@@ -75,7 +75,7 @@
                 </div>
 
                 <div class="col-md-3">
-                    <a href="../../Funcionamiento/PHPs/Cer_Ses.php" class="btn btn-danger">Cerrar sesion &nbsp;&nbsp;<i class="fas fa-sign-out-alt"></i></a>
+                    <a href="../../Funcionamiento/PHPs/Conn_Ses/Cer_Ses.php" class="btn btn-danger">Cerrar sesion &nbsp;&nbsp;<i class="fas fa-sign-out-alt"></i></a>
                 </div>
                 <div class="col-md-2">
                     <abbr title="Ayuda"><a href="#" id="help"><i class="fas fa-question-circle fa-4x"></i></a></abbr>

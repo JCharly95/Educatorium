@@ -1,16 +1,7 @@
 <?php
-session_start();
-  
-    require '../../Funcionamiento/PHPs/Carga_Datos/Usuarios/Padres/CDatosPad.php';
-    require '../../Funcionamiento/PHPs/upd_padre.php';
-
-    $mostrarModal = false;
-    if(!isset($_COOKIE['mostrarModal']))
-    {
-      $expirar = 43200; //cada 12 horas expira y volverá a aparecer el modal
-      setcookie('mostrarModal', 'SI', (time() + $expirar));
-      $mostrarModal = TRUE;
-    }
+  session_start();
+  require '../../Funcionamiento/PHPs/Carga_Datos/Usuarios/Padres/CDatosPad.php';
+  require '../../Funcionamiento/PHPs/upd_padre.php';
 ?>
 
 <!DOCTYPE html>
@@ -37,26 +28,33 @@ session_start();
       </style>
   </head>
   <body class="bg-primary">
-    <div class="container">
+    <div class="row title">
+      <div class="col-md-10">
+        <h1 align="center">Hola que tal, bienvenido a Educatorium</h1>
+      </div>
+      <div class="col-md-2">
+        <a data-toggle="modal" href="#myModal"><i class="fas fa-question-circle fa-4x"></i></a>
+      </div>
       <div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title text-danger text-center">Módulo de Ayuda</h4>
-      </div>
-      <div class="modal-body" style="background-color: teal;">
-        <p><span class="glyphicon glyphicon-info-sign"></span> Seleccione el campo que desee modificar. Una vez realizado el cambio, de clic en el botón que dice <strong>Actualizar.</strong> Tenga en cuenta las indicaciones que se le indiquen debajo de cada campo para evitar un mensaje de error.</p><br>
-        <p><span class="glyphicon glyphicon-warning-sign"></span> La contraseña no se muestra para proporcionarle una mejor privacidad a los usuarios.</p><br>
-        <p><span class="glyphicon glyphicon-warning-sign"></span> Si cambia el usuario se le redigirá al inicio, donde deberá iniciar sesión nuevamente.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-success" data-dismiss="modal">Entendido</button>
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title text-danger text-center">Módulo de Ayuda</h4>
+            </div>
+            <div class="modal-body" style="background-color: teal;">
+              <p><span class="glyphicon glyphicon-info-sign"></span> Seleccione el campo que desee modificar. Una vez realizado el cambio, de clic en el botón que dice <strong>Actualizar.</strong> Tenga en cuenta las indicaciones que se le indiquen debajo de cada campo para evitar un mensaje de error.</p><br>
+              <p><span class="glyphicon glyphicon-warning-sign"></span> La contraseña no se muestra para proporcionarle una mejor privacidad a los usuarios.</p><br>
+              <p><span class="glyphicon glyphicon-warning-sign"></span> Si cambia el usuario se le redigirá al inicio, donde deberá iniciar sesión nuevamente.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-success" data-dismiss="modal">Entendido</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-
-  </div>
-</div>
+    <div class="container">
       <div class="page-header">
         <h1 class=" text-center text-capitalize">Actualizar Datos del Perfil  <a data-toggle="modal" href="#myModal" id="help"><i class="fas fa-question-circle fa-1x" style="color: #fff;"></i></a></h1></h1>
       </div>
@@ -116,17 +114,8 @@ session_start();
           </form>
         </div>
       </div>
-    </div>    
-
-        <script type="text/javascript" src="../../CmpVis/jquery/jquery-3.3.1.js"></script>
-        <script type="text/javascript" src="../../CmpVis/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
-        <?php if($mostrarModal === true) : ?>
-        <script type="text/javascript">
-          $(document).ready(function()
-          {
-            $('#myModal').modal("show");
-          });
-        </script>
-      <?php endif; ?>
-    </body>
+    </div>
+    <script type="text/javascript" src="../../CmpVis/jquery/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../../CmpVis/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+  </body>
 </html>

@@ -6,7 +6,8 @@
     {
         header("location: ../../Acceso/FAcces.php");
     }
-
+    
+    $Regreso='';
     $user = $_SESSION['Username'];
     $Tipo_Usuario = $_SESSION['Tip_User'];
     $BtnMatsPri=['style="display: none;"','style="display: none;"','style="display: none;"',
@@ -17,10 +18,12 @@
     {
         $BtnID=CondBtns($user,$conexion,$BtnID);
         $BtnMatsPri=ShowMats($BtnID, $BtnMatsPri);
+        $Regreso='../Usuarios/Profesor/Principal_Prof.php';
     }
     else
     {
         $BtnMatsPri=['','','','','','',''];
+        $Regreso='../Usuarios/Estudiante/Principal_Est.php';
     }
 
     //Funcion para determinar que botones se van a mostrar al profesor

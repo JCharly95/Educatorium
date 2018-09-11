@@ -1,6 +1,7 @@
 <?php
-    require '../../../Funcionamiento/PHPs/Carga_Datos/Dat_Esc/CMaterias.php';
+    session_start();
     $_SESSION['Mat']='Espa 1';
+    require '../../../Funcionamiento/PHPs/Carga_Datos/Dat_Esc/CMaterias.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -27,7 +28,7 @@
             </div>
             <?php
                 $ArrConsul=array();
-                $sql="select curso.Nombre as NomCur, profesor.Nombre as NomProf, Ape_Pat from curso inner join profesor on (Profesor_ID=ID_Profesor);";
+                $sql="select curso.Nombre as NomCur, profesor.Nombre as NomProf, Ape_Pat from curso inner join profesor on (Profesor_ID=ID_Profesor) where Materia_ID=".$ID_Mat.";";
                 $consulta=$conexion->query($sql);
                 if($consulta->num_rows>0)    
                 {
@@ -69,7 +70,7 @@
             </div>
             <div class="form-group">
                 <div class="col-md-3 col-md-offset-5 regreso">
-                    <a href="#" class="btn btn-danger" onclick="javascript:window.history.back();"><i class="fas fa-arrow-left"></i> Regresar</a>
+                    <a href="../../PrimerGra.php" class="btn btn-danger" ><i class="fas fa-arrow-left"></i> Regresar</a>
                 </div>
             </div>
         </div>

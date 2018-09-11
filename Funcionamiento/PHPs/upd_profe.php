@@ -48,9 +48,7 @@
                 }
             }
         }
-
-        
-
+  
        //Almacenamos el valor del campo de texto
         $ap_pat = validar($_POST['ap_pat']);
 //Si el campo de texto está vacío mandamos mensaje de error
@@ -162,7 +160,6 @@
             }
         }
         
-
        $user2 = validar($_POST['usuario']);
         if(empty($user2))
         {

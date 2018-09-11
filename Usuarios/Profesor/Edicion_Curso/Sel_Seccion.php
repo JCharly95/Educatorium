@@ -47,14 +47,10 @@
                             </div>
                             <div class="panel-body">
                                 <div class="form-group">
-                                    <form action="Edit_Curso.php" method="post">
-                                        <input type="hidden" name="OpcSel" value="Elem Bienve">
-                                        <label class="btn btn-warning" style="width: 100%;">
-                                            <input type="submit" name="enviar" style="display: none;">
-                                            <i class="fas fa-pencil-alt fa-4x"></i>
-                                            <span style="vertical-align: 60%;">&nbsp; <b>Editar elementos de bienvenida</b></span>
-                                        </label>
-                                    </form>
+                                    <a href="Secciones/Camb_Bienve.php" class="btn btn-warning" style="width: 100%;">
+                                        <i class="fas fa-pencil-alt fa-4x"></i>
+                                        <span style="vertical-align: 60%;">&nbsp; <b>Editar elementos de bienvenida</b></span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -66,24 +62,16 @@
                             </div>
                             <div class="panel-body">
                                 <div class="form-group">
-                                    <form action="Edit_Curso.php" method="post">
-                                        <input type="hidden" name="OpcSel" value="New Cuestion">
-                                        <label class="btn btn-success" style="width: 100%;">
-                                            <input type="submit" name="enviar" style="display: none;">
-                                            <i class="fas fa-plus-circle fa-4x"></i>
-                                            <span style="vertical-align: 75%;">&nbsp; <b>Agregar cuestionario</b></span>
-                                        </label>
-                                    </form>
+                                    <a href="Secciones/Nuevo_Cuesti.php" class="btn btn-success" style="width: 100%;">
+                                        <i class="fas fa-plus-circle fa-4x"></i>
+                                        <span style="vertical-align: 75%;">&nbsp; <b>Agregar cuestionario</b></span>
+                                    </a>
                                 </div>
                                 <div class="form-group">
-                                    <form action="Edit_Curso.php" method="post">
-                                        <input type="hidden" name="OpcSel" value="Edit Cuestions">
-                                        <label class="btn btn-warning" style="width: 100%;">
-                                            <input type="submit" name="enviar" style="display: none;">
-                                            <i class="fas fa-pencil-alt fa-4x"></i>
-                                            <span style="vertical-align: 60%;">&nbsp; <b>Editar cuestionarios existentes</b></span>
-                                        </label>
-                                    </form>
+                                    <a href="Secciones/Edit_Cuesti.php" class="btn btn-warning" style="width: 100%;">
+                                        <i class="fas fa-pencil-alt fa-4x"></i>
+                                        <span style="vertical-align: 60%;">&nbsp; <b>Editar cuestionarios existentes</b></span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -95,24 +83,16 @@
                             </div>
                             <div class="panel-body">
                                 <div class="form-group">
-                                    <form action="Edit_Curso.php" method="post">
-                                        <input type="hidden" name="OpcSel" value="New Recurso">
-                                        <label class="btn btn-success" style="width: 100%;">
-                                            <input type="submit" name="enviar" style="display: none;">
-                                            <i class="fas fa-plus-circle fa-4x"></i>
-                                            <span style="vertical-align: 75%;">&nbsp; <b>Agregar recurso</b></span>
-                                        </label>
-                                    </form>
+                                    <a href="Secciones/Nuevo_Recur.php" class="btn btn-success" style="width: 100%;">
+                                        <i class="fas fa-plus-circle fa-4x"></i>
+                                        <span style="vertical-align: 75%;">&nbsp; <b>Agregar recurso</b></span>
+                                    </a>
                                 </div>
                                 <div class="form-group">
-                                    <form action="Edit_Curso.php" method="post">
-                                        <input type="hidden" name="OpcSel" value="Edit Recursos">
-                                        <label class="btn btn-warning" style="width: 100%;">
-                                            <input type="submit" name="enviar" style="display: none;">
-                                            <i class="fas fa-pencil-alt fa-4x"></i>
-                                            <span style="vertical-align: 60%;">&nbsp; <b>Editar recursos existentes</b></span>
-                                        </label>
-                                    </form>
+                                    <a href="Secciones/Edit_Recur.php" class="btn btn-warning" style="width: 100%;">
+                                        <i class="fas fa-pencil-alt fa-4x"></i>
+                                        <span style="vertical-align: 60%;">&nbsp; <b>Editar recursos existentes</b></span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
