@@ -129,7 +129,7 @@
                 <div class="row">
                     <div class="opciones">
                         <ul class="nav nav-justified">
-                            <li><a href="mod_info.php">Modificar Informacion</a></li>
+                            <li><a href="Mod_Info_Prof.php">Modificar Informacion</a></li>
                             <li><a href="Matri_Mats.php">Matriculacion de materias</a></li>
                             <li><a href="Elim_Curs.php">Eliminacion de cursos</a></li>
                             <li><a href="">Consultar reportes de errores</a></li>

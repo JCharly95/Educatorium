@@ -70,7 +70,7 @@
                                         <label for="pass">Contraseña:</label>
                                     </div>                                            
                                     <div class="col-md-6">
-                                    <input type="password" id="pass" name="Pass" class="form-control" placeholder="Introduce tu contraseña" value="<?php echo $contraseña;?>">
+                                        <input type="password" id="pass" name="Pass" class="form-control" placeholder="Introduce tu contraseña" value="<?php echo $contraseña;?>">
                                     </div>
                                     <div class="col-md-1">
                                         <input type="checkbox" onclick="showpass()"> Ver

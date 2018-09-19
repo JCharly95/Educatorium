@@ -158,13 +158,13 @@
                                                     <select class="btn btn-default" name="escuelas" id="secus">
                                                         <option hidden value="N/A" selected>Lista de secundarias</option>
                                                         <?php
-                                                            require '../Funcionamiento/PHPs/conexion.php';
+                                                            require $_SERVER['DOCUMENT_ROOT'].'/Educatorium/Funcionamiento/PHPs/Conn_Ses/conexion.php';
                                                             $sql = "Select * from escuela where ID_Escuela>1;";
                                                             $ver = $conexion->query($sql);
 
                                                             while ($cont=$ver->fetch_assoc())
                                                             {
-                                                                echo '<option value="'.$cont["ID_Escuela"].'">Secundaria '.$cont["Tipo"].' '.$cont["Num_Esc"].', '.$cont["Nombre"].'</option>';
+                                                                echo '<option value="'.$cont["ID_Escuela"].'">Secundaria '.$cont["Tipo"].' '.$cont["Num_Esc"].', '.$cont["Nombre"].'</option>';                                                                 
                                                             }
                                                         ?>
                                                     </select>
@@ -341,7 +341,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div>                                        
                                     </div>
                                     <div class="form-group">
                                         <div class="panel panel-success">

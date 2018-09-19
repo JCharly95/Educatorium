@@ -32,14 +32,14 @@
             $RutaImg=substr($rutaSav,36);
         }
     }
-    //Obtencion del nombre de la escuela del usuario
-    $sql="select Username,escuela.Nombre from profe_escu inner join escuela on (profe_escu.Escuela_ID=escuela.ID_Escuela)"
+    $sql="select Username,escuela.Nombre,Num_Esc from profe_escu inner join escuela on (profe_escu.Escuela_ID=escuela.ID_Escuela)"
             ."inner join profesor on (profe_escu.Profesor_ID=profesor.ID_Profesor) where Username='".$user."';";
     if($consulta=$conexion->query($sql))
     {
         while($res=$consulta->fetch_assoc())
         {
             $NomEsc=$res['Nombre'];
+            $NoEsc=$res['Num_Esc'];
         }
     }
     //Obtencion del resto de datos
@@ -54,7 +54,7 @@
             $Ape_Pat=$res['Ape_Pat'];
             $Ape_Mat=$res['Ape_Mat'];
             $NumTele=$res['Tel'];
-            $fecha=$res['Keyword'];
+            $KeyPal=$res['Keyword'];
         }
     }
 

@@ -262,9 +262,6 @@
                                 </div>
                             </div>                            
                         </div>
-                        <div class="form-group">
-                            <a href="../Usuarios/Padre/Principal_Pad.php" class="btn btn-success">Interfaz principal padre</a>
-                        </div>
                     </form>
                 </div>                
             </div>

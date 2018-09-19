@@ -102,7 +102,7 @@
                 <div class="row">
                     <div class="opciones">
                         <ul class="nav nav-justified">
-                            <li><a href="mod_info.php">Modificar Informacion</a></li>
+                            <li><a href="Mod_Info_Pad.php">Modificar Informacion</a></li>
                             <li><a href="">Consultar Estadísticas de mi hijo</a></li>
                             <li><a href="buscar.php">Realizar Parentesco</a></li>
                         </ul>                        

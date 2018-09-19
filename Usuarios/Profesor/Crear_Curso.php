@@ -80,7 +80,7 @@
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-md-1 col-md-offset-4">
-                                                    <label><input type="radio" name="RespMsg" value="Si" id="RMSi" onclick="ViewSec('RMSi','Msg_Bienve','SectMsgQues');"/> <b>Si</b></label>                                                    
+                                                    <label><input type="radio" name="RespMsg" value="Si" id="RMSi" onclick="ViewSec('RMSi','Msg_Bienve','SectMsgQues');"/> <b>Si</b></label>
                                                 </div>
                                                 <div class="col-md-1 radio-inline col-md-offset-2">
                                                     <label><input type="radio" name="RespMsg" value="No" id="RMNo" onclick="ViewSec('RMNo','Msg_Bienve','SectMsgQues');" checked/> <b>No</b></label>

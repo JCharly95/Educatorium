@@ -207,7 +207,7 @@
                                                 <select class="btn btn-default" name="escuelas" id="secus">
                                                     <option hidden value="">Secundarias registradas en educatorium:</option>
                                                     <?php
-                                                        require '../Funcionamiento/PHPs/conexion.php';
+                                                        require $_SERVER['DOCUMENT_ROOT'].'/Educatorium/Funcionamiento/PHPs/Conn_Ses/conexion.php';
                                                         $sql = "Select * from escuela where ID_Escuela>1;";
                                                         $ver = $conexion->query($sql);
                                                         
@@ -308,9 +308,6 @@
                                 </div>
                             </div>                            
                         </div>
-                        <div class="form-group">
-                            <a href="../Usuarios/Estudiante/Principal_Est.php" class="btn btn-success">Interfaz principal estudiante</a>
-                        </div>
                     </form>
                 </div>                
             </div>
@@ -321,6 +318,6 @@
         <script type="text/javascript" src="../Funcionamiento/Javascripts/ver-foto.js"></script>
         <script type="text/javascript" src="../Funcionamiento/Javascripts/ver-password.js"></script>
         <script type="text/javascript" src="../CmpVis/jquery/jquery-3.3.1.js"></script>
-	<script type="text/javascript" src="../CmpVis/bootstrap-3.3.7-dist/js/bootstrap.js"></script>        
+	    <script type="text/javascript" src="../CmpVis/bootstrap-3.3.7-dist/js/bootstrap.js"></script>        
     </body>
 </html>

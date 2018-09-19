@@ -5,251 +5,286 @@
     }
     $user = $_SESSION['Username'];
 
-    $nombre = $ap_pat = $ap_mat = $tel = $correo = $user2 = $pass = $cpass = $clave = $esc = $grado = "";
-    $nom_err = $app_err = $apm_err = $tel_err = $cor_err = $us_err = $pass_err = $cpa_err = $key_err = $esc_err = $grado_err = "";
-    $nom_right = $pat_right = $mat_right = $tel_right = $cor_right = $us_right = $pas_right = $cpa_right = $key_right = $esc_right = $grado_right = "";
+    //Variables que almacenaran los datos recibidos por el formulario
+    $NTel = $NEmail = $NUser = $NPass = $NKeyW = $CNPass = $NImgNam = $NImgTip = $NImgTam = $EscReg = $SelEsc = $NTip = $NEsc = "";
+    $Nnum = 0;
+    //Variables de avisos
+    $TelAd = $EmailAd = $UserAd = $PassAd = $KeyAd = $CPassAd = $ImgAd = $EscAd = $TipAd = $NEscAd = $NumAd = "";
+    //Variables de ID´s usadas posteriormente
+    $Tip_Archi=$ID_Img=0;// ID del tipo de archivo a subir\ID de la imagen una vez que se subio
 
-     //Detectamos si se ha dado clic en el botón de actualizar datos
+    //Variables para impresiones de avisos
+    $AdSuc='<span class="label label-success">';
+    $AdWar='<span class="label label-warning">';
+    $AdDan='<span class="label label-danger">';
+    $AdClo='</span>';
+
+    /*$NomEsc=$res['Nombre'];
+    $NoEsc=$res['Num_Esc'];*/
+    
+    /*Cualquier campo que no sea llenado (o seleccionado en el caso de la imagen) 
+    conservara su valor y solo se hara la observacion de que no fue modificado, ademas se comprobará que no
+    se esten introduciendo valores iguales a los ya registrados.*/
+
+    //Detectamos si se ha dado clic en el botón de actualizar datos
     if(isset($_POST['actualizar']))
     {
-        //var_dump($nombre,$ap_pat,$ap_mat,$tel,$correo,$user2,$pass,$cpass,$clave,$esc,$grado);
-        //Almacenamos el valor del campo de texto
-        $nombre = validar($_POST['nombre']);
-        //Si el campo de texto está vacío mandamos mensaje de error
-        if(empty($nombre))
+        $NTel = validar($_POST['tel']);
+        if(empty($NTel))
         {
-            $nom_err = "* El nombre no puede estar vacío";
-        }
-        //Expresión regular para que el usuario solo introduzca letras y espacios en blanco en el nombre
-        elseif(!preg_match("/^[a-z-A-ZñÑáéíóúÁÉÍÓÚ\s]*$/", $nombre))
-        {
-            $nom_err = "* Solo se permiten letras y espacios";
-        }
-        //Condicion que determina que el text no debe pasar los 30 caracteres
-        elseif(strlen($nombre) > 30)
-        {
-            $nom_err = "* El nombre es muy largo";
-        }
-        else
-        { 
-            /*Comparamos lo que tiene el campo de texto con el valor recogido de la base de datos,
-            si es diferente, procedemos a actualizar la información, en caso contrario no se actualiza nada*/
-            if(strcmp($nombre,$NomProf) !== 0)
-            {
-                //Query para actualizar la información en la BDD
-                $actualizar="Update profesor SET Nombre='".$nombre."' where Username='".$user."';";
-                if(!$conexion->query($actualizar) === TRUE)
-                {                    
-                    echo "<script>alert('No se pudo modificar el nombre');</script>";
-                }
-                else
-                {
-                    echo "<script>alert('Entro el nombre');</script>";
-                }
-            }
-        }
-  
-       //Almacenamos el valor del campo de texto
-        $ap_pat = validar($_POST['ap_pat']);
-//Si el campo de texto está vacío mandamos mensaje de error
-        if(empty($ap_pat))
-        {
-            $app_err = "*El apellido no puede estar vacío";
-        }
-//Expresión regular para que el usuario solo introduzca letras y espacios en blanco en el nombre
-        elseif(!preg_match("/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]*$/", $ap_pat))
-        {
-            $app_err = "* Solo se permiten letras y números";
-        }
-        //Condicion que determina que el text no debe pasar los 30 caracteres
-        elseif(strlen($ap_pat) > 15)
-        {
-            $app_err = "* El apellido paterno es muy largo";
+            $TelAd=$AdWar."El telefono no fue actualizado".$AdClo;
         }
         else
         {
-/*Comparamos lo que tiene el campo de texto con el valor recogido de la base de datos,
-  si es diferente, procedemos a actualizar la información, en caso contrario no se actualiza nada*/
-            if(strcmp($ap_pat,$Ape_Pat) !==0)
+            if($NTel==$NumTele)//Verificacion de telefono duplicado
             {
-                $actualizar="Update profesor SET Ape_Pat='".$ap_pat."' where Username='".$user."';";
-                if(!$conexion->query($actualizar) === TRUE)
-                {
-                    echo "<script>alert('No se pudo modificar el apellido paterno');</script>";
-                }
-                else
-                {
-                    echo "<script>alert('Entro el Ap_Pat');</script>";
-                }
-            } 
-        }
-
-       $ap_mat = validar($_POST['ap_mat']);
-        if(empty($ap_mat))
-        {
-            $apm_err = "* El apellido no puede estar vacío";
-        }
-        elseif(!preg_match("/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]*$/", $ap_mat))
-        {
-            $apm_err = "* Solo se permiten letras y números";
-        }
-        elseif(strlen($ap_mat) > 15)
-        {
-            $apm_err = "* El apellido materno es muy largo";
-        }
-        else
-        {
-            if(strcmp($ap_mat,$Ape_Mat) !==0 )
-            {
-                $actualizar="Update profesor SET Ape_Mat='".$ap_mat."' where Username='".$user."';";
-                if(!$conexion->query($actualizar) === TRUE)
-                {
-                    echo "<script>alert('No se pudo modificar el apellido materno');</script>";
-                }
-                else
-                {
-                    echo "<script>alert('Entro el Ap_Mat');</script>";
-                }
-            }
-        }
-
-       $tel = validar($_POST['tel']);
-        if(empty($tel))
-        {
-            $tel_err = "* El teléfono no puede estar vacío";
-        }
-        elseif(!preg_match("/^\d{8,10}$/", $tel))
-        {
-            $tel_err = "* El teléfono debe estar conformado por 8 o 10 números.";
-        }
-        else
-        {
-            $actualizar="Update profesor SET Tel='".$NumTele."' where Username='".$user."';";
-            if(!$conexion->query($actualizar) === TRUE)
-            {
-                echo "<script>alert('No se pudo modificar el teléfono');</script>";   
+                $TelAd=$AdDan."Favor de introducir un numero de telefono diferente".$AdClo;
             }
             else
             {
-                echo "<script>alert('Entro el telefono');</script>";
+                if(!preg_match("/^\d{8,10}$/", $NTel))//Verificar que el numero telefonico contiene entre 8 y 10 digitos
+                {
+                    $TelAd=$AdDan."El numero de telefono debe constar de entre 8 y 10 digitos.".$AdClo;
+                }
+                else //Si no hubo problema con las validaciones anteriores, se procede con la actualizacion de numero en la BD
+                {
+                    $sql="Update profesor SET Tel='".$NTel."' where Username='".$user."';";
+                    if($conexion->query($sql)==true)
+                    {
+                        echo "<script>alert('El numero telefonico ha sido actualizado');</script>";
+                    }
+                    else
+                    {
+                        echo "<script>alert('No se pudo modificar el numero telefonico');</script>";
+                    }
+                }
             }
         }
 
-        $correo = validar($_POST['correo']);
-        if(empty($correo))
+        $NEmail = validar($_POST['correo']);
+        if(empty($NEmail))
         {
-            $cor_err = "* El correo no puede estar vacío";
-        }
-        elseif(!filter_var($correo, FILTER_VALIDATE_EMAIL))
-        {
-            $cor_err = "* El formato de correo es inválido.";
+            $EmailAd=$AdWar."El correo no fue actualizado".$AdClo;
         }
         else
         {
-            if(strcmp($correo,$DirCorr) !==0 )
+            if(strcmp($NEmail,$DirCorr)==0)//Verificacion de direccion de correo duplicado
             {
-                $actualizar="Update profesor SET Correo='".$correo."' where Username='".$user."';";
-                if(!$conexion->query($actualizar) === TRUE)
+                $EmailAd=$AdDan."Favor de introducir una direccion de correo diferente".$AdClo;
+            }
+            else
+            {
+                /* Verificar que la direccion de correo electronico cumpla con la sintaxis de RFC 822 que 
+                tiene la forma usuario@anfitrión.dominiopara */
+                if(!filter_var($NEmail, FILTER_VALIDATE_EMAIL))
                 {
-                    echo "<script>alert('No se pudo modificar el correo');</script>";
+                    $EmailAd=$AdDan."El formato de correo es inválido".$AdClo;
                 }
-                else
+                else//Si no hubo problema con las validaciones anteriores, se procede con la actualizacion del correo en la BD
                 {
-                    echo "<script>alert('Entro el correo');</script>";
+                    $sql="Update profesor SET Correo='".$NEmail."' where Username='".$user."';";
+                    if($conexion->query($sql)==true)
+                    {
+                        echo "<script>alert('El correo fue actualizado');</script>";
+                    }
+                    else
+                    {
+                        echo "<script>alert('No se pudo modificar el correo');</script>";
+                    }
                 }
             }
         }
+                
+       $NUser = validar($_POST['usuario']);
+        if(empty($NUser))
+        {
+            $UserAd=$AdWar."El nombre de usuario no fue actualizado".$AdClo;
+        }
+        else 
+        {
+            if(strcmp($NUser,$user)==0)//Verificacion de username duplicado
+            {
+                $UserAd=$AdDan."Favor de introducir un nombre de usuario diferente".$AdClo;
+            }
+            else
+            {
+                //Verificar que el nombre de usuario no contenga caracteres especiales, espacios o caracteres no imprimibles
+                if(!preg_match("/^[a-z-A-Z-0-9]*$/", $NUser))
+                {
+                    $UserAd=$AdDan."El nombre de usuario debe constar de números y letras.".$AdClo;
+                }
+                else
+                {
+                    if(strlen($NUser)>10)//Verificar que el nombre de usuario no sea demasiado largo >10 caracteres
+                    {
+                        $UserAd=$AdDan."El nombre de usuario no puede tener mas de 10 caracteres".$AdClo;
+                    }
+                    else//Si no hubo problema con las validaciones anteriores, se procede con la actualizacion de username en la BD y se cierra la sesion
+                    {
+                        $sql="Update profesor SET Username='".$NUser."' where Username='".$user."';";
+                        if($conexion->query($actualizar)==true)
+                        {
+                            echo "<script>alert('Nombre de usuario actualizado');</script>";
+                            require 'Cer_Ses.php';
+                        }
+                        else
+                        {
+                            echo "<script>alert('No se pudo modificar el nombre de usuario');</script>";
+                        }
+                    }
+                }
+            }
+        }
+
+        $NPass = validar($_POST['pass']);
+        $CNPass = validar($_POST['cpass']);
+        if(empty($NPass))
+        {
+            $PassAd=$AdWar."La contraseña no fue actualizada".$AdClo;
+        }
+        else
+        {
+            if(strlen($pass)<8)//Verificar que la contraseña no contenga menos de 8 caracteres
+            {
+                $PassAd=$AdDan."La contraseña es muy corta".$AdClo;
+            }
+            else
+            {
+                //Verificar que la contraseña contenga un numero de al menos un digito
+                if(!preg_match('/(?=\d)/', $pass))
+                {
+                    $PassAd=$AdDan."La contraseña debe contener al menos un numero".$AdClo;
+                }
+                else
+                {
+                    //Verificar que la contraseña contenga por lo menos una letra minuscula
+                    if(!preg_match('/(?=[a-z])/', $pass))
+                    {
+                        $PassAd=$AdDan."La contraseña debe contener al menos una letra minúscula".$AdClo;
+                    }
+                    else
+                    {
+                        //Verificar que la contraseña contenga por lo menos una letra mayuscula
+                        if(!preg_match('/(?=[A-Z])/', $pass))
+                        {
+                            $PassAd=$AdDan."La contraseña debe contener al menos una letra mayuscula".$AdClo;
+                        }
+                        else
+                        {
+                            /*Antes de registrar la nueva contraseña, se verifica que se modificará,
+                            confirmandola en un segundo campo de texto*/
+                            if(empty($CNPass))
+                            {
+                                $CPassAd=$AdDan."Favor de introducir otra vez su contraseña".$AdClo;
+                            }
+                            else
+                            {
+                                if($NPass!=$CNPass)
+                                {
+                                    $CPassAd=$AdDan."Las contraseñas no coinciden".$AdClo;
+                                }
+                                else
+                                {
+                                    $cifrado = password_hash($NPass, PASSWORD_DEFAULT);
+                                    $sql="Update profesor SET Password='".$cifrado."' where Username='".$user."';";
+                                    if($conexion->query($sql)==true)
+                                    {
+                                        echo "<script>alert('Contraseña actualizada');</script>";
+                                    }
+                                    else
+                                    {
+                                        echo "<script>alert('No se pudo modificar la contraseña');</script>";
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } 
         
-       $user2 = validar($_POST['usuario']);
-        if(empty($user2))
+        $NKeyW = $_POST['keyword'];
+        $KeyW = explode('/', $NKeyW);        
+        if(empty($NKeyW))
         {
-            $us_err = "* El usuario no puede estar vacío";
-        }
-        elseif(!preg_match("/^[a-z-A-Z-0-9]*$/", $user2))
-        {
-            $us_err = "* El usuario debe constar de números y letras.";
-        }
-        elseif(strlen($user2) > 10)
-            {
-                $us_err = "* El usuario es muy largo";
-            }
-        else
-        {
-            if(strcmp($user2, $user) !== 0)
-            {
-                $actualizar="Update profesor SET Username='".$user2."' where Username='".$user."';";
-                if(!$conexion->query($actualizar) === TRUE)
-                {
-                    echo "<script>alert('No se pudo modificar el usuario');</script>";
-                }
-                else
-                {
-                    echo "<script>alert('Entro el username');</script>";
-                    require 'Cer_Ses.php';
-                }
-            }
-        }
-
-        $pass = validar($_POST['pass']);
-        if(empty($pass))
-        {
-            $pass_err = "";
-        }
-        else if(strlen($pass) < 8)
-        {
-            $pass_err = "* La contraseña es muy corta";
-        }
-        else if(!preg_match('/(?=\d)/', $pass))
-        {
-            $pass_err = "* Debe contener al menos un dígito";
-        }
-        else if(!preg_match('/(?=[a-z])/', $pass))
-        {
-            $pass_err = "* Debe contener al menos una minúscula";
-        }
-        else if(!preg_match('/(?=[A-Z])/', $pass))
-        {
-            $pass_err = "*Debe contener al menos una mayúscula";
+            $KeyAd=$AdWar."La palabra clave no fue actualizada".$AdClo;
         }
         else
         {
-            $pas_right = TRUE;
-            $cifrado = password_hash($pass, PASSWORD_DEFAULT);
-            if($pas_right)
+            /*Si se introdujo adecuadamente la fecha, con sus respectivos separadores se procede a verificar 
+            si no esta registrada en el sistema aun*/
+            if(count($KeyW)==3 && checkdate($KeyW[1], $KeyW[0], $KeyW[2]))
             {
-                $actualizar="Update profesor SET Password='".$pass."' where Username='".$user."';";
-                if(!$conexion->query($actualizar) === TRUE)
+                $Key = $KeyW[2]."-".$KeyW[1]."-".$KeyW[0];
+
+                if(strcmp($KeyPal,$Key)==0)
                 {
-                     echo "<script>alert('No se pudo modificar la contraseña');</script>";
+                    $KeyAd=$AdDan."Favor de introducir una palabra clave diferente".$AdClo;
                 }
                 else
                 {
-                    echo "<script>alert('Entro el password');</script>";
+                    $sql="Update profesor SET Keyword='".$Key."' where Username='".$user."';";
+                    if($conexion->query($sql)==true)
+                    {
+                        echo "<script>alert('Palabra clave actualizada (Fecha de nacimiento)');</script>";
+                    }
+                    else
+                    {
+                        echo "<script>alert('No se pudo modificar la fecha');</script>";
+                    }
                 }
-            }  
+            }
         }
 
-        $clave = $_POST['key'];
-        $fecha2 = explode('/', $clave);        
-        if(empty($clave))
-        {
-            $key_err = "* La fecha de nacimiento no puede ir vacía";
-        }
-        elseif(count($fecha2) == 3 && checkdate($fecha2[1], $fecha2[0], $fecha2[2]))
-        {
-            $fecha = $fecha2[2]."/".$fecha2[1]."/".$fecha2[0];
+        //$NImg = $EscReg = $SelEsc = $NTip = $NEsc = "";
 
-            $actualizar="Update profesor SET Keyword='".$fecha."' where Username='".$user."';";
-            if(!$conexion->query($actualizar) === TRUE)
+        //$NImgNam = $NImgTip = $NImgTam =
+
+        if(empty($_FILES['imagen']['name']))
+        {
+            $ImgAd=$AdWar."La imagen de perfil no fue actualizada".$AdClo;
+        }
+        else
+        {
+            $NImgNam=$_FILES['imagen']['name'];
+            $NImgTip=$_FILES['imagen']['type'];
+            $NImgTam=$_FILES['imagen']['size'];
+
+            $nombre_imagen = $_FILES['imagen']['name'];
+            $tipo_imagen = $_FILES['imagen']['type'];
+            $tam_imagen = $_FILES['imagen']['size'];
+
+            if($tipo_imagen="image/jpeg" || $tipo_imagen="image/jpg" || $tipo_imagen="image/png" || $tipo_imagen="image/gif")
             {
-                 echo "<script>alert('No se pudo modificar la fecha');</script>";
+                if($tam_imagen <= 5000000)
+                {
+                    //Cambiar el nombre de la imagen para saber de quien es
+                    $nom_img_ser=explode('.', $nombre_imagen);
+                    $nombre_imagen='Img_'.$user.'.'.$nom_img_ser[1];
+                    $nom_img_bus='Img_'.$user;
+                    //Solo si todas las validaciones anteriores son positivas, se almacena la imagen en el servidor                    
+                    $destino = $_SERVER['DOCUMENT_ROOT'].'/Educatorium/imagenes/';
+                    $dir_ruta=$destino.$nombre_imagen;
+                    if(move_uploaded_file($_FILES['imagen']['tmp_name'], $dir_ruta))
+                    {
+                        echo "<script>alert('Se subio correctamente la imagen');</script>";
+                    }
+                }
+                else
+                {
+                    $Img_err="La imagen es muy grande";
+                }
             }
             else
             {
-                echo "<script>alert('Entro la fecha');</script>";
+                $Img_err="Solo se pueden subir imágenes";
             }
+            /*else
+            {
+                $nom_img_bus='Sin_Img';
+                $dir_ruta=$_SERVER['DOCUMENT_ROOT'].'/Educatorium/imagenes/Sin_Img.png';
+            }*/
         }
-
     }
     
     function validar($data)
