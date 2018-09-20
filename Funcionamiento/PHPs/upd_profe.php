@@ -5,6 +5,8 @@
     }
     $user = $_SESSION['Username'];
 
+    require 'conexion.php';
+    require 'CDatosProf.php';
     $nombre = $ap_pat = $ap_mat = $tel = $correo = $user2 = $pass = $cpass = $clave = $esc = $grado = "";
     $nom_err = $app_err = $apm_err = $tel_err = $cor_err = $us_err = $pass_err = $cpa_err = $key_err = $esc_err = $grado_err = "";
     $nom_right = $pat_right = $mat_right = $tel_right = $cor_right = $us_right = $pas_right = $cpa_right = $key_right = $esc_right = $grado_right = "";
@@ -12,7 +14,6 @@
      //Detectamos si se ha dado clic en el botón de actualizar datos
     if(isset($_POST['actualizar']))
     {
-        //var_dump($nombre,$ap_pat,$ap_mat,$tel,$correo,$user2,$pass,$cpass,$clave,$esc,$grado);
         //Almacenamos el valor del campo de texto
         $nombre = validar($_POST['nombre']);
         //Si el campo de texto está vacío mandamos mensaje de error
@@ -37,14 +38,10 @@
             if(strcmp($nombre,$NomProf) !== 0)
             {
                 //Query para actualizar la información en la BDD
-                $actualizar="Update profesor SET Nombre='".$nombre."' where Username='".$user."';";
+                $actualizar = "UPDATE profesor SET Nombre = '$nombre' WHERE Username = '$user' ";
                 if(!$conexion->query($actualizar) === TRUE)
-                {                    
-                    echo "<script>alert('No se pudo modificar el nombre');</script>";
-                }
-                else
                 {
-                    echo "<script>alert('Entro el nombre');</script>";
+                    echo "<script>alert('No se pudo modificar el nombre');</script>";
                 }
             }
         }
@@ -74,14 +71,10 @@
   si es diferente, procedemos a actualizar la información, en caso contrario no se actualiza nada*/
             if(strcmp($ap_pat,$Ape_Pat) !==0)
             {
-                $actualizar="Update profesor SET Ape_Pat='".$ap_pat."' where Username='".$user."';";
+                $actualizar = "UPDATE profesor SET Ape_Pat = '$ap_pat' WHERE Username = '$user' ";
                 if(!$conexion->query($actualizar) === TRUE)
                 {
                     echo "<script>alert('No se pudo modificar el apellido paterno');</script>";
-                }
-                else
-                {
-                    echo "<script>alert('Entro el Ap_Pat');</script>";
                 }
             } 
         }
@@ -103,14 +96,10 @@
         {
             if(strcmp($ap_mat,$Ape_Mat) !==0 )
             {
-                $actualizar="Update profesor SET Ape_Mat='".$ap_mat."' where Username='".$user."';";
+                $actualizar = "UPDATE profesor SET Ape_Mat = '$ap_mat' WHERE Username = '$user' ";
                 if(!$conexion->query($actualizar) === TRUE)
                 {
                     echo "<script>alert('No se pudo modificar el apellido materno');</script>";
-                }
-                else
-                {
-                    echo "<script>alert('Entro el Ap_Mat');</script>";
                 }
             }
         }
@@ -126,14 +115,10 @@
         }
         else
         {
-            $actualizar="Update profesor SET Tel='".$NumTele."' where Username='".$user."';";
+            $actualizar = "UPDATE profesor SET Tel = $tel WHERE Username = '$user' ";    
             if(!$conexion->query($actualizar) === TRUE)
             {
                 echo "<script>alert('No se pudo modificar el teléfono');</script>";   
-            }
-            else
-            {
-                echo "<script>alert('Entro el telefono');</script>";
             }
         }
 
@@ -150,14 +135,10 @@
         {
             if(strcmp($correo,$DirCorr) !==0 )
             {
-                $actualizar="Update profesor SET Correo='".$correo."' where Username='".$user."';";
+                $actualizar = "UPDATE profesor SET Correo = '$correo' WHERE Username = '$user' ";
                 if(!$conexion->query($actualizar) === TRUE)
                 {
                     echo "<script>alert('No se pudo modificar el correo');</script>";
-                }
-                else
-                {
-                    echo "<script>alert('Entro el correo');</script>";
                 }
             }
         }
@@ -180,14 +161,13 @@
         {
             if(strcmp($user2, $user) !== 0)
             {
-                $actualizar="Update profesor SET Username='".$user2."' where Username='".$user."';";
+                $actualizar = "UPDATE profesor SET Username = '$user2' WHERE Username = '$user' ";
                 if(!$conexion->query($actualizar) === TRUE)
                 {
                     echo "<script>alert('No se pudo modificar el usuario');</script>";
                 }
                 else
                 {
-                    echo "<script>alert('Entro el username');</script>";
                     require 'Cer_Ses.php';
                 }
             }
@@ -220,41 +200,33 @@
             $cifrado = password_hash($pass, PASSWORD_DEFAULT);
             if($pas_right)
             {
-                $actualizar="Update profesor SET Password='".$pass."' where Username='".$user."';";
+                $actualizar = "UPDATE profesor SET Password = '$pass' WHERE Username = '$user' ";
                 if(!$conexion->query($actualizar) === TRUE)
                 {
                      echo "<script>alert('No se pudo modificar la contraseña');</script>";
-                }
-                else
-                {
-                    echo "<script>alert('Entro el password');</script>";
                 }
             }  
         }
 
         $clave = $_POST['key'];
-        $fecha2 = explode('/', $clave);        
+        $fecha = explode('/', $clave);        
         if(empty($clave))
         {
             $key_err = "* La fecha de nacimiento no puede ir vacía";
         }
-        elseif(count($fecha2) == 3 && checkdate($fecha2[1], $fecha2[0], $fecha2[2]))
+        elseif(count($fecha) == 3 && checkdate($fecha[1], $fecha[0], $fecha[2]))
         {
-            $fecha = $fecha2[2]."/".$fecha2[1]."/".$fecha2[0];
+            $fecha2 = $fecha[2]."/".$fecha[1]."/".$fecha[0];
 
-            $actualizar="Update profesor SET Keyword='".$fecha."' where Username='".$user."';";
+            $actualizar = "UPDATE profesor SET Keyword = '$fecha2' WHERE Username = '$user' ";     
             if(!$conexion->query($actualizar) === TRUE)
             {
                  echo "<script>alert('No se pudo modificar la fecha');</script>";
             }
-            else
-            {
-                echo "<script>alert('Entro la fecha');</script>";
-            }
         }
-
     }
     
+
     function validar($data)
     {
         $data = trim($data);

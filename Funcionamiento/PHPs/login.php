@@ -18,7 +18,7 @@ if(isset($_POST['entrar']))//Hacer el proceso de validacion si se presiono el bo
     if(!empty($usuario) && !empty($contraseña))
     {
         //Buscar si el usuario a entrar es un estudiante
-        $sele = "SELECT * FROM estudiante WHERE Username = '".$usuario."';";
+        $sele = "SELECT * FROM estudiante WHERE Username = '$usuario'";
         $verificar = $conexion->query($sele);
         $NumRes=$verificar->num_rows;
         if($NumRes > 0)//Si el usuario existe, se comienza con la validacion de la contraseña
@@ -32,12 +32,20 @@ if(isset($_POST['entrar']))//Hacer el proceso de validacion si se presiono el bo
                     $_SESSION['Username'] = $usuario;
                     echo '<META HTTP-EQUIV="REFRESH" CONTENT="0;URL=../Usuarios/Estudiante/Principal_Est.php">';
                 }
+                /*else
+                {
+                    $pas_err = "* Contraseña Incorrecta";
+                }*/
             }
             if($busUser==true&&$busContra==false)
             {
                 $pas_err = "* Contraseña incorrecta";
             }
-        }
+        }/*
+        else
+        {
+            $us_err = "* Usuario no existe";
+        }*/
         
         //Buscar si el usuario a entrar es un profesor
         $sele = "SELECT * FROM profesor WHERE Username = '".$usuario."';";
@@ -54,12 +62,20 @@ if(isset($_POST['entrar']))//Hacer el proceso de validacion si se presiono el bo
                     $_SESSION['Username'] = $usuario;
                     echo '<META HTTP-EQUIV="REFRESH" CONTENT="0;URL=../Usuarios/Profesor/Principal_Prof.php">';
                 }
+               /* else
+                {
+                    $pas_err = "* Contraseña Incorrecta";
+                }*/
             }
             if($busUser==true&&$busContra==false)
             {
                 $pas_err = "* Contraseña incorrecta";
             }
         }
+       /* else
+        {
+            $us_err = "* Usuario no existe";
+        }*/
         
         //Buscar si el usuario a entrar es un padre
         $sele = "SELECT * FROM padre WHERE Username = '".$usuario."';";
@@ -76,12 +92,17 @@ if(isset($_POST['entrar']))//Hacer el proceso de validacion si se presiono el bo
                     $_SESSION['Username'] = $usuario;
                     echo '<META HTTP-EQUIV="REFRESH" CONTENT="0;URL=../Usuarios/Padre/Principal_Pad.php">';
                 }
+                /*else
+                {
+                    $pass_err = "* Contraseña Incorrecta";
+                }*/
             }
             if($busUser==true&&$busContra==false)
             {
                 $pas_err = "* Contraseña incorrecta";
             }
         }
+        
         else
         {
             if($busUser==false&&$busContra==false)

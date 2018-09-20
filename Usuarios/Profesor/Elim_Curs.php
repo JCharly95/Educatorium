@@ -1,3 +1,7 @@
+<?php
+    session_start();
+    require '../../Funcionamiento/PHPs/conexion.php';
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,28 +21,26 @@
                 </div>                        
             </div>
             <div class="form-group">
-                <form action="../../Funcionamiento/PHPs/DelCur.php" method="POST">
-                    <div class="row">
-                        <div class="BtnPri">
-                            <div class="col-md-3">
-                                <button type="submit" name="BtnDel" value="primero" class="btn btn-lg btn-success"></i>&nbsp; Eliminacion de 
-                                    las materias de primero</button>
-                            </div>
+                <div class="row">
+                    <div class="BtnPri">
+                        <div class="col-md-3">
+                            <a href="" class="btn btn-lg btn-success"></i>&nbsp; Eliminacion de 
+                            las materias de primero</a>
                         </div>
-                        <div class="BtnSeg">
-                            <div class="col-md-3 col-md-offset-1">
-                                <button type="submit" name="BtnDel" value="segundo" class="btn btn-lg btn-warning"></i>&nbsp; Eliminacion de 
-                                las materias de segundo</button>
-                            </div>
-                        </div>
-                        <div class="BtnTer">
-                            <div class="col-md-3 col-md-offset-1">
-                                <button type="submit" name="BtnDel" value="tercero" class="btn btn-lg btn-primary"></i>&nbsp; Eliminacion de 
-                                las materias de tercero</button>
-                            </div>
-                        </div>                    
                     </div>
-                </form>                
+                    <div class="BtnSeg">
+                        <div class="col-md-3 col-md-offset-1">
+                            <a href="" class="btn btn-lg btn-warning"></i>&nbsp; Eliminacion de 
+                            las materias de segundo</a>
+                        </div>
+                    </div>
+                    <div class="BtnTer">
+                        <div class="col-md-3 col-md-offset-1">
+                            <a href="" class="btn btn-lg btn-primary"></i>&nbsp; Eliminacion de 
+                            las materias de tercero</a>
+                        </div>
+                    </div>                    
+                </div>
             </div>
             <div class="form-group text-center">
                 <h3>Estos son los cursos con los que cuentas:<br>Selecciona aquellos que deseas borrar</h3>

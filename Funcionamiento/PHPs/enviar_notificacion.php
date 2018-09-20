@@ -12,7 +12,7 @@ session_start();
 		$radio=$_POST['est'];
 		$id=$_POST['id'];
 
-			$sel2 = "SELECT * FROM padre WHERE Username =  '$user' ";
+			$sel2 = "SELECT ID_Padre FROM padre WHERE Username =  '$user' ";
 			$res = $conexion->query($sel2);
 
 			if($res->num_rows > 0)
@@ -20,16 +20,17 @@ session_start();
 				while($row = $res->fetch_assoc())
 				{
 					$fila1 = $row['ID_Padre'];
+					$_SESSION['ID_Padre'] = $fila1;
 				}
 			}
-/*			$id=$_GET['id'];
-			$ins = "INSERT INTO padre_estudiante (Padre_ID, Estudiante_ID) VALUES ($fila1, $id)";
+//			$id=$_GET['id'];
+			//$ins = "INSERT INTO padre_estudiante (Padre_ID, Estudiante_ID) VALUES ($fila1, $id)";
 
-			if($conexion->query($ins) === TRUE)
-			{*/
+			//if($conexion->query($ins) === TRUE)
+			//{
 				echo "<script>alert('Se mando la solicitud');window.location.href='../../Usuarios/Padre/buscar.php';</script>";
-			/*}
-			else
+			//}
+/*			else
 			{
 				echo "<script>alert('No se mando la solicitud');window.location.href='../../Usuarios/Padre/buscar.php';</script>";
 			}*/

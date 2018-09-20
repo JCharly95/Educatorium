@@ -1,4 +1,6 @@
 <?php
+    session_start();
+    require '../../Funcionamiento/PHPs/conexion.php';
     require '../../Funcionamiento/PHPs/CDatosProf.php';
 ?>
 <!DOCTYPE html>
@@ -54,12 +56,12 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
-                                        <div class="col-md-6">
-                                                <label><i><u><b>Materias que imparte:</b></u></i></label>
+                                            <div class="col-md-6">
+                                                <label><i><u><b>Academias a las que pertenece:</b></u></i></label>
                                             </div>
                                             <div class="col-md-6">
                                                 <?php
-                                                    echo '<label><b>'.$NomMatShow.'</b></label>';
+                                                    //echo '<label><b>'.$Grado.'</b></label>';
                                                 ?>
                                             </div>
                                         </div>
@@ -108,21 +110,15 @@
             </div>
             <div class="form-group">
                 <div class="row">
-                    <div class="BtnPri" <?php echo $BtnGrads[0];?>>
-                        <div class="col-md-3 col-md-offset-1">
-                            <a href="../../Grados/PrimerGra.php" class="btn btn-lg btn-success"><i class="fas fa-id-card"></i>&nbsp; Primero</a>
-                        </div>
+                    <div class="col-md-3 col-md-offset-1">
+                        <a href="" class="btn btn-info">Primero</a>
                     </div>
-                    <div class="BtnSeg" <?php echo $BtnGrads[1];?>>
-                        <div class="col-md-3 col-md-offset-1">
-                            <a href="../../Grados/SegundoGra.php" class="btn btn-lg btn-warning"><i class="fas fa-id-badge"></i>&nbsp; Segundo</a>
-                        </div>
+                    <div class="col-md-3 col-md-offset-1">
+                        <a href="" class="btn btn-info">Segundo</a>
                     </div>
-                    <div class="BtnTer" <?php echo $BtnGrads[2];?>>
-                        <div class="col-md-3 col-md-offset-1">
-                            <a href="../../Grados/TercerGra.php" class="btn btn-lg btn-primary"><i class="fas fa-graduation-cap"></i>&nbsp; Tercero</a>
-                        </div>
-                    </div>                    
+                    <div class="col-md-3 col-md-offset-1">
+                        <a href="" class="btn btn-info">Tercero</a>
+                    </div>
                 </div>
             </div>
             <div class="form-group">
@@ -131,7 +127,7 @@
                         <ul class="nav nav-justified">
                             <li><a href="mod_info.php">Modificar Informacion</a></li>
                             <li><a href="Matri_Mats.php">Matriculacion de materias</a></li>
-                            <li><a href="Elim_Curs.php">Eliminacion de cursos</a></li>
+                            <li><a href="">Eliminacion de cursos</a></li>
                             <li><a href="">Consultar reportes de errores</a></li>
                         </ul>                        
                     </div>                    

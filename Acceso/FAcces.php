@@ -1,7 +1,7 @@
-<!DOCTYPE html>
 <?php
     require '../Funcionamiento/PHPs/login.php';
 ?>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -10,13 +10,14 @@
         <link rel="stylesheet" type="text/css" href="../CmpVis/bootstrap-3.3.7-dist/css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="../CmpVis/fontawesome-free-5.0.10/web-fonts-with-css/css/fontawesome-all.css">
         <link rel="stylesheet" type="text/css" href="../Funcionamiento/Estilos_Extras/Registro.css">
+        <link href="https://fonts.googleapis.com/css?family=Lato|Montserrat|Open+Sans|Raleway|Roboto|Slabo+27px" rel="stylesheet">
         <title>Entrar</title>
     </head>
     <body>
         <div class="container">
             <div class="row title">
                 <div class="col-md-8 col-md-offset-2">
-                    <h3 align="center">Bienvenido o Bienvenida</h3>
+                    <h1 align="center" class="text-info" style="font-family: 'Raleway', sans-serif;">Bienvenido o Bienvenida</h1>
                 </div>
                <!-- <div class="col-md-2">
                     <abbr title="Ayuda"><a href="#" id="help"><i class="fas fa-question-circle fa-4x"></i></a></abbr>
@@ -29,11 +30,11 @@
                         <div class="modal-content">
                           <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h3 class="modal-title text-danger text-center">Módulo de Ayuda</h3>
+                            <h3 class="modal-title text-danger text-center" style="font-family: 'Raleway', sans-serif;">Ayuda</h3>
                           </div>
-                            <div class="modal-body bg-info">
-                                <p class="text-primary text-justify lead">Completa los campos que se requieren con tu información de usuario y contraseña para poder iniciar sesión. En caso de error con algún dato se te estará notificando.</p>
-                                <p class="text-primary text-justify lead">Si perdiste u olvidaste tu contraseña da clic en la parte de abajo donde dice <strong>Aqui</strong> para proporcionarte una nueva.</p>
+                            <div class="modal-body " style="background-color: #005e80;">
+                                <p class="text-primary text-justify lead" style="color: #99ffcc;font-family: 'Roboto', sans-serif;">Completa los campos que se requieren con tu información de usuario y contraseña para poder iniciar sesión. En caso de error con algún dato se te estará notificando.</p>
+                                <p class="text-primary text-justify lead" style="color: #99ffcc;font-family: 'Roboto', sans-serif;">Si perdiste u olvidaste tu contraseña da clic en el enlace para proporcionarte una nueva.</p>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-success" data-dismiss="modal">Entendido</button>
@@ -42,12 +43,13 @@
                     </div>
                 </div>
             </div>
-            <div class="panel panel-default">                
-                <div class="panel-body" style="background-color: lightseagreen;">
+            <div class="panel panel-default" style="box-shadow: 0 2px 2px 2px rgba(0,0,0,0.3);">                
+                <div class="panel-body" style="">
                     <div class="panel-heading">
                         <div class="row">
-                            <div class="col-md-5 col-md-offset-4">
-                                <h4>Por favor ingresa tus datos para comenzar</h4>
+                            <div class="col-md-8 col-md-offset-2">
+                                <h3 class="text-center text-danger" style="font-family: 'Roboto', sans-serif;">Por favor, ingresa tus datos para comenzar</h4>
+                                    <br><br>
                             </div>
                         </div>                        
                     </div>
@@ -56,7 +58,7 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-2 col-md-offset-1">
-                                        <label for="Username">Nombre de Usuario:</label>
+                                        <label for="Username" class="text-info"><h4>Usuario:</h4></label>
                                     </div>                                            
                                     <div class="col-md-6">
                                         <input type="text" id="Username" name="Username" class="form-control" placeholder="Introduce tu nombre de usuario" value="<?php echo $usuario;?>">
@@ -70,13 +72,10 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-2 col-md-offset-1">
-                                        <label for="pass">Contraseña:</label>
+                                        <label for="pass" class="text-info"><h4>Contraseña:</h4></label>
                                     </div>                                            
                                     <div class="col-md-6">
                                     <input type="password" id="pass" name="Pass" class="form-control" placeholder="Introduce tu contraseña" value="<?php echo $contraseña;?>">
-                                    </div>
-                                    <div class="col-md-1">
-                                        <input type="checkbox" onclick="showpass()"> Ver
                                     </div>
                                     <div class="col-md-2">
                                         <span class="error"><?php echo $pas_err;?></span>
@@ -85,20 +84,29 @@
                                 </div>                                        
                             </div>
                             <div class="form-group">
-                                <div class="row">
-                                    <div class="col-md-3 col-md-offset-3">
-                                        <button type="submit" class="btn btn-primary" name="entrar">Acceder</button>
+                                <div class="">
+                                    <div class="col-md-5 col-md-offset-3">
+                                        <input type="checkbox" onclick="showpass()"> Mostrar contraseña
                                     </div>
-                                    <div class="col-md-3 col-md-offset-1">
-                                        <a href="#" class="btn btn-danger" onclick="window.location.replace('../index.php')"><i class="fas fa-times"></i> Cancelar acceso y volver</a>
+
+                                </div>
+
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-3 col-md-offset-2">
+                                        <button type="submit" class="btn btn-primary" name="entrar" style="padding: 5px 60px;">Acceder</button>
+                                    </div>
+                                    <div class="col-md-3 col-md-offset-2">
+                                        <a href="#" class="btn btn-danger" onclick="window.location.replace('../index.php')"> Cancelar acceso y volver</a>
                                     </div>
                                 </div>                                
                             </div>
                             <div class="form-group">
                                 <div class="row">
-                                    <div class="col-md-10 col-md-offset-2">
-                                        ¿Olvidaste tu contraseña?, no te preocupes presiona <a href="../Funcionamiento/PHPs/Rec_Pass.php" class="link">Aqui</a> para comenzar 
-                                        con el proceso de recuperacion
+                                    <div class="col-md-8 col-md-offset-2">
+                                        <h4 style="font-family: 'Roboto', sans-serif;">¿Olvidaste tu contraseña?, presiona <a href="../Funcionamiento/PHPs/Rec_Pass.php" class="link">en este enlace</a> para establecer una nueva.</h4>
                                     </div>
                                 </div>
                             </div>
@@ -107,8 +115,8 @@
                 </div>
             </div>            
         </div>
-        <footer>
-            @Copyright Educatorium 2018. Todos los derechos reservados
+        <footer class="bg-info">
+            <p class="text-center text-info" style="font-family: 'Raleway', sans-serif;"><b>@Copyright Educatorium 2018. Todos los derechos reservados</b></p>
         </footer>
         <script src="../Funcionamiento/Javascripts/ver-password.js"></script>
         <script type="text/javascript" src="../CmpVis/jquery/jquery-3.3.1.js"></script>

@@ -1,4 +1,6 @@
 <?php
+    session_start();
+    require '../../Funcionamiento/PHPs/conexion.php';
     require '../../Funcionamiento/PHPs/CDatosEst.php';
 ?>
 
@@ -13,7 +15,30 @@
         <link rel="stylesheet" type="text/css" href="../../Funcionamiento/Estilos_Extras/Pag_Pri_Est.css">
         <title>Estudiante</title>
     </head>
-    <body>
+    <body><!--
+        <nav class="navbar navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="#" class="navbar-brand">Educatorium</a>
+                </div>
+                <div class="collapse navbar-collapse" id="navbar">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#">Modificar información</a></li>
+                        <li><a href="#">Matricular Materias</a></li>
+                        <li><a href="#">Eliminar Cursos</a></li>
+                        <li><a href="#">Consultar Reportes de Errores</a></li>
+                        <li><a href="#">Parentesco</a></li>
+                        <li><a href="#">Cerrar Sesión</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>-->
+     
         <div class="container"> 
             <div class="row title">                
                 <div class="col-md-7">
@@ -35,7 +60,7 @@
                                                 <label><i><u><b>Nombre del alumno:</b></u></i></label>
                                             </div>
                                             <div class="col-md-6">
-                                                <!--Mostrar el nombre del alumno que inicio sesion-->
+                                                
                                                 <?php
                                                    echo '<label><b>'.$NomAlu.'</b></label>';
                                                 ?>
@@ -48,7 +73,7 @@
                                                 <label><i><u><b>Secundaria donde estudia:</b></u></i></label>
                                             </div>
                                             <div class="col-md-6">
-                                                <!--Mostrar el nombre de su secundaria (si se tiene vinculada)-->
+                                                
                                                 <?php
                                                     echo '<label><b>'.$NomEsc.'</b></label>';
                                                 ?>
@@ -61,7 +86,7 @@
                                                 <label><i><u><b>Grado actual:</b></u></i></label>
                                             </div>
                                             <div class="col-md-6">
-                                                <!--Mostrar el grado con el que cuenta los registros-->
+                                                
                                                 <?php
                                                     echo '<label><b>'.$Grado.'</b></label>';
                                                 ?>
@@ -74,7 +99,7 @@
                                                 <label><i><u><b>Nombre de usuario:</b></u></i></label>
                                             </div>
                                             <div class="col-md-6">
-                                                <!--Mostrar el username del alumno que inicio sesion-->
+                                                
                                                 <?php
                                                     echo '<label><b>'.$user.'</b></label>';
                                                 ?>
@@ -87,7 +112,7 @@
                                                 <label><i><u><b>Correo electronico:</b></u></i></label>
                                             </div>
                                             <div class="col-md-6">
-                                                <!--Mostrar el correo registrado-->
+                                                
                                                 <?php
                                                     echo '<label><b>'.$DirCorr.'</b></label>';
                                                 ?>
@@ -136,6 +161,7 @@
                     <div class="opciones">
                         <ul class="nav nav-justified">
                             <li><a href="mod_info.php">Modificar Informacion</a></li>
+                            <li><a href="Matri_Mats.php">Matriculacion de materias</a></li>
                             <li><a href="">Eliminacion de cursos</a></li>
                             <li><a href="">Consultar reportes de errores</a></li>
                             <li><a href="parentesco.php">Parentesco</a></li>
@@ -147,6 +173,7 @@
         <footer>
             @Copyright Educatorium 2018. Todos los derechos reservados
         </footer>
+    
         <script type="text/javascript" src="../../CmpVis/jquery/jquery-3.3.1.js"></script>
 	<script type="text/javascript" src="../../CmpVis/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
     </body>

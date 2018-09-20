@@ -71,7 +71,6 @@ img
     background-color: #333;
     width: 80%;
     margin: auto;
-    margin-top: 15px;
 }
 
 .opciones li 
@@ -92,9 +91,4 @@ img
 .opciones li a:hover 
 {
     background-color: gray;
-}
-
-.regreso
-{
-    margin-top: 20px;
 }

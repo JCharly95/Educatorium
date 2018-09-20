@@ -19,7 +19,7 @@
                 <div class="col-md-12">
                     <div class="panel panel-default">   
                         <div class="panel-heading" style="line-height: 2;">
-                            <span style="color: orangered;"><b>Ingrese el usuario del estudiante a buscar:</b></span>
+                            <span class="text-danger" ><b>Ingrese el usuario del estudiante a buscar:</b></span>
                         </div>
                         <div class="panel-body">
                             <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST">
@@ -44,10 +44,10 @@
                         <strong class="text-success"><?php echo $registros;?></strong>
                         <form action="../../Funcionamiento/PHPs/enviar_notificacion.php" method="POST">
                             <input type="hidden" name="id" value="<?php echo $texto2; ?>">
-                            <?php
-                                echo $texto1;
-                            ?>
-                            <button type="submit" name="enviar" class="btn btn-success">Enviar Solicitud de parentesco</button>
+                        <?php
+                            echo $texto1;
+                         ?>
+                        <button type="submit" name="enviar" class="btn btn-success">Enviar Solicitud de parentesco</button>
                         </form>
                     <a href="../../Usuarios/Padre/Principal_Pad.php" class="btn btn-danger">Regresar</a>
                     </div>

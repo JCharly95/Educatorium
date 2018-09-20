@@ -206,7 +206,7 @@
             $cifrado = password_hash($pass, PASSWORD_DEFAULT);
             if($pas_right)
             {
-                $actualizar = "UPDATE padre SET Password = '$pass' WHERE Username = '$user' ";
+                $actualizar = "UPDATE padre SET Password = '$cifrado' WHERE Username = '$user' ";
                 if(!$conexion->query($actualizar) === TRUE)
                 {
                      echo "<script>alert('No se pudo modificar la contraseña');</script>";

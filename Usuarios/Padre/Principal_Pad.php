@@ -1,4 +1,6 @@
 <?php
+    session_start();
+    require '../../Funcionamiento/PHPs/conexion.php';
     require '../../Funcionamiento/PHPs/CDatosPad.php';
 ?>
 

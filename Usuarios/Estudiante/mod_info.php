@@ -1,5 +1,5 @@
 <?php
-  session_start();
+session_start();
 
     require '../../Funcionamiento/PHPs/upd_est.php';
     require '../../Funcionamiento/PHPs/CDatosEst.php';

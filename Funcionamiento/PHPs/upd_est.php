@@ -8,8 +8,8 @@
     //sesion actual
     $user = $_SESSION['Username'];
 
-/*Archivos que requerimos
-    require 'conexion.php';*/
+//Archivos que requerimos
+    require 'conexion.php';
     require 'CDatosEst.php';
 
 //Variables para almacenar datos, variables de error
@@ -41,7 +41,7 @@
         { 
             /*Comparamos lo que tiene el campo de texto con el valor recogido de la base de datos,
             si es diferente, procedemos a actualizar la información, en caso contrario no se actualiza nada*/
-            if(strcmp($nombre,$NomAlu) != 0)
+            if(strcmp($nombre,$NomAlu) !== 0)
             {
                 //Query para actualizar la información en la BDD
                 $actualizar = "UPDATE estudiante SET Nombre = '$nombre' WHERE Username = '$user' ";
@@ -226,7 +226,7 @@
             $cifrado = password_hash($pass, PASSWORD_DEFAULT);
             if($pas_right)
             {
-                $actualizar = "UPDATE estudiante SET Password = '$pass' WHERE Username = '$user' ";
+                $actualizar = "UPDATE estudiante SET Password = '$cifrado' WHERE Username = '$user' ";
                 if(!$conexion->query($actualizar) === TRUE)
                 {
                      echo "<script>alert('No se pudo modificar la contraseña');</script>";

@@ -24,12 +24,29 @@
             }
             
             //Consulta de busqueda para el nombre de usuario junto con su palabra clave
-            $consulta="SELECT correo FROM estudiante WHERE usuario = '$nom_user' and fecha= '$fecha2';";
+            $consulta="SELECT correo FROM estudiante WHERE Username = '$nom_user' and fecha= '$fecha2';";
             if($User_Res=$conexion->query($consulta))  
             {
                 while($result=$User_Res->fetch_assoc()) /* obtener array asociativo con la fila de resultados*/
                 {
-                    $email_obt=$result["correo"];                    
+                    $email_obt=$result["correo"];
+                    $correo->isSMTP();
+                    $correo->SMTPAuth=true;
+                    $correo->SMTPSecure='tls';
+                    $correo->Host='smtp.gmail.com';
+                    $correo->Port='587';
+                    $correo->Username='soporte.educatorium@gmail.com';
+                    $correo->Password='Quesadilla123';
+
+        //Configuracion para probar si el envio de correo simple funciona
+        $correo->setFrom('soporte.educatorium@gmail.com','Educatorium');
+        $correo->addAddress('isaaclez19@gmail.com','Isaac Lezama');
+        $correo->Subject='Prueba Correo';
+        $correo->Body='Hola compa, esto es una prueba de envio de correos';
+        $correo->Body=password();
+        $correo->send();
+        
+        echo "<script>alert('El super correo de prueba fue enviado')</script>";                    
                 }
                 echo "<script>alert('Tus datos han sido enviados');</script>";                
                 echo '<META HTTP-EQUIV="REFRESH" CONTENT="0;URL=../../Acceso/FAcces.php">';
@@ -64,30 +81,20 @@
     {
         
     }
-    
-    /*$correo=new PHPMailer();
-    try
+    function password($length = 8)
     {
-        $correo->isSMTP();
-        $correo->SMTPAuth=true;
-        $correo->SMTPSecure='tls';
-        $correo->Host='smtp.gmail.com';
-        $correo->Port='587';
-        $correo->Username='soporte.educatorium@gmail.com';
-        $correo->Password='Quesadilla123';
+        $cadena = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz013456789";
+        $pass = "";
+        for($i = 0; $i < $length; $i++)
+        {
+            $rand = rand() % strlen($cadena);
+            $password .= substr($cadena, $rand,1);
 
-        Configuracion para probar si el envio de correo simple funciona
-        $correo->setFrom('soporte.educatorium@gmail.com','Educatorium');
-        $correo->addAddress('juancarloscharly@live.com.mx','Juan Lopez');
-        $correo->Subject='Prueba Correo';
-        $correo->Body='Hola compa, esto es una prueba de envio de correos';
+        }
+        return $pass;
+        echo "su contraseña temporal es: ".$pass;
+    }
+    
+    
         
-        $correo->send();
-        
-        echo "<script>alert('El super correo de prueba fue enviado')</script>";
-    } 
-    catch (Exception $e) 
-    {
-        echo "<script>alert('Esta wea no funco en el envio')</script>";
-    }*/
 ?>

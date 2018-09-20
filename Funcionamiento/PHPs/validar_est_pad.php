@@ -222,7 +222,7 @@
                     $nombre_imagen='Img_'.$user.'.'.$nom_img_ser[1];
                     $nom_img_bus='Img_'.$user;
                     //Solo si todas las validaciones anteriores son positivas, se almacena la imagen en el servidor                    
-                    $destino = $_SERVER['DOCUMENT_ROOT'].'/Educatorium/imagenes/';
+                    $destino = $_SERVER['DOCUMENT_ROOT'].'/educatorium/imagenes/';
                     $dir_ruta=$destino.$nombre_imagen;
                     move_uploaded_file($_FILES['imagen']['tmp_name'], $dir_ruta);
                     //$id_img = mysqli_insert_id();
@@ -240,7 +240,7 @@
         else
         {
             $nom_img_bus='Sin_Img';
-            $dir_ruta=$_SERVER['DOCUMENT_ROOT'].'/Educatorium/imagenes/Sin_Img.png';
+            $dir_ruta=$_SERVER['DOCUMENT_ROOT'].'/educatorium/imagenes/Sin_Img.png';
         }
         
 //SI TODO ESTA CORRECTO PROCEDEMOS A REGISTRAR AL USUARIO

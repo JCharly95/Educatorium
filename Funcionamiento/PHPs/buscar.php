@@ -9,7 +9,6 @@
 	$user = $_SESSION['Username'];
 
 	$texto1 = "";
-	$texto2="";
 	$registros = "No se ha escrito nada en el buscador"."<br><br><br>";
 
 	if(isset($_POST['enviar']))

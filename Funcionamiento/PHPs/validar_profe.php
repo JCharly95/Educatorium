@@ -264,18 +264,16 @@
             if($tipo_imagen="image/jpeg" || $tipo_imagen="image/jpg" || $tipo_imagen="image/png" || $tipo_imagen="image/gif")
             {
                 if($tam_imagen <= 5000000)
-                {
+                {                
                     //Cambiar el nombre de la imagen para saber de quien es
                     $nom_img_ser=explode('.', $nombre_imagen);
                     $nombre_imagen='Img_'.$user.'.'.$nom_img_ser[1];
                     $nom_img_bus='Img_'.$user;
                     //Solo si todas las validaciones anteriores son positivas, se almacena la imagen en el servidor                    
-                    $destino = $_SERVER['DOCUMENT_ROOT'].'/Educatorium/imagenes/';
+                    $destino = $_SERVER['DOCUMENT_ROOT'].'/educatorium/imagenes/';
                     $dir_ruta=$destino.$nombre_imagen;
-                    if(move_uploaded_file($_FILES['imagen']['tmp_name'], $dir_ruta))
-                    {
-                        echo "<script>alert('Se subio correctamente la imagen');</script>";
-                    }
+                    move_uploaded_file($_FILES['imagen']['tmp_name'], $dir_ruta);
+                    //$id_img = mysqli_insert_id();
                 }
                 else
                 {
@@ -290,7 +288,7 @@
         else
         {
             $nom_img_bus='Sin_Img';
-            $dir_ruta=$_SERVER['DOCUMENT_ROOT'].'/Educatorium/imagenes/Sin_Img.png';
+            $dir_ruta=$_SERVER['DOCUMENT_ROOT'].'/educatorium/imagenes/Sin_Img.png';
         }
         
 //SI TODO ESTA CORRECTO PROCEDEMOS A REGISTRAR AL USUARIO
@@ -312,8 +310,8 @@
             //Guardar los datos del profesor
                 $ins = "INSERT INTO profesor (Nombre, Ape_Pat, Ape_Mat, Correo, Tel, Username, Password, Keyword, Apoyo_ID) VALUES ('"
                         .$nombre."','".$ap_pat."','".$ap_mat."','".$correo."',".$tel.",'".$user."','".$cifrado."','".$fecha2."',".$ID_Img.");";
-                $insertar = $conexion->query($ins);
-            //Guardar los datos de la relacion escuela_profesor
+                $insertar = $conexion->query($ins);                
+            /*Guardar los datos de la relacion escuela_profesor*/
                 $ID_profe=$conexion->insert_id;//Ultimo id autogenerado de una consulta
                 //Insertar datos en la tabla profesor_escuela
                 $sql = "Insert into profe_escu (Profesor_ID,Escuela_ID) values (".$ID_profe.",".$reg_esc.");";
