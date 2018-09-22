@@ -238,20 +238,82 @@
         }
 
 //VALIDAMOS LA FECHA DE NACIMIENTO
-        $clave = $_POST['clave'];
-        $fecha = explode('/', $clave);        
-        if(empty($clave))
+        $Tip_Keyword=validar($_POST['Tipo_Keyword']);
+        $Keyword=validar($_POST['clave']);
+        if(empty($Tip_Keyword))
         {
-            $key_err = "* No has ingresado tu fecha de nacimiento";
-        }
-        elseif(count($fecha) == 3 && checkdate($fecha[1], $fecha[0], $fecha[2]))
-        {
-            $fecha2 = $fecha[2]."-".$fecha[1]."-".$fecha[0];
-            $key_right =" ¡Correcto!";
+            $key_err = "* Por favor selecciona una alternativa de palabra de recuperacion";
         }
         else
         {
-            $key_err = "* La fecha no cumple con el formato";
+            if(empty($Keyword))
+            {
+                $key_err = "* Por favor introduce una palabra de recuperacion";
+            }
+            elseif(!preg_match('/(?=[A-Z])/', $Keyword))
+            {
+                $key_err = "* Por favor introduce al menos una letra mayúscula en tu palabra de recuperacion";
+            }
+            else
+            {
+                switch ($Tip_Keyword) 
+                {
+                    case 1:
+                        $sql="Select ID_Tip_Key from tipo_pal_rec where Tipo_Keyword='Cual es el nombre de tu mascota';";
+                        $consulta=$conexion->query($sql);
+                        if($consulta->num_rows>0)    
+                        {
+                            while($res=$consulta->fetch_assoc())
+                            {
+                                $ID_Tip_Rec=$res['ID_Tip_Key'];
+                            }
+                        }
+                        else
+                        {
+                            $sql = "Insert into tipo_pal_rec (Tipo_Keyword) values('Cual es el nombre de tu mascota');";
+                            $consulta=$conexion->query($sql);
+                            $ID_Tip_Rec=$conexion->insert_id;
+                        }
+                        break;
+                    
+                    case 2:
+                        $sql="Select ID_Tip_Key from tipo_pal_rec where Tipo_Keyword='Cual es tu comida favorita';";
+                        $consulta=$conexion->query($sql);
+                        if($consulta->num_rows>0)    
+                        {
+                            while($res=$consulta->fetch_assoc())
+                            {
+                                $ID_Tip_Rec=$res['ID_Tip_Key'];
+                            }
+                        }
+                        else
+                        {
+                            $sql="Insert into tipo_pal_rec (Tipo_Keyword) values('Cual es tu comida favorita');";
+                            $consulta=$conexion->query($sql);
+                            $ID_Tip_Rec=$conexion->insert_id;
+                        }
+                        break;
+
+                    case 3:
+                        $sql="Select ID_Tip_Key from tipo_pal_rec where Tipo_Keyword='Cual es el estado o pais al que te gustaria ir';";
+                        $consulta=$conexion->query($sql);
+                        if($consulta->num_rows>0)    
+                        {
+                            while($res=$consulta->fetch_assoc())
+                            {
+                                $ID_Tip_Rec=$res['ID_Tip_Key'];
+                            }
+                        }
+                        else
+                        {
+                            $sql="Insert into tipo_pal_rec (Tipo_Keyword) values('Cual es el estado o pais al que te gustaria ir');";
+                            $consulta=$conexion->query($sql);
+                            $ID_Tip_Rec=$conexion->insert_id;
+                        }
+                        break;
+                }
+                $key_right = "* Contraseña adecuada";
+            }
         }
 
 //CODIGO PARA LA IMAGEN DE PERFIL
@@ -310,8 +372,8 @@
                 $ID_Tip_Img= TipArchi($conexion);//Especificar que tipo de archivo se va a subir                
                 $ID_Img=SvImg($nom_img_bus,$ID_Tip_Img,$dir_ruta,$conexion);//Obtener el ID de la imagen del usuario
             //Guardar los datos del profesor
-                $ins = "INSERT INTO profesor (Nombre, Ape_Pat, Ape_Mat, Correo, Tel, Username, Password, Keyword, Apoyo_ID) VALUES ('"
-                        .$nombre."','".$ap_pat."','".$ap_mat."','".$correo."',".$tel.",'".$user."','".$cifrado."','".$fecha2."',".$ID_Img.");";
+                $ins = "INSERT INTO profesor (Nombre, Ape_Pat, Ape_Mat, Correo, Tel, Username, Password, Keyword, Tip_Key_ID, Apoyo_ID) VALUES ('"
+                        .$nombre."','".$ap_pat."','".$ap_mat."','".$correo."',".$tel.",'".$user."','".$cifrado."','".$Keyword."',".$ID_Tip_Rec.",".$ID_Img.");";
                 $insertar = $conexion->query($ins);
             //Guardar los datos de la relacion escuela_profesor
                 $ID_profe=$conexion->insert_id;//Ultimo id autogenerado de una consulta

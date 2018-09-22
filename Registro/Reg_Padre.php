@@ -218,34 +218,50 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>                                        
+                                        </div>
                                     </div>
-                                    <div class="form-group">
-                                        <div class="panel panel-success">
-                                            <div class="panel-heading">En caso de que no recuerdes tu contrase&ntilde;a, se te pedira que 
-                                                respondas a la siguiente pregunta:<br>
-                                                <span class="label label-danger">¿Cual es tu fecha de nacimiento?</span>
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <div class="form-group row">
+                                                <div class="col-md-3 col-md-offset-1">
+                                                    <label>Palabra de recuperacion:</label>
+                                                </div>
+                                                <div class="col-md-7">
+                                                    <span>
+                                                        En caso de que olvide su contrase&ntilde;a y desee recuperarla sera necesario proporcionar
+                                                        una palabra clave la cual nos ayude a identificar que es usted quien va a recuperar la cuenta.
+                                                    </span>
+                                                </div>
                                             </div>
-                                            <div class="panel-default">
-                                            <div class="panel-heading">Ejemplo: 15/08/1998<br>
-                                                <span class="label label-warning" style="margin-top: 3px;">NOTA: Favor de escribir tambien las diagonales</span></div>
+                                            <div class="form-group">
+                                                <div class="col-md-offset-1">
+                                                    <span class="label label-default">
+                                                        Por favor seleccione que tipo de palabra clave desea registrar y posteriormente introduzcala
+                                                        en el lugar correspondiente.
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-md-4 col-md-offset-1">
+                                                    <select class="btn btn-default" name="Tipo_Keyword">
+                                                        <option hidden value="" selected>Opciones para la palabra de recuperacion:</option>
+                                                        <option value="1">¿Cual es el nombre de su mascota?</option>
+                                                        <option value="2">¿Cual es su comida favorita?</option>
+                                                        <option value="3">¿Cual es el estado o pais al que le gustaria ir?</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <input type="text" class="form-control" name="clave" id="wordR" placeholder="Introduzca su palabra de recuperacion" value="<?php echo $clave;?>">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-md-12 col-md-offset-1">
+                                                    <span class="error"><?php echo $key_err;?></span>
+                                                    <span class="bien"><?php echo $key_right;?></span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-md-2 col-md-offset-1">
-                                                <label for="wordR">Fecha de nacimiento:</label>
-                                            </div>                                            
-                                            <div class="col-md-6">
-                                                <input type="text" class="form-control" name="clave" id="wordR" placeholder="Introduce tu respuesta" value="<?php echo $clave;?>">
-                                            </div>
-                                            <div class="col-md-3">
-                                                <span class="error"><?php echo $key_err;?></span>
-                                                <span class="bien"><?php echo $key_right;?></span>
-                                            </div>
-                                        </div>                                        
-                                    </div>                                    
                                 </div>
                             </div>
                         </div>
