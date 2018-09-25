@@ -6,10 +6,10 @@
     $user = $_SESSION['Username'];
 
     //Variables que almacenaran los datos recibidos por el formulario
-    $NTel = $NEmail = $NUser = $NPass = $NKeyW = $CNPass = $NImgNam = $NImgTip = $NImgTam = $EscReg = $SelEsc = $NTip = $NEsc = "";
-    $Nnum = 0;
+    $NTel = $NEmail = $NUser = $NPass = $NKeyT = $CNPass = $NKeyW = "";
+    $NImgNam = $NImgTip = $NImgTam = $EscReg = $SelEsc = $NTipEsc = $NNomEsc = $NNumEsc = "";
     //Variables de avisos
-    $TelAd = $EmailAd = $UserAd = $PassAd = $KeyAd = $CPassAd = $ImgAd = $EscAd = $TipAd = $NEscAd = $NumAd = "";
+    $TelAd = $EmailAd = $UserAd = $PassAd = $CPassAd = $TipKeyAd = $KeyAd = $ImgAd = $SelEscAd = $TipEscAd = $NomEscAd = $NumEscAd = "";
     //Variables de ID´s usadas posteriormente
     $Tip_Archi=$ID_Img=0;// ID del tipo de archivo a subir\ID de la imagen una vez que se subio
 
@@ -29,7 +29,7 @@
     //Detectamos si se ha dado clic en el botón de actualizar datos
     if(isset($_POST['actualizar']))
     {
-        $NTel = validar($_POST['tel']);
+        $NTel = validar($_POST['tel']);//Comienzo de validacion del telefono
         if(empty($NTel))
         {
             $TelAd=$AdWar."El telefono no fue actualizado".$AdClo;
@@ -61,7 +61,7 @@
             }
         }
 
-        $NEmail = validar($_POST['correo']);
+        $NEmail = validar($_POST['correo']);//Comienzo de validacion del correo
         if(empty($NEmail))
         {
             $EmailAd=$AdWar."El correo no fue actualizado".$AdClo;
@@ -95,7 +95,7 @@
             }
         }
                 
-       $NUser = validar($_POST['usuario']);
+       $NUser = validar($_POST['usuario']);//Comienzo de validacion del username
         if(empty($NUser))
         {
             $UserAd=$AdWar."El nombre de usuario no fue actualizado".$AdClo;
@@ -138,7 +138,7 @@
 
         $NPass = validar($_POST['pass']);
         $CNPass = validar($_POST['cpass']);
-        if(empty($NPass))
+        if(empty($NPass))//Comienzo de la verificacion de la nueva contraseña
         {
             $PassAd=$AdWar."La contraseña no fue actualizada".$AdClo;
         }
@@ -201,45 +201,73 @@
                     }
                 }
             }
-        } 
-        
-        $NKeyW = $_POST['keyword'];
-        $KeyW = explode('/', $NKeyW);        
-        if(empty($NKeyW))
-        {
-            $KeyAd=$AdWar."La palabra clave no fue actualizada".$AdClo;
         }
-        else
+        
+        $NKeyT=$_POST['Tipo_Keyword'];
+        $NKeyW = validar($_POST['keyword']);
+        if(empty($NKeyT) || empty($NKeyW))
         {
-            /*Si se introdujo adecuadamente la fecha, con sus respectivos separadores se procede a verificar 
-            si no esta registrada en el sistema aun*/
-            if(count($KeyW)==3 && checkdate($KeyW[1], $KeyW[0], $KeyW[2]))
+            /*Si no fue seleccionada alguna pregunta de recuperacion y tampoco se lleno el campo de la palabra
+            no se procedera a verificar los datos*/
+            if(empty($NKeyT) && empty($NKeyW))
             {
-                $Key = $KeyW[2]."-".$KeyW[1]."-".$KeyW[0];
+                $TipKeyAd=$AdWar."Pregunta de recuperacion no modificada".$AdClo;
+                $KeyAd=$AdWar."Palabra de recuperacion no modificada".$AdClo;
+            }
 
-                if(strcmp($KeyPal,$Key)==0)
+            if(!empty($NKeyT) && empty($NKeyW))
+            {
+                $KeyAd=$AdDan."Favor de insertar su nueva palabra de recuperacion".$AdClo;
+            }
+
+            if(empty($NKeyT) && !empty($NKeyW))
+            {
+                $TipKeyAd=$AdDan."Favor de seleccionar su pregunta de recuperacion".$AdClo;
+            }
+        }
+        else 
+        {
+            if(strcmp($KeyPal,$NKeyW)==0)
+            {
+                $KeyAd=$AdDan."Favor de introducir una palabra de recuperacion diferente".$AdClo;
+            }
+            else
+            {
+                if(strlen($NKeyW)<8 && strlen($NKeyW)>15)
                 {
-                    $KeyAd=$AdDan."Favor de introducir una palabra clave diferente".$AdClo;
+                    $KeyAd=$AdDan."Favor de poner una palabra de entre 8 y 15 caracteres".$AdClo;
                 }
                 else
                 {
-                    $sql="Update profesor SET Keyword='".$Key."' where Username='".$user."';";
-                    if($conexion->query($sql)==true)
+                    if(!preg_match('/(?=[a-z])/', $NKeyW))
                     {
-                        echo "<script>alert('Palabra clave actualizada (Fecha de nacimiento)');</script>";
+                        $KeyAd=$AdDan."Favor de poner al menos una letra minúscula".$AdClo;
                     }
                     else
                     {
-                        echo "<script>alert('No se pudo modificar la fecha');</script>";
+                        if(!preg_match('/(?=[A-Z])/', $NKeyW))
+                        {
+                            $KeyAd=$AdDan."Favor de poner al menos una letra mayúscula".$AdClo;
+                        }
+                        else
+                        {
+                            $sql="Update profesor SET Keyword='".$NKeyW."' where Username='".$user."';";
+                            if($conexion->query($sql)==true)
+                            {
+                                echo "<script>alert('Palabra de recuperacion actualizada');</script>";
+                            }
+                            else
+                            {
+                                echo "<script>alert('No se pudo modificar la palabra de recuperacion');</script>";
+                            }
+                        }
                     }
                 }
             }
+        
         }
 
-        //$NImg = $EscReg = $SelEsc = $NTip = $NEsc = "";
-
-        //$NImgNam = $NImgTip = $NImgTam =
-
+        //En la interfaz de actualizacion de datos se mostrara la imagen de perfil actual, sin enviar algun dato para comenzar a procesarlo
         if(empty($_FILES['imagen']['name']))
         {
             $ImgAd=$AdWar."La imagen de perfil no fue actualizada".$AdClo;
@@ -249,42 +277,134 @@
             $NImgNam=$_FILES['imagen']['name'];
             $NImgTip=$_FILES['imagen']['type'];
             $NImgTam=$_FILES['imagen']['size'];
-
-            $nombre_imagen = $_FILES['imagen']['name'];
-            $tipo_imagen = $_FILES['imagen']['type'];
-            $tam_imagen = $_FILES['imagen']['size'];
-
-            if($tipo_imagen="image/jpeg" || $tipo_imagen="image/jpg" || $tipo_imagen="image/png" || $tipo_imagen="image/gif")
+            if($NImgTip="image/jpeg" || $NImgTip="image/jpg" || $NImgTip="image/png" || $NImgTip="image/gif")
             {
-                if($tam_imagen <= 5000000)
+                if($NImgTam<=5000000)
                 {
-                    //Cambiar el nombre de la imagen para saber de quien es
-                    $nom_img_ser=explode('.', $nombre_imagen);
-                    $nombre_imagen='Img_'.$user.'.'.$nom_img_ser[1];
-                    $nom_img_bus='Img_'.$user;
-                    //Solo si todas las validaciones anteriores son positivas, se almacena la imagen en el servidor                    
+                    $nom_img_ser=explode('.', $NImgNam);//Separar el nombre de la extension del archivo buscando un punto en la cadena del nombre
+                    $nombre_imagen='Img_'.$user.'.'.$nom_img_ser[1];//Renombrar la imagen para subirla al servidor añadiendo su extension
+                    $nom_img_bus='Img_'.$user;//Nombre de la imagen que se almacenara en la BD
                     $destino = $_SERVER['DOCUMENT_ROOT'].'/Educatorium/imagenes/';
                     $dir_ruta=$destino.$nombre_imagen;
-                    if(move_uploaded_file($_FILES['imagen']['tmp_name'], $dir_ruta))
+                    //Subida de imagen (Parte de la base de datos)
+                    $ID_Tip_Img=TipArchi($conexion);//Especificar que tipo de archivo se va a subir en la BD
+                    $Cond_Img=SvImg($nom_img_bus,$ID_Tip_Img,$dir_ruta,$conexion);//Obtener el ID de la informacion de la imagen en la BD
+                    //Subida de la imagen (Parte del servidor)
+                    if(is_uploaded_file($_FILES['imagen']['tmp_name']) && $Cond_Img)
                     {
-                        echo "<script>alert('Se subio correctamente la imagen');</script>";
+                        move_uploaded_file($_FILES['imagen']['tmp_name'], $dir_ruta);
+                        echo "<script>alert('Imagen de perfil actualizada');</script>";
+                    }
+                    else
+                    {
+                        echo "<script>alert('No se pudo modificar la imagen de perfil');</script>";
                     }
                 }
                 else
                 {
-                    $Img_err="La imagen es muy grande";
+                    $ImgAd=$AdDan."La imagen a subir es muy grande".$AdClo;
                 }
             }
             else
             {
-                $Img_err="Solo se pueden subir imágenes";
+                $ImgAd=$AdDan."Solo se pueden subir imágenes".$AdClo;
             }
-            /*else
-            {
-                $nom_img_bus='Sin_Img';
-                $dir_ruta=$_SERVER['DOCUMENT_ROOT'].'/Educatorium/imagenes/Sin_Img.png';
-            }*/
         }
+
+        /*
+        $EscReg = $SelEsc = $NTipEsc = $NNomEsc = $NNumEsc = "";
+        $TipEscAd = $NomEscAd = $NumEscAd = "";
+        */
+
+        //Buscar si la escuela ya esta registrada
+        $EscReg = validar($_POST['escuelas']);
+        $SelEsc = validar($_POST['RespSelEsc']);
+        if($EscReg=="N/A" && $SelEsc=="Si")//Si no se dio clic en alguna secundaria registrada y no se va a registrar una, no se mueve nada
+        {
+            $SelEscAd=$AdWar."La secundaria no fue actualizada".$AdClo;
+        }
+        else
+        {
+            /*Si fue seleccionada una secundaria de la lista pero tambien se opto por registrar una nueva, se procede a conservar
+            la secundaria seleccionada y cancelar el registro de una nueva*/
+            if($EscReg!="N/A" && $SelEsc=="No")
+            {
+                echo "document.getElementById('RESi').checked = true;";
+                $SelEscAd=$AdDan."Si fue seleccionada una secundaria de la lista, favor de mantener la opcion Si".$AdClo;
+            }
+            else
+            {
+                if($EscReg!="N/A" && $SelEsc=="Si")//Si se eligio una secundaria de la lista y se conservo la opcion Si, se procede a buscar en la BD
+                {
+                    
+                }
+
+                //Si no fue seleccionada una secundaria y se opto por registrar una, se procede con la verificacion
+                if($EscReg=="N/A" && $SelEsc=="No")
+                {
+                    //Validacion de tipo de escuela
+                    $NTipEsc = validar($_POST['tipo']);
+                    if(empty($NTipEsc))
+                    {
+                        $TipEscAd=$AdDan."Favor de seleccionar un tipo de secundaria".$AdClo;
+                    }
+                    else
+                    {
+                        $TipEscAd=$AdSuc."Ha seleccionado un tipo de secundaria".$AdClo;
+                    }
+
+                    //VALIDACION DEL NUMERO DE SECUNDARIA
+                    $NNumEsc= validar($_POST['num']);
+                    if(empty($NNumEsc))
+                    {
+                        $NumEscAd=$AdDan."Favor de introducir un numero de escuela".$AdClo;
+                    }
+                    else
+                    {
+                        if(!preg_match("/^d{1,3}$/", $NNumEsc))
+                        {
+                            $NumEscAd=$AdDan."* El número de escuela debe estar conformado por 3 números máximo.".$AdClo;
+                        }
+                        else
+                        {
+                            $NumEscAd=$AdSuc."Ha introducido un numero adecuado de secundaria".$AdClo;
+                        }
+                    }
+                    
+                    //VALIDACION DEL NOMBRE DE LA ESCUELA
+                    $NNomEsc=validar($_POST['esc']);
+                    if(empty($NNomEsc))
+                    {
+                        $NomEscAd=$AdDan."El nombre de escuela no puede estar vacío".$AdClo;
+                    }
+                    else
+                    {
+                        if(!preg_match("/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]*$/", $NNomEsc))
+                        {
+                            $NomEscAd=$AdDan."El nombre de la escuela solo puede llevar letras y espacios en blanco.".$AdClo;
+                        }
+                        else
+                        {
+                            if(strlen($NNomEsc)>30) 
+                            {
+                                $NomEscAd=$AdDan."El nombre de la escuela solo puede tener 30 caracteres como maximo".$AdClo;
+                            }
+                            else
+                            {
+                                $NomEscAd=$AdDan."Ha introducido un nombre de secundaria adecuado".$AdClo;
+                            }
+                        }
+                    }
+                }
+                
+            }
+        }
+        /*Llamadas de funcion relacionadas con el registro de una escuela
+        $reg_esc=VerEsc($esc, $tipo, $num, $conexion);
+        //Aqui se registra el profesor en la BD por primera vez, por eso se obtiene su ID
+        $ID_profe=$conexion->insert_id;//Ultimo id autogenerado de una consulta
+        $sql = "Insert into profe_escu (Profesor_ID,Escuela_ID) values (".$ID_profe.",".$reg_esc.");";
+        $ver = $conexion->query($sql);*/
     }
     
     function validar($data)
@@ -294,3 +414,79 @@
         $data = htmlspecialchars($data);
         return $data;
     }
+
+    //Funcion de registro de una escuela
+    function VerEsc($nom,$tipo,$num,$link)
+    {
+        //Investigar si la escuela ya esta registrada
+        $sql = "SELECT * FROM escuela WHERE Nombre='".$nom."' and Tipo='".$tipo."' and Num_Esc=".$num.";";
+        $ver = $link->query($sql);
+        $result = $ver->num_rows;
+        if ($result==0)//Se da de alta la escuela ingresada por el profesor
+        {
+            $sql = "Insert into escuela (Nombre,Tipo,Num_Esc) values('".$nom."','".$tipo."',".$num.");";
+            $ver = $link->query($sql);
+        }
+        //Se procede a obtener el ID de la escuela para poderlo relacionar con el profesor
+        $sql = "SELECT ID_Escuela FROM escuela WHERE Nombre='".$nom."' and Tipo='".$tipo."' and Num_Esc=".$num.";";
+        
+        if($ver = $link->query($sql))
+        {
+            while ($cont=$ver->fetch_row())
+            {
+                return $cont[0];//Retornar el id de la escuela registrada                
+            }
+        }
+    }
+
+    //Funcion de busqueda de tipo de archivo subido
+    function TipArchi($link)
+    {
+        //Investigar si hay algun registro guardado sobre el tipo de apoyo imagen
+        $sql = "SELECT * FROM tipo_apoyo WHERE Nombre='Imagen';";
+        $ver = $link->query($sql);
+        $result = $ver->num_rows;
+        if($result==0)//En caso de que no, lo agregamos a la base de datos
+        {
+            $sql = "Insert into tipo_apoyo (Nombre) values ('Imagen');";
+            $ver = $link->query($sql);
+        }
+
+        //(Creo yo que para este punto ya existe) Buscamos el ID del tipo imagen
+        $sql="SELECT ID_Tipo FROM tipo_apoyo WHERE Nombre='Imagen';";
+        if($ver=$link->query($sql))
+        {
+            while ($cont=$ver->fetch_row())
+            {
+                return $cont[0];//Retornar el id del tipo de apoyo imagen para guardarlo junto con los datos
+            }
+        }
+    }
+    
+    //Funcion de busqueda de imagen de perfil guardada
+    function SvImg($nombre,$TipoRecurso,$ruta,$link)
+    {
+        //Investigar si ya hay alguna imagen guardada con el mismo nombre en la BD
+        $sql="SELECT * FROM apoyo WHERE Nombre = '".$nombre."' and Tipo_Apoyo_ID =".$TipoRecurso.";";
+        $ver = $link->query($sql);
+        $result =$ver->num_rows;
+        if($result==0)//En caso de que aun no haya registro de la imagen en la BD se almacena la imagen, con el tipo de recurso imagen
+        {
+            $sql = "Insert into apoyo (Nombre,Ruta,Tipo_Apoyo_ID) values ('".$nombre."','".$ruta."',".$TipoRecurso.");";
+            $ver = $link->query($sql);
+        }
+        
+        //(Creo yo que para este punto ya existe) Buscamos la imagen subida
+        $sql="SELECT ID_Apoyo FROM apoyo WHERE Nombre = '".$nombre."' and Tipo_Apoyo_ID =".$TipoRecurso.";";
+        $ver = $link->query($sql);
+        $result =$ver->num_rows;
+        if($result>0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+?>

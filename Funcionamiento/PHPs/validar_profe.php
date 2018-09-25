@@ -369,7 +369,7 @@
                     $reg_esc=VerEsc($esc, $tipo, $num, $conexion);
                 }
                 
-                $ID_Tip_Img= TipArchi($conexion);//Especificar que tipo de archivo se va a subir                
+                $ID_Tip_Img= TipArchi($conexion);//Especificar que tipo de archivo se va a subir
                 $ID_Img=SvImg($nom_img_bus,$ID_Tip_Img,$dir_ruta,$conexion);//Obtener el ID de la imagen del usuario
             //Guardar los datos del profesor
                 $ins = "INSERT INTO profesor (Nombre, Ape_Pat, Ape_Mat, Correo, Tel, Username, Password, Keyword, Tip_Key_ID, Apoyo_ID) VALUES ('"

@@ -168,7 +168,7 @@
                                                     <input type="password" class="form-control" name="pass" id="pass" placeholder="Introduce tu contraseña" value="">
                                                 </div>
                                                 <div class="col-md-1">
-                                                    <input type="checkbox" onclick="showpass()"> Ver
+                                                    <input type="checkbox" onclick="showpass('pass')"> Ver
                                                 </div>
                                             </div>
                                         </div>
@@ -188,7 +188,7 @@
                                                     <input type="password" class="form-control" name="cpass" id="cpass" placeholder="Introduce nuevamente tu contraseña" value="">
                                                 </div>
                                                 <div class="col-md-1">
-                                                    <input type="checkbox" onclick="showcpass()"> Ver
+                                                    <input type="checkbox" onclick="showpass('cpass')"> Ver
                                                 </div>
                                             </div>
                                             <div class="form-group">

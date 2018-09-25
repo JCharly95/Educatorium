@@ -79,37 +79,50 @@
                                         <h3><span class="label label-default">Numero telefonico: </span></h3>
                                         <input type="text" name="tel" class="form-control" onfocus="this.value='' " placeholder="<?php echo $NumTele;?>">
                                         <span class="help-block">El teléfono debe estar conformado por 8 o 10 números.</span>
-                                        <span> <?php echo $tel_err; ?> </span>
+                                        <span><!--<?php echo $tel_err; ?>--></span>
                                     </div>                  
                                     <div class="form-group col-md-6">
                                         <h3><span class="label label-default">Direccion de correo: </span></h3>
                                         <input type="email" name="correo" class="form-control" onfocus="this.value='' " placeholder="<?php echo $DirCorr;?>">
                                         <span class="help-block">Introduzca un correo válido. Ej. ejemplo@gmail.com</span>
-                                        <span> <?php echo $cor_err; ?> </span>
+                                        <span><!--<?php echo $cor_err; ?>--></span>
                                     </div>            
                                     <div class="form-group col-md-6">
                                         <h3><span class="label label-default">Nombre de usuario: </span></h3>
                                         <input type="text" name="usuario" class="form-control" onfocus="this.value='' " placeholder="<?php echo $user;?>">
                                         <span class="help-block">Máximo 10 caracteres. Letras y números solamente.</span>
-                                        <span> <?php echo $us_err; ?> </span>
+                                        <span><!--<?php echo $us_err; ?>--></span>
                                     </div>            
                                     <div class="form-group col-md-6">
                                         <h3><span class="label label-default">Contraseña: </span></h3>
                                         <input type="password" name="pass" class="form-control">
                                         <span class="help-block">Debe constar de al menos un dígito, mayúsculas y minúsculas (8 caracteres).</span>
-                                        <span> <?php echo $pass_err; ?> </span>
+                                        <span><!--<?php echo $pass_err; ?>--></span>
                                     </div>
                                     <div class="form-group col-md-6">
-                                        <h3><span class="label label-default">Palabra de recuperacion: </span></h3>
-                                        <input type="text" name="keyword" class="form-control" onfocus="this.value='' " placeholder="<?php echo $KeyPal;?>">
-                                        <span class="help-block">Favor de completar este campo si desea cambiar su fecha de nacimiento.</span>
-                                        <span> <?php echo $pass_err; ?> </span>
+                                        <h3><span class="label label-default">Tipo de palabra de recuperacion: </span></h3>
+                                        <div class="col-md-offset-2">
+                                            <select class="btn btn-default" name="Tipo_Keyword">
+                                                <option hidden value="" selected>Opciones para la palabra de recuperacion:</option>
+                                                <option value="1">¿Cual es el nombre de su mascota?</option>
+                                                <option value="2">¿Cual es su comida favorita?</option>
+                                                <option value="3">¿Cual es el estado o pais al que le gustaria ir?</option>
+                                            </select>
+                                        </div>
+                                        <span class="help-block">Favor de seleccionar de que tipo sera su nueva palabra de recuperacion</span>
+                                        <span><!--<?php echo $pass_err; ?>--></span>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <h3><span class="label label-default">Confirmar Contraseña: </span></h3>
                                         <input type="password" name="cpass" class="form-control">
                                         <span class="help-block">Ambas contraseñas deben coincidir para proceder con el cambio.</span>
-                                        <span> <?php echo $pass_err; ?> </span>
+                                        <span><!--<?php echo $pass_err; ?>--></span>
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <h3><span class="label label-default">Palabra de recuperacion: </span></h3>
+                                        <input type="text" name="keyword" class="form-control" onfocus="this.value='' " placeholder="<?php echo $KeyPal;?>">
+                                        <span class="help-block">Favor de completar este campo si desea cambiar su palabra de recuperacion.</span>
+                                        <span><!--<?php echo $pass_err; ?>--></span>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <h3><span class="label label-default">Imagen de perfil: </span></h3>
@@ -133,7 +146,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group col-md-6">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="form-group col-md-12">
                                         <div class="form-group row">
                                                 <div class="col-md-12">
                                                     <h3><span class="label label-default">Secundaria donde labora: </span></h3>
@@ -142,8 +159,8 @@
                                         <div id="SecSis">
                                             <div class="form-group">
                                                 <div class="row">
-                                                    <div class="col-md-4">
-                                                        <select class="btn btn-default" name="escuelas" id="secus">
+                                                    <div class="col-md-4 col-md-offset-4">
+                                                        <select class="btn btn-default" name="escuelas" id="secus" onchange="">
                                                             <option hidden value="N/A" selected>Lista de secundarias registradas</option>
                                                             <?php
                                                                 require $_SERVER['DOCUMENT_ROOT'].'/Educatorium/Funcionamiento/PHPs/Conn_Ses/conexion.php';
@@ -162,17 +179,17 @@
                                             <div class="form-group">
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <span class="error"><?php echo $esc_err;?></span>
-                                                        <span class="bien"><?php echo $esc_right;?></span>
+                                                        <span class="error"><!--<?php echo $esc_err;?>--></span>
+                                                        <span class="bien"><!--<?php echo $esc_right;?>--></span>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <label class="label-default" style="border-radius: 5px;">&nbsp;<span class="label label-danger">&nbsp;NOTA:&nbsp;</span>
+                                                        <label class="label-default" style="border-radius: 5px;">&nbsp;&nbsp;<span class="label label-danger">&nbsp;NOTA:&nbsp;</span>
                                                             Si su institucion se encuentra en la lista anterior, favor de seleccionarla 
-                                                            y confirmar tu selecci&oacute;n en los siguientes botones
+                                                            y confirmar tu selecci&oacute;n en los siguientes botones&nbsp;&nbsp;
                                                         </label>
                                                     </div>
                                                 </div>
@@ -182,17 +199,19 @@
                                                     <div class="col-md-5">
                                                         ¿Est&aacute; la secundaria en la que labora, en esa lista?
                                                     </div>
-                                                    <div class="col-md-3" style="padding-top: 2%;">
+                                                    <div class="col-md-3">
                                                         <label><input type="radio" name="RespSelEsc" value="Si" id="RESi" onclick="InViewSec('RESi','NSec','SecSis');" checked/> <b>Si</b></label>
                                                     </div>
-                                                    <div class="col-md-3" style="padding-top: 2%;">
+                                                    <div class="col-md-3">
                                                         <label><input type="radio" name="RespSelEsc" value="No" id="RENo" onclick="InViewSec('RENo','NSec','SecSis');" /> <b>No</b></label>
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="form-group">
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <span class="error"><?php echo $esc_err;?></span>
-                                                        <span class="bien"><?php echo $esc_right;?></span>
+                                                        <span class="error"><!--<?php echo $esc_err;?>--></span>
+                                                        <span class="bien"><!--<?php echo $esc_right;?>--></span>
                                                     </div>
                                                 </div>                                          
                                             </div>

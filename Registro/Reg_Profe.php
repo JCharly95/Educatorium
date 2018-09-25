@@ -156,7 +156,7 @@
                                                 </div>
                                                 <div class="col-md-4">
                                                     <select class="btn btn-default" name="escuelas" id="secus">
-                                                        <option hidden value="N/A" selected>Lista de secundarias</option>
+                                                        <option value="N/A" selected>Lista de secundarias</option>
                                                         <?php
                                                             require $_SERVER['DOCUMENT_ROOT'].'/Educatorium/Funcionamiento/PHPs/Conn_Ses/conexion.php';
                                                             $sql = "Select * from escuela where ID_Escuela>1;";
@@ -191,7 +191,7 @@
                                                     <label>¿Est&aacute; la secundaria en la que laboras en esa lista?</label>
                                                 </div>
                                                 <div class="col-md-2 radio-inline">
-                                                    <label><input type="radio" name="Resp" value="Si" onclick="VerSec('alta_profe','Resp');"/> <b>Si</b></label>                                                    
+                                                    <label><input type="radio" name="Resp" value="Si" onclick="VerSec('alta_profe','Resp');" checked/> <b>Si</b></label>                                                    
                                                 </div>
                                                 <div class="col-md-2 radio-inline">
                                                     <label><input type="radio" name="Resp" value="No" onclick="VerSec('alta_profe','Resp');"/> <b>No</b></label>
@@ -294,14 +294,16 @@
                                             <div class="col-md-6">
                                                 <input type="password" class="form-control" name="pass" id="pass" placeholder="Introduce tu contraseña" value="<?php echo $pass;?>">
                                             </div>
-                                            <div class="col-md-1">
-                                                <input type="checkbox" onclick="showpass()"> Ver
+                                            <div class="col-md-3">
+                                                <label><input type="checkbox" onclick="showpass('pass')"> Ver contraseña</label>
                                             </div>
-                                            <div class="col-md-2">
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-offset-3">
                                                 <span class="error"><?php echo $pass_err;?></span>
                                                 <span class="bien"><?php echo $pas_right;?></span>
                                             </div>
-                                        </div>                                        
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
@@ -311,14 +313,16 @@
                                             <div class="col-md-6">
                                                 <input type="password" class="form-control" name="cpass" id="cpass" placeholder="Introduce nuevamente tu contraseña" value="<?php echo $cpass;?>">
                                             </div>
-                                            <div class="col-md-1">
-                                                <input type="checkbox" onclick="showcpass()"> Ver
+                                            <div class="col-md-3">
+                                                <label><input type="checkbox" onclick="showpass('cpass')"> Ver contraseña</label>
                                             </div>
-                                            <div class="col-md-2">                                                
+                                        </div>
+                                        <div class="form-group row">
+                                            <div class="col-md-offset-3">
                                                 <span class="error"><?php echo $cpa_err;?></span>
                                                 <span class="bien"><?php echo $cpa_right;?></span>
                                             </div>
-                                        </div>                                        
+                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
@@ -374,7 +378,10 @@
                                                     </select>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <input type="text" class="form-control" name="clave" id="wordR" placeholder="Introduzca su palabra de recuperacion" value="<?php echo $clave;?>">
+                                                    <input type="password" class="form-control" name="clave" id="wordR" placeholder="Introduzca su palabra de recuperacion" value="<?php echo $clave;?>">
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label><input type="checkbox" onclick="showpass('wordR')"> Ver palabra clave</label>
                                                 </div>
                                             </div>
                                             <div class="form-group row">

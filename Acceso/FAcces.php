@@ -73,7 +73,7 @@
                                         <input type="password" id="pass" name="Pass" class="form-control" placeholder="Introduce tu contraseña" value="<?php echo $contraseña;?>">
                                     </div>
                                     <div class="col-md-1">
-                                        <input type="checkbox" onclick="showpass()"> Ver
+                                        <input type="checkbox" onclick="showpass('pass')"> Ver
                                     </div>
                                     <div class="col-md-2">
                                         <span class="error"><?php echo $pas_err;?></span>

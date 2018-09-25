@@ -1,8 +1,8 @@
 // FUNCION PARA MOSTRAR CONTRASEÑA-->
   
-function showpass()
+function showpass(pass)
 {
-    var password = document.getElementById('pass');
+    var password = document.getElementById(pass);
     if(password.type === "password")
     {
         password.type = "text";
@@ -10,19 +10,6 @@ function showpass()
     else
     {
         password.type = "password";
-    }
-}
-
-function showcpass()
-{
-    var cpass = document.getElementById('cpass');
-    if(cpass.type === 'password')
-    {
-        cpass.type = "text";
-    }
-    else
-    {
-        cpass.type = "password";
     }
 }
         

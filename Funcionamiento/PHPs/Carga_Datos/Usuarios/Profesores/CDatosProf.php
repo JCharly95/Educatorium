@@ -32,7 +32,7 @@
             $RutaImg=substr($rutaSav,36);
         }
     }
-    $sql="select Username,escuela.Nombre,Num_Esc from profe_escu inner join escuela on (profe_escu.Escuela_ID=escuela.ID_Escuela)"
+    $sql="select escuela.Nombre,Num_Esc from profe_escu inner join escuela on (profe_escu.Escuela_ID=escuela.ID_Escuela)"
             ."inner join profesor on (profe_escu.Profesor_ID=profesor.ID_Profesor) where Username='".$user."';";
     if($consulta=$conexion->query($sql))
     {
@@ -58,8 +58,19 @@
         }
     }
 
+    //Obtencion del tipo de palabra de recuperacion que selecciono
+    $sql="select Tipo_Keyword from tipo_pal_rec inner join profesor on (ID_Tip_Key=Tip_Key_ID) where Username='".$user."';";
+    $consulta=$conexion->query($sql);
+    if($consulta->num_rows>0)    
+    {
+        while($res=$consulta->fetch_assoc())
+        {
+            $Tip_Rec=$res['Tipo_Keyword'];
+        }
+    }
+
     //Obtencion del nombre de las materias que imparte y los grados de las materias
-    $sql="select Username, materia.Nombre, Grado_ID from profesor inner join mat_profe on (ID_Profesor=Profe_ID)".
+    $sql="select materia.Nombre, Grado_ID from profesor inner join mat_profe on (ID_Profesor=Profe_ID)".
         "inner join materia on (Materia_ID=ID_Materia) where Username='".$user."';";
     if($consulta=$conexion->query($sql))
     {

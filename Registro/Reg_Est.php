@@ -173,7 +173,7 @@
                                                 <input type="password" class="form-control" name="pass" id="pass" placeholder="Introduce tu contraseña" value="<?php echo $pass;?>">
                                             </div>
                                             <div class="col-md-1">
-                                                <input type="checkbox" onclick="showpass()"> Ver
+                                                <input type="checkbox" onclick="showpass('pass')"> Ver
                                             </div>
                                             <div class="col-md-2">                                                
                                                 <span class="error"><?php echo $pass_err;?></span>
@@ -190,7 +190,7 @@
                                                 <input type="password" class="form-control" name="cpass" id="cpass" placeholder="Introduce nuevamente tu contraseña" value="<?php echo $cpass;?>">
                                             </div>
                                             <div class="col-md-1">                                                
-                                                <input type="checkbox" onclick="showcpass()"> Ver
+                                                <input type="checkbox" onclick="showpass('cpass')"> Ver
                                             </div>
                                             <div class="col-md-2">
                                                 <span class="error"><?php echo $cpa_err;?></span>
@@ -291,13 +291,16 @@
                                                 <div class="col-md-4 col-md-offset-1">
                                                     <select class="btn btn-default" name="Tipo_Keyword">
                                                         <option hidden value="" selected>Opciones para la palabra de recuperacion:</option>
-                                                        <option value="1">¿Cual es el nombre de tu mascota?</option>
-                                                        <option value="2">¿Cual es tu comida favorita?</option>
-                                                        <option value="3">¿Cual es el estado o pais al que te gustaria ir?</option>
+                                                        <option value="1">¿Cual es el nombre de su mascota?</option>
+                                                        <option value="2">¿Cual es su comida favorita?</option>
+                                                        <option value="3">¿Cual es el estado o pais al que le gustaria ir?</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-md-4">
-                                                    <input type="text" class="form-control" name="clave" id="wordR" placeholder="Introduce tu palabra de recuperacion" value="<?php echo $clave;?>">
+                                                    <input type="password" class="form-control" name="clave" id="wordR" placeholder="Introduzca su palabra de recuperacion" value="<?php echo $clave;?>">
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <label><input type="checkbox" onclick="showpass('wordR')"> Ver palabra clave</label>
                                                 </div>
                                             </div>
                                             <div class="form-group row">
