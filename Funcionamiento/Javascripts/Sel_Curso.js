@@ -1,6 +1,6 @@
-function RevSel()
+function RevSel(NomElems,Ad)
 {
-    var Curso=document.getElementsByName("CurSelEdit");
+    var Curso=document.getElementsByName(NomElems);
 
     for(var cont=0;cont<Curso.length;cont++)
     {
@@ -10,6 +10,6 @@ function RevSel()
             return true;
         }
     }
-    $("#AdErr").modal("toggle");
+    $("#"+Ad).modal("toggle");
     return false;
 }

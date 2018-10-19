@@ -24,7 +24,7 @@
         {
             $nom_err = "* Solo se permiten letras y espacios";
         }
-        elseif(strlen($nombre) > 30)
+        elseif(strlen($nombre)>30)
         {
             $nom_err = "* El nombre es muy largo";
         }

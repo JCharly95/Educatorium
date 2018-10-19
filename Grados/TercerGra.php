@@ -26,13 +26,13 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-3 col-md-offset-1">
-                        <a href="" class="btn btn-info" <?php echo $BtnMatsTer[0];?>>Español III</a>
+                        <a href="Materias/Tercero/Esp_3.php" class="btn btn-lg btn-warning" <?php echo $BtnMatsTer[0];?>>Español III</a>
                     </div>
                     <div class="col-md-3 col-md-offset-1">
-                        <a href="" class="btn btn-info" <?php echo $BtnMatsTer[1];?>>Matematicas III</a>
+                        <a href="Materias/Tercero/Mat_3.php" class="btn btn-lg btn-warning" <?php echo $BtnMatsTer[1];?>>Matematicas III</a>
                     </div>
                     <div class="col-md-3 col-md-offset-1">
-                        <a href="" class="btn btn-info" <?php echo $BtnMatsTer[2];?>>Ciencias III: Quimica</a>
+                        <a href="Materias/Tercero/Qui.php" class="btn btn-lg btn-warning" <?php echo $BtnMatsTer[2];?>>Ciencias III: Quimica</a>
                     </div>
                 </div>
             </div>
@@ -40,13 +40,13 @@
             <div class="form-group">
                 <div class="row">
                     <div class="col-md-3 col-md-offset-1">
-                        <a href="" class="btn btn-info" <?php echo $BtnMatsTer[3];?>>Ingles III</a>
+                        <a href="Materias/Tercero/Ing_3.php" class="btn btn-lg btn-warning" <?php echo $BtnMatsTer[3];?>>Ingles III</a>
                     </div>
                     <div class="col-md-3 col-md-offset-1">
-                        <a href="" class="btn btn-info" <?php echo $BtnMatsTer[4];?>>Civica y Etica II</a>
+                        <a href="Materias/Tercero/CyE_2.php" class="btn btn-lg btn-warning" <?php echo $BtnMatsTer[4];?>>Civica y Etica II</a>
                     </div>
                     <div class="col-md-3 col-md-offset-1">
-                        <a href="" class="btn btn-info" <?php echo $BtnMatsTer[5];?>>Historia II</a>
+                        <a href="Materias/Tercero/His_2.php" class="btn btn-lg btn-warning" <?php echo $BtnMatsTer[5];?>>Historia II</a>
                     </div>
                 </div>
             </div>

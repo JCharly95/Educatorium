@@ -92,3 +92,16 @@ img
     border: 1px solid #000;
     margin: 10px 5px 0 0;
 }
+
+input:checked + label
+{
+    color: red;
+    box-shadow: 0 0 0 3px orange;
+}
+
+/* Elemento Radio, cuando está marcado */
+input[type="radio"]:checked 
+{
+    box-shadow: 0 0 0 3px orange;
+}
+  

@@ -1,4 +1,5 @@
 {
     "files.autoSave": "afterDelay",
-    "php.validate.executablePath": "C:\\xampp\\php\\php.exe"
+    "php.validate.executablePath": "C:\\xampp\\php\\php.exe",
+    "emmet.triggerExpansionOnTab": true
 }

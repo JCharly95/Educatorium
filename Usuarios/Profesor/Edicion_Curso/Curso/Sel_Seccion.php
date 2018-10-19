@@ -1,5 +1,5 @@
 <?php
-    require '../../../Funcionamiento/PHPs/Carga_Datos/CSel_Seccion.php';
+    require '../../../../Funcionamiento/PHPs/Carga_Datos/CSel_Seccion.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -8,9 +8,9 @@
         <title>Editar Curso</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="../../../CmpVis/bootstrap-3.3.7-dist/css/bootstrap.css">
-        <link rel="stylesheet" type="text/css" href="../../../CmpVis/fontawesome-free-5.0.10/web-fonts-with-css/css/fontawesome-all.css">
-        <link rel="stylesheet" type="text/css" href="../../../Funcionamiento/Estilos_Extras/Registro.css">
+        <link rel="stylesheet" type="text/css" href="../../../../CmpVis/bootstrap-3.3.7-dist/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="../../../../CmpVis/fontawesome-free-5.0.10/web-fonts-with-css/css/fontawesome-all.css">
+        <link rel="stylesheet" type="text/css" href="../../../../Funcionamiento/Estilos_Extras/Registro.css">
     </head>
     <body>
         <div class="container">
@@ -42,12 +42,18 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="panel panel-default">
-                            <div class="panel-heading">
+                            <div class="panel-heading text-center">
                                 <h4>Estructura General</h4>
                             </div>
                             <div class="panel-body">
                                 <div class="form-group">
-                                    <a href="Secciones/Camb_Bienve.php" class="btn btn-warning" style="width: 100%;">
+                                    <a href="Edit_Nom_Pass.php" class="btn btn-warning" style="width: 100%;">
+                                        <i class="fas fa-pencil-alt fa-4x"></i>
+                                        <span style="vertical-align: 60%;">&nbsp; <b>Editar nombre o contrase&ntilde;a</b></span>
+                                    </a>
+                                </div>
+                                <div class="form-group">
+                                    <a href="Camb_Bienve.php" class="btn btn-warning" style="width: 100%;">
                                         <i class="fas fa-pencil-alt fa-4x"></i>
                                         <span style="vertical-align: 60%;">&nbsp; <b>Editar elementos de bienvenida</b></span>
                                     </a>
@@ -57,20 +63,26 @@
                     </div>
                     <div class="col-md-4">
                         <div class="panel panel-warning">
-                            <div class="panel-heading">
+                            <div class="panel-heading text-center">
                                 <h4>Cuestionarios</h4>
                             </div>
                             <div class="panel-body">
                                 <div class="form-group">
-                                    <a href="Secciones/Nuevo_Cuesti.php" class="btn btn-success" style="width: 100%;">
+                                    <a href="../Cuestionario/Nuevo_Cuesti.php" class="btn btn-success" style="width: 100%;">
                                         <i class="fas fa-plus-circle fa-4x"></i>
-                                        <span style="vertical-align: 75%;">&nbsp; <b>Agregar cuestionario</b></span>
+                                        <span style="vertical-align: 75%;">&nbsp; <b>Crear cuestionario</b></span>
                                     </a>
                                 </div>
                                 <div class="form-group">
-                                    <a href="Secciones/Edit_Cuesti.php" class="btn btn-warning" style="width: 100%;">
+                                    <a href="../Cuestionario/Sel_Edit_Cuesti.php" class="btn btn-warning" style="width: 100%;">
                                         <i class="fas fa-pencil-alt fa-4x"></i>
-                                        <span style="vertical-align: 60%;">&nbsp; <b>Editar cuestionarios existentes</b></span>
+                                        <span style="vertical-align: 60%;">&nbsp; <b>Editar cuestionarios</b></span>
+                                    </a>
+                                </div>
+                                <div class="form-group">
+                                    <a href="" class="btn btn-danger" style="width: 100%;">
+                                        <i class="fas fa-times fa-4x"></i>
+                                        <span style="vertical-align: 70%;">&nbsp; <b>Eliminar cuestionarios</b></span>
                                     </a>
                                 </div>
                             </div>
@@ -78,20 +90,26 @@
                     </div>
                     <div class="col-md-4">
                         <div class="panel panel-success">
-                            <div class="panel-heading">
+                            <div class="panel-heading text-center">
                                 <h4>Recursos</h4>
                             </div>
                             <div class="panel-body">
                                 <div class="form-group">
-                                    <a href="Secciones/Nuevo_Recur.php" class="btn btn-success" style="width: 100%;">
+                                    <a href="../Recursos/Nuevo_Recur.php" class="btn btn-success" style="width: 100%;">
                                         <i class="fas fa-plus-circle fa-4x"></i>
                                         <span style="vertical-align: 75%;">&nbsp; <b>Agregar recurso</b></span>
                                     </a>
                                 </div>
                                 <div class="form-group">
-                                    <a href="Secciones/Edit_Recur.php" class="btn btn-warning" style="width: 100%;">
+                                    <a href="../Recursos/Edit_Recur.php" class="btn btn-warning" style="width: 100%;">
                                         <i class="fas fa-pencil-alt fa-4x"></i>
-                                        <span style="vertical-align: 60%;">&nbsp; <b>Editar recursos existentes</b></span>
+                                        <span style="vertical-align: 60%;">&nbsp; <b>Editar recursos del curso</b></span>
+                                    </a>
+                                </div>
+                                <div class="form-group">
+                                    <a href="" class="btn btn-danger" style="width: 100%;">
+                                        <i class="fas fa-times fa-4x"></i>
+                                        <span style="vertical-align: 70%;">&nbsp; <b>Eliminar recursos del curso</b></span>
                                     </a>
                                 </div>
                             </div>
@@ -101,14 +119,14 @@
             </div>
             <div class="form-group">
                 <div class="col-md-3 col-md-offset-5 regreso">
-                    <a href="#" class="btn btn-danger" onclick="javascript:window.history.back();"><i class="fas fa-arrow-left"></i> Regresar</a>
+                    <a href="#" class="btn btn-danger" onclick="location.replace('Sel_Curso.php');"><i class="fas fa-arrow-left"></i> Regresar</a>
                 </div>
             </div>
         </div>
         <footer>
             @Copyright Educatorium 2018. Todos los derechos reservados
         </footer>
-        <script type="text/javascript" src="../../../CmpVis/jquery/jquery-3.3.1.js"></script>
-	    <script type="text/javascript" src="../../../CmpVis/bootstrap-3.3.7-dist/js/bootstrap.js"></script>        
+        <script type="text/javascript" src="../../../../CmpVis/jquery/jquery-3.3.1.js"></script>
+	    <script type="text/javascript" src="../../../../CmpVis/bootstrap-3.3.7-dist/js/bootstrap.js"></script>        
     </body>
 </html>

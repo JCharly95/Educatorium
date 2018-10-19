@@ -83,7 +83,7 @@
                                                     <label><input type="radio" name="RespMsg" value="Si" id="RMSi" onclick="ViewSec('RMSi','Msg_Bienve','SectMsgQues');"/> <b>Si</b></label>
                                                 </div>
                                                 <div class="col-md-1 radio-inline col-md-offset-2">
-                                                    <label><input type="radio" name="RespMsg" value="No" id="RMNo" onclick="ViewSec('RMNo','Msg_Bienve','SectMsgQues');" checked/> <b>No</b></label>
+                                                    <label><input type="radio" name="RespMsg" value="No" id="RMNo" onclick="ViewSec('RMNo','Msg_Bienve','SectMsgQues');"/> <b>No</b></label>
                                                 </div>
                                             </div>
                                         </div>
@@ -153,7 +153,7 @@
                                                     <label><input type="radio" name="Resp" value="Si" id="RSi" onclick="ViewSec('RSi','IntPass','QuesPass');"/> <b>Si</b></label>                                                    
                                                 </div>
                                                 <div class="col-md-1 radio-inline col-md-offset-2">
-                                                    <label><input type="radio" name="Resp" value="No" id="RNo" onclick="ViewSec('RNo','IntPass','QuesPass');" checked/> <b>No</b></label>
+                                                    <label><input type="radio" name="Resp" value="No" id="RNo" onclick="ViewSec('RNo','IntPass','QuesPass');"/> <b>No</b></label>
                                                 </div>
                                             </div>
                                         </div>
@@ -168,7 +168,7 @@
                                                     <input type="password" class="form-control" name="pass" id="pass" placeholder="Introduce tu contraseña" value="">
                                                 </div>
                                                 <div class="col-md-1">
-                                                    <input type="checkbox" onclick="showpass('pass')"> Ver
+                                                    <label><input type="checkbox" onclick="showpass('pass')"> Ver</label> 
                                                 </div>
                                             </div>
                                         </div>
@@ -188,7 +188,7 @@
                                                     <input type="password" class="form-control" name="cpass" id="cpass" placeholder="Introduce nuevamente tu contraseña" value="">
                                                 </div>
                                                 <div class="col-md-1">
-                                                    <input type="checkbox" onclick="showpass('cpass')"> Ver
+                                                    <label><input type="checkbox" onclick="showpass('cpass')"> Ver</label>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -234,6 +234,13 @@
         <script src="../../Funcionamiento/Javascripts/ver-password.js"></script>
         <script src="../../Funcionamiento/Javascripts/ver-foto.js"></script>
         <script type="text/javascript" src="../../CmpVis/jquery/jquery-3.3.1.js"></script>
-	    <script type="text/javascript" src="../../CmpVis/bootstrap-3.3.7-dist/js/bootstrap.js"></script>        
+	    <script type="text/javascript" src="../../CmpVis/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+        <script>
+            $(function () 
+            {
+                document.getElementById('RMNo').checked=true;
+                document.getElementById('RNo').checked=true;
+            });
+        </script>
     </body>
 </html>

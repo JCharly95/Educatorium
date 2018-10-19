@@ -77,32 +77,32 @@
                                 <div class="row">
                                     <div class="form-group col-md-6">
                                         <h3><span class="label label-default">Numero telefonico: </span></h3>
-                                        <input type="text" name="tel" class="form-control" onfocus="this.value='' " placeholder="<?php echo $NumTele;?>">
+                                        <input type="text" name="tel" class="form-control DatoEnt" onfocus="this.value='' " onchange="HabSub();" placeholder="<?php echo $NumTele;?>">
                                         <span class="help-block">El teléfono debe estar conformado por 8 o 10 números.</span>
                                         <span><!--<?php echo $tel_err; ?>--></span>
                                     </div>                  
                                     <div class="form-group col-md-6">
                                         <h3><span class="label label-default">Direccion de correo: </span></h3>
-                                        <input type="email" name="correo" class="form-control" onfocus="this.value='' " placeholder="<?php echo $DirCorr;?>">
+                                        <input type="email" name="correo" class="form-control DatoEnt" onfocus="this.value='' " onchange="HabSub();" placeholder="<?php echo $DirCorr;?>">
                                         <span class="help-block">Introduzca un correo válido. Ej. ejemplo@gmail.com</span>
                                         <span><!--<?php echo $cor_err; ?>--></span>
                                     </div>            
                                     <div class="form-group col-md-6">
                                         <h3><span class="label label-default">Nombre de usuario: </span></h3>
-                                        <input type="text" name="usuario" class="form-control" onfocus="this.value='' " placeholder="<?php echo $user;?>">
+                                        <input type="text" name="usuario" class="form-control DatoEnt" onfocus="this.value='' " onchange="HabSub();" placeholder="<?php echo $user;?>">
                                         <span class="help-block">Máximo 10 caracteres. Letras y números solamente.</span>
                                         <span><!--<?php echo $us_err; ?>--></span>
                                     </div>            
                                     <div class="form-group col-md-6">
                                         <h3><span class="label label-default">Contraseña: </span></h3>
-                                        <input type="password" name="pass" class="form-control">
+                                        <input type="password" name="pass" class="form-control DatoEnt" onchange="HabSub();">
                                         <span class="help-block">Debe constar de al menos un dígito, mayúsculas y minúsculas (8 caracteres).</span>
                                         <span><!--<?php echo $pass_err; ?>--></span>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <h3><span class="label label-default">Tipo de palabra de recuperacion: </span></h3>
                                         <div class="col-md-offset-2">
-                                            <select class="btn btn-default" name="Tipo_Keyword">
+                                            <select class="btn btn-default DatoEnt" name="Tipo_Keyword" onchange="HabSub();">
                                                 <option hidden value="" selected>Opciones para la palabra de recuperacion:</option>
                                                 <option value="1">¿Cual es el nombre de su mascota?</option>
                                                 <option value="2">¿Cual es su comida favorita?</option>
@@ -114,13 +114,13 @@
                                     </div>
                                     <div class="form-group col-md-6">
                                         <h3><span class="label label-default">Confirmar Contraseña: </span></h3>
-                                        <input type="password" name="cpass" class="form-control">
+                                        <input type="password" name="cpass" class="form-control DatoEnt" onchange="HabSub();">
                                         <span class="help-block">Ambas contraseñas deben coincidir para proceder con el cambio.</span>
                                         <span><!--<?php echo $pass_err; ?>--></span>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <h3><span class="label label-default">Palabra de recuperacion: </span></h3>
-                                        <input type="text" name="keyword" class="form-control" onfocus="this.value='' " placeholder="<?php echo $KeyPal;?>">
+                                        <input type="text" name="keyword" class="form-control DatoEnt" onfocus="this.value='' " onchange="HabSub();" placeholder="<?php echo $KeyPal;?>">
                                         <span class="help-block">Favor de completar este campo si desea cambiar su palabra de recuperacion.</span>
                                         <span><!--<?php echo $pass_err; ?>--></span>
                                     </div>
@@ -135,7 +135,7 @@
                                         <div class="form-group row">
                                             <div class="col-md-12">
                                                 <label class="btn btn-primary">
-                                                    <input type="file" id="files" name="imagen" style="display: none;" />
+                                                    <input type="file" id="files" class="DatoEnt" onchange="HabSub();" name="imagen" style="display: none;" />
                                                     Seleccionar imagen de perfil...
                                                 </label>
                                             </div>
@@ -160,7 +160,7 @@
                                             <div class="form-group">
                                                 <div class="row">
                                                     <div class="col-md-4 col-md-offset-4">
-                                                        <select class="btn btn-default" name="escuelas" id="secus" onchange="">
+                                                        <select class="btn btn-default DatoEnt" onchange="HabSub();" name="escuelas" id="secus">
                                                             <option hidden value="N/A" selected>Lista de secundarias registradas</option>
                                                             <?php
                                                                 require $_SERVER['DOCUMENT_ROOT'].'/Educatorium/Funcionamiento/PHPs/Conn_Ses/conexion.php';
@@ -290,7 +290,7 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="form-group col-md-6">
-                                        <button type="submit" name="actualizar" class="form-control btn btn-success active"><i class="fas fa-check"></i> Actualizar</button>
+                                        <button type="submit" name="actualizar" id="enviar" class="form-control btn btn-success active"><i class="fas fa-check"></i> Actualizar</button>
                                     </div>
                                     <div class="form-group col-md-6">
                                         <a href="Principal_Prof.php" class="form-control btn btn-danger"><span class="glyphicon glyphicon-remove-circle"></span> Cancelar</a>
@@ -313,8 +313,21 @@
             {
                 var ruta= "<?php echo $RutaImg; ?>";
                 document.getElementById('list').innerHTML = '<img src="../../imagenes'+ruta+'" alt="Foto de perfil" />';
+                document.getElementById('enviar').disabled=true;
             }            
         );
+
+        function HabSub()
+        {
+            var FormElems=document.getElementsByClassName('DatoEnt');
+            for (cont=0;cont<FormElems.length;cont++) 
+            {
+                if(FormElems[cont].value!=""||FormElems[cont].value!=null||FormElems[cont].value!="N/A")
+                {
+                    document.getElementById('enviar').disabled=false;
+                }
+            }
+        }
     </script>
     </body>
 </html>

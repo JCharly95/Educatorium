@@ -1,5 +1,5 @@
 <?php
-    //require '../../../../Funcionamiento/PHPs/Carga_Datos/CEdicion_Cur.php';
+    require '../../../../Funcionamiento/PHPs/Carga_Datos/CNomPass.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -50,11 +50,42 @@
                 </div>
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                        <span class="lead text-primary">Edicion de cuestionario</span>
+                        <span class="lead text-primary">Información del curso</span>
                     </div>
                     <div class="panel-body">
                         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-                            <!--Contenido de la pagina-->
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-5 col-md-offset-1">
+                                        <h3><span class="label label-default">Nombre: </span></h3>
+                                        <input type="text" class="form-control" name="NombreCurso" id="NamCur" placeholder="<?php echo $CurNam; ?>" style="width:50%;">
+                                        <span class="help-block">Favor de no introducir caracteres especiales.</span>
+                                    </div>
+                                    <div class="col-md-5 col-md-offset-1">
+                                        <h3><span class="label label-default">Contraseña: </span></h3>
+                                        <input type="password" class="form-control" name="ContraCur" id="PassCur" placeholder="<?php echo $Contra; ?>" style="width:50%;">
+                                        <span class="help-block">Favor de no introducir caracteres especiales.</span>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5 col-md-offset-1" style="color:black;">
+                                        <!--Variable de error del nombre-->
+                                    </div>
+                                    <div class="col-md-5 col-md-offset-1" style="color:black;">
+                                        <!--Variable de error de la contraseña-->
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-md-3 col-md-offset-2">
+                                        <button type="submit" class="form-control btn btn-default active" name="actualizar">Actualizar</button>
+                                    </div>
+                                    <div class="col-md-3 col-md-offset-2">
+                                        <a href="Sel_Seccion.php" class="form-control btn btn-danger"><span class="glyphicon glyphicon-remove-circle"></span> Cancelar</a>
+                                    </div>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>

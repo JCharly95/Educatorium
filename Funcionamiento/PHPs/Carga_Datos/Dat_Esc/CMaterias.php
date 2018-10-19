@@ -9,6 +9,7 @@
     $Opc_Profe='style="display: none;"';
     $user = $_SESSION['Username'];
     $Iden_Mat=$_SESSION['Mat'];
+    $StatusCur="";
     $ID_Mat=0;
 
     if($_SESSION['Tip_User']=='Profe')
@@ -16,13 +17,12 @@
         $Opc_Profe='';
     }
     
-    $sql="select ID_Materia from materia where Nombre='".$Iden_Mat."';";
-
-        if($consulta=$conexion->query($sql))
+    $sql="select ID_Materia from materia where Nombre='".$Iden_Mat."';";    
+    if($consulta=$conexion->query($sql))
+    {
+        while($res=$consulta->fetch_assoc())
         {
-            while($res=$consulta->fetch_assoc())
-            {
-                $ID_Mat=$res['ID_Materia'];
-            }
+            $ID_Mat=$res['ID_Materia'];
         }
+    }
 ?>

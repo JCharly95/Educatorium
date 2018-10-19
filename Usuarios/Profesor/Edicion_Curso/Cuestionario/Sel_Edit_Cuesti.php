@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require '../../../Funcionamiento/PHPs/Carga_Datos/Dat_Esc/CMaterias.php';
+    require '../../../../Funcionamiento/PHPs/Carga_Datos/CSel_Edit_Cuest.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -8,9 +8,9 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="../../../CmpVis/bootstrap-3.3.7-dist/css/bootstrap.css">
-        <link rel="stylesheet" type="text/css" href="../../../CmpVis/fontawesome-free-5.0.10/web-fonts-with-css/css/fontawesome-all.css">
-        <link rel="stylesheet" type="text/css" href="../../../Funcionamiento/Estilos_Extras/Registro.css">
+        <link rel="stylesheet" type="text/css" href="../../../../CmpVis/bootstrap-3.3.7-dist/css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="../../../../CmpVis/fontawesome-free-5.0.10/web-fonts-with-css/css/fontawesome-all.css">
+        <link rel="stylesheet" type="text/css" href="../../../../Funcionamiento/Estilos_Extras/Registro.css">
         <title>Editar cursos</title>
     </head>
     <body>
@@ -18,7 +18,7 @@
             <div class="form-group">
                 <div class="row title">
                     <div class="col-md-10">
-                        <h1 align="center">Hola que tal, bienvenido a Educatorium</h1>
+                        <h1 align="center">Seleccione el cuestionario que desea editar</h1>
                     </div>
                     <div class="col-md-2">
                         <a data-toggle="modal" href="#ayuda"><i class="fas fa-question-circle fa-4x"></i></a>
@@ -44,36 +44,29 @@
                     </div>
                 </div>
             </div>
-            <form action="Sel_Seccion.php" method="post">
+            <form action="Edit_Cuest.php" method="post">
                 <?php
-                    $ArrConsul=array();
-                    $sql="select curso.Nombre as NomCur, profesor.Nombre as NomProf, Ape_Pat from curso inner join profesor on (Profesor_ID=ID_Profesor) where Username='".$user."' and Materia_ID=".$ID_Mat.";";
-                    $consulta=$conexion->query($sql);
-                    if($consulta->num_rows>0)    
+                    for($fils=0;$fils<$cont/3;$fils++)
                     {
-                        $cont=0;
-                        while($res=$consulta->fetch_assoc())
+                        echo '<div class="form-group">'.
+                            '<div class="row">';
+                        for($cols=$fils*3,$cont1=0;$cont1<=2;$cols++,$cont1++)
                         {
-                            $ArrConsul[$cont]=$res;
-                            $cont++;
-                        }
-                        for($fils=0;$fils<$cont/3;$fils++)
-                        {
-                            echo '<div class="form-group">'.
-                                '<div class="row">';
-                            for($cols=$fils*3,$cont1=0;$cont1<=2;$cols++,$cont1++)
+                            if($cols==$cont)
                             {
-                                if($cols==$cont)
-                                {
-                                    break;
-                                }
-                                echo '<div class="col-md-3 col-md-offset-1 text-center" style="border: 2px solid black; border-radius: 15px; background-color: lightgreen;">'.
-                                        '<label><input type="radio" name="CurSelEdit" value="'.$ArrConsul[$cols]['NomCur'].'"> '.$ArrConsul[$cols]['NomCur'].'<br>Impartido por: '.$ArrConsul[$cols]['NomProf'].' '.$ArrConsul[$cols]['Ape_Pat'].'</label>'.
-                                    '</div>';
+                                break;
                             }
-                            echo    '</div>'.
-                            '</div>';
-                        }                    
+                            $sql="select Num_Preg_Cues as Num_Preg from cuestionario inner join pregunta on (Cuestionario_ID=ID_Cuestionario)"
+                                ."where cuestionario.Nombre='".$ArrConsul[$cols]['NomCuest']."';";
+                                $consulta=$conexion->query($sql);
+                                $ArrCant[$cols]=mysqli_num_rows($consulta);
+                            echo '<div class="col-md-3 col-md-offset-1 text-center" style="border: 2px solid black; border-radius: 15px; background-color: lightgreen;">'.
+                                    '<input type="radio" name="SelEditCuest" id="SelEditCuest'.$cols.'" style="display: none;" value="'.$ArrConsul[$cols]['NomCuest'].'">'.
+                                    '<label for="SelEditCuest'.$cols.'">'.$ArrConsul[$cols]['NomCuest'].'<br>Con: '.$ArrCant[$cols].' preguntas</label>'.
+                                '</div>';
+                        }
+                        echo    '</div>'.
+                        '</div>';
                     }
                 ?>
                 <br><br>
@@ -81,7 +74,7 @@
                     <div class="row">
                         <div class="col-md-3 col-md-offset-2">
                             <label class="btn btn-success">
-                                <input type="submit" name="enviar" id="send" style="display: none;" onclick="return RevSel();">
+                                <input type="submit" name="enviar" id="send" style="display: none;" onclick="return RevSel('SelEditCuest','AdErr');">
                                 <i class="fas fa-check"></i> Confirmar seleccion
                             </label>                                    
                         </div>
@@ -112,15 +105,15 @@
             </div>
             <div class="form-group">
                 <div class="col-md-3 col-md-offset-5 regreso">
-                    <a href="#" class="btn btn-danger" onclick="javascript:window.history.back();"><i class="fas fa-arrow-left"></i> Regresar</a>
+                    <a href="../Curso/Sel_Seccion.php" class="btn btn-danger"><i class="fas fa-arrow-left"></i> Regresar</a>
                 </div>
             </div>
         </div>
         <footer>
             @Copyright Educatorium 2018. Todos los derechos reservados
         </footer>
-        <script type="text/javascript" src="../../../CmpVis/jquery/jquery-3.3.1.js"></script>
-        <script type="text/javascript" src="../../../Funcionamiento/Javascripts/Sel_Curso.js"></script>
-        <script type="text/javascript" src="../../../CmpVis/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+        <script type="text/javascript" src="../../../../CmpVis/jquery/jquery-3.3.1.js"></script>
+        <script type="text/javascript" src="../../../../Funcionamiento/Javascripts/Sel_Curso.js"></script>
+        <script type="text/javascript" src="../../../../CmpVis/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
     </body>
 </html>

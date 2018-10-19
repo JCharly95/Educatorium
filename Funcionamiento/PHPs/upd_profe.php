@@ -31,94 +31,72 @@
     {
         $NTel = validar($_POST['tel']);//Comienzo de validacion del telefono
         if(empty($NTel))
-        {
             $TelAd=$AdWar."El telefono no fue actualizado".$AdClo;
-        }
         else
         {
             if($NTel==$NumTele)//Verificacion de telefono duplicado
-            {
                 $TelAd=$AdDan."Favor de introducir un numero de telefono diferente".$AdClo;
-            }
             else
             {
-                if(!preg_match("/^\d{8,10}$/", $NTel))//Verificar que el numero telefonico contiene entre 8 y 10 digitos
-                {
-                    $TelAd=$AdDan."El numero de telefono debe constar de entre 8 y 10 digitos.".$AdClo;
-                }
+                if(!preg_match("/^\d{8}$/", $NTel) && !preg_match("/^\d{10}$/", $NTel))//Verificar que el numero telefonico contiene entre 8 y 10 digitos
+                    $TelAd=$AdDan."El numero de telefono debe constar de 8 o 10 digitos.".$AdClo;
                 else //Si no hubo problema con las validaciones anteriores, se procede con la actualizacion de numero en la BD
                 {
                     $sql="Update profesor SET Tel='".$NTel."' where Username='".$user."';";
                     if($conexion->query($sql)==true)
                     {
                         echo "<script>alert('El numero telefonico ha sido actualizado');</script>";
+                        echo '<META HTTP-EQUIV="REFRESH" CONTENT="0;URL=../../Usuarios/Profesor/Principal_Prof.php">';
                     }
                     else
-                    {
                         echo "<script>alert('No se pudo modificar el numero telefonico');</script>";
-                    }
                 }
             }
         }
 
         $NEmail = validar($_POST['correo']);//Comienzo de validacion del correo
         if(empty($NEmail))
-        {
             $EmailAd=$AdWar."El correo no fue actualizado".$AdClo;
-        }
         else
         {
             if(strcmp($NEmail,$DirCorr)==0)//Verificacion de direccion de correo duplicado
-            {
                 $EmailAd=$AdDan."Favor de introducir una direccion de correo diferente".$AdClo;
-            }
             else
             {
                 /* Verificar que la direccion de correo electronico cumpla con la sintaxis de RFC 822 que 
                 tiene la forma usuario@anfitrión.dominiopara */
                 if(!filter_var($NEmail, FILTER_VALIDATE_EMAIL))
-                {
                     $EmailAd=$AdDan."El formato de correo es inválido".$AdClo;
-                }
                 else//Si no hubo problema con las validaciones anteriores, se procede con la actualizacion del correo en la BD
                 {
                     $sql="Update profesor SET Correo='".$NEmail."' where Username='".$user."';";
                     if($conexion->query($sql)==true)
                     {
                         echo "<script>alert('El correo fue actualizado');</script>";
+                        echo '<META HTTP-EQUIV="REFRESH" CONTENT="0;URL=../../Usuarios/Profesor/Principal_Prof.php">';
                     }
                     else
-                    {
                         echo "<script>alert('No se pudo modificar el correo');</script>";
-                    }
                 }
             }
         }
                 
        $NUser = validar($_POST['usuario']);//Comienzo de validacion del username
         if(empty($NUser))
-        {
             $UserAd=$AdWar."El nombre de usuario no fue actualizado".$AdClo;
-        }
         else 
         {
             if(strcmp($NUser,$user)==0)//Verificacion de username duplicado
-            {
                 $UserAd=$AdDan."Favor de introducir un nombre de usuario diferente".$AdClo;
-            }
             else
             {
                 //Verificar que el nombre de usuario no contenga caracteres especiales, espacios o caracteres no imprimibles
                 if(!preg_match("/^[a-z-A-Z-0-9]*$/", $NUser))
-                {
                     $UserAd=$AdDan."El nombre de usuario debe constar de números y letras.".$AdClo;
-                }
                 else
                 {
                     if(strlen($NUser)>10)//Verificar que el nombre de usuario no sea demasiado largo >10 caracteres
-                    {
                         $UserAd=$AdDan."El nombre de usuario no puede tener mas de 10 caracteres".$AdClo;
-                    }
                     else//Si no hubo problema con las validaciones anteriores, se procede con la actualizacion de username en la BD y se cierra la sesion
                     {
                         $sql="Update profesor SET Username='".$NUser."' where Username='".$user."';";
@@ -126,11 +104,10 @@
                         {
                             echo "<script>alert('Nombre de usuario actualizado');</script>";
                             require 'Cer_Ses.php';
+                            echo '<META HTTP-EQUIV="REFRESH" CONTENT="0;URL=../../Usuarios/Profesor/Principal_Prof.php">';
                         }
                         else
-                        {
                             echo "<script>alert('No se pudo modificar el nombre de usuario');</script>";
-                        }
                     }
                 }
             }
@@ -139,62 +116,47 @@
         $NPass = validar($_POST['pass']);
         $CNPass = validar($_POST['cpass']);
         if(empty($NPass))//Comienzo de la verificacion de la nueva contraseña
-        {
             $PassAd=$AdWar."La contraseña no fue actualizada".$AdClo;
-        }
         else
         {
             if(strlen($pass)<8)//Verificar que la contraseña no contenga menos de 8 caracteres
-            {
                 $PassAd=$AdDan."La contraseña es muy corta".$AdClo;
-            }
             else
             {
                 //Verificar que la contraseña contenga un numero de al menos un digito
                 if(!preg_match('/(?=\d)/', $pass))
-                {
                     $PassAd=$AdDan."La contraseña debe contener al menos un numero".$AdClo;
-                }
                 else
                 {
                     //Verificar que la contraseña contenga por lo menos una letra minuscula
                     if(!preg_match('/(?=[a-z])/', $pass))
-                    {
                         $PassAd=$AdDan."La contraseña debe contener al menos una letra minúscula".$AdClo;
-                    }
                     else
                     {
                         //Verificar que la contraseña contenga por lo menos una letra mayuscula
                         if(!preg_match('/(?=[A-Z])/', $pass))
-                        {
                             $PassAd=$AdDan."La contraseña debe contener al menos una letra mayuscula".$AdClo;
-                        }
                         else
                         {
                             /*Antes de registrar la nueva contraseña, se verifica que se modificará,
                             confirmandola en un segundo campo de texto*/
                             if(empty($CNPass))
-                            {
                                 $CPassAd=$AdDan."Favor de introducir otra vez su contraseña".$AdClo;
-                            }
                             else
-                            {
+                            {// Se verifica que la confirmacion coincida
                                 if($NPass!=$CNPass)
-                                {
                                     $CPassAd=$AdDan."Las contraseñas no coinciden".$AdClo;
-                                }
                                 else
-                                {
+                                {//Si todo coincide, se procede a encriptar la contraseña y actualizarla en la BD
                                     $cifrado = password_hash($NPass, PASSWORD_DEFAULT);
                                     $sql="Update profesor SET Password='".$cifrado."' where Username='".$user."';";
                                     if($conexion->query($sql)==true)
                                     {
                                         echo "<script>alert('Contraseña actualizada');</script>";
+                                        echo '<META HTTP-EQUIV="REFRESH" CONTENT="0;URL=../../Usuarios/Profesor/Principal_Prof.php">';
                                     }
                                     else
-                                    {
                                         echo "<script>alert('No se pudo modificar la contraseña');</script>";
-                                    }
                                 }
                             }
                         }
@@ -216,50 +178,37 @@
             }
 
             if(!empty($NKeyT) && empty($NKeyW))
-            {
                 $KeyAd=$AdDan."Favor de insertar su nueva palabra de recuperacion".$AdClo;
-            }
 
             if(empty($NKeyT) && !empty($NKeyW))
-            {
                 $TipKeyAd=$AdDan."Favor de seleccionar su pregunta de recuperacion".$AdClo;
-            }
         }
         else 
         {
             if(strcmp($KeyPal,$NKeyW)==0)
-            {
                 $KeyAd=$AdDan."Favor de introducir una palabra de recuperacion diferente".$AdClo;
-            }
             else
             {
                 if(strlen($NKeyW)<8 && strlen($NKeyW)>15)
-                {
                     $KeyAd=$AdDan."Favor de poner una palabra de entre 8 y 15 caracteres".$AdClo;
-                }
                 else
                 {
                     if(!preg_match('/(?=[a-z])/', $NKeyW))
-                    {
                         $KeyAd=$AdDan."Favor de poner al menos una letra minúscula".$AdClo;
-                    }
                     else
                     {
                         if(!preg_match('/(?=[A-Z])/', $NKeyW))
-                        {
                             $KeyAd=$AdDan."Favor de poner al menos una letra mayúscula".$AdClo;
-                        }
                         else
                         {
                             $sql="Update profesor SET Keyword='".$NKeyW."' where Username='".$user."';";
                             if($conexion->query($sql)==true)
                             {
                                 echo "<script>alert('Palabra de recuperacion actualizada');</script>";
+                                echo '<META HTTP-EQUIV="REFRESH" CONTENT="0;URL=../../Usuarios/Profesor/Principal_Prof.php">';
                             }
                             else
-                            {
                                 echo "<script>alert('No se pudo modificar la palabra de recuperacion');</script>";
-                            }
                         }
                     }
                 }
@@ -269,9 +218,7 @@
 
         //En la interfaz de actualizacion de datos se mostrara la imagen de perfil actual, sin enviar algun dato para comenzar a procesarlo
         if(empty($_FILES['imagen']['name']))
-        {
             $ImgAd=$AdWar."La imagen de perfil no fue actualizada".$AdClo;
-        }
         else
         {
             $NImgNam=$_FILES['imagen']['name'];
@@ -294,117 +241,134 @@
                     {
                         move_uploaded_file($_FILES['imagen']['tmp_name'], $dir_ruta);
                         echo "<script>alert('Imagen de perfil actualizada');</script>";
+                        echo '<META HTTP-EQUIV="REFRESH" CONTENT="0;URL=../../Usuarios/Profesor/Principal_Prof.php">';
                     }
                     else
-                    {
                         echo "<script>alert('No se pudo modificar la imagen de perfil');</script>";
-                    }
                 }
                 else
-                {
                     $ImgAd=$AdDan."La imagen a subir es muy grande".$AdClo;
-                }
             }
             else
-            {
                 $ImgAd=$AdDan."Solo se pueden subir imágenes".$AdClo;
-            }
         }
-
-        /*
-        $EscReg = $SelEsc = $NTipEsc = $NNomEsc = $NNumEsc = "";
-        $TipEscAd = $NomEscAd = $NumEscAd = "";
-        */
 
         //Buscar si la escuela ya esta registrada
         $EscReg = validar($_POST['escuelas']);
         $SelEsc = validar($_POST['RespSelEsc']);
-        if($EscReg=="N/A" && $SelEsc=="Si")//Si no se dio clic en alguna secundaria registrada y no se va a registrar una, no se mueve nada
+        if($EscReg=="N/A")
         {
-            $SelEscAd=$AdWar."La secundaria no fue actualizada".$AdClo;
-        }
-        else
-        {
-            /*Si fue seleccionada una secundaria de la lista pero tambien se opto por registrar una nueva, se procede a conservar
-            la secundaria seleccionada y cancelar el registro de una nueva*/
-            if($EscReg!="N/A" && $SelEsc=="No")
+            if($SelEsc=="No")
             {
+                //No fue seleccionado nada de la lista y se opto por registrar una nueva secundaria
+                //Validacion de tipo de escuela
+                $NTipEsc = validar($_POST['tipo']);
+                if(empty($NTipEsc))
+                    $TipEscAd=$AdDan."Favor de seleccionar un tipo de secundaria".$AdClo;
+                else
+                    $TipEscAd=$AdSuc."Ha seleccionado un tipo de secundaria".$AdClo;
+
+                //VALIDACION DEL NUMERO DE SECUNDARIA
+                $NNumEsc= validar($_POST['num']);
+                if(empty($NNumEsc))
+                    $NumEscAd=$AdDan."Favor de introducir un numero de escuela".$AdClo;
+                else
+                {
+                    if(!preg_match("/^d{1,3}$/", $NNumEsc))
+                        $NumEscAd=$AdDan."* El número de escuela debe estar conformado por 3 números máximo.".$AdClo;
+                    else
+                        $NumEscAd=$AdSuc."Ha introducido un numero adecuado de secundaria".$AdClo;
+                }
+                
+                //VALIDACION DEL NOMBRE DE LA ESCUELA
+                $NNomEsc=validar($_POST['esc']);
+                if(empty($NNomEsc))
+                    $NomEscAd=$AdDan."El nombre de escuela no puede estar vacío".$AdClo;
+                else
+                {
+                    if(!preg_match("/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]*$/", $NNomEsc))
+                        $NomEscAd=$AdDan."El nombre de la escuela solo puede llevar letras y espacios en blanco.".$AdClo;
+                    else
+                    {
+                        if(strlen($NNomEsc)>30) 
+                            $NomEscAd=$AdDan."El nombre de la escuela solo puede tener 30 caracteres como maximo".$AdClo;
+                        else
+                            $NomEscAd=$AdDan."Ha introducido un nombre de secundaria adecuado".$AdClo;
+                    }
+                }
+                //Se procede a registrar la nueva secundaria y posteriormente crear la relacion
+                $reg_esc=VerEsc($NNomEsc,$NTipEsc,$NNumEsc,$conexion);
+                //Se obtiene el ID del profesor para crear la relacion
+                $sql="select ID_Profesor from profesor where Username='".$user."';";
+                if($ver=$conexion->query($sql))
+                {
+                    while($cont=$ver->fetch_assoc())
+                    {
+                        $ID_profe=$cont['ID_Profesor'];
+                    }
+                }
+                //$sql="Update profesor SET Keyword='".$NKeyW."' where Username='".$user."';";
+                $sql="Update profe_escu SET Profesor_ID=".$ID_profe.", Escuela_ID=".$reg_esc.";";
+                if($ver=$conexion->query($sql))
+                {
+                    echo "<script>alert('Escuela donde labora actualizada');</script>";
+                    echo '<META HTTP-EQUIV="REFRESH" CONTENT="0;URL=../../Usuarios/Profesor/Principal_Prof.php">';
+                }
+                else
+                    echo "<script>alert('No se pudo modificar la escuela donde labora');</script>";
+            }
+
+            if ($SelEsc=="Si") 
+                //Si no se dio clic en alguna secundaria registrada y no se va a registrar una, no se mueve nada
+                $SelEscAd=$AdWar."La secundaria no fue actualizada".$AdClo;
+        }
+        else //$EscReg!="N/A"
+        {
+            if($SelEsc=="No")
+            {
+                /*Si fue seleccionada una secundaria de la lista pero tambien se opto por registrar una nueva, se procede a conservar
+                la secundaria seleccionada y cancelar el registro de una nueva*/
                 echo "document.getElementById('RESi').checked = true;";
                 $SelEscAd=$AdDan."Si fue seleccionada una secundaria de la lista, favor de mantener la opcion Si".$AdClo;
             }
-            else
+
+            if ($SelEsc=="Si") 
             {
-                if($EscReg!="N/A" && $SelEsc=="Si")//Si se eligio una secundaria de la lista y se conservo la opcion Si, se procede a buscar en la BD
+                //Al estar la escuela ya registrada, solo es cuestion de crear la relacion con el profesor
+                //Se busca otra vez si la escuela esta registrada, por si acaso
+                $sql="Select * from escuela where ID_Escuela=".$EscReg.";";
+                $ver=$conexion->query($sql);
+                $result=$ver->num_rows;
+                if ($result==0)
+                    $SelEscAd=$AdDan."No se pudo encontrar la secundaria seleccionada".$AdClo;
+                else
                 {
-                    
+                    while($cont=$ver->fetch_assoc())
+                    {
+                        $reg_esc=$cont['ID_Escuela'];
+                    }
                 }
 
-                //Si no fue seleccionada una secundaria y se opto por registrar una, se procede con la verificacion
-                if($EscReg=="N/A" && $SelEsc=="No")
+                //Se obtiene el ID del profesor para crear la relacion
+                $sql="select ID_Profesor from profesor where Username='".$user."';";
+                if($ver=$conexion->query($sql))
                 {
-                    //Validacion de tipo de escuela
-                    $NTipEsc = validar($_POST['tipo']);
-                    if(empty($NTipEsc))
+                    while($cont=$ver->fetch_assoc())
                     {
-                        $TipEscAd=$AdDan."Favor de seleccionar un tipo de secundaria".$AdClo;
-                    }
-                    else
-                    {
-                        $TipEscAd=$AdSuc."Ha seleccionado un tipo de secundaria".$AdClo;
-                    }
-
-                    //VALIDACION DEL NUMERO DE SECUNDARIA
-                    $NNumEsc= validar($_POST['num']);
-                    if(empty($NNumEsc))
-                    {
-                        $NumEscAd=$AdDan."Favor de introducir un numero de escuela".$AdClo;
-                    }
-                    else
-                    {
-                        if(!preg_match("/^d{1,3}$/", $NNumEsc))
-                        {
-                            $NumEscAd=$AdDan."* El número de escuela debe estar conformado por 3 números máximo.".$AdClo;
-                        }
-                        else
-                        {
-                            $NumEscAd=$AdSuc."Ha introducido un numero adecuado de secundaria".$AdClo;
-                        }
-                    }
-                    
-                    //VALIDACION DEL NOMBRE DE LA ESCUELA
-                    $NNomEsc=validar($_POST['esc']);
-                    if(empty($NNomEsc))
-                    {
-                        $NomEscAd=$AdDan."El nombre de escuela no puede estar vacío".$AdClo;
-                    }
-                    else
-                    {
-                        if(!preg_match("/^[a-zA-ZñÑáéíóúÁÉÍÓÚ\s]*$/", $NNomEsc))
-                        {
-                            $NomEscAd=$AdDan."El nombre de la escuela solo puede llevar letras y espacios en blanco.".$AdClo;
-                        }
-                        else
-                        {
-                            if(strlen($NNomEsc)>30) 
-                            {
-                                $NomEscAd=$AdDan."El nombre de la escuela solo puede tener 30 caracteres como maximo".$AdClo;
-                            }
-                            else
-                            {
-                                $NomEscAd=$AdDan."Ha introducido un nombre de secundaria adecuado".$AdClo;
-                            }
-                        }
+                        $ID_profe=$cont['ID_Profesor'];
                     }
                 }
-                
+                //$sql="Update profesor SET Keyword='".$NKeyW."' where Username='".$user."';";
+                $sql="Update profe_escu SET Profesor_ID=".$ID_profe.", Escuela_ID=".$reg_esc.";";
+                if($ver=$conexion->query($sql))
+                {
+                    echo "<script>alert('Escuela donde labora actualizada');</script>";
+                    echo '<META HTTP-EQUIV="REFRESH" CONTENT="0;URL=../../Usuarios/Profesor/Principal_Prof.php">';
+                }
+                else
+                    echo "<script>alert('No se pudo modificar la escuela donde labora');</script>";
             }
         }
-        /*Llamadas de funcion relacionadas con el registro de una escuela
-        $reg_esc=VerEsc($esc, $tipo, $num, $conexion);
-        //Aqui se registra el profesor en la BD por primera vez, por eso se obtiene su ID
-        $ID_profe=$conexion->insert_id;//Ultimo id autogenerado de una consulta
-        $sql = "Insert into profe_escu (Profesor_ID,Escuela_ID) values (".$ID_profe.",".$reg_esc.");";
-        $ver = $conexion->query($sql);*/
     }
     
     function validar($data)
@@ -427,14 +391,14 @@
             $sql = "Insert into escuela (Nombre,Tipo,Num_Esc) values('".$nom."','".$tipo."',".$num.");";
             $ver = $link->query($sql);
         }
+        
         //Se procede a obtener el ID de la escuela para poderlo relacionar con el profesor
         $sql = "SELECT ID_Escuela FROM escuela WHERE Nombre='".$nom."' and Tipo='".$tipo."' and Num_Esc=".$num.";";
-        
         if($ver = $link->query($sql))
         {
-            while ($cont=$ver->fetch_row())
+            while ($cont=$ver->fetch_assoc())
             {
-                return $cont[0];//Retornar el id de la escuela registrada                
+                return $cont['ID_Escuela'];//Retornar el id de la escuela registrada                
             }
         }
     }
@@ -456,9 +420,9 @@
         $sql="SELECT ID_Tipo FROM tipo_apoyo WHERE Nombre='Imagen';";
         if($ver=$link->query($sql))
         {
-            while ($cont=$ver->fetch_row())
+            while ($cont=$ver->fetch_assoc())
             {
-                return $cont[0];//Retornar el id del tipo de apoyo imagen para guardarlo junto con los datos
+                return $cont['ID_Tipo'];//Retornar el id del tipo de apoyo imagen para guardarlo junto con los datos
             }
         }
     }
@@ -473,6 +437,16 @@
         if($result==0)//En caso de que aun no haya registro de la imagen en la BD se almacena la imagen, con el tipo de recurso imagen
         {
             $sql = "Insert into apoyo (Nombre,Ruta,Tipo_Apoyo_ID) values ('".$nombre."','".$ruta."',".$TipoRecurso.");";
+            $ver = $link->query($sql);
+        }
+        else
+        {
+            while ($cont=$ver->fetch_assoc())
+            {
+                $OldRuta=$cont['Ruta'];//Retornar el id del tipo de apoyo imagen para guardarlo junto con los datos
+            }
+            unlink($OldRuta);//Es necesario borrar el archivo guardado en el servidor para no generar problemas
+            $sql="update apoyo SET Ruta='".$ruta."' where Nombre='".$nombre."';";
             $ver = $link->query($sql);
         }
         

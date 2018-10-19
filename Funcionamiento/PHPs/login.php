@@ -10,7 +10,7 @@
 
     if(isset($_POST['entrar']))//Hacer el proceso de validacion si se presiono el boton de acceder
     {
-        $usuario = $_POST['Username'];    
+        $usuario = $_POST['Username'];
         $contraseña = $_POST['Pass'];
             
         //Si lo campos de username y contraseña no estan vacios, analizar los datos recibidos

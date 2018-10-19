@@ -1,5 +1,5 @@
 <?php
-    //require '../../../../Funcionamiento/PHPs/Carga_Datos/CEdicion_Cur.php';
+    require '../../../../Funcionamiento/PHPs/Cuestionario/NCuesti.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -50,30 +50,31 @@
                 </div>
                 <div class="panel panel-info">
                     <div class="panel-heading">
-                        <span class="lead text-primary">Información de los elementos de bienvenida</span>
+                        <span class="lead text-primary">Creacion de cuestionario</span>
                     </div>
                     <div class="panel-body">
                         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-5 col-md-offset-1">
-                                        <h3><span class="label label-default">Mensaje: </span></h3>
-                                        <textarea name="NewMsgBien" id="" cols="60" rows="7" class="form-control" onfocus="this.value='' " placeholder="" style="resize:none;"></textarea>
+                                        <h3><span class="label label-default">Nombre del cuestionario: </span></h3>
+                                        <input type="text" name="nombre" class="form-control" onfocus="this.value='' " placeholder="">
                                         <span class="help-block">Introducir solo letras y espacios en blanco.</span>
-                                        <!--Variable de error-->
+                                        <?php echo $NomAd; ?>
                                     </div>
                                     <div class="col-md-5 col-md-offset-1">
-                                        <h3><span class="label label-default">Imagen: </span></h3>
-                                        <div class="form-group">
-                                            <output id="list">
-                                                
-                                            </output>
-                                        </div>
-                                        <label class="btn btn-primary">
-                                            <input type="file" id="files" name="imagen" style="display: none;" />
-                                            <i class="fas fa-plus-circle fa-2x"></i> &nbsp;Seleccionar imagen...
-                                        </label>
-                                        <span class="help-block">Seleccionar solo imagenes.</span>
+                                        <h3><span class="label label-default">Cantidad de preguntas: </span></h3>
+                                        <select name="CantPreg" id="" class="selectpicker btn btn-default">
+                                            <option hidden value="" selected>0</option>
+                                            <?php
+                                                for ($i=1;$i<21;$i++) 
+                                                {
+                                                    echo '<option value="'.$i.'">'.$i.'</option>';
+                                                }
+                                            ?>
+                                        </select>
+                                        <span class="help-block">Seleccione la cantidad de preguntas que tendra el cuestionario.</span>
+                                        <?php echo $CantAd; ?>
                                     </div>
                                 </div>
                             </div>
@@ -83,7 +84,7 @@
                                         <button type="submit" class="form-control btn btn-default active" name="actualizar">Actualizar</button>
                                     </div>
                                     <div class="col-md-3 col-md-offset-2">
-                                        <a href="../Sel_Seccion.php" class="form-control btn btn-danger"><span class="glyphicon glyphicon-remove-circle"></span> Cancelar</a>
+                                        <a href="../Curso/Sel_Seccion.php" class="form-control btn btn-danger"><span class="glyphicon glyphicon-remove-circle"></span> Cancelar</a>
                                     </div>
                                 </div>
                             </div>
