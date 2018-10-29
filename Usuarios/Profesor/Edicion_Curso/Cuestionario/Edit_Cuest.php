@@ -1,6 +1,6 @@
 <?php
     session_start();
-    require '../../../../Funcionamiento/PHPs/Carga_Datos/CSel_Edit_Cuest.php';
+    require '../../../../Funcionamiento/PHPs/Carga_Datos/CEdit_Cuest.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -11,7 +11,7 @@
         <link rel="stylesheet" type="text/css" href="../../../../CmpVis/bootstrap-3.3.7-dist/css/bootstrap.css">
         <link rel="stylesheet" type="text/css" href="../../../../CmpVis/fontawesome-free-5.0.10/web-fonts-with-css/css/fontawesome-all.css">
         <link rel="stylesheet" type="text/css" href="../../../../Funcionamiento/Estilos_Extras/Registro.css">
-        <title>Editar cursos</title>
+        <title>Editar cuestionario</title>
     </head>
     <body>
         <div class="container">
@@ -50,7 +50,7 @@
                         <div class="row">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <a href="#" class="btn btn-success" style="width: 100%;" onclick="window.location.replace();">
+                                    <a href="Preguntas/Nueva_Preg.php" class="btn btn-success" style="width: 100%;" onclick="window.location.replace();">
                                         <i class="fas fa-plus-circle fa-4x"></i>
                                         <span style="vertical-align: 75%;">&nbsp; <b>Agregar pregunta</b></span>
                                     </a>
@@ -96,13 +96,6 @@
                                     '<input type="radio" name="CurSelEdit" id="CurSel'.$cols.'" style="display: none;" value="'.$ArrConsul[$cols]['NomCuest'].'" onchange="this.form.submit();">'.
                                     '<label for="CurSelEdit'.$cols.'">'.$ArrConsul[$cols]['NomCuest'].'<br>Con: '.$ArrCant[$cols].' preguntas</label>'.
                                 '</div>';
-                                /*
-                                    '<div class="col-md-3 col-md-offset-1 text-center" style="border: 2px solid black; border-radius: 15px; background-color: lightgreen;">'.
-                                        '<input type="radio" name="CurSel" id="CurSel'.$cols.'" style="display: none;" value="'.$ArrConsul[$cols]['NomCur'].'" onchange="this.form.submit();">'.
-                                        '<label for="CurSel'.$cols.'">'.$ArrConsul[$cols]['NomCur'].'<br>Impartido por: '.$ArrConsul[$cols]['NomProf'].' '.$ArrConsul[$cols]['Ape_Pat'].
-                                        '<br>Status: '.$StatusCur.'</label>'.
-                                    '</div>';
-                                */
                         }
                         echo    '</div>'.
                         '</div>';

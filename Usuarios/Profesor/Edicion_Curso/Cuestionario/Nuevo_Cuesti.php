@@ -64,7 +64,7 @@
                                     </div>
                                     <div class="col-md-5 col-md-offset-1">
                                         <h3><span class="label label-default">Cantidad de preguntas: </span></h3>
-                                        <select name="CantPreg" id="" class="selectpicker btn btn-default">
+                                        <select name="CantPreg" class="selectpicker btn btn-default">
                                             <option hidden value="" selected>0</option>
                                             <?php
                                                 for ($i=1;$i<21;$i++) 
@@ -78,10 +78,16 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="form group text-center">
+                                <label class="label-warning">
+                                    &nbsp;Cabe destacar que al crear una pregunta, est&aacute; sera por defecto de 4 alternativas y una respuesta&nbsp;
+                                </label>
+                            </div>
+                            <br>
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-3 col-md-offset-2">
-                                        <button type="submit" class="form-control btn btn-default active" name="actualizar">Actualizar</button>
+                                        <button type="submit" class="form-control btn btn-success active" name="actualizar">Crear cuestionario</button>
                                     </div>
                                     <div class="col-md-3 col-md-offset-2">
                                         <a href="../Curso/Sel_Seccion.php" class="form-control btn btn-danger"><span class="glyphicon glyphicon-remove-circle"></span> Cancelar</a>

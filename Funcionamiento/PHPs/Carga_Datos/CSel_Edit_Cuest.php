@@ -9,7 +9,7 @@
     $user = $_SESSION['Username'];
     $Iden_Mat=$_SESSION['Mat'];
     $NamCur=$_SESSION['NomCurBus'];
-    $ID_Mat=0;
+    $ID_Mat=$cont=0;
     
     $sql="select ID_Curso from curso where Nombre='".$NamCur."';";    
     if($consulta=$conexion->query($sql))

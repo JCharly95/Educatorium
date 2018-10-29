@@ -7,6 +7,7 @@
         header("location: ../../Acceso/FAcces.php");
     }
     
+    $cont=0;
     //Nombre del curso a buscar en la BD
     $VerCur=$_POST['CurSel'];
     //Variables de la imagen de bienvenida

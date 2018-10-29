@@ -91,7 +91,13 @@
         </div>
         <br>
         <div class="form-group text-center">
-            <span>Aqui se mostraran los recursos relacionados con el curso</span>
+            En esta seccion se mostraran los recursos de los cursos.
+            <!--<div class="col-md-6">
+                <iframe src="../../Documentos_Subidos/guia_de_tramites_ingenieria_ceti_anterior.pdf" style="width:500px; height:500px;" frameborder="0"></iframe>
+            </div>
+            <div class="col-md-6">
+                <a href="../../Documentacion_Educatorium/Apuntes de Propuesta/14100539_13100715_Propuesta-Definitiva_1.3.docx">14100539_13100715_Propuesta-Definitiva_1.3.docx</a>
+            </div>-->
         </div>
         <br>
         <div class="form-group text-center">

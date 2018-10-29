@@ -237,7 +237,7 @@
             $cpa_right = "¡Correcto!";
         }
 
-//VALIDAMOS LA FECHA DE NACIMIENTO
+//Validamos la palabra de recuperacion, primero el tipo y luego la palabra como tal
         $Tip_Keyword=validar($_POST['Tipo_Keyword']);
         $Keyword=validar($_POST['clave']);
         if(empty($Tip_Keyword))
@@ -404,18 +404,25 @@
 //Funcion de registro de una escuela
     function VerEsc($nom,$tipo,$num,$link)
     {
+        $sql="select ID_Tipo_Esc from tipo_esc where TipoEscuela='".$tipo."';";
+        $ver = $link->query($sql);
+        while ($cont=$ver->fetch_assoc())
+        {
+            $tipo=$cont['ID_Tipo_Esc'];          
+        }
+
         //Investigar si la escuela ya esta registrada
-        $sql = "SELECT * FROM escuela WHERE Nombre='".$nom."' and Tipo='".$tipo."' and Num_Esc=".$num.";";
+        $sql = "SELECT * FROM escuela WHERE Nombre='".$nom."' and Tipo=".$tipo." and Num_Esc=".$num.";";
         $ver = $link->query($sql);
         $result = $ver->num_rows;
         
         if ($result==0)//Se da de alta la escuela ingresada por el profesor
         {
-            $sql = "Insert into escuela (Nombre,Tipo,Num_Esc) values('".$nom."','".$tipo."',".$num.");";
+            $sql = "Insert into escuela (Nombre,Tipo,Num_Esc) values('".$nom."',".$tipo.",".$num.");";
             $ver = $link->query($sql);
         }
         //Se procede a obtener el ID de la escuela para poderlo relacionar con el profesor
-        $sql = "SELECT ID_Escuela FROM escuela WHERE Nombre='".$nom."' and Tipo='".$tipo."' and Num_Esc=".$num.";";
+        $sql = "SELECT ID_Escuela FROM escuela WHERE Nombre='".$nom."' and Tipo=".$tipo." and Num_Esc=".$num.";";
         
         if($ver = $link->query($sql))
         {

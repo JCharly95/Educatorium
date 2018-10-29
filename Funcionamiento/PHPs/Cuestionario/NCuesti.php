@@ -98,7 +98,7 @@
                 {
                     for ($cont=1;$cont<=$CantPreg;$cont++) 
                     {
-                        $sql="Insert into pregunta (Num_Preg_Cues,Cuestionario_ID,Apoyo_ID) values (".$cont.",".$ID_Cuestion.",".$ID_Img.");";
+                        $sql="Insert into pregunta (Tipo,Num_Preg_Cues,Cuestionario_ID,Apoyo_ID) values (1,".$cont.",".$ID_Cuestion.",".$ID_Img.");";
                         $consulta=$conexion->query($sql);
                     }
                     echo "<script>alert('Su cuestionario ha sido creado satisfactoriamente');</script>";

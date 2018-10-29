@@ -164,7 +164,7 @@
 
                                                             while ($cont=$ver->fetch_assoc())
                                                             {
-                                                                echo '<option value="'.$cont["ID_Escuela"].'">Secundaria '.$cont["Tipo"].' '.$cont["Num_Esc"].', '.$cont["Nombre"].'</option>';                                                                 
+                                                                echo '<option value="'.$cont["ID_Escuela"].'">Secundaria '.$cont["Num_Esc"].', '.$cont["Nombre"].'</option>';                                                                 
                                                             }
                                                         ?>
                                                     </select>
@@ -219,10 +219,10 @@
                                                 <div class="col-md-3">                                                    
                                                     <select class="btn btn-default" name="tipo" id="Tip_Esc">
                                                         <option hidden value="" selected>Tipos de secundarias en M&eacute;xico:</option>
-                                                        <option value="General">General</option>
-                                                        <option value="Para trabajadores">Para trabajadores</option>
-                                                        <option value="Tecnica">Tecnica</option>
-                                                        <option value="Telesecundaria">Telesecundaria</option>
+                                                        <option value="Gen">General</option>
+                                                        <option value="ParTra">Para trabajadores</option>
+                                                        <option value="Tec">Tecnica</option>
+                                                        <option value="Tele">Telesecundaria</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-md-3">

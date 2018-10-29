@@ -6,9 +6,10 @@
         header("location: ../../Acceso/FAcces.php");
     }
 
-    $user = $_SESSION['Username'];
+    $user=$_SESSION['Username'];
     $NomCuest=$_POST['SelEditCuest'];
-    echo $NomCuest;
+    $_SESSION['CuestEdit']=$NomCuest;
+    /*echo $NomCuest;
     $ID_Mat=0;
     
     $sql="select ID_Curso from curso where Nombre='".$NamCur."';";    
@@ -33,5 +34,5 @@
             $ArrConsul[$cont]=$res;
             $cont++;
         }
-    }
+    }*/
 ?>
