@@ -255,6 +255,286 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="form-group" id="RespTip4" style="display:none;"><!---->
+                                <div class="row" style="padding-left: 8%;">
+                                    <div class="col-md-5">
+                                        <h3><span class="label label-default">Alternativa 1: </span></h3>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                    <div class="col-md-5 col-md-offset-1">
+                                        <h3><span class="label label-default">Respuesta A: </span></h3>
+                                        <input type="text" class="form-control">
+                                        <div class="form-group text-center" style="color:black;">
+                                            <div class="col-md-6">
+                                                <span>Alternativa de relacion:</span>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="radio-inline"><input type="radio" name="Opc41" checked>Alternativa 1</label>
+                                                <label class="radio-inline"><input type="radio" name="Opc41">Alternativa 2</label>
+                                                <label class="radio-inline"><input type="radio" name="Opc41">Alternativa 3</label>
+                                                <label class="radio-inline"><input type="radio" name="Opc41">Alternativa 4</label>
+                                                <label class="radio-inline"><input type="radio" name="Opc41">Alternativa 5</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-left: 8%;">
+                                    <div class="col-md-5">
+                                        <h3><span class="label label-default">Alternativa 2: </span></h3>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                    <div class="col-md-5 col-md-offset-1">
+                                        <h3><span class="label label-default">Respuesta B: </span></h3>
+                                        <input type="text" class="form-control">
+                                        <div class="form-group text-center" style="color:black;">
+                                            <div class="col-md-6">
+                                                <span>Alternativa de relacion:</span>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="radio-inline"><input type="radio" name="Opc42" checked>Alternativa 1</label>
+                                                <label class="radio-inline"><input type="radio" name="Opc42">Alternativa 2</label>
+                                                <label class="radio-inline"><input type="radio" name="Opc42">Alternativa 3</label>
+                                                <label class="radio-inline"><input type="radio" name="Opc42">Alternativa 4</label>
+                                                <label class="radio-inline"><input type="radio" name="Opc42">Alternativa 5</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-left: 8%;">
+                                    <div class="col-md-5">
+                                        <h3><span class="label label-default">Alternativa 3: </span></h3>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                    <div class="col-md-5 col-md-offset-1">
+                                        <h3><span class="label label-default">Respuesta C: </span></h3>
+                                        <input type="text" class="form-control">
+                                        <div class="form-group text-center" style="color:black;">
+                                            <div class="col-md-6">
+                                                <span>Alternativa de relacion:</span>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="radio-inline"><input type="radio" name="Opc43" checked>Alternativa 1</label>
+                                                <label class="radio-inline"><input type="radio" name="Opc43">Alternativa 2</label>
+                                                <label class="radio-inline"><input type="radio" name="Opc43">Alternativa 3</label>
+                                                <label class="radio-inline"><input type="radio" name="Opc43">Alternativa 4</label>
+                                                <label class="radio-inline"><input type="radio" name="Opc43">Alternativa 5</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-left: 8%;">
+                                    <div class="col-md-5">
+                                        <h3><span class="label label-default">Alternativa 4: </span></h3>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                    <div class="col-md-5 col-md-offset-1">
+                                        <h3><span class="label label-default">Respuesta D: </span></h3>
+                                        <input type="text" class="form-control">
+                                        <div class="form-group text-center" style="color:black;">
+                                            <div class="col-md-6">
+                                                <span>Alternativa de relacion:</span>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="radio-inline"><input type="radio" name="Opc44" checked>Alternativa 1</label>
+                                                <label class="radio-inline"><input type="radio" name="Opc44">Alternativa 2</label>
+                                                <label class="radio-inline"><input type="radio" name="Opc44">Alternativa 3</label>
+                                                <label class="radio-inline"><input type="radio" name="Opc44">Alternativa 4</label>
+                                                <label class="radio-inline"><input type="radio" name="Opc44">Alternativa 5</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-left: 8%;">
+                                    <div class="col-md-5">
+                                        <h3><span class="label label-default">Alternativa 5: </span></h3>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                    <div class="col-md-5 col-md-offset-1">
+                                        <h3><span class="label label-default">Respuesta E: </span></h3>
+                                        <input type="text" class="form-control">
+                                        <div class="form-group text-center" style="color:black;">
+                                            <div class="col-md-6">
+                                                <span>Alternativa de relacion:</span>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <label class="radio-inline"><input type="radio" name="Opc45" checked>Alternativa 1</label>
+                                                <label class="radio-inline"><input type="radio" name="Opc45">Alternativa 2</label>
+                                                <label class="radio-inline"><input type="radio" name="Opc45">Alternativa 3</label>
+                                                <label class="radio-inline"><input type="radio" name="Opc45">Alternativa 4</label>
+                                                <label class="radio-inline"><input type="radio" name="Opc45">Alternativa 5</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="RespTip5" style="display:none;"><!---->
+                                <div class="row" style="padding-left: 8%;">
+                                    <div class="col-md-5">
+                                        <h3><span class="label label-default">Respuesta 1: </span></h3>
+                                        <input type="text" class="form-control">
+                                        <div class="form-group text-center" style="color:black;">
+                                            <div class="col-md-12">
+                                                <span>¿En que posicion, esta respuesta es correcta?:</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group text-center" style="color:black;">
+                                            <div class="col-md-12">
+                                                <label class="radio-inline"><input type="radio" name="Opc51" checked>1</label>
+                                                <label class="radio-inline"><input type="radio" name="Opc51">2</label>
+                                                <label class="radio-inline"><input type="radio" name="Opc51">3</label>
+                                                <label class="radio-inline"><input type="radio" name="Opc51">4</label>
+                                                <label class="radio-inline"><input type="radio" name="Opc51">5</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5 col-md-offset-1">
+                                        <h3><span class="label label-default">Respuesta 2: </span></h3>
+                                        <input type="text" class="form-control">
+                                        <div class="form-group text-center" style="color:black;">
+                                            <div class="col-md-12">
+                                                <span>¿En que posicion, esta respuesta es correcta?:</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group text-center" style="color:black;">
+                                            <div class="col-md-12">
+                                                <label class="radio-inline"><input type="radio" name="Opc52" checked>1</label>
+                                                <label class="radio-inline"><input type="radio" name="Opc52">2</label>
+                                                <label class="radio-inline"><input type="radio" name="Opc52">3</label>
+                                                <label class="radio-inline"><input type="radio" name="Opc52">4</label>
+                                                <label class="radio-inline"><input type="radio" name="Opc52">5</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-left: 8%;">
+                                    <div class="col-md-5">
+                                        <h3><span class="label label-default">Respuesta 3: </span></h3>
+                                        <input type="text" class="form-control">
+                                        <div class="form-group text-center" style="color:black;">
+                                            <div class="col-md-12">
+                                                <span>¿En que posicion, esta respuesta es correcta?:</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group text-center" style="color:black;">
+                                            <div class="col-md-12">
+                                                <label class="radio-inline"><input type="radio" name="Opc53" checked>1</label>
+                                                <label class="radio-inline"><input type="radio" name="Opc53">2</label>
+                                                <label class="radio-inline"><input type="radio" name="Opc53">3</label>
+                                                <label class="radio-inline"><input type="radio" name="Opc53">4</label>
+                                                <label class="radio-inline"><input type="radio" name="Opc53">5</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5 col-md-offset-1">
+                                        <h3><span class="label label-default">Respuesta 4: </span></h3>
+                                        <input type="text" class="form-control">
+                                        <div class="form-group text-center" style="color:black;">
+                                            <div class="col-md-12">
+                                                <span>¿En que posicion, esta respuesta es correcta?:</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group text-center" style="color:black;">
+                                            <div class="col-md-12">
+                                                <label class="radio-inline"><input type="radio" name="Opc54" checked>1</label>
+                                                <label class="radio-inline"><input type="radio" name="Opc54">2</label>
+                                                <label class="radio-inline"><input type="radio" name="Opc54">3</label>
+                                                <label class="radio-inline"><input type="radio" name="Opc54">4</label>
+                                                <label class="radio-inline"><input type="radio" name="Opc54">5</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-left: 8%;">
+                                    <div class="col-md-5">
+                                        <h3><span class="label label-default">Respuesta 5: </span></h3>
+                                        <input type="text" class="form-control">
+                                        <div class="form-group text-center" style="color:black;">
+                                            <div class="col-md-12">
+                                                <span>¿En que posicion, esta respuesta es correcta?:</span>
+                                            </div>
+                                        </div>
+                                        <div class="form-group text-center" style="color:black;">
+                                            <div class="col-md-12">
+                                                <label class="radio-inline"><input type="radio" name="Opc55" checked>1</label>
+                                                <label class="radio-inline"><input type="radio" name="Opc55">2</label>
+                                                <label class="radio-inline"><input type="radio" name="Opc55">3</label>
+                                                <label class="radio-inline"><input type="radio" name="Opc55">4</label>
+                                                <label class="radio-inline"><input type="radio" name="Opc55">5</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="RespTip6" style="display:none;"><!---->
+                                <div class="row" style="padding-left: 8%;">
+                                    <div class="col-md-5">
+                                        <h3><span class="label label-default">Oracion Parte 1: </span></h3>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                    <div class="col-md-5 col-md-offset-1">
+                                        <h3><span class="label label-default">Opciones de completado 1: </span></h3>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-left: 8%;">
+                                    <div class="col-md-5">
+                                        <h3><span class="label label-default">Oracion Parte 2: </span></h3>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                    <div class="col-md-5 col-md-offset-1">
+                                        <h3><span class="label label-default">Opciones de completado 2: </span></h3>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-left: 8%;">
+                                    <div class="col-md-5">
+                                        <h3><span class="label label-default">Oracion Parte 3: </span></h3>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                    <div class="col-md-5 col-md-offset-1">
+                                        <h3><span class="label label-default">Opciones de completado 3: </span></h3>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-left: 8%;">
+                                    <div class="col-md-5">
+                                        <h3><span class="label label-default">Oracion Parte 4: </span></h3>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                    <div class="col-md-5 col-md-offset-1">
+                                        <h3><span class="label label-default">Opciones de completado 4: </span></h3>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group" id="RespTip7" style="display:none;"><!---->
+                                <div class="row" style="padding-left: 8%;">
+                                    <div class="col-md-5">
+                                        <h3><span class="label label-default">Respuesta 1: </span></h3>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                    <div class="col-md-5 col-md-offset-1">
+                                        <h3><span class="label label-default">Respuesta 2: </span></h3>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-left: 8%;">
+                                    <div class="col-md-5">
+                                        <h3><span class="label label-default">Respuesta 3: </span></h3>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                    <div class="col-md-5 col-md-offset-1">
+                                        <h3><span class="label label-default">Respuesta 4: </span></h3>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="row" style="padding-left: 8%;">
+                                    <div class="col-md-5">
+                                        <h3><span class="label label-default">Respuesta 5: </span></h3>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
                             <br>
                             <div class="form-group">
                                 <div class="row">
@@ -273,6 +553,7 @@
         </div>
     </div>
     <script type="text/javascript" src="../../../../../CmpVis/jquery/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../../../../../Funcionamiento/Javascripts/New_Preg.js"></script>
     <script type="text/javascript" src="../../../../../CmpVis/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
 </body>
 </html>

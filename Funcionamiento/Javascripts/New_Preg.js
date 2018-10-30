@@ -1,4 +1,4 @@
-functionSelResp(OpcSel)
+function SelResp(OpcSel)
 {
     if(OpcSel==1)
     {
@@ -22,14 +22,58 @@ functionSelResp(OpcSel)
         document.getElementById('RespTip7').style.display='none';
     }
 
-    if(OpcSel==2)
+    if(OpcSel==3)
     {
         document.getElementById('RespTip1').style.display='none';
-        document.getElementById('RespTip2').style.display='block';
-        document.getElementById('RespTip3').style.display='none';
+        document.getElementById('RespTip2').style.display='none';
+        document.getElementById('RespTip3').style.display='block';
         document.getElementById('RespTip4').style.display='none';
         document.getElementById('RespTip5').style.display='none';
         document.getElementById('RespTip6').style.display='none';
         document.getElementById('RespTip7').style.display='none';
+    }
+
+    if(OpcSel==4)
+    {
+        document.getElementById('RespTip1').style.display='none';
+        document.getElementById('RespTip2').style.display='none';
+        document.getElementById('RespTip3').style.display='none';
+        document.getElementById('RespTip4').style.display='block';
+        document.getElementById('RespTip5').style.display='none';
+        document.getElementById('RespTip6').style.display='none';
+        document.getElementById('RespTip7').style.display='none';
+    }
+
+    if(OpcSel==5)
+    {
+        document.getElementById('RespTip1').style.display='none';
+        document.getElementById('RespTip2').style.display='none';
+        document.getElementById('RespTip3').style.display='none';
+        document.getElementById('RespTip4').style.display='none';
+        document.getElementById('RespTip5').style.display='block';
+        document.getElementById('RespTip6').style.display='none';
+        document.getElementById('RespTip7').style.display='none';
+    }
+
+    if(OpcSel==6)
+    {
+        document.getElementById('RespTip1').style.display='none';
+        document.getElementById('RespTip2').style.display='none';
+        document.getElementById('RespTip3').style.display='none';
+        document.getElementById('RespTip4').style.display='none';
+        document.getElementById('RespTip5').style.display='none';
+        document.getElementById('RespTip6').style.display='block';
+        document.getElementById('RespTip7').style.display='none';
+    }
+
+    if(OpcSel==7)
+    {
+        document.getElementById('RespTip1').style.display='none';
+        document.getElementById('RespTip2').style.display='none';
+        document.getElementById('RespTip3').style.display='none';
+        document.getElementById('RespTip4').style.display='none';
+        document.getElementById('RespTip5').style.display='none';
+        document.getElementById('RespTip6').style.display='none';
+        document.getElementById('RespTip7').style.display='block';
     }
 }
