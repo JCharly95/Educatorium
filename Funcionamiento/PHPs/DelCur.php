@@ -28,7 +28,7 @@
         }
 
         //Se procede a obtener el ID del curso deseado
-        $sql="select ID_Curso from curso where Nombre='".$CurNam."';";
+        $sql="select ID_Curso from Curso where Nombre='".$CurNam."';";
         $consulta=$conexion->query($sql);
         while($res=$consulta->fetch_assoc())
         {
@@ -36,7 +36,7 @@
         }
 
         //Se procede a revisar si no existe una imagen relacionada al curso que impida borrarlo
-        $sql="select ID_Apoyo_Curso from apoyo_curso where Curso_ID=".$ID_Cur.";";
+        $sql="select ID_Apoyo_Curso from Apoyo_Curso where Curso_ID=".$ID_Cur.";";
         $consulta=$conexion->query($sql);
         if($consulta->num_rows>0)
         {
@@ -46,12 +46,12 @@
                 $ID_Apoyo=$res['ID_Apoyo_Curso'];
             }
 
-            $sql="delete from apoyo_curso where ID_Apoyo_Curso=".$ID_Apoyo.";";
+            $sql="delete from Apoyo_Curso where ID_Apoyo_Curso=".$ID_Apoyo.";";
             $consulta=$conexion->query($sql);
         }
 
         //Se procede con el borrado del curso
-        $sql="delete from curso where ID_Curso=".$ID_Cur.";";
+        $sql="delete from Curso where ID_Curso=".$ID_Cur.";";
         $consulta=$conexion->query($sql);
         if($consulta->num_rows==0)
         {

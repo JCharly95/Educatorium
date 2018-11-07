@@ -17,7 +17,7 @@
     $DirCorr="";    
     $fecha="";    
     //Obtencion de la ruta de la imagen
-    $sql="select Username,Ruta from padre inner join apoyo on (padre.Apoyo_ID=apoyo.ID_Apoyo)"
+    $sql="select Username,Ruta from Padre inner join Apoyo on (padre.Apoyo_ID=apoyo.ID_Apoyo)"
             ." where Username='".$user."';";
     $consulta=$conexion->query($sql);    
     if($consulta->num_rows>0)
@@ -29,7 +29,7 @@
         }
     }
     //Obtencion del resto de datos
-    $sql= "SELECT * FROM padre WHERE Username = '".$user."';";
+    $sql= "select * from Padre where Username='".$user."';";
     $consulta=$conexion->query($sql);
     if($consulta->num_rows>0)
     {

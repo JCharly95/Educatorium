@@ -259,7 +259,7 @@
                 switch ($Tip_Keyword) 
                 {
                     case 1:
-                        $sql="Select ID_Tip_Key from tipo_pal_rec where Tipo_Keyword='Cual es el nombre de tu mascota';";
+                        $sql="Select ID_Tip_Key from Tipo_Pal_Rec where Tipo_Keyword='Cual es el nombre de tu mascota';";
                         $consulta=$conexion->query($sql);
                         if($consulta->num_rows>0)    
                         {
@@ -270,14 +270,14 @@
                         }
                         else
                         {
-                            $sql = "Insert into tipo_pal_rec (Tipo_Keyword) values('Cual es el nombre de tu mascota');";
+                            $sql = "Insert into Tipo_Pal_Rec (Tipo_Keyword) values('Cual es el nombre de tu mascota');";
                             $consulta=$conexion->query($sql);
                             $ID_Tip_Rec=$conexion->insert_id;
                         }
                         break;
                     
                     case 2:
-                        $sql="Select ID_Tip_Key from tipo_pal_rec where Tipo_Keyword='Cual es tu comida favorita';";
+                        $sql="Select ID_Tip_Key from Tipo_Pal_Rec where Tipo_Keyword='Cual es tu comida favorita';";
                         $consulta=$conexion->query($sql);
                         if($consulta->num_rows>0)    
                         {
@@ -288,14 +288,14 @@
                         }
                         else
                         {
-                            $sql="Insert into tipo_pal_rec (Tipo_Keyword) values('Cual es tu comida favorita');";
+                            $sql="Insert into Tipo_Pal_Rec (Tipo_Keyword) values('Cual es tu comida favorita');";
                             $consulta=$conexion->query($sql);
                             $ID_Tip_Rec=$conexion->insert_id;
                         }
                         break;
 
                     case 3:
-                        $sql="Select ID_Tip_Key from tipo_pal_rec where Tipo_Keyword='Cual es el estado o pais al que te gustaria ir';";
+                        $sql="Select ID_Tip_Key from Tipo_Pal_Rec where Tipo_Keyword='Cual es el estado o pais al que te gustaria ir';";
                         $consulta=$conexion->query($sql);
                         if($consulta->num_rows>0)    
                         {
@@ -306,7 +306,7 @@
                         }
                         else
                         {
-                            $sql="Insert into tipo_pal_rec (Tipo_Keyword) values('Cual es el estado o pais al que te gustaria ir');";
+                            $sql="Insert into Tipo_Pal_Rec (Tipo_Keyword) values('Cual es el estado o pais al que te gustaria ir');";
                             $consulta=$conexion->query($sql);
                             $ID_Tip_Rec=$conexion->insert_id;
                         }
@@ -358,7 +358,7 @@
 //SI TODO ESTA CORRECTO PROCEDEMOS A REGISTRAR AL USUARIO
         if(!empty($nom_right) && !empty($pat_right) && !empty($mat_right) && !empty($tel_right) && !empty($cor_right) && !empty($esc_right) && !empty($us_right) && !empty($pas_right) && !empty($cpa_right) && !empty($key_right))
         {
-            $sql = "SELECT * FROM profesor WHERE Username = '$user';";
+            $sql="select * from Profesor where Username='".$user."';";
             //mysqli_set_charset($conexion, "utf-8");
             $ver = $conexion->query($sql);
             $result = $ver->num_rows;
@@ -378,7 +378,7 @@
             //Guardar los datos de la relacion escuela_profesor
                 $ID_profe=$conexion->insert_id;//Ultimo id autogenerado de una consulta
                 //Insertar datos en la tabla profesor_escuela
-                $sql = "Insert into profe_escu (Profesor_ID,Escuela_ID) values (".$ID_profe.",".$reg_esc.");";
+                $sql = "Insert into Profe_Escu (Profesor_ID,Escuela_ID) values (".$ID_profe.",".$reg_esc.");";
                 $ver = $conexion->query($sql);
                 $_SESSION['Username']=$user;
                 //$id_img = $conexion->insert_id;
@@ -404,7 +404,7 @@
 //Funcion de registro de una escuela
     function VerEsc($nom,$tipo,$num,$link)
     {
-        $sql="select ID_Tipo_Esc from tipo_esc where TipoEscuela='".$tipo."';";
+        $sql="select ID_Tipo_Esc from Tipo_Esc where TipoEscuela='".$tipo."';";
         $ver = $link->query($sql);
         while ($cont=$ver->fetch_assoc())
         {
@@ -412,17 +412,17 @@
         }
 
         //Investigar si la escuela ya esta registrada
-        $sql = "SELECT * FROM escuela WHERE Nombre='".$nom."' and Tipo=".$tipo." and Num_Esc=".$num.";";
+        $sql="select * from Escuela where Nombre='".$nom."' and Tipo=".$tipo." and Num_Esc=".$num.";";
         $ver = $link->query($sql);
         $result = $ver->num_rows;
         
         if ($result==0)//Se da de alta la escuela ingresada por el profesor
         {
-            $sql = "Insert into escuela (Nombre,Tipo,Num_Esc) values('".$nom."',".$tipo.",".$num.");";
+            $sql = "Insert into Escuela (Nombre,Tipo,Num_Esc) values('".$nom."',".$tipo.",".$num.");";
             $ver = $link->query($sql);
         }
         //Se procede a obtener el ID de la escuela para poderlo relacionar con el profesor
-        $sql = "SELECT ID_Escuela FROM escuela WHERE Nombre='".$nom."' and Tipo=".$tipo." and Num_Esc=".$num.";";
+        $sql="select ID_Escuela from Escuela where Nombre='".$nom."' and Tipo=".$tipo." and Num_Esc=".$num.";";
         
         if($ver = $link->query($sql))
         {
@@ -437,17 +437,17 @@
     function TipArchi($link)
     {
         //Investigar si hay algun registro guardado sobre el tipo de apoyo imagen
-        $sql = "SELECT * FROM tipo_apoyo WHERE Nombre='Imagen';";
+        $sql="select * from Tipo_Apoyo WHERE Nombre='Imagen';";
         $ver = $link->query($sql);
         $result = $ver->num_rows;
         
         if($result == 0)//En caso de que no, lo agregamos a la base de datos
         {
-            $sql = "Insert into tipo_apoyo (Nombre) values ('Imagen');";
+            $sql = "Insert into Tipo_Apoyo (Nombre) values ('Imagen');";
             $ver = $link->query($sql);
         }
         //(Creo yo que para este punto ya existe) Buscamos el ID del tipo imagen
-        $sql = "SELECT ID_Tipo FROM tipo_apoyo WHERE Nombre='Imagen';";
+        $sql="select ID_Tipo from Tipo_Apoyo WHERE Nombre='Imagen';";
         
         if($ver = $link->query($sql))
         {
@@ -462,19 +462,19 @@
     function SvImg($nombre,$TipoRecurso,$ruta,$link)
     {
         //Investigar si ya hay alguna imagen guardada con el mismo nombre en la BD
-        $sql = "SELECT * FROM apoyo WHERE Nombre = '".$nombre."' and Tipo_Apoyo_ID =".$TipoRecurso.";";
+        $sql="select * from Apoyo where Nombre = '".$nombre."' and Tipo_Apoyo_ID =".$TipoRecurso.";";
         $ver = $link->query($sql);
         $result =$ver->num_rows;
         
         if($result == 0)
         {
             //Se almacena la imagen, con el tipo de recurso imagen
-            $sql = "Insert into apoyo (Nombre,Ruta,Tipo_Apoyo_ID) values ('".$nombre."','".$ruta."',".$TipoRecurso.");";
+            $sql = "Insert into Apoyo (Nombre,Ruta,Tipo_Apoyo_ID) values ('".$nombre."','".$ruta."',".$TipoRecurso.");";
             $ver = $link->query($sql);
         }
         
         //(Creo yo que para este punto ya existe) Buscamos la imagen subida
-        $sql = "SELECT ID_Apoyo FROM apoyo WHERE Nombre = '".$nombre."' and Tipo_Apoyo_ID =".$TipoRecurso.";";
+        $sql="select ID_Apoyo from Apoyo where Nombre = '".$nombre."' and Tipo_Apoyo_ID =".$TipoRecurso.";";
         
         if($ver = $link->query($sql))
         {

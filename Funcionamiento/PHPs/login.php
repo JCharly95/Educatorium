@@ -17,7 +17,7 @@
         if(!empty($usuario) && !empty($contraseña))
         {
             //Buscar si el usuario a entrar es un estudiante
-            $sele = "SELECT * FROM estudiante WHERE Username = '".$usuario."';";
+            $sele = "SELECT * FROM Estudiante WHERE Username = '".$usuario."';";
             $verificar = $conexion->query($sele);
             $NumRes=$verificar->num_rows;
             if($NumRes > 0)//Si el usuario existe, se comienza con la validacion de la contraseña
@@ -39,7 +39,7 @@
             }
             
             //Buscar si el usuario a entrar es un profesor
-            $sele = "SELECT * FROM profesor WHERE Username = '".$usuario."';";
+            $sele = "SELECT * FROM Profesor WHERE Username = '".$usuario."';";
             $verificar = $conexion->query($sele);
             $NumRes=$verificar->num_rows;
             if($NumRes > 0)//Si el usuario existe, se comienza con la validacion de la contraseña
@@ -61,7 +61,7 @@
             }
             
             //Buscar si el usuario a entrar es un padre
-            $sele = "SELECT * FROM padre WHERE Username = '".$usuario."';";
+            $sele = "SELECT * FROM Padre WHERE Username = '".$usuario."';";
             $verificar = $conexion->query($sele);
             $NumRes=$verificar->num_rows;
             if($NumRes > 0)//Si el usuario existe, se comienza con la validacion de la contraseña

@@ -231,7 +231,7 @@
         $IDProfe="";
         $CnSav=0;
 
-        $sql="Select ID_Materia from materia where Nombre='".$NomMat."';";
+        $sql="Select ID_Materia from Materia where Nombre='".$NomMat."';";
         
         if($consulta=$conexion->query($sql))//Se busca el id de la materia para hacer crea la relacion con el profe
         {
@@ -250,7 +250,7 @@
 
         if(!empty($IDMat)&&!empty($IDProfe))//Si ambos datos fueron encontrados, se procede a crear la relacion en la BD
         {
-            $sql="Insert into mat_profe (Materia_ID,Profe_ID) values (".$IDMat.",".$IDProfe.");";
+            $sql="Insert into Mat_Profe (Materia_ID,Profe_ID) values (".$IDMat.",".$IDProfe.");";
             //Se crea la relacion de la materia con el profesor
             $consulta=$conexion->query($sql);
         }

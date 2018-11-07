@@ -11,7 +11,7 @@
     $NamCur=$_SESSION['NomCurBus'];
     $ID_Mat=$cont=0;
     
-    $sql="select ID_Curso from curso where Nombre='".$NamCur."';";    
+    $sql="select ID_Curso from Curso where Nombre='".$NamCur."';";    
     if($consulta=$conexion->query($sql))
     {
         while($res=$consulta->fetch_assoc())
@@ -23,7 +23,7 @@
     //Obtencion de los nombres de los cuestionarios
     $ArrConsul=array();
     $ArrCant=array();
-    $sql="select cuestionario.Nombre as NomCuest from cuestionario inner join curso on (Curso_ID=ID_Curso) where curso.Nombre='".$NamCur."';";
+    $sql="select Cuestionario.Nombre as NomCuest from Cuestionario inner join Curso on (Curso_ID=ID_Curso) where Curso.Nombre='".$NamCur."';";
     $consulta=$conexion->query($sql);
     if($consulta->num_rows>0)
     {

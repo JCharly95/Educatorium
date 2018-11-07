@@ -52,9 +52,9 @@
                 <div class="form-group" id="PriCur" style="display:none;">
                     <?php
                         $ArrConsul=array();
-                        $sql1="select curso.Nombre as CurNam, materia.Nombre as MatNam, grado.Valor as Grado from curso ";
-                        $sql2="inner join materia on (Materia_ID=ID_Materia) inner join grado on (Grado_ID=ID_Grado) ";
-                        $sql3="inner join profesor on (Profesor_ID=ID_Profesor) where ID_Grado=1 and Username='".$User."';";
+                        $sql1="select Curso.Nombre as CurNam, Materia.Nombre as MatNam, Grado.Valor as Grado from Curso ";
+                        $sql2="inner join Materia on (Materia_ID=ID_Materia) inner join Grado on (Grado_ID=ID_Grado) ";
+                        $sql3="inner join Profesor on (Profesor_ID=ID_Profesor) where ID_Grado=1 and Username='".$User."';";
                         $sql=$sql1.$sql2.$sql3;
                         $consulta=$conexion->query($sql);
                         if($consulta->num_rows>0)
@@ -112,9 +112,9 @@
                 <div class="form-group" id="SegCur" style="display:none;">
                     <?php
                         $ArrConsul=array();
-                        $sql1="select curso.Nombre as CurNam, materia.Nombre as MatNam, grado.Valor as Grado from curso ";
-                        $sql2="inner join materia on (Materia_ID=ID_Materia) inner join grado on (Grado_ID=ID_Grado) ";
-                        $sql3="inner join profesor on (Profesor_ID=ID_Profesor) where ID_Grado=2 and Username='".$User."';";
+                        $sql1="select Curso.Nombre as CurNam, Materia.Nombre as MatNam, Grado.Valor as Grado from Curso ";
+                        $sql2="inner join Materia on (Materia_ID=ID_Materia) inner join Grado on (Grado_ID=ID_Grado) ";
+                        $sql3="inner join Profesor on (Profesor_ID=ID_Profesor) where ID_Grado=2 and Username='".$User."';";
                         $sql=$sql1.$sql2.$sql3;
                         $consulta=$conexion->query($sql);
                         if($consulta->num_rows>0)
@@ -172,9 +172,9 @@
                 <div class="form-group" id="TerCur" style="display:none;">
                     <?php
                         $ArrConsul=array();
-                        $sql1="select curso.Nombre as CurNam, materia.Nombre as MatNam, grado.Valor as Grado from curso ";
-                        $sql2="inner join materia on (Materia_ID=ID_Materia) inner join grado on (Grado_ID=ID_Grado) ";
-                        $sql3="inner join profesor on (Profesor_ID=ID_Profesor) where ID_Grado=3 and Username='".$User."';";
+                        $sql1="select Curso.Nombre as CurNam, Materia.Nombre as MatNam, Grado.Valor as Grado from Curso ";
+                        $sql2="inner join Materia on (Materia_ID=ID_Materia) inner join Grado on (Grado_ID=ID_Grado) ";
+                        $sql3="inner join Profesor on (Profesor_ID=ID_Profesor) where ID_Grado=3 and Username='".$User."';";
                         $sql=$sql1.$sql2.$sql3;
                         $consulta=$conexion->query($sql);
                         if($consulta->num_rows>0)

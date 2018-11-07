@@ -12,7 +12,7 @@
 		$radio=$_POST['est'];
 		$id=$_POST['id'];
 
-			$sel2 = "SELECT * FROM padre WHERE Username =  '$user' ";
+			$sel2 = "SELECT * FROM Padre WHERE Username =  '$user' ";
 			$res = $conexion->query($sel2);
 
 			if($res->num_rows > 0)

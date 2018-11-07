@@ -20,7 +20,7 @@
     $DirCorr="";    
     $fecha="";
     //Obtencion de la ruta de la imagen
-    $sql="select Username,Ruta from estudiante inner join apoyo on (estudiante.Apoyo_ID=apoyo.ID_Apoyo)"
+    $sql="select Username,Ruta from Estudiante inner join Apoyo on (Estudiante.Apoyo_ID=Apoyo.ID_Apoyo)"
             ." where Username='".$user."';";
     $consulta=$conexion->query($sql);    
     if($consulta->num_rows>0)
@@ -32,7 +32,7 @@
         }
     }
     //Obtencion del nombre de la escuela del usuario
-    $sql="select Username,escuela.Nombre from estudiante inner join escuela on (estudiante.Escuela_ID=escuela.ID_Escuela) where Username='".$user."';";
+    $sql="select Username,Escuela.Nombre from Estudiante inner join Escuela on (Estudiante.Escuela_ID=Escuela.ID_Escuela) where Username='".$user."';";
     mysqli_set_charset($conexion, "utf-8");
     $consulta=$conexion->query($sql);
 
@@ -44,7 +44,7 @@
         }
     }
     //Obtencion del resto de datos
-    $sql= "SELECT * FROM estudiante WHERE Username = '".$user."';";
+    $sql= "select * from Estudiante where Username='".$user."';";
     $consulta=$conexion->query($sql);
     if($consulta->num_rows>0)
     {

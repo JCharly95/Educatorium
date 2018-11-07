@@ -88,8 +88,8 @@
                             {
                                 break;
                             }
-                            $sql="select Num_Preg_Cues as Num_Preg from cuestionario inner join pregunta on (Cuestionario_ID=ID_Cuestionario)"
-                                ."where cuestionario.Nombre='".$ArrConsul[$cols]['NomCuest']."';";
+                            $sql="select Num_Preg_Cues as Num_Preg from Cuestionario inner join Pregunta on (Cuestionario_ID=ID_Cuestionario)"
+                                ."where Cuestionario.Nombre='".$ArrConsul[$cols]['NomCuest']."';";
                                 $consulta=$conexion->query($sql);
                                 $ArrCant[$cols]=mysqli_num_rows($consulta);
                             echo '<div class="col-md-3 col-md-offset-1 text-center" style="border: 2px solid black; border-radius: 15px; background-color: lightgreen;">'.

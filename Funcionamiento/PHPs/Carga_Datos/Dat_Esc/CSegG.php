@@ -29,8 +29,8 @@
     //Funcion para determinar que botones se van a mostrar al profesor
     function CondBtns($user,$conexion,$ArrBtn)
     {
-        $sql="select ID_Materia from mat_profe inner join profesor on (Profe_ID=ID_Profesor)".
-        "inner join materia on (Materia_ID=ID_Materia)where Username='".$user."' and Grado_ID=2;";
+        $sql="select ID_Materia from Mat_Profe inner join Profesor on (Profe_ID=ID_Profesor)".
+        "inner join Materia on (Materia_ID=ID_Materia) where Username='".$user."' and Grado_ID=2;";
 
         if($consulta=$conexion->query($sql))
         {

@@ -45,7 +45,7 @@
             if(strcmp($nombre,$NomAlu) != 0)
             {
                 //Query para actualizar la información en la BDD
-                $actualizar = "UPDATE estudiante SET Nombre = '$nombre' WHERE Username = '$user' ";
+                $actualizar = "UPDATE Estudiante SET Nombre = '$nombre' WHERE Username = '$user' ";
                 if(!$conexion->query($actualizar) === TRUE)
                 {
                     echo "<script>alert('No se pudo modificar el nombre');</script>";
@@ -76,7 +76,7 @@
   si es diferente, procedemos a actualizar la información, en caso contrario no se actualiza nada*/
             if(strcmp($ap_pat,$Ape_Pat) !==0)
             {
-                $actualizar = "UPDATE estudiante SET Ape_Pat = '$ap_pat' WHERE Username = '$user' ";
+                $actualizar = "UPDATE Estudiante SET Ape_Pat = '$ap_pat' WHERE Username = '$user' ";
                 if(!$conexion->query($actualizar) === TRUE)
                 {
                     echo "<script>alert('No se pudo modificar el apellido paterno');</script>";
@@ -101,7 +101,7 @@
         {
             if(strcmp($ap_mat,$Ape_Mat) !==0 )
             {
-                $actualizar = "UPDATE estudiante SET Ape_Mat = '$ap_mat' WHERE Username = '$user' ";
+                $actualizar = "UPDATE Estudiante SET Ape_Mat = '$ap_mat' WHERE Username = '$user' ";
                 if(!$conexion->query($actualizar) === TRUE)
                 {
                     echo "<script>alert('No se pudo modificar el apellido materno');</script>";
@@ -120,7 +120,7 @@
         }
         else
         {
-            $actualizar = "UPDATE estudiante SET Tel = $tel WHERE Username = '$user' ";    
+            $actualizar = "UPDATE Estudiante SET Tel = $tel WHERE Username = '$user' ";    
             if(!$conexion->query($actualizar) === TRUE)
             {
                 echo "<script>alert('No se pudo modificar el teléfono');</script>";   
@@ -140,7 +140,7 @@
         {
             if(strcmp($correo,$DirCorr) !==0 )
             {
-                $actualizar = "UPDATE estudiante SET Correo = '$correo' WHERE Username = '$user' ";
+                $actualizar = "UPDATE Estudiante SET Correo = '$correo' WHERE Username = '$user' ";
                 if(!$conexion->query($actualizar) === TRUE)
                 {
                     echo "<script>alert('No se pudo modificar el correo');</script>";
@@ -150,11 +150,11 @@
 
 
         $esc = validar($_POST['escuelas']);
-        $sel2 = $conexion->query("SELECT ID_Escuela FROM escuela WHERE ID_Escuela = '$esc' ");
+        $sel2 = $conexion->query("SELECT ID_Escuela FROM Escuela WHERE ID_Escuela = '$esc' ");
         $r = $sel2->num_rows;
         if($r != 0)
         {
-            $actualizar="UPDATE estudiante SET Escuela_ID = $esc WHERE Username = '$user' ";
+            $actualizar="UPDATE Estudiante SET Escuela_ID = $esc WHERE Username = '$user' ";
             if(!$conexion->query($actualizar) === TRUE)
             {
                 echo "<script>alert('No se pudo modificar la escuela.');</script>";
@@ -166,11 +166,11 @@
         }
 
         $grado = validar($_POST['grado']);
-        $sel = $conexion->query("SELECT ID_Grado FROM grado WHERE ID_Grado = '$grado' ");
+        $sel = $conexion->query("SELECT ID_Grado FROM Grado WHERE ID_Grado = '$grado' ");
         $result = $sel->num_rows;
         if($result != 0)
         {
-            $actualizar = "UPDATE estudiante SET Grado_ID = $grado WHERE Username = '$user' ";
+            $actualizar = "UPDATE Estudiante SET Grado_ID = $grado WHERE Username = '$user' ";
             if(!$conexion->query($actualizar) === TRUE)
             {
                 echo "<script>alert('No se pudo modificar el grado.');</script>";
@@ -200,7 +200,7 @@
         {
             if(strcmp($user2, $user) !== 0)
             {
-                $actualizar = "UPDATE estudiante SET Username = '$user2' WHERE Username = '$user' ";
+                $actualizar = "UPDATE Estudiante SET Username = '$user2' WHERE Username = '$user' ";
                 if(!$conexion->query($actualizar) === TRUE)
                 {
                     echo "<script>alert('No se pudo modificar el usuario');</script>";
@@ -239,7 +239,7 @@
             $cifrado = password_hash($pass, PASSWORD_DEFAULT);
             if($pas_right)
             {
-                $actualizar = "UPDATE estudiante SET Password = '$pass' WHERE Username = '$user' ";
+                $actualizar = "UPDATE Estudiante SET Password = '$pass' WHERE Username = '$user' ";
                 if(!$conexion->query($actualizar) === TRUE)
                 {
                      echo "<script>alert('No se pudo modificar la contraseña');</script>";
@@ -257,7 +257,7 @@
         {
             $fecha = $fecha2[2]."/".$fecha2[1]."/".$fecha2[0];
 
-            $actualizar = "UPDATE estudiante SET Keyword = '$fecha' WHERE Username = '$user' ";     
+            $actualizar = "UPDATE Estudiante SET Keyword = '$fecha' WHERE Username = '$user' ";     
             if(!$conexion->query($actualizar) === TRUE)
             {
                  echo "<script>alert('No se pudo modificar la fecha');</script>";

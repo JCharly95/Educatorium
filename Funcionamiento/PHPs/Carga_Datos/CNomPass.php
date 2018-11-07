@@ -14,8 +14,8 @@
     //Nombre del curso y Contraseña
     $CurNam=$Contra="";
 
-    $sql="select curso.Nombre as NomCurso, curso.Password as ContraCur from curso inner join profesor on ".
-    "(Profesor_ID=ID_Profesor) where curso.Nombre='".$curso."' and Username='".$user."';";
+    $sql="select Curso.Nombre as NomCurso, Curso.Password as ContraCur from Curso inner join profesor on ".
+    "(Profesor_ID=ID_Profesor) where Curso.Nombre='".$curso."' and Username='".$user."';";
     if($consulta=$conexion->query($sql))
     {
         while($res=$consulta->fetch_assoc())

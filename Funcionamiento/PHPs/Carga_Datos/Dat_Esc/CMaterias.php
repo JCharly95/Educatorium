@@ -17,7 +17,7 @@
         $Opc_Profe='';
     }
     
-    $sql="select ID_Materia from materia where Nombre='".$Iden_Mat."';";    
+    $sql="select ID_Materia from Materia where Nombre='".$Iden_Mat."';";    
     if($consulta=$conexion->query($sql))
     {
         while($res=$consulta->fetch_assoc())

@@ -159,7 +159,7 @@
                                                         <option value="N/A" selected>Lista de secundarias</option>
                                                         <?php
                                                             require $_SERVER['DOCUMENT_ROOT'].'/Educatorium/Funcionamiento/PHPs/Conn_Ses/conexion.php';
-                                                            $sql = "Select * from escuela where ID_Escuela>1;";
+                                                            $sql = "Select * from Escuela where ID_Escuela>1;";
                                                             $ver = $conexion->query($sql);
 
                                                             while ($cont=$ver->fetch_assoc())

@@ -22,7 +22,7 @@
     $BtnGrads = ['style="display: none;"','style="display: none;"','style="display: none;"'];
     $ConsGrados=[];
     //Obtencion de la ruta de la imagen
-    $sql="select Username,Ruta from profesor inner join apoyo on (profesor.Apoyo_ID=apoyo.ID_Apoyo) where Username='".$user."';";
+    $sql="select Username,Ruta from Profesor inner join Apoyo on (Profesor.Apoyo_ID=Apoyo.ID_Apoyo) where Username='".$user."';";
     $consulta=$conexion->query($sql);    
     if($consulta->num_rows>0)    
     {
@@ -32,8 +32,8 @@
             $RutaImg=substr($rutaSav,36);
         }
     }
-    $sql="select escuela.Nombre,Num_Esc from profe_escu inner join escuela on (profe_escu.Escuela_ID=escuela.ID_Escuela)"
-            ."inner join profesor on (profe_escu.Profesor_ID=profesor.ID_Profesor) where Username='".$user."';";
+    $sql="select Escuela.Nombre,Num_Esc from Profe_Escu inner join Escuela on (Profe_Escu.Escuela_ID=Escuela.ID_Escuela)"
+            ."inner join Profesor on (Profe_Escu.Profesor_ID=Profesor.ID_Profesor) where Username='".$user."';";
     if($consulta=$conexion->query($sql))
     {
         while($res=$consulta->fetch_assoc())
@@ -43,7 +43,7 @@
         }
     }
     //Obtencion del resto de datos
-    $sql= "SELECT * FROM profesor WHERE Username = '".$user."';";    
+    $sql= "select * from profesor where Username='".$user."';";    
     $consulta=$conexion->query($sql);
     if($consulta->num_rows>0)    
     {
@@ -59,7 +59,7 @@
     }
 
     //Obtencion del tipo de palabra de recuperacion que selecciono
-    $sql="select Tipo_Keyword from tipo_pal_rec inner join profesor on (ID_Tip_Key=Tip_Key_ID) where Username='".$user."';";
+    $sql="select Tipo_Keyword from Tipo_Pal_Rec inner join Profesor on (ID_Tip_Key=Tip_Key_ID) where Username='".$user."';";
     $consulta=$conexion->query($sql);
     if($consulta->num_rows>0)    
     {
@@ -70,7 +70,7 @@
     }
 
     //Obtencion del nombre de las materias que imparte y los grados de las materias
-    $sql="select materia.Nombre, Grado_ID from profesor inner join mat_profe on (ID_Profesor=Profe_ID)".
+    $sql="select Materia.Nombre, Grado_ID from Profesor inner join Mat_Profe on (ID_Profesor=Profe_ID)".
         "inner join materia on (Materia_ID=ID_Materia) where Username='".$user."';";
     if($consulta=$conexion->query($sql))
     {

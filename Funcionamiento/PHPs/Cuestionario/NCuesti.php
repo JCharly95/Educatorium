@@ -20,7 +20,7 @@
     $AdClo='</span>';
 
     //Busqueda del ID del curso
-    $sql="Select ID_Curso from curso where Nombre ='".$NomCur."';";
+    $sql="Select ID_Curso from Curso where Nombre ='".$NomCur."';";
     $consulta=$conexion->query($sql);
     if($consulta->num_rows>0)
     {
@@ -37,7 +37,7 @@
         //Validacion del nombre del cuestionario
         $NomCuest=validar($_POST['nombre']);
         //Buscar si no existe ya este cuestionario
-        $sql="Select * from cuestionario where Nombre='".$NomCuest."' and Curso_ID=".$ID_Cur.";";
+        $sql="Select * from Cuestionario where Nombre='".$NomCuest."' and Curso_ID=".$ID_Cur.";";
         $consulta=$conexion->query($sql);
         if($consulta->num_rows>0)
             $NomAd=$AdDan."Este cuestionario ya existe.&nbsp;<br>&nbsp; Favor de poner otro nombre".$AdClo;
@@ -72,33 +72,33 @@
         {//Si las validaciones correspondieron, se procede a buscar el curso para poder crear el cuestionario
             if(isset($ID_Cur))
             {
-                $sql="Insert into cuestionario (Nombre,Curso_ID) values ('".$NomCuest."',".$ID_Cur.");";
+                $sql="Insert into Cuestionario (Nombre,Curso_ID) values ('".$NomCuest."',".$ID_Cur.");";
                 $consulta=$conexion->query($sql);
                 //Una vez creado el cuestionario se obtiene el id de su registro para saber cuantas preguntas crear
                 $ID_Cuestion=$conexion->insert_id;
                     //Por la configuracion de la BD es necesario asignarle una imagen por defecto a las preguntas
                     //Primero buscamos el tipo de recurso imagen
-                    $sql="Select ID_Tipo from tipo_apoyo where Nombre='Imagen';";
+                    $sql="Select ID_Tipo from Tipo_Apoyo where Nombre='Imagen';";
                     $consulta=$conexion->query($sql);
                     while($res=$consulta->fetch_assoc())
                     {
                         $ID_Tip_Rec=$res['ID_Tipo'];
                     }
                     //Posteriormente se busca el ID de la imagen defecto en el sistema
-                    $sql="Select ID_Apoyo from apoyo where Nombre='Sin_Img' and Tipo_Apoyo_ID =".$ID_Tip_Rec.";";
+                    $sql="Select ID_Apoyo from Apoyo where Nombre='Sin_Img' and Tipo_Apoyo_ID =".$ID_Tip_Rec.";";
                     $consulta=$conexion->query($sql);
                     while($res=$consulta->fetch_assoc())
                     {
                         $ID_Img=$res['ID_Apoyo'];
                     }
                 //Por seguridad se comprueba que no se hayan registrado mas de 20 relacionadas con este cuestionario
-                $sql="Select * from pregunta where Cuestionario_ID=".$ID_Cuestion.";";
+                $sql="Select * from Pregunta where Cuestionario_ID=".$ID_Cuestion.";";
                 $consulta=$conexion->query($sql);
                 if($consulta->num_rows<20)
                 {
                     for ($cont=1;$cont<=$CantPreg;$cont++) 
                     {
-                        $sql="Insert into pregunta (Tipo,Num_Preg_Cues,Cuestionario_ID,Apoyo_ID) values (1,".$cont.",".$ID_Cuestion.",".$ID_Img.");";
+                        $sql="Insert into Pregunta (Tipo,Num_Preg_Cues,Cuestionario_ID,Apoyo_ID) values (1,".$cont.",".$ID_Cuestion.",".$ID_Img.");";
                         $consulta=$conexion->query($sql);
                     }
                     echo "<script>alert('Su cuestionario ha sido creado satisfactoriamente');</script>";

@@ -16,7 +16,7 @@
     $MsgBien=$Msg="";
 
     //Buscar la imagen en la base de datos y guardar su ruta en una variable para despues mostrarla
-    $sql="select apoyo.Ruta as RutaImg from apoyo inner join apoyo_curso on (Apoyo_ID=ID_Apoyo) inner join curso on (Curso_ID=ID_Curso) where curso.Nombre='".$VerCur."';";
+    $sql="Select Apoyo.Ruta as RutaImg from Apoyo inner join Apoyo_Curso on (Apoyo_ID=ID_Apoyo) inner join Curso on (Curso_ID=ID_Curso) where Curso.Nombre='".$VerCur."';";
     $consulta=$conexion->query($sql);
     if($consulta->num_rows>0)
     {
@@ -29,7 +29,7 @@
     }
     else
     {
-        $sql="select Ruta from apoyo where Nombre='Sin_Img';";
+        $sql="select Ruta from Apoyo where Nombre='Sin_Img';";
         $consulta=$conexion->query($sql);
         while($res=$consulta->fetch_assoc())
         {
@@ -40,7 +40,7 @@
     }
 
     //Buscar el mensaje de bienvenida del curso
-    $sql="select Msg_Bien from curso where Nombre='".$VerCur."';";
+    $sql="select Msg_Bien from Curso where Nombre='".$VerCur."';";
     $consulta=$conexion->query($sql);    
     if($consulta->num_rows>0)
     {
@@ -62,7 +62,7 @@
     //Obtencion de los nombres de los cuestionarios
     $ArrConsul=array();
     $ArrCant=array();
-    $sql="select cuestionario.Nombre as NomCuest from cuestionario inner join curso on (Curso_ID=ID_Curso) where curso.Nombre='".$VerCur."';";
+    $sql="select Cuestionario.Nombre as NomCuest from Cuestionario inner join Curso on (Curso_ID=ID_Curso) where Curso.Nombre='".$VerCur."';";
     $consulta=$conexion->query($sql);
     if($consulta->num_rows>0)
     {

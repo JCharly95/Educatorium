@@ -23,7 +23,7 @@
 		else
 		{
 
-			$sel = "SELECT * FROM estudiante WHERE Username LIKE '$busqueda' ";
+			$sel = "Select * FROM Estudiante WHERE Username LIKE '$busqueda' ";
 			$resultado = $conexion->query($sel);
 
 			if($resultado->num_rows >0)

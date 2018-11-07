@@ -140,7 +140,7 @@
         
         //Creacion del curso
         //Obteniendo el id de la materia
-        $sql="select ID_Materia from materia where Nombre='".$MatGen."';";
+        $sql="select ID_Materia from Materia where Nombre='".$MatGen."';";
         $consulta=$conexion->query($sql);    
         if($consulta->num_rows>0)
         {
@@ -151,7 +151,7 @@
         }
 
         //Obteniendo el id del profesor
-        $sql="select ID_Profesor from profesor where Username='".$user."';";
+        $sql="select ID_Profesor from Profesor where Username='".$user."';";
         $consulta=$conexion->query($sql);
         if($consulta->num_rows>0)
         {
@@ -178,12 +178,12 @@
                     else
                         $ImgBienAd=$AdDan.'Favor de seleccionar una imagen'.$AdClo;
                 //echo "Si hubo contenido de bienvenida y contraseña";
-                $sql="Insert into curso (Nombre,Msg_Bien,Password,Materia_ID,Profesor_ID) values"
+                $sql="Insert into Curso (Nombre,Msg_Bien,Password,Materia_ID,Profesor_ID) values"
                     ."('".$NomCur."','".$MsgBienvenida."','".$Contra."',".$ID_Mat.",".$ID_Prof.")";
                 $consulta=$conexion->query($sql);
                 $ID_Curso=$conexion->insert_id;//Obtener el id del curso, para poder crear la relacion con la imagen que se subio
                 //Crear relacion de curso con la imagen del mensaje de bienvenida
-                $sql="Insert into apoyo_curso (Apoyo_ID,Curso_ID) values (".$ID_Img.",".$ID_Curso.")";
+                $sql="Insert into Apoyo_Curso (Apoyo_ID,Curso_ID) values (".$ID_Img.",".$ID_Curso.")";
                 $consulta=$conexion->query($sql);
                 echo "<script>alert('Curso creado satisfactoriamente');</script>";
                 echo '<META HTTP-EQUIV="REFRESH" CONTENT="1;URL=../../Usuarios/Profesor/Principal_Prof.php">';
@@ -206,12 +206,12 @@
                     else
                         $ImgBienAd=$AdDan.'Favor de seleccionar una imagen'.$AdClo;
                 //echo "Solo hubo contenido de bienvenida";
-                $sql="Insert into curso (Nombre,Msg_Bien,Materia_ID,Profesor_ID) values"
+                $sql="Insert into Curso (Nombre,Msg_Bien,Materia_ID,Profesor_ID) values"
                     ."('".$NomCur."','".$MsgBienvenida."',".$ID_Mat.",".$ID_Prof.")";
                 $consulta=$conexion->query($sql);
                 $ID_Curso=$conexion->insert_id;//Obtener el id del curso, para poder crear la relacion con la imagen que se subio
                 //Crear relacion de curso con la imagen del mensaje de bienvenida
-                $sql="Insert into apoyo_curso (Apoyo_ID,Curso_ID) values (".$ID_Img.",".$ID_Curso.")";
+                $sql="Insert into Apoyo_Curso (Apoyo_ID,Curso_ID) values (".$ID_Img.",".$ID_Curso.")";
                 $consulta=$conexion->query($sql);
                 echo "<script>alert('Curso creado satisfactoriamente');</script>";
                 echo '<META HTTP-EQUIV="REFRESH" CONTENT="1;URL=../../Usuarios/Profesor/Principal_Prof.php">';
@@ -222,7 +222,7 @@
             if($HNom && $HContra)
             {
                 //echo "Solo hubo contraseña";
-                $sql="Insert into curso (Nombre,Password,Materia_ID,Profesor_ID) values"
+                $sql="Insert into Curso (Nombre,Password,Materia_ID,Profesor_ID) values"
                     ."('".$NomCur."','".$Contra."',".$ID_Mat.",".$ID_Prof.")";
                 $consulta=$conexion->query($sql);
                 echo "<script>alert('Curso creado satisfactoriamente');</script>";
@@ -234,7 +234,7 @@
             if($HNom)
             {
                 //echo "Solo hubo nombre";
-                $sql="Insert into curso (Nombre,Materia_ID,Profesor_ID) values"
+                $sql="Insert into Curso (Nombre,Materia_ID,Profesor_ID) values"
                     ."('".$NomCur."',".$ID_Mat.",".$ID_Prof.")";
                 $consulta=$conexion->query($sql);
                 echo "<script>alert('Curso creado satisfactoriamente');</script>";
@@ -314,17 +314,17 @@
     function TipArchi($link)
     {
         //Investigar si hay algun registro guardado sobre el tipo de apoyo imagen
-        $sql="Select * FROM tipo_apoyo WHERE Nombre='Imagen';";
+        $sql="Select * FROM Tipo_Apoyo WHERE Nombre='Imagen';";
         $ver=$link->query($sql);
         $result=$ver->num_rows;
         
         if($result==0)//En caso de que no, lo agregamos a la base de datos
         {
-            $sql="Insert into tipo_apoyo (Nombre) values ('Imagen');";
+            $sql="Insert into Tipo_Apoyo (Nombre) values ('Imagen');";
             $ver=$link->query($sql);
         }
         //Considerando que ya existe, buscamos el ID del tipo imagen
-        $sql="Select ID_Tipo FROM tipo_apoyo WHERE Nombre='Imagen';";
+        $sql="Select ID_Tipo FROM Tipo_Apoyo WHERE Nombre='Imagen';";
         
         if($ver=$link->query($sql))
         {
@@ -339,19 +339,19 @@
     function SavImg($nombre,$TipoRecurso,$ruta,$link)
     {
         //Investigar si ya hay alguna imagen guardada con el mismo nombre en la BD
-        $sql="Select * from apoyo where Nombre='".$nombre."' and Tipo_Apoyo_ID =".$TipoRecurso.";";
+        $sql="Select * from Apoyo where Nombre='".$nombre."' and Tipo_Apoyo_ID =".$TipoRecurso.";";
         $ver=$link->query($sql);
         $result=$ver->num_rows;
         
         if($result==0)
         {
             //Se almacena la imagen, con el tipo de recurso imagen
-            $sql="Insert into apoyo (Nombre,Ruta,Tipo_Apoyo_ID) values ('".$nombre."','".$ruta."',".$TipoRecurso.");";
+            $sql="Insert into Apoyo (Nombre,Ruta,Tipo_Apoyo_ID) values ('".$nombre."','".$ruta."',".$TipoRecurso.");";
             $ver=$link->query($sql);
         }
         
         //Considerando que ya existe buscamos la imagen subida
-        $sql="Select ID_Apoyo from apoyo where Nombre='".$nombre."' and Tipo_Apoyo_ID=".$TipoRecurso.";";
+        $sql="Select ID_Apoyo from Apoyo where Nombre='".$nombre."' and Tipo_Apoyo_ID=".$TipoRecurso.";";
         
         if($ver=$link->query($sql))
         {

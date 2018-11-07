@@ -47,7 +47,7 @@
             <form action="Sel_Seccion.php" method="post">
                 <?php
                     $ArrConsul=array();
-                    $sql="select curso.Nombre as NomCur, profesor.Nombre as NomProf, Ape_Pat from curso inner join profesor on (Profesor_ID=ID_Profesor) where Username='".$user."' and Materia_ID=".$ID_Mat.";";
+                    $sql="select Curso.Nombre as NomCur, Profesor.Nombre as NomProf, Ape_Pat from Curso inner join Profesor on (Profesor_ID=ID_Profesor) where Username='".$user."' and Materia_ID=".$ID_Mat.";";
                     $consulta=$conexion->query($sql);
                     if($consulta->num_rows>0)
                     {

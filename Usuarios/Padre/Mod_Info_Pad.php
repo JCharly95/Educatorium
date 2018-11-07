@@ -111,7 +111,7 @@
                     <select class="btn btn-default form-control" name="escuelas" id="secus">
                         <option hidden value="" ><?php echo $NomEsc; ?></option>
                         <?php
-                            $sql = "Select * from escuela where ID_Escuela>1;";
+                            $sql = "Select * from Escuela where ID_Escuela>1;";
                             $ver = $conexion->query($sql);
                                                 
                             while ($cont=$ver->fetch_assoc())

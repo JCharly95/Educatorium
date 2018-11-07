@@ -42,7 +42,7 @@
                     $TelAd=$AdDan."El numero de telefono debe constar de 8 o 10 digitos.".$AdClo;
                 else //Si no hubo problema con las validaciones anteriores, se procede con la actualizacion de numero en la BD
                 {
-                    $sql="Update profesor SET Tel='".$NTel."' where Username='".$user."';";
+                    $sql="Update Profesor SET Tel='".$NTel."' where Username='".$user."';";
                     if($conexion->query($sql)==true)
                     {
                         echo "<script>alert('El numero telefonico ha sido actualizado');</script>";
@@ -69,7 +69,7 @@
                     $EmailAd=$AdDan."El formato de correo es inválido".$AdClo;
                 else//Si no hubo problema con las validaciones anteriores, se procede con la actualizacion del correo en la BD
                 {
-                    $sql="Update profesor SET Correo='".$NEmail."' where Username='".$user."';";
+                    $sql="Update Profesor SET Correo='".$NEmail."' where Username='".$user."';";
                     if($conexion->query($sql)==true)
                     {
                         echo "<script>alert('El correo fue actualizado');</script>";
@@ -99,7 +99,7 @@
                         $UserAd=$AdDan."El nombre de usuario no puede tener mas de 10 caracteres".$AdClo;
                     else//Si no hubo problema con las validaciones anteriores, se procede con la actualizacion de username en la BD y se cierra la sesion
                     {
-                        $sql="Update profesor SET Username='".$NUser."' where Username='".$user."';";
+                        $sql="Update Profesor SET Username='".$NUser."' where Username='".$user."';";
                         if($conexion->query($sql)==true)
                         {
                             echo "<script>alert('Nombre de usuario actualizado');</script>";
@@ -149,7 +149,7 @@
                                 else
                                 {//Si todo coincide, se procede a encriptar la contraseña y actualizarla en la BD
                                     $cifrado = password_hash($NPass, PASSWORD_DEFAULT);
-                                    $sql="Update profesor SET Password='".$cifrado."' where Username='".$user."';";
+                                    $sql="Update Profesor SET Password='".$cifrado."' where Username='".$user."';";
                                     if($conexion->query($sql)==true)
                                     {
                                         echo "<script>alert('Contraseña actualizada');</script>";
@@ -201,7 +201,7 @@
                             $KeyAd=$AdDan."Favor de poner al menos una letra mayúscula".$AdClo;
                         else
                         {
-                            $sql="Update profesor SET Keyword='".$NKeyW."' where Username='".$user."';";
+                            $sql="Update Profesor SET Keyword='".$NKeyW."' where Username='".$user."';";
                             if($conexion->query($sql)==true)
                             {
                                 echo "<script>alert('Palabra de recuperacion actualizada');</script>";
@@ -299,7 +299,7 @@
                 //Se procede a registrar la nueva secundaria y posteriormente crear la relacion
                 $reg_esc=VerEsc($NNomEsc,$NTipEsc,$NNumEsc,$conexion);
                 //Se obtiene el ID del profesor para crear la relacion
-                $sql="select ID_Profesor from profesor where Username='".$user."';";
+                $sql="select ID_Profesor from Profesor where Username='".$user."';";
                 if($ver=$conexion->query($sql))
                 {
                     while($cont=$ver->fetch_assoc())
@@ -308,7 +308,7 @@
                     }
                 }
                 //$sql="Update profesor SET Keyword='".$NKeyW."' where Username='".$user."';";
-                $sql="Update profe_escu SET Profesor_ID=".$ID_profe.", Escuela_ID=".$reg_esc.";";
+                $sql="Update Profe_Escu SET Profesor_ID=".$ID_profe.", Escuela_ID=".$reg_esc.";";
                 if($ver=$conexion->query($sql))
                 {
                     echo "<script>alert('Escuela donde labora actualizada');</script>";
@@ -336,7 +336,7 @@
             {
                 //Al estar la escuela ya registrada, solo es cuestion de crear la relacion con el profesor
                 //Se busca otra vez si la escuela esta registrada, por si acaso
-                $sql="Select * from escuela where ID_Escuela=".$EscReg.";";
+                $sql="Select * from Escuela where ID_Escuela=".$EscReg.";";
                 $ver=$conexion->query($sql);
                 $result=$ver->num_rows;
                 if ($result==0)
@@ -350,7 +350,7 @@
                 }
 
                 //Se obtiene el ID del profesor para crear la relacion
-                $sql="select ID_Profesor from profesor where Username='".$user."';";
+                $sql="select ID_Profesor from Profesor where Username='".$user."';";
                 if($ver=$conexion->query($sql))
                 {
                     while($cont=$ver->fetch_assoc())
@@ -359,7 +359,7 @@
                     }
                 }
                 //$sql="Update profesor SET Keyword='".$NKeyW."' where Username='".$user."';";
-                $sql="Update profe_escu SET Profesor_ID=".$ID_profe.", Escuela_ID=".$reg_esc.";";
+                $sql="Update Profe_Escu SET Profesor_ID=".$ID_profe.", Escuela_ID=".$reg_esc.";";
                 if($ver=$conexion->query($sql))
                 {
                     echo "<script>alert('Escuela donde labora actualizada');</script>";
@@ -382,7 +382,7 @@
     //Funcion de registro de una escuela
     function VerEsc($nom,$tipo,$num,$link)
     {
-        $sql="select ID_Tipo_Esc from tipo_esc where TipoEscuela='".$tipo."';";
+        $sql="select ID_Tipo_Esc from Tipo_Esc where TipoEscuela='".$tipo."';";
         $ver = $link->query($sql);
         while ($cont=$ver->fetch_assoc())
         {
@@ -390,17 +390,17 @@
         }
 
         //Investigar si la escuela ya esta registrada
-        $sql = "SELECT * FROM escuela WHERE Nombre='".$nom."' and Tipo=".$tipo." and Num_Esc=".$num.";";
+        $sql= "select * from Escuela where Nombre='".$nom."' and Tipo=".$tipo." and Num_Esc=".$num.";";
         $ver = $link->query($sql);
         $result = $ver->num_rows;
         if ($result==0)//Se da de alta la escuela ingresada por el profesor
         {
-            $sql = "Insert into escuela (Nombre,Tipo,Num_Esc) values('".$nom."',".$tipo.",".$num.");";
+            $sql = "Insert into Escuela (Nombre,Tipo,Num_Esc) values('".$nom."',".$tipo.",".$num.");";
             $ver = $link->query($sql);
         }
         
         //Se procede a obtener el ID de la escuela para poderlo relacionar con el profesor
-        $sql = "SELECT ID_Escuela FROM escuela WHERE Nombre='".$nom."' and Tipo=".$tipo." and Num_Esc=".$num.";";
+        $sql="select ID_Escuela from Escuela where Nombre='".$nom."' and Tipo=".$tipo." and Num_Esc=".$num.";";
         if($ver = $link->query($sql))
         {
             while ($cont=$ver->fetch_assoc())
@@ -414,17 +414,17 @@
     function TipArchi($link)
     {
         //Investigar si hay algun registro guardado sobre el tipo de apoyo imagen
-        $sql = "SELECT * FROM tipo_apoyo WHERE Nombre='Imagen';";
+        $sql="select * from Tipo_Apoyo where Nombre='Imagen';";
         $ver = $link->query($sql);
         $result = $ver->num_rows;
         if($result==0)//En caso de que no, lo agregamos a la base de datos
         {
-            $sql = "Insert into tipo_apoyo (Nombre) values ('Imagen');";
+            $sql = "Insert into Tipo_Apoyo (Nombre) values ('Imagen');";
             $ver = $link->query($sql);
         }
 
         //(Creo yo que para este punto ya existe) Buscamos el ID del tipo imagen
-        $sql="SELECT ID_Tipo FROM tipo_apoyo WHERE Nombre='Imagen';";
+        $sql="select ID_Tipo from Tipo_Apoyo where Nombre='Imagen';";
         if($ver=$link->query($sql))
         {
             while ($cont=$ver->fetch_assoc())
@@ -438,12 +438,12 @@
     function SvImg($nombre,$TipoRecurso,$ruta,$link)
     {
         //Investigar si ya hay alguna imagen guardada con el mismo nombre en la BD
-        $sql="SELECT * FROM apoyo WHERE Nombre = '".$nombre."' and Tipo_Apoyo_ID =".$TipoRecurso.";";
+        $sql="select * from Apoyo where Nombre='".$nombre."' and Tipo_Apoyo_ID =".$TipoRecurso.";";
         $ver = $link->query($sql);
         $result =$ver->num_rows;
         if($result==0)//En caso de que aun no haya registro de la imagen en la BD se almacena la imagen, con el tipo de recurso imagen
         {
-            $sql = "Insert into apoyo (Nombre,Ruta,Tipo_Apoyo_ID) values ('".$nombre."','".$ruta."',".$TipoRecurso.");";
+            $sql = "Insert into Apoyo (Nombre,Ruta,Tipo_Apoyo_ID) values ('".$nombre."','".$ruta."',".$TipoRecurso.");";
             $ver = $link->query($sql);
         }
         else
@@ -453,12 +453,12 @@
                 $OldRuta=$cont['Ruta'];//Retornar el id del tipo de apoyo imagen para guardarlo junto con los datos
             }
             unlink($OldRuta);//Es necesario borrar el archivo guardado en el servidor para no generar problemas
-            $sql="update apoyo SET Ruta='".$ruta."' where Nombre='".$nombre."';";
+            $sql="update Apoyo SET Ruta='".$ruta."' where Nombre='".$nombre."';";
             $ver = $link->query($sql);
         }
         
         //(Creo yo que para este punto ya existe) Buscamos la imagen subida
-        $sql="SELECT ID_Apoyo FROM apoyo WHERE Nombre = '".$nombre."' and Tipo_Apoyo_ID =".$TipoRecurso.";";
+        $sql="select ID_Apoyo FROM Apoyo WHERE Nombre = '".$nombre."'and Tipo_Apoyo_ID =".$TipoRecurso.";";
         $ver = $link->query($sql);
         $result =$ver->num_rows;
         if($result>0)

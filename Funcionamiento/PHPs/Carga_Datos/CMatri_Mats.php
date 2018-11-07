@@ -12,8 +12,8 @@
     $resultado=0;
 
     //Deshabilitar/Habilitar las casillas de seleccion multiple
-    $sql="select Username, ID_Materia from profesor inner join mat_profe on (ID_Profesor=Profe_ID)"
-        ."inner join materia on (Materia_ID=ID_Materia) where Username='".$Username."' and Grado_ID=1;";
+    $sql="select Username, ID_Materia from Profesor inner join Mat_Profe on (ID_Profesor=Profe_ID)"
+        ."inner join Materia on (Materia_ID=ID_Materia) where Username='".$Username."' and Grado_ID=1;";
     if($consulta=$conexion->query($sql))
     {
         if($consulta->num_rows==7)
@@ -22,8 +22,8 @@
         }
     }
 
-    $sql="select Username, ID_Materia from profesor inner join mat_profe on (ID_Profesor=Profe_ID)"
-        ."inner join materia on (Materia_ID=ID_Materia) where Username='".$Username."' and Grado_ID=2;";
+    $sql="select Username, ID_Materia from Profesor inner join Mat_Profe on (ID_Profesor=Profe_ID)"
+    ."inner join Materia on (Materia_ID=ID_Materia) where Username='".$Username."' and Grado_ID=2;";
     if($consulta=$conexion->query($sql))
     {
         if($consulta->num_rows==6)
@@ -32,8 +32,8 @@
         }
     }
 
-    $sql="select Username, ID_Materia from profesor inner join mat_profe on (ID_Profesor=Profe_ID)"
-        ."inner join materia on (Materia_ID=ID_Materia) where Username='".$Username."' and Grado_ID=3;";
+    $sql="select Username, ID_Materia from Profesor inner join Mat_Profe on (ID_Profesor=Profe_ID)"
+    ."inner join Materia on (Materia_ID=ID_Materia) where Username='".$Username."' and Grado_ID=3;";
     if($consulta=$conexion->query($sql))
     {
         if($consulta->num_rows==6)
@@ -43,8 +43,8 @@
     }
 
     //Buscar las materias relacionadas con el profe
-    $sql="select Username, ID_Materia from profesor inner join mat_profe on (ID_Profesor=Profe_ID)"
-        ."inner join materia on (Materia_ID=ID_Materia) where Username='".$Username."';";
+    $sql="select Username, ID_Materia from Profesor inner join Mat_Profe on (ID_Profesor=Profe_ID)"
+        ."inner join Materia on (Materia_ID=ID_Materia) where Username='".$Username."';";
     if($consulta=$conexion->query($sql))
     {
         while($res=$consulta->fetch_assoc())
@@ -56,7 +56,7 @@
 
     function BusProfe($Username,$conexion)
     {
-        $sql="Select ID_Profesor from profesor where Username='".$Username."';";//Se busca el id del profesor
+        $sql="Select ID_Profesor from Profesor where Username='".$Username."';";//Se busca el id del profesor
         if($consulta=$conexion->query($sql))
         {
             while($res=$consulta->fetch_assoc())

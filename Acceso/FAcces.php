@@ -94,7 +94,7 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-10 col-md-offset-2">
-                                        ¿Olvidaste tu contraseña?, no te preocupes presiona <a href="../Funcionamiento/PHPs/Rec_Pass.php" class="link">Aqui</a> para comenzar 
+                                        ¿Olvidaste tu contraseña?, no te preocupes presiona <a href="Rec_Pass.php" class="link">Aqui</a> para comenzar 
                                         con el proceso de recuperacion
                                     </div>
                                 </div>
