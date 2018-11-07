@@ -100,7 +100,7 @@
                     else//Si no hubo problema con las validaciones anteriores, se procede con la actualizacion de username en la BD y se cierra la sesion
                     {
                         $sql="Update profesor SET Username='".$NUser."' where Username='".$user."';";
-                        if($conexion->query($actualizar)==true)
+                        if($conexion->query($sql)==true)
                         {
                             echo "<script>alert('Nombre de usuario actualizado');</script>";
                             require 'Cer_Ses.php';
