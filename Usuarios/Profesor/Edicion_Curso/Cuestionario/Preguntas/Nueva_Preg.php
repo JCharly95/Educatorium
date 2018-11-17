@@ -1,5 +1,5 @@
 <?php
-    //require '../../../../Funcionamiento/PHPs/Cuestionario/NPreg.php';
+    require '../../../../../Funcionamiento/PHPs/Cuestionario/NPreg.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -53,19 +53,19 @@
                         <span class="lead text-primary">Creacion de Pregunta</span>
                     </div>
                     <div class="panel-body">
-                        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
                             <div class="form-group">
                                 <div class="row" style="padding-left: 8%;">
                                     <div class="col-md-5">
                                         <h3><span class="label label-default">Tipo de pregunta: </span></h3>
-                                        <select class="btn btn-default" name="Tip_Preg" id="Tip_Esc" onclick="SelResp(this.value);">
+                                        <select class="btn btn-default" name="Tip_Preg" onclick="SelResp(this.value);">
                                             <option hidden value="" selected>Tipos de preguntas para crear:</option>
                                             <option value="1">Opcion multiple, 4 alternativas y una respuesta correcta</option>
                                             <option value="2">Opcion multiple, 7 alternativas y varias respuestas correctas</option>
                                             <option value="3">Cierto y Falso</option>
                                             <option value="4">Relacion de columnas</option>
                                             <option value="5">Orden de seleccionado</option>
-                                            <option value="6">Completa la oracion</option>
+                                            <option value="6" onclick="CantList_Opc('TextPreg');">Completa la oracion</option>
                                             <option value="7">Escala de Linkert</option>
                                         </select>
                                     </div>
@@ -73,8 +73,45 @@
                                         <h3><span class="label label-default">Oracion de la pregunta: </span></h3>
                                         <div class="input-group">
                                             <span class="input-group-addon">¿</span>
-                                            <input type="text" name="Pregunta" class="form-control">
+                                            <input type="text" name="Pregunta" id="TextPreg" class="form-control">
                                             <span class="input-group-addon">?</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="row" id="PregImg" style="padding-left: 8%;">
+                                    <div class="col-md-offset-3">
+                                        <h3><span class="label label-default">¿Deseas incluir una imagen con la pregunta?</span></h3>
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <h3><label class="label label-default"><input type="radio" name="ImgPreg" value="Si" id="RMSi" onclick="ViewSec('RMSi','SelImg','PregImg');">&nbsp; Si</label></h3>
+                                            </div>
+                                            <div class="col-md-5">
+                                                <h3><label class="label label-default"><input type="radio" name="ImgPreg" value="No" id="RMNo" onclick="ViewSec('RMSi','SelImg','PregImg');">&nbsp; No</label></h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br><br>
+                                </div>
+                                <div class="row" id="SelImg" style="padding-left: 8%; display:none;">
+                                    <br><br>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-2 col-md-offset-2">
+                                                <label for="files">Imagen del mensaje de bienvenida:</label>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <output id="list">
+                                                    
+                                                </output>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label class="btn btn-primary">
+                                                    <input type="file" id="files" name="imagen" style="display: none;" />
+                                                    <i class="fas fa-plus-circle fa-2x"></i> &nbsp;Seleccionar imagen...
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -83,25 +120,25 @@
                                 <div class="row" style="padding-left: 8%;">
                                     <div class="col-md-5">
                                         <h3><span class="label label-default">Respuesta 1: </span></h3>
-                                        <input type="text" name="Opc4[]" class="form-control">
+                                        <input type="text" name="OpcRes1[]" class="form-control">
                                         <div class="form-group text-center" style="color:black;">
                                             <div class="col-md-6">
                                                 <span>Condicion de la respuesta:</span>
                                             </div>
                                             <div class="col-md-6">
-                                                <label class="radio-inline"><input type="radio" name="Opc1[]" value="1">Correcta</label>
+                                                <label class="radio-inline"><input type="radio" name="CondRes1[]" value="1">Correcta</label>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-5 col-md-offset-1">
                                         <h3><span class="label label-default">Respuesta 2: </span></h3>
-                                        <input type="text" name="Opc4[]" class="form-control">
+                                        <input type="text" name="OpcRes1[]" class="form-control">
                                         <div class="form-group text-center" style="color:black;">
                                             <div class="col-md-6">
                                                 <span>Condicion de la respuesta:</span>
                                             </div>
                                             <div class="col-md-6">
-                                                <label class="radio-inline"><input type="radio" name="Opc1[]" value="2">Correcta</label>
+                                                <label class="radio-inline"><input type="radio" name="CondRes1[]" value="2">Correcta</label>
                                             </div>
                                         </div>
                                     </div>
@@ -109,25 +146,25 @@
                                 <div class="row" style="padding-left: 8%;">
                                     <div class="col-md-5">
                                         <h3><span class="label label-default">Respuesta 3: </span></h3>
-                                        <input type="text" name="Opc4[]" class="form-control">
+                                        <input type="text" name="OpcRes1[]" class="form-control">
                                         <div class="form-group text-center" style="color:black;">
                                             <div class="col-md-6">
                                                 <span>Condicion de la respuesta:</span>
                                             </div>
                                             <div class="col-md-6">
-                                                <label class="radio-inline"><input type="radio" name="Opc1[]" value="3" checked>Correcta</label>
+                                                <label class="radio-inline"><input type="radio" name="CondRes1[]" value="3" checked>Correcta</label>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-5 col-md-offset-1">
                                         <h3><span class="label label-default">Respuesta 4: </span></h3>
-                                        <input type="text" name="Opc4[]" class="form-control">
+                                        <input type="text" name="OpcRes1[]" class="form-control">
                                         <div class="form-group text-center" style="color:black;">
                                             <div class="col-md-6">
                                                 <span>Condicion de la respuesta:</span>
                                             </div>
                                             <div class="col-md-6">
-                                                <label class="radio-inline"><input type="radio" name="Opc1[]" value="4">Correcta</label>
+                                                <label class="radio-inline"><input type="radio" name="CondRes1[]" value="4">Correcta</label>
                                             </div>
                                         </div>
                                     </div>
@@ -137,25 +174,25 @@
                                 <div class="row" style="padding-left: 8%;">
                                     <div class="col-md-5">
                                         <h3><span class="label label-default">Respuesta 1: </span></h3>
-                                        <input type="text" name="Opc7[]" class="form-control">
+                                        <input type="text" name="OpcRes2[]" class="form-control">
                                         <div class="form-group text-center" style="color:black;">
                                             <div class="col-md-6">
                                                 <span>Condicion de la respuesta:</span>
                                             </div>
                                             <div class="col-md-6">
-                                                <label class="radio-inline"><input type="checkbox" name="Opc2[]" value="1"> Correcta</label>
+                                                <label class="radio-inline"><input type="checkbox" name="CondRes2[]" value="1"> Correcta</label>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-5 col-md-offset-1">
                                         <h3><span class="label label-default">Respuesta 2: </span></h3>
-                                        <input type="text" name="Opc7[]" class="form-control">
+                                        <input type="text" name="OpcRes2[]" class="form-control">
                                         <div class="form-group text-center" style="color:black;">
                                             <div class="col-md-6">
                                                 <span>Condicion de la respuesta:</span>
                                             </div>
                                             <div class="col-md-6">
-                                                <label class="radio-inline"><input type="checkbox" name="Opc2[]" value="2"> Correcta</label>
+                                                <label class="radio-inline"><input type="checkbox" name="CondRes2[]" value="2"> Correcta</label>
                                             </div>
                                         </div>
                                     </div>
@@ -163,25 +200,25 @@
                                 <div class="row" style="padding-left: 8%;">
                                     <div class="col-md-5">
                                         <h3><span class="label label-default">Respuesta 3: </span></h3>
-                                        <input type="text" name="Opc7[]" class="form-control">
+                                        <input type="text" name="OpcRes2[]" class="form-control">
                                         <div class="form-group text-center" style="color:black;">
                                             <div class="col-md-6">
                                                 <span>Condicion de la respuesta:</span>
                                             </div>
                                             <div class="col-md-6">
-                                                <label class="radio-inline"><input type="checkbox" name="Opc2[]" value="3"> Correcta</label>
+                                                <label class="radio-inline"><input type="checkbox" name="CondRes2[]" value="3"> Correcta</label>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-5 col-md-offset-1">
                                         <h3><span class="label label-default">Respuesta 4: </span></h3>
-                                        <input type="text" name="Opc7[]" class="form-control">
+                                        <input type="text" name="OpcRes2[]" class="form-control">
                                         <div class="form-group text-center" style="color:black;">
                                             <div class="col-md-6">
                                                 <span>Condicion de la respuesta:</span>
                                             </div>
                                             <div class="col-md-6">
-                                                <label class="radio-inline"><input type="checkbox" name="Opc2[]" value="4"> Correcta</label>
+                                                <label class="radio-inline"><input type="checkbox" name="CondRes2[]" value="4"> Correcta</label>
                                             </div>
                                         </div>
                                     </div>
@@ -189,25 +226,25 @@
                                 <div class="row" style="padding-left: 8%;">
                                     <div class="col-md-5">
                                         <h3><span class="label label-default">Respuesta 5: </span></h3>
-                                        <input type="text" name="Opc7[]" class="form-control">
+                                        <input type="text" name="OpcRes2[]" class="form-control">
                                         <div class="form-group text-center" style="color:black;">
                                             <div class="col-md-6">
                                                 <span>Condicion de la respuesta:</span>
                                             </div>
                                             <div class="col-md-6">
-                                                <label class="radio-inline"><input type="checkbox" name="Opc2[]" value="5" checked> Correcta</label>
+                                                <label class="radio-inline"><input type="checkbox" name="CondRes2[]" value="5" checked> Correcta</label>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-5 col-md-offset-1">
                                         <h3><span class="label label-default">Respuesta 6: </span></h3>
-                                        <input type="text" name="Opc7[]" class="form-control">
+                                        <input type="text" name="OpcRes2[]" class="form-control">
                                         <div class="form-group text-center" style="color:black;">
                                             <div class="col-md-6">
                                                 <span>Condicion de la respuesta:</span>
                                             </div>
                                             <div class="col-md-6">
-                                                <label class="radio-inline"><input type="checkbox" name="Opc2[]" value="6"> Correcta</label>
+                                                <label class="radio-inline"><input type="checkbox" name="CondRes2[]" value="6"> Correcta</label>
                                             </div>
                                         </div>
                                     </div>
@@ -215,43 +252,30 @@
                                 <div class="row" style="padding-left: 8%;">
                                     <div class="col-md-5">
                                         <h3><span class="label label-default">Respuesta 7: </span></h3>
-                                        <input type="text" name="Opc7[]" class="form-control">
+                                        <input type="text" name="OpcRes2[]" class="form-control">
                                         <div class="form-group text-center" style="color:black;">
                                             <div class="col-md-6">
                                                 <span>Condicion de la respuesta:</span>
                                             </div>
                                             <div class="col-md-6">
-                                                <label class="radio-inline"><input type="checkbox" name="Opc2[]" value="7"> Correcta</label>
+                                                <label class="radio-inline"><input type="checkbox" name="CondRes2[]" value="7"> Correcta</label>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group" id="RespTip3" style="display:none;"><!---->
+                                <div class="alert alert-danger alert-dismissible fade in text-center">
+                                    <!--<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>-->
+                                    <p><span class="glyphicon glyphicon-info-sign"></span> 
+                                    Favor de seleccionar la respuesta que sera correcta</p>
+                                </div>
                                 <div class="row" style="padding-left: 8%;">
-                                    <div class="col-md-5">
-                                        <h3><span class="label label-default">Respuesta 1: </span></h3>
-                                        <input type="text" name="Opc2[]" class="form-control">
-                                        <div class="form-group text-center" style="color:black;">
-                                            <div class="col-md-6">
-                                                <span>Condicion de la respuesta:</span>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="radio-inline"><input type="radio" name="Opc3[]" value="1">Correcta</label>
-                                            </div>
-                                        </div>
+                                    <div class="col-md-5 col-md-offset-1">
+                                        <h3><label class="label label-default"><input type="radio" name="OpcRes3[]" value="1">&nbsp; Cierto</label></h3>
                                     </div>
                                     <div class="col-md-5 col-md-offset-1">
-                                        <h3><span class="label label-default">Respuesta 2: </span></h3>
-                                        <input type="text" name="Opc2[]" class="form-control">
-                                        <div class="form-group text-center" style="color:black;">
-                                            <div class="col-md-6">
-                                                <span>Condicion de la respuesta:</span>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="radio-inline"><input type="radio" name="Opc3[]" value="2" checked>Correcta</label>
-                                            </div>
-                                        </div>
+                                        <h3><label class="label label-default"><input type="radio" name="OpcRes3[]" value="2" checked>&nbsp; Falso</label></h3>
                                     </div>
                                 </div>
                             </div>
@@ -259,111 +283,51 @@
                                 <div class="row" style="padding-left: 8%;">
                                     <div class="col-md-5">
                                         <h3><span class="label label-default">Alternativa 1: </span></h3>
-                                        <input type="text" name="Opc10[]" class="form-control">
+                                        <input type="text" name="OpcRes4[]" class="form-control">
                                     </div>
                                     <div class="col-md-5 col-md-offset-1">
-                                        <h3><span class="label label-default">Respuesta A: </span></h3>
-                                        <input type="text" name="Opc10[]" class="form-control">
-                                        <div class="form-group text-center" style="color:black;">
-                                            <div class="col-md-6">
-                                                <span>Alternativa de relacion:</span>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="radio-inline"><input type="radio" name="Opc41[]" value="1" checked>Alternativa 1</label>
-                                                <label class="radio-inline"><input type="radio" name="Opc41[]" value="2">Alternativa 2</label>
-                                                <label class="radio-inline"><input type="radio" name="Opc41[]" value="3">Alternativa 3</label>
-                                                <label class="radio-inline"><input type="radio" name="Opc41[]" value="4">Alternativa 4</label>
-                                                <label class="radio-inline"><input type="radio" name="Opc41[]" value="5">Alternativa 5</label>
-                                            </div>
-                                        </div>
+                                        <h3><span class="label label-default">Relacion Alternativa 1: </span></h3>
+                                        <input type="text" name="OpcRes41[]" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row" style="padding-left: 8%;">
                                     <div class="col-md-5">
                                         <h3><span class="label label-default">Alternativa 2: </span></h3>
-                                        <input type="text" name="Opc10[]" class="form-control">
+                                        <input type="text" name="OpcRes4[]" class="form-control">
                                     </div>
                                     <div class="col-md-5 col-md-offset-1">
-                                        <h3><span class="label label-default">Respuesta B: </span></h3>
-                                        <input type="text" name="Opc10[]" class="form-control">
-                                        <div class="form-group text-center" style="color:black;">
-                                            <div class="col-md-6">
-                                                <span>Alternativa de relacion:</span>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="radio-inline"><input type="radio" name="Opc42[]" value="1" checked>Alternativa 1</label>
-                                                <label class="radio-inline"><input type="radio" name="Opc42[]" value="2">Alternativa 2</label>
-                                                <label class="radio-inline"><input type="radio" name="Opc42[]" value="3">Alternativa 3</label>
-                                                <label class="radio-inline"><input type="radio" name="Opc42[]" value="4">Alternativa 4</label>
-                                                <label class="radio-inline"><input type="radio" name="Opc42[]" value="5">Alternativa 5</label>
-                                            </div>
-                                        </div>
+                                        <h3><span class="label label-default">Relacion Alternativa 2: </span></h3>
+                                        <input type="text" name="OpcRes41[]" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row" style="padding-left: 8%;">
                                     <div class="col-md-5">
                                         <h3><span class="label label-default">Alternativa 3: </span></h3>
-                                        <input type="text" name="Opc10[]" class="form-control">
+                                        <input type="text" name="OpcRes4[]" class="form-control">
                                     </div>
                                     <div class="col-md-5 col-md-offset-1">
-                                        <h3><span class="label label-default">Respuesta C: </span></h3>
-                                        <input type="text" name="Opc10[]" class="form-control">
-                                        <div class="form-group text-center" style="color:black;">
-                                            <div class="col-md-6">
-                                                <span>Alternativa de relacion:</span>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="radio-inline"><input type="radio" name="Opc43[]" value="1" checked>Alternativa 1</label>
-                                                <label class="radio-inline"><input type="radio" name="Opc43[]" value="2">Alternativa 2</label>
-                                                <label class="radio-inline"><input type="radio" name="Opc43[]" value="3">Alternativa 3</label>
-                                                <label class="radio-inline"><input type="radio" name="Opc43[]" value="4">Alternativa 4</label>
-                                                <label class="radio-inline"><input type="radio" name="Opc43[]" value="5">Alternativa 5</label>
-                                            </div>
-                                        </div>
+                                        <h3><span class="label label-default">Relacion Alternativa 3: </span></h3>
+                                        <input type="text" name="OpcRes41[]" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row" style="padding-left: 8%;">
                                     <div class="col-md-5">
                                         <h3><span class="label label-default">Alternativa 4: </span></h3>
-                                        <input type="text" name="Opc10[]" class="form-control">
+                                        <input type="text" name="OpcRes4[]" class="form-control">
                                     </div>
                                     <div class="col-md-5 col-md-offset-1">
-                                        <h3><span class="label label-default">Respuesta D: </span></h3>
-                                        <input type="text" name="Opc10[]" class="form-control">
-                                        <div class="form-group text-center" style="color:black;">
-                                            <div class="col-md-6">
-                                                <span>Alternativa de relacion:</span>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="radio-inline"><input type="radio" name="Opc44[]" value="1" checked>Alternativa 1</label>
-                                                <label class="radio-inline"><input type="radio" name="Opc44[]" value="2">Alternativa 2</label>
-                                                <label class="radio-inline"><input type="radio" name="Opc44[]" value="3">Alternativa 3</label>
-                                                <label class="radio-inline"><input type="radio" name="Opc44[]" value="3">Alternativa 4</label>
-                                                <label class="radio-inline"><input type="radio" name="Opc44[]" value="3">Alternativa 5</label>
-                                            </div>
-                                        </div>
+                                        <h3><span class="label label-default">Relacion Alternativa 4: </span></h3>
+                                        <input type="text" name="OpcRes41[]" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row" style="padding-left: 8%;">
                                     <div class="col-md-5">
                                         <h3><span class="label label-default">Alternativa 5: </span></h3>
-                                        <input type="text" name="Opc10[]" class="form-control">
+                                        <input type="text" name="OpcRes4[]" class="form-control">
                                     </div>
                                     <div class="col-md-5 col-md-offset-1">
-                                        <h3><span class="label label-default">Respuesta E: </span></h3>
-                                        <input type="text" name="Opc10[]" class="form-control">
-                                        <div class="form-group text-center" style="color:black;">
-                                            <div class="col-md-6">
-                                                <span>Alternativa de relacion:</span>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <label class="radio-inline"><input type="radio" name="Opc45[]" value="1" checked>Alternativa 1</label>
-                                                <label class="radio-inline"><input type="radio" name="Opc45[]" value="2">Alternativa 2</label>
-                                                <label class="radio-inline"><input type="radio" name="Opc45[]" value="3">Alternativa 3</label>
-                                                <label class="radio-inline"><input type="radio" name="Opc45[]" value="4">Alternativa 4</label>
-                                                <label class="radio-inline"><input type="radio" name="Opc45[]" value="5">Alternativa 5</label>
-                                            </div>
-                                        </div>
+                                        <h3><span class="label label-default">Relacion Alternativa 5: </span></h3>
+                                        <input type="text" name="OpcRes41[]" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -371,7 +335,7 @@
                                 <div class="row" style="padding-left: 8%;">
                                     <div class="col-md-5">
                                         <h3><span class="label label-default">Respuesta 1: </span></h3>
-                                        <input type="text" name="Opc5Ord[]" class="form-control">
+                                        <input type="text" name="OpcRes5[]" class="form-control">
                                         <div class="form-group text-center" style="color:black;">
                                             <div class="col-md-12">
                                                 <span>¿En que posicion, esta respuesta es correcta?:</span>
@@ -379,17 +343,20 @@
                                         </div>
                                         <div class="form-group text-center" style="color:black;">
                                             <div class="col-md-12">
-                                                <label class="radio-inline"><input type="radio" name="Opc51[]" value="1" checked>1</label>
-                                                <label class="radio-inline"><input type="radio" name="Opc51[]" value="2">2</label>
-                                                <label class="radio-inline"><input type="radio" name="Opc51[]" value="3">3</label>
-                                                <label class="radio-inline"><input type="radio" name="Opc51[]" value="4">4</label>
-                                                <label class="radio-inline"><input type="radio" name="Opc51[]" value="5">5</label>
+                                                <select class="btn btn-default" name="CondRes51" id="Res51" onclick="BloqOrdSel(this.value,'Res51');">
+                                                    <option hidden value="" selected>Posiciones</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-5 col-md-offset-1">
                                         <h3><span class="label label-default">Respuesta 2: </span></h3>
-                                        <input type="text" name="Opc5Ord[]" class="form-control">
+                                        <input type="text" name="OpcRes5[]" class="form-control">
                                         <div class="form-group text-center" style="color:black;">
                                             <div class="col-md-12">
                                                 <span>¿En que posicion, esta respuesta es correcta?:</span>
@@ -397,11 +364,14 @@
                                         </div>
                                         <div class="form-group text-center" style="color:black;">
                                             <div class="col-md-12">
-                                                <label class="radio-inline"><input type="radio" name="Opc52[]" value="1" checked>1</label>
-                                                <label class="radio-inline"><input type="radio" name="Opc52[]" value="2">2</label>
-                                                <label class="radio-inline"><input type="radio" name="Opc52[]" value="3">3</label>
-                                                <label class="radio-inline"><input type="radio" name="Opc52[]" value="4">4</label>
-                                                <label class="radio-inline"><input type="radio" name="Opc52[]" value="5">5</label>
+                                                <select class="btn btn-default" name="CondRes52" id="Res52" onclick="BloqOrdSel(this.value,'Res52');">
+                                                    <option hidden value="" selected>Posiciones</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -409,7 +379,7 @@
                                 <div class="row" style="padding-left: 8%;">
                                     <div class="col-md-5">
                                         <h3><span class="label label-default">Respuesta 3: </span></h3>
-                                        <input type="text" name="Opc5Ord[]" class="form-control">
+                                        <input type="text" name="OpcRes5[]" class="form-control">
                                         <div class="form-group text-center" style="color:black;">
                                             <div class="col-md-12">
                                                 <span>¿En que posicion, esta respuesta es correcta?:</span>
@@ -417,17 +387,20 @@
                                         </div>
                                         <div class="form-group text-center" style="color:black;">
                                             <div class="col-md-12">
-                                                <label class="radio-inline"><input type="radio" name="Opc53[]" value="1" checked>1</label>
-                                                <label class="radio-inline"><input type="radio" name="Opc53[]" value="2">2</label>
-                                                <label class="radio-inline"><input type="radio" name="Opc53[]" value="3">3</label>
-                                                <label class="radio-inline"><input type="radio" name="Opc53[]" value="4">4</label>
-                                                <label class="radio-inline"><input type="radio" name="Opc53[]" value="5">5</label>
+                                                <select class="btn btn-default" name="CondRes53" id="Res53" onclick="BloqOrdSel(this.value,'Res53');">
+                                                    <option hidden value="" selected>Posiciones</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-5 col-md-offset-1">
                                         <h3><span class="label label-default">Respuesta 4: </span></h3>
-                                        <input type="text" name="Opc5Ord[]" class="form-control">
+                                        <input type="text" name="OpcRes5[]" class="form-control">
                                         <div class="form-group text-center" style="color:black;">
                                             <div class="col-md-12">
                                                 <span>¿En que posicion, esta respuesta es correcta?:</span>
@@ -435,11 +408,14 @@
                                         </div>
                                         <div class="form-group text-center" style="color:black;">
                                             <div class="col-md-12">
-                                                <label class="radio-inline"><input type="radio" name="Opc54" checked>1</label>
-                                                <label class="radio-inline"><input type="radio" name="Opc54">2</label>
-                                                <label class="radio-inline"><input type="radio" name="Opc54">3</label>
-                                                <label class="radio-inline"><input type="radio" name="Opc54">4</label>
-                                                <label class="radio-inline"><input type="radio" name="Opc54">5</label>
+                                                <select class="btn btn-default" name="CondRes54" id="Res54" onclick="BloqOrdSel(this.value,'Res54');">
+                                                    <option hidden value="" selected>Posiciones</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
@@ -447,7 +423,7 @@
                                 <div class="row" style="padding-left: 8%;">
                                     <div class="col-md-5">
                                         <h3><span class="label label-default">Respuesta 5: </span></h3>
-                                        <input type="text" name="Opc5Ord[]" class="form-control">
+                                        <input type="text" name="OpcRes5[]" class="form-control">
                                         <div class="form-group text-center" style="color:black;">
                                             <div class="col-md-12">
                                                 <span>¿En que posicion, esta respuesta es correcta?:</span>
@@ -455,55 +431,249 @@
                                         </div>
                                         <div class="form-group text-center" style="color:black;">
                                             <div class="col-md-12">
-                                                <label class="radio-inline"><input type="radio" name="Opc55" checked>1</label>
-                                                <label class="radio-inline"><input type="radio" name="Opc55">2</label>
-                                                <label class="radio-inline"><input type="radio" name="Opc55">3</label>
-                                                <label class="radio-inline"><input type="radio" name="Opc55">4</label>
-                                                <label class="radio-inline"><input type="radio" name="Opc55">5</label>
+                                                <select class="btn btn-default" name="CondRes55" id="Res55" onclick="BloqOrdSel(this.value,'Res55');">
+                                                    <option hidden value="" selected>Posiciones</option>
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    <option value="3">3</option>
+                                                    <option value="4">4</option>
+                                                    <option value="5">5</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group" id="RespTip6" style="display:none;"><!---->
-                                <div class="row" style="padding-left: 8%;">
-                                    <div class="col-md-5">
-                                        <h3><span class="label label-default">Oracion Parte 1: </span></h3>
-                                        <input type="text" class="form-control">
+                                <div class="alert alert-warning alert-dismissible fade in">
+                                    <!--<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>-->
+                                    <p><span class="glyphicon glyphicon-info-sign"></span> 
+                                    En el campo oracion de la pregunta introduzca un guion bajo "_" donde la opcion seleccionada en la lista 
+                                    sea la palabra a completar</p>
+                                </div>
+                                <div id="Lista1" style="display:none;">
+                                    <div class="text-center">
+                                        <h3><span class="label label-warning">Lista 1</span></h3>
                                     </div>
-                                    <div class="col-md-5 col-md-offset-1">
-                                        <h3><span class="label label-default">Opciones de completado 1: </span></h3>
-                                        <input type="text" class="form-control">
+                                    <div class="row" style="padding-left: 8%;">
+                                        <div class="col-md-5">
+                                            <h3><span class="label label-default">Alternativa 1</span></h3>
+                                            <input type="text" name="OpcRes61[]" class="form-control">
+                                            <div class="form-group text-center" style="color:black;">
+                                                <div class="col-md-6">
+                                                    <span>Condicion de la respuesta:</span>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="radio-inline"><input type="radio" name="CondRes61[]" value="1" checked>Correcta</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5 col-md-offset-1">
+                                            <h3><span class="label label-default">Alternativa 2</span></h3>
+                                            <input type="text" name="OpcRes61[]" class="form-control">
+                                            <div class="form-group text-center" style="color:black;">
+                                                <div class="col-md-6">
+                                                    <span>Condicion de la respuesta:</span>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="radio-inline"><input type="radio" name="CondRes61[]" value="2">Correcta</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="padding-left: 8%;">
+                                        <div class="col-md-5">
+                                            <h3><span class="label label-default">Alternativa 3</span></h3>
+                                            <input type="text" name="OpcRes61[]" class="form-control">
+                                            <div class="form-group text-center" style="color:black;">
+                                                <div class="col-md-6">
+                                                    <span>Condicion de la respuesta:</span>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="radio-inline"><input type="radio" name="CondRes61[]" value="3">Correcta</label>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="row" style="padding-left: 8%;">
-                                    <div class="col-md-5">
-                                        <h3><span class="label label-default">Oracion Parte 2: </span></h3>
-                                        <input type="text" class="form-control">
+                                <div id="Lista2" style="display:none;">
+                                    <div class="text-center">
+                                        <h3><span class="label label-warning">Lista 2</span></h3>
                                     </div>
-                                    <div class="col-md-5 col-md-offset-1">
-                                        <h3><span class="label label-default">Opciones de completado 2: </span></h3>
-                                        <input type="text" class="form-control">
+                                    <div class="row" style="padding-left: 8%;">
+                                        <div class="col-md-5">
+                                            <h3><span class="label label-default">Alternativa 1</span></h3>
+                                            <input type="text" name="OpcRes62[]" class="form-control">
+                                            <div class="form-group text-center" style="color:black;">
+                                                <div class="col-md-6">
+                                                    <span>Condicion de la respuesta:</span>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="radio-inline"><input type="radio" name="CondRes62[]" value="1" checked>Correcta</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5 col-md-offset-1">
+                                            <h3><span class="label label-default">Alternativa 2</span></h3>
+                                            <input type="text" name="OpcRes62[]" class="form-control">
+                                            <div class="form-group text-center" style="color:black;">
+                                                <div class="col-md-6">
+                                                    <span>Condicion de la respuesta:</span>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="radio-inline"><input type="radio" name="CondRes62[]" value="2">Correcta</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="padding-left: 8%;">
+                                        <div class="col-md-5">
+                                            <h3><span class="label label-default">Alternativa 3</span></h3>
+                                            <input type="text" name="OpcRes62[]" class="form-control">
+                                            <div class="form-group text-center" style="color:black;">
+                                                <div class="col-md-6">
+                                                    <span>Condicion de la respuesta:</span>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="radio-inline"><input type="radio" name="CondRes62[]" value="3">Correcta</label>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="row" style="padding-left: 8%;">
-                                    <div class="col-md-5">
-                                        <h3><span class="label label-default">Oracion Parte 3: </span></h3>
-                                        <input type="text" class="form-control">
+                                <div id="Lista3" style="display:none;">
+                                    <div class="text-center">
+                                        <h3><span class="label label-warning">Lista 3</span></h3>
                                     </div>
-                                    <div class="col-md-5 col-md-offset-1">
-                                        <h3><span class="label label-default">Opciones de completado 3: </span></h3>
-                                        <input type="text" class="form-control">
+                                    <div class="row" style="padding-left: 8%;">
+                                        <div class="col-md-5">
+                                            <h3><span class="label label-default">Alternativa 1</span></h3>
+                                            <input type="text" name="OpcRes63[]" class="form-control">
+                                            <div class="form-group text-center" style="color:black;">
+                                                <div class="col-md-6">
+                                                    <span>Condicion de la respuesta:</span>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="radio-inline"><input type="radio" name="CondRes63[]" value="1" checked>Correcta</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5 col-md-offset-1">
+                                            <h3><span class="label label-default">Alternativa 2</span></h3>
+                                            <input type="text" name="OpcRes63[]" class="form-control">
+                                            <div class="form-group text-center" style="color:black;">
+                                                <div class="col-md-6">
+                                                    <span>Condicion de la respuesta:</span>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="radio-inline"><input type="radio" name="CondRes63[]" value="2">Correcta</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="padding-left: 8%;">
+                                        <div class="col-md-5">
+                                            <h3><span class="label label-default">Alternativa 3</span></h3>
+                                            <input type="text" name="OpcRes63[]" class="form-control">
+                                            <div class="form-group text-center" style="color:black;">
+                                                <div class="col-md-6">
+                                                    <span>Condicion de la respuesta:</span>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="radio-inline"><input type="radio" name="CondRes63[]" value="3">Correcta</label>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="row" style="padding-left: 8%;">
-                                    <div class="col-md-5">
-                                        <h3><span class="label label-default">Oracion Parte 4: </span></h3>
-                                        <input type="text" class="form-control">
+                                <div id="Lista4" style="display:none;">
+                                    <div class="text-center">
+                                        <h3><span class="label label-warning">Lista 4</span></h3>
                                     </div>
-                                    <div class="col-md-5 col-md-offset-1">
-                                        <h3><span class="label label-default">Opciones de completado 4: </span></h3>
-                                        <input type="text" class="form-control">
+                                    <div class="row" style="padding-left: 8%;">
+                                        <div class="col-md-5">
+                                            <h3><span class="label label-default">Alternativa 1</span></h3>
+                                            <input type="text" name="OpcRes64[]" class="form-control">
+                                            <div class="form-group text-center" style="color:black;">
+                                                <div class="col-md-6">
+                                                    <span>Condicion de la respuesta:</span>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="radio-inline"><input type="radio" name="CondRes64[]" value="1" checked>Correcta</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5 col-md-offset-1">
+                                            <h3><span class="label label-default">Alternativa 2</span></h3>
+                                            <input type="text" name="OpcRes64[]" class="form-control">
+                                            <div class="form-group text-center" style="color:black;">
+                                                <div class="col-md-6">
+                                                    <span>Condicion de la respuesta:</span>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="radio-inline"><input type="radio" name="CondRes64[]" value="2">Correcta</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="padding-left: 8%;">
+                                        <div class="col-md-5">
+                                            <h3><span class="label label-default">Alternativa 3</span></h3>
+                                            <input type="text" name="OpcRes64[]" class="form-control">
+                                            <div class="form-group text-center" style="color:black;">
+                                                <div class="col-md-6">
+                                                    <span>Condicion de la respuesta:</span>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="radio-inline"><input type="radio" name="CondRes64[]" value="3">Correcta</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="Lista5" style="display:none;">
+                                    <div class="text-center">
+                                        <h3><span class="label label-warning">Lista 5</span></h3>
+                                    </div>
+                                    <div class="row" style="padding-left: 8%;">
+                                        <div class="col-md-5">
+                                            <h3><span class="label label-default">Alternativa 1</span></h3>
+                                            <input type="text" name="OpcRes65[]" class="form-control">
+                                            <div class="form-group text-center" style="color:black;">
+                                                <div class="col-md-6">
+                                                    <span>Condicion de la respuesta:</span>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="radio-inline"><input type="radio" name="CondRes65[]" value="1" checked>Correcta</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5 col-md-offset-1">
+                                            <h3><span class="label label-default">Alternativa 2</span></h3>
+                                            <input type="text" name="OpcRes65[]" class="form-control">
+                                            <div class="form-group text-center" style="color:black;">
+                                                <div class="col-md-6">
+                                                    <span>Condicion de la respuesta:</span>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="radio-inline"><input type="radio" name="CondRes65[]" value="2">Correcta</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="padding-left: 8%;">
+                                        <div class="col-md-5">
+                                            <h3><span class="label label-default">Alternativa 3</span></h3>
+                                            <input type="text" name="OpcRes65[]" class="form-control">
+                                            <div class="form-group text-center" style="color:black;">
+                                                <div class="col-md-6">
+                                                    <span>Condicion de la respuesta:</span>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label class="radio-inline"><input type="radio" name="CondRes65[]" value="3">Correcta</label>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -511,7 +681,7 @@
                                 <div class="row" style="padding-left: 8%;">
                                     <div class="col-md-5">
                                         <h3><span class="label label-default">Respuesta 1: </span></h3>
-                                        <input type="text" class="form-control">
+                                        <input type="text" name="OpcRes7[]" class="form-control">
                                     </div>
                                     <div class="col-md-5 col-md-offset-1">
                                         <h3><span class="label label-default">Respuesta 2: </span></h3>
@@ -521,17 +691,17 @@
                                 <div class="row" style="padding-left: 8%;">
                                     <div class="col-md-5">
                                         <h3><span class="label label-default">Respuesta 3: </span></h3>
-                                        <input type="text" class="form-control">
+                                        <input type="text" name="OpcRes7[]" class="form-control">
                                     </div>
                                     <div class="col-md-5 col-md-offset-1">
                                         <h3><span class="label label-default">Respuesta 4: </span></h3>
-                                        <input type="text" class="form-control">
+                                        <input type="text" name="OpcRes7[]" class="form-control">
                                     </div>
                                 </div>
                                 <div class="row" style="padding-left: 8%;">
                                     <div class="col-md-5">
                                         <h3><span class="label label-default">Respuesta 5: </span></h3>
-                                        <input type="text" class="form-control">
+                                        <input type="text" name="OpcRes7[]" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -542,7 +712,7 @@
                                         <button type="submit" class="form-control btn btn-success active" name="enviar">Agregar Pregunta</button>
                                     </div>
                                     <div class="col-md-3 col-md-offset-2">
-                                        <a href="../Curso/Sel_Seccion.php" class="form-control btn btn-danger"><span class="glyphicon glyphicon-remove-circle"></span> Cancelar</a>
+                                        <a href="../Edit_Cuest.php" class="form-control btn btn-danger"><span class="glyphicon glyphicon-remove-circle"></span> Cancelar</a>
                                     </div>
                                 </div>
                             </div>
@@ -553,7 +723,15 @@
         </div>
     </div>
     <script type="text/javascript" src="../../../../../CmpVis/jquery/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../../../../../Funcionamiento/Javascripts/ver-foto.js"></script>
     <script type="text/javascript" src="../../../../../Funcionamiento/Javascripts/New_Preg.js"></script>
+    <script type="text/javascript" src="../../../../../Funcionamiento/Javascripts/Crear_Curso.js"></script>
     <script type="text/javascript" src="../../../../../CmpVis/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+    <script>
+        $(function () 
+        {
+            document.getElementById('RMNo').checked=true;
+        });
+    </script>
 </body>
 </html>

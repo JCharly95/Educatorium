@@ -7,7 +7,16 @@
     }
 
     $user=$_SESSION['Username'];
-    $NomCuest=$_POST['SelEditCuest'];
+
+    if(isset($_POST['enviar']))
+    {
+        $NomCuest=$_POST['SelEditCuest'];
+    }
+    else
+    {
+        $NomCuest=$_SESSION['CuestEdit'];
+    }
+    
     $_SESSION['CuestEdit']=$NomCuest;
     /*echo $NomCuest;
     $ID_Mat=0;

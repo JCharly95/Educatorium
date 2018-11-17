@@ -103,9 +103,9 @@
                                                     <label class="btn btn-primary">
                                                         <input type="file" id="files" name="imagen" style="display: none;" />
                                                         <i class="fas fa-plus-circle fa-2x"></i> &nbsp;Seleccionar imagen...
-                                                    </label>                                                    
+                                                    </label>
                                                 </div>
-                                            </div>                                            
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">

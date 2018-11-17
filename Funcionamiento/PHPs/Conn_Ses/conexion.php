@@ -1,5 +1,5 @@
 <?php 
-    $conexion = new mysqli('localhost', 'id7603036_juan', 'Passmysql2', 'id7603036_proy_educatorium');
+    $conexion = new mysqli('localhost', '2861315_educatorium', 'Passmysql3', 'proy_educatorium');
     $conexion->set_charset("utf-8");
     if($conexion->connect_error)
     {
