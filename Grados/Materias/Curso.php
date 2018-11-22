@@ -101,7 +101,7 @@
         </div>
         <br>
         <div class="form-group text-center">
-            <a href="#" class="btn btn-danger" onclick="javascript:window.history.back();"><i class="fas fa-arrow-left"></i><b>&nbsp; Regresar a los cursos</b></a>
+            <a href="<?php echo '../../'.substr($_SESSION['ArchiMat'],10); ?>" class="btn btn-danger"><i class="fas fa-arrow-left"></i><b>&nbsp; Regresar a los cursos</b></a>
         </div>
     </div>
     <script type="text/javascript" src="../../CmpVis/jquery/jquery-3.3.1.js"></script>

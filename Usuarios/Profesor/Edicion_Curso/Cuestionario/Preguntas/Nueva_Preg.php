@@ -53,7 +53,7 @@
                         <span class="lead text-primary">Creacion de Pregunta</span>
                     </div>
                     <div class="panel-body">
-                        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data">
+                        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" enctype="multipart/form-data"><!---->
                             <div class="form-group">
                                 <div class="row" style="padding-left: 8%;">
                                     <div class="col-md-5">
@@ -344,7 +344,7 @@
                                         <div class="form-group text-center" style="color:black;">
                                             <div class="col-md-12">
                                                 <select class="btn btn-default" name="CondRes51" id="Res51" onclick="BloqOrdSel(this.value,'Res51');">
-                                                    <option hidden value="" selected>Posiciones</option>
+                                                    <option hidden value="R1NPos" selected>Posiciones</option>
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>
                                                     <option value="3">3</option>
@@ -365,7 +365,7 @@
                                         <div class="form-group text-center" style="color:black;">
                                             <div class="col-md-12">
                                                 <select class="btn btn-default" name="CondRes52" id="Res52" onclick="BloqOrdSel(this.value,'Res52');">
-                                                    <option hidden value="" selected>Posiciones</option>
+                                                    <option hidden value="R2NPos" selected>Posiciones</option>
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>
                                                     <option value="3">3</option>
@@ -388,7 +388,7 @@
                                         <div class="form-group text-center" style="color:black;">
                                             <div class="col-md-12">
                                                 <select class="btn btn-default" name="CondRes53" id="Res53" onclick="BloqOrdSel(this.value,'Res53');">
-                                                    <option hidden value="" selected>Posiciones</option>
+                                                    <option hidden value="R3NPos" selected>Posiciones</option>
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>
                                                     <option value="3">3</option>
@@ -409,7 +409,7 @@
                                         <div class="form-group text-center" style="color:black;">
                                             <div class="col-md-12">
                                                 <select class="btn btn-default" name="CondRes54" id="Res54" onclick="BloqOrdSel(this.value,'Res54');">
-                                                    <option hidden value="" selected>Posiciones</option>
+                                                    <option hidden value="R4NPos" selected>Posiciones</option>
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>
                                                     <option value="3">3</option>
@@ -432,7 +432,7 @@
                                         <div class="form-group text-center" style="color:black;">
                                             <div class="col-md-12">
                                                 <select class="btn btn-default" name="CondRes55" id="Res55" onclick="BloqOrdSel(this.value,'Res55');">
-                                                    <option hidden value="" selected>Posiciones</option>
+                                                    <option hidden value="R5NPos" selected>Posiciones</option>
                                                     <option value="1">1</option>
                                                     <option value="2">2</option>
                                                     <option value="3">3</option>
@@ -464,7 +464,7 @@
                                                     <span>Condicion de la respuesta:</span>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <label class="radio-inline"><input type="radio" name="CondRes61[]" value="1" checked>Correcta</label>
+                                                    <label class="radio-inline"><input type="radio" name="CondRes61[]" value="1">Correcta</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -509,7 +509,7 @@
                                                     <span>Condicion de la respuesta:</span>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <label class="radio-inline"><input type="radio" name="CondRes62[]" value="1" checked>Correcta</label>
+                                                    <label class="radio-inline"><input type="radio" name="CondRes62[]" value="1" >Correcta</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -554,7 +554,7 @@
                                                     <span>Condicion de la respuesta:</span>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <label class="radio-inline"><input type="radio" name="CondRes63[]" value="1" checked>Correcta</label>
+                                                    <label class="radio-inline"><input type="radio" name="CondRes63[]" value="1" >Correcta</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -599,7 +599,7 @@
                                                     <span>Condicion de la respuesta:</span>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <label class="radio-inline"><input type="radio" name="CondRes64[]" value="1" checked>Correcta</label>
+                                                    <label class="radio-inline"><input type="radio" name="CondRes64[]" value="1" >Correcta</label>
                                                 </div>
                                             </div>
                                         </div>
@@ -644,7 +644,7 @@
                                                     <span>Condicion de la respuesta:</span>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <label class="radio-inline"><input type="radio" name="CondRes65[]" value="1" checked>Correcta</label>
+                                                    <label class="radio-inline"><input type="radio" name="CondRes65[]" value="1" >Correcta</label>
                                                 </div>
                                             </div>
                                         </div>

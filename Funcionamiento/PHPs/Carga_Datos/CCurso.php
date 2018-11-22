@@ -9,7 +9,7 @@
     
     $cont=0;
     //Nombre del curso a buscar en la BD
-    $VerCur=$_POST['CurSel'];
+    $VerCur=$_SESSION['SelCur'];
     //Variables de la imagen de bienvenida
     $rutaSav=$RutaImg=$RutImgCur="";
     //Variables del mensaje de bienvenida

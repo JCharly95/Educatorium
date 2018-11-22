@@ -1,6 +1,7 @@
 <?php
     session_start();
     $_SESSION['Mat']='Espa 3';
+    $_SESSION['ArchiMat']='../../../../'.substr(str_replace('\\',"/",__FILE__),28);
     require '../../../Funcionamiento/PHPs/Carga_Datos/Dat_Esc/CMaterias.php';
 ?>
 <!DOCTYPE html>

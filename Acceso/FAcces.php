@@ -1,7 +1,7 @@
-<!DOCTYPE html>
 <?php
     require '../Funcionamiento/PHPs/login.php';
 ?>
+<!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8">
@@ -73,7 +73,7 @@
                                         <input type="password" id="pass" name="Pass" class="form-control" placeholder="Introduce tu contraseña" value="<?php echo $contraseña;?>">
                                     </div>
                                     <div class="col-md-1">
-                                        <input type="checkbox" onclick="showpass('pass')"> Ver
+                                        <label><input type="checkbox" onclick="showpass('pass')"> Ver</label>
                                     </div>
                                     <div class="col-md-2">
                                         <span class="error"><?php echo $pas_err;?></span>

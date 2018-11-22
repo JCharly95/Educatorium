@@ -1,6 +1,7 @@
 <?php
     session_start();
     $_SESSION['Mat']='Biolo';
+    $_SESSION['ArchiMat']='../../../../'.substr(str_replace('\\',"/",__FILE__),28);
     require '../../../Funcionamiento/PHPs/Carga_Datos/Dat_Esc/CMaterias.php';
 ?>
 <!DOCTYPE html>
@@ -84,7 +85,7 @@
             </div>
             <div class="form-group">
                 <div class="col-md-3 col-md-offset-5 regreso">
-                    <a href="../../PrimerGra.php" class="btn btn-danger" ><i class="fas fa-arrow-left"></i>&nbsp; <b>Regresar</b></a>
+                    <a href="../../PrimerGra.php" class="btn btn-danger"><i class="fas fa-arrow-left"></i>&nbsp; <b>Regresar</b></a>
                 </div>
             </div>
         </div>

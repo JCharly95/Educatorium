@@ -1,6 +1,7 @@
 <?php
     session_start();
     $_SESSION['Mat']='Espa 1';
+    $_SESSION['ArchiMat']='../../../../'.substr(str_replace('\\',"/",__FILE__),28);
     require '../../../Funcionamiento/PHPs/Carga_Datos/Dat_Esc/CMaterias.php';
 ?>
 <!DOCTYPE html>
@@ -26,7 +27,7 @@
                     </div>
                 </div>
             </div>
-            <form action="../Curso.php" method="post">
+            <form action="../Password.php" method="post">
                 <?php
                     $ArrConsul=array();
                     $sql="select Curso.Nombre as NomCur, Curso.Password as PassCur, Profesor.Nombre as NomProf, Ape_Pat from Curso inner join Profesor on (Profesor_ID=ID_Profesor) where Materia_ID=".$ID_Mat.";";
@@ -60,7 +61,7 @@
                                     $StatusCur="Publico";
                                 }
                                 echo '<div class="col-md-3 col-md-offset-1 text-center" style="border: 2px solid black; border-radius: 15px; background-color: lightgreen;">'.
-                                        '<input type="radio" name="CurSel" id="CurSel'.$cols.'" style="display: none;" value="'.$ArrConsul[$cols]['NomCur'].'" onchange="this.form.submit();">'.
+                                        '<input type="radio" name="NameCurSel" id="CurSel'.$cols.'" style="display: none;" value="'.$ArrConsul[$cols]['NomCur'].'" onchange="this.form.submit();">'.
                                         '<label for="CurSel'.$cols.'">'.$ArrConsul[$cols]['NomCur'].'<br>Impartido por: '.$ArrConsul[$cols]['NomProf'].' '.$ArrConsul[$cols]['Ape_Pat'].
                                         '<br>Status: '.$StatusCur.'</label>'.
                                     '</div>';

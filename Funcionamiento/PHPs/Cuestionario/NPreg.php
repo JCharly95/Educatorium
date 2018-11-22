@@ -17,6 +17,7 @@
     $HImg=false;
     //Alternativas a recibir
     $Alterns=array();
+    $NonAlter=array();
     //Condicion de las alternativas a recibir
     $Cond_Alterns=array();
     //Relacion de columnas
@@ -116,7 +117,10 @@
         $ID_Preg=$conexion->insert_id;//Obtener el id de la pregunta creada
 
         //Dado lo largo de la consulta se opta por fraccionarla en varias cadenas de texto
-        $sql="select Valor from Pregunta inner join Cuestionario on (Cuestionario_ID=ID_Cuestionario) inner join Curso on (Curso_ID=ID_Curso) inner join Profesor on (Profesor_ID=ID_Profesor) where Username='".$User."' and Cuestionario.Nombre='".$Cuestion."';";
+        $sql1="select Valor from Pregunta inner join Cuestionario on (Cuestionario_ID=ID_Cuestionario)";
+        $sql2=" inner join Curso on (Curso_ID=ID_Curso) inner join Profesor on (Profesor_ID=ID_Profesor)";
+        $sql3=" where Username='".$User."' and Cuestionario.Nombre='".$Cuestion."';";
+        $sql=$sql1.$sql2.$sql3;
         $consulta=$conexion->query($sql);
         $Val=$consulta->num_rows;
 
@@ -139,9 +143,7 @@
                 {
                     //Primero se averigua cual es la alternativa correcta, segun el profesor
                     if(!isset($Pos_Corr))
-                    {
                         $Posicion=$Pos_Corr;
-                    }
                 }
 
                 for($cont=0;$cont<count($Alterns);$cont++)
@@ -163,6 +165,7 @@
                 }
 
                 echo "<script>alert('Pregunta 4 alternativas y una respuesta ha sido creada');</script>";
+                echo '<META HTTP-EQUIV="REFRESH" CONTENT="1;URL=../../../../Profesor/Principal_Prof.php">';
 
                 /*<input type=checkbox name='opcion[]' value="opcion1"> 
                 <input type=checkbox name='opcion[]' value="opcion2"> 
@@ -179,29 +182,45 @@
                 break;
             
             case 2:
-                $Alterns=$_POST['OpcRes2'];
+                $Alterns=array_filter($_POST['OpcRes2']);
                 $Cond_Alterns=$_POST['CondRes2'];
 
-                foreach($Cond_Alterns as $Pos_Corr) 
+                if(count($Cond_Alterns)>count($Alterns))
                 {
-                    //Primero se averigua cuales son las alternativas correctas, segun el profesor
-                    if(isset($Pos_Corr))
+                    echo "<script>alert('Error: No puede haber mas respuestas correctas de las que fueron ingresadas.');</script>";
+                }
+                else
+                {
+                    /*Primero se averigua cuales son las alternativas correctas, segun el profesor.
+                    Se recorre el arreglo donde se registraron cuales seran las respuestas correctas*/
+                    for($cont=0;$cont<count($Cond_Alterns);$cont++)
                     {
-                        //Cuando se encuentre la posicion, dicha alternativa sera registrada con ese estatus
-                        $sql="insert into Alternativa (Contenido,Pregunta_ID,Estatus_Prof) values "
-                        ."('".$Alterns[$Pos_Corr]."',".$ID_Preg.",1);";
-                        $consulta=$conexion->query($sql);
+                        /*Se determina que una respuesta es correcta si el valor del arreglo de alternativas en la posicion
+                        del valor de la casilla seleccionada existe y no es nulo*/
+                        if(isset($Alterns[$Cond_Alterns[$cont]-1]))
+                        {
+                            //Cuando se encuentre la posicion, dicha alternativa sera registrada con ese estatus
+                            $sql="insert into Alternativa (Contenido,Pregunta_ID,Estatus_Prof) values "
+                            ."('".$Alterns[$Cond_Alterns[$cont]-1]."',".$ID_Preg.",1);";
+                            $consulta=$conexion->query($sql);
+                            //Una vez encontradas las respuestas correctas se eliminan del arreglo
+                            unset($Alterns[$Cond_Alterns[$cont]-1]);
+                        }
                     }
-                    else
+                    //Si el arreglo no quedo vacio, se procede a registrar el resto de alternativas como incorrectas
+                    if(!empty($Alterns))
                     {
-                        //El resto seran alternativas incorrectas
-                        $sql="insert into Alternativa (Contenido,Pregunta_ID,Estatus_Prof) values "
-                        ."('".$Alterns[$Pos_Corr]."',".$ID_Preg.",2);";
-                        $consulta=$conexion->query($sql);
+                        foreach ($Alterns as $RespIn) 
+                        {
+                            $sql="insert into Alternativa (Contenido,Pregunta_ID,Estatus_Prof) values "
+                            ."('".$RespIn."',".$ID_Preg.",2);";
+                            $consulta=$conexion->query($sql);
+                        }
                     }
                 }
 
                 echo "<script>alert('Pregunta 7 alternativas y varias respuestas ha sido creada');</script>";
+                echo '<META HTTP-EQUIV="REFRESH" CONTENT="1;URL=../../../../Profesor/Principal_Prof.php">';
                 break;
 
             case 3:
@@ -249,6 +268,7 @@
                         $consulta=$conexion->query($sql);
                     }
                     echo "<script>alert('Pregunta de relacion de columnas ha sido creada');</script>";
+                    echo '<META HTTP-EQUIV="REFRESH" CONTENT="1;URL=../../../../Profesor/Principal_Prof.php">';
                 }
                 else
                 {
@@ -258,89 +278,98 @@
 
             case 5:
                 $Alterns=$_POST['OpcRes5'];
-
+                $Salida=false;
                 //Se crea el bloque que "agrupara" el orden de seleccionado
                 $sql="insert into Desc_Bloques (Desc_Bloque) values ('".$Cuestion.", Preg".$NumPreg.", ".$User."');";
                 $consulta=$conexion->query($sql);
                 $ID_Bloq=$conexion->insert_id;//Obtener el id del bloque creado
 
-                /*ADAPTAR EL PROCESADO DE DATOS CON EL NUEVO MODELO DE ENVIO DE POSICIONES*/
-                
-                echo print_r($Alterns);
-                $cont=0;
-                switch (count(array_filter($Alterns)))
-                {//Con push se añaden los arreglos de los botones al arreglo, como si fuera una pila de datos
-                    case 1:
-                    array_push($Pos_Right,$_POST['CondRes51']);
-                    foreach($Pos_Right as $PosRig_Sav)
+                //Ya que las posiciones llegaran en una select diferente, se agrupa todo de una para analizarlo
+                array_push($Pos_Right,$_POST['CondRes51'],$_POST['CondRes52'],$_POST['CondRes53'],$_POST['CondRes54'],$_POST['CondRes55']);
+
+                foreach ($Pos_Right as $Opcs)
+                {
+                    if(is_nan($Opcs))
+                    {
+                        $Salida=true;
+                        break;
+                    }
+                }
+
+                if($Salida)
+                {
+                    echo "<script>alert('Error: alguna alternativa no cuenta con una posicion');</script>";
+                }
+                else
+                {
+                    for($cont=0;$cont<count($Alterns);$cont++)
                     {
                         $sql="insert into Altern_Ord_Sel (Contenido,Pos_Corre,Pregunta_ID,Bloque) values"
-                        ."('".$Alterns[$cont]."',".$PosRig_Sav.",".$ID_Preg.",".$ID_Bloq.");";
+                        ."('".$Alterns[$cont]."',".$Pos_Right[$cont].",".$ID_Preg.",".$ID_Bloq.");";
+                        $consulta=$conexion->query($sql);
                     }
-                    echo "<script>alert('Pregunta 1 alternativa de orden de seleccionado ha sido creada');</script>";
-                    break;
-
-                    case 2:
-                    array_push($Pos_Right,$_POST['CondRes51'],$_POST['CondRes52']);
-                    foreach($Pos_Right as $Pos)
-                    {
-                        foreach($Pos as $PosRig_Sav)
-                        {
-                            $sql="insert into Altern_Ord_Sel (Contenido,Pos_Corre,Pregunta_ID,Bloque) values"
-                            ."('".$Alterns[$cont]."',".$PosRig_Sav.",".$ID_Preg.",".$ID_Bloq.");";
-                        }
-                        $cont++;
-                    }
-                    echo "<script>alert('Pregunta 2 alternativas de orden de seleccionado ha sido creada');</script>";
-                    break;
-
-                    case 3:
-                    array_push($Pos_Right,$_POST['CondRes51'],$_POST['CondRes52'],$_POST['CondRes53']);
-                    foreach($Pos_Right as $Pos)
-                    {
-                        foreach($Pos as $PosRig_Sav)
-                        {
-                            $sql="insert into Altern_Ord_Sel (Contenido,Pos_Corre,Pregunta_ID,Bloque) values"
-                            ."('".$Alterns[$cont]."',".$PosRig_Sav.",".$ID_Preg.",".$ID_Bloq.");";
-                        }
-                        $cont++;
-                    }
-                    echo "<script>alert('Pregunta 3 alternativas de orden de seleccionado ha sido creada');</script>";
-                    break;
-
-                    case 4:
-                    array_push($Pos_Right,$_POST['CondRes51'],$_POST['CondRes52'],$_POST['CondRes53'],$_POST['CondRes54']);
-                    foreach($Pos_Right as $Pos)
-                    {
-                        foreach($Pos as $PosRig_Sav)
-                        {
-                            $sql="insert into Altern_Ord_Sel (Contenido,Pos_Corre,Pregunta_ID,Bloque) values"
-                            ."('".$Alterns[$cont]."',".$PosRig_Sav.",".$ID_Preg.",".$ID_Bloq.");";
-                        }
-                        $cont++;
-                    }
-                    echo "<script>alert('Pregunta 4 alternativas de orden de seleccionado ha sido creada');</script>";
-                    break;
-
-                    case 5:
-                    array_push($Pos_Right,$_POST['CondRes51'],$_POST['CondRes52'],$_POST['CondRes53'],$_POST['CondRes54'],$_POST['CondRes55']);
-                    foreach($Pos_Right as $Pos)
-                    {
-                        foreach($Pos as $PosRig_Sav)
-                        {
-                            $sql="insert into Altern_Ord_Sel (Contenido,Pos_Corre,Pregunta_ID,Bloque) values"
-                            ."('".$Alterns[$cont]."',".$PosRig_Sav.",".$ID_Preg.",".$ID_Bloq.");";
-                        }
-                        $cont++;
-                    }
-                    echo "<script>alert('Pregunta 5 alternativas de orden de seleccionado ha sido creada');</script>";
-                    break;
+                    echo "<script>alert('Pregunta de alternativa de orden de seleccion ha sido creada');</script>";
+                    echo '<META HTTP-EQUIV="REFRESH" CONTENT="1;URL=../../../../Profesor/Principal_Prof.php">';
                 }
                 break;
 
             case 6:
-                array_push($Alterns,$_POST['OpcRes61'],$_POST['OpcRes62'],$_POST['OpcRes63'],$_POST['OpcRes64'],$_POST['OpcRes65']);
-                array_push($Cond_Alterns,$_POST['CondRes65'],$_POST['CondRes65'],$_POST['CondRes65'],$_POST['CondRes65'],$_POST['CondRes65']);
+                //Se filtran los arreglos vacios para no analizarlos
+                array_push($Alterns,array_filter($_POST['OpcRes61']),array_filter($_POST['OpcRes62']),array_filter($_POST['OpcRes63']),array_filter($_POST['OpcRes64']),array_filter($_POST['OpcRes65']));
+
+                if(!isset($_POST['CondRes61'],$_POST['CondRes62'],$_POST['CondRes63'],$_POST['CondRes64'],$_POST['CondRes65']))
+                {
+                    if(isset($_POST['CondRes61']))
+                        array_push($Cond_Alterns,$_POST['CondRes61']);
+
+                    if(isset($_POST['CondRes62']))
+                        array_push($Cond_Alterns,$_POST['CondRes62']);
+
+                    if(isset($_POST['CondRes63']))
+                        array_push($Cond_Alterns,$_POST['CondRes63']);
+
+                    if(isset($_POST['CondRes64']))
+                        array_push($Cond_Alterns,$_POST['CondRes64']);
+
+                    if(isset($_POST['CondRes65']))
+                        array_push($Cond_Alterns,$_POST['CondRes65']);
+                }
+                else
+                    array_push($Cond_Alterns,$_POST['CondRes61'],$_POST['CondRes62'],$_POST['CondRes63'],$_POST['CondRes64'],$_POST['CondRes65']);
+                
+                for($rows=0;$rows<count($Cond_Alterns);$rows++)
+                {
+                    for($cols=0;$cols<count($Cond_Alterns[$rows]);$cols++)
+                    {
+                        /*Se busca si existe un valor en el arreglo de alternativas cuando la fila de la alternativa
+                        y la condicion sean la misma, pero la columna sea el valor del arreglo de condiciones en una fila y una columna menos 1*/
+                        if(isset($Alterns[$rows][$Cond_Alterns[$rows][$cols]-1]))
+                        {
+                            $sql="insert into Altern_Compl (Contenido,Pert_lista,Pregunta_ID,Estatus_Prof) values"
+                            ."('".$Alterns[$rows][$Cond_Alterns[$rows][$cols]-1]."',".($rows+1).",".$ID_Preg.",1);";
+                            $consulta=$conexion->query($sql);
+                            //Una vez encontradas las respuestas correctas se eliminan del arreglo
+                            unset($Alterns[$rows][$Cond_Alterns[$rows][$cols]-1]);
+                        }    
+                    }
+                }
+
+                //Si el arreglo no quedo vacio, se procede a registrar el resto de alternativas como incorrectas
+                if(!empty($Alterns))
+                {
+                    for($RowRespIn=0;$RowRespIn<count($Alterns);$RowRespIn++)
+                    {
+                        foreach ($Alterns[$RowRespIn] as $ColRespIn) 
+                        {
+                            $sql="insert into Altern_Compl (Contenido,Pert_lista,Pregunta_ID,Estatus_Prof) values"
+                            ."('".$ColRespIn."',".($RowRespIn+1).",".$ID_Preg.",2);";
+                            $consulta=$conexion->query($sql);
+                        }
+                    }
+                }
+
+                echo "<script>alert('Pregunta de completar la oracion ha sido creada');</script>";
+                echo '<META HTTP-EQUIV="REFRESH" CONTENT="1;URL=../../../../Profesor/Principal_Prof.php">';
                 break;
 
             case 7:
@@ -352,6 +381,7 @@
                     $consulta=$conexion->query($sql);
                 }
                 echo "<script>alert('Pregunta de Linkert ha sido creada');</script>";
+                echo '<META HTTP-EQUIV="REFRESH" CONTENT="1;URL=../../../../Profesor/Principal_Prof.php">';
                 break;
                 
             default:
