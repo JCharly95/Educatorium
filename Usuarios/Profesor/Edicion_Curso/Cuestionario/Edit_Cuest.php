@@ -58,7 +58,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <a href="#" class="btn btn-warning" style="width: 100%;" onclick="window.location.replace();">
+                                    <a href="Preguntas/Sel_Edit_Preg.php" class="btn btn-warning" style="width: 100%;" onclick="window.location.replace();">
                                         <i class="fas fa-pencil-alt fa-4x"></i>
                                         <span style="vertical-align: 60%;">&nbsp; <b>Editar preguntas</b></span>
                                     </a>
@@ -76,33 +76,6 @@
                     </div>
                 </div>
             </div>
-            <form action="" method="post">
-                <!--<?php
-                    for($fils=0;$fils<$cont/3;$fils++)
-                    {
-                        echo '<div class="form-group">'.
-                            '<div class="row">';
-                        for($cols=$fils*3,$cont1=0;$cont1<=2;$cols++,$cont1++)
-                        {
-                            if($cols==$cont)
-                            {
-                                break;
-                            }
-                            $sql="select Num_Preg_Cues as Num_Preg from Cuestionario inner join Pregunta on (Cuestionario_ID=ID_Cuestionario)"
-                                ."where Cuestionario.Nombre='".$ArrConsul[$cols]['NomCuest']."';";
-                                $consulta=$conexion->query($sql);
-                                $ArrCant[$cols]=mysqli_num_rows($consulta);
-                            echo '<div class="col-md-3 col-md-offset-1 text-center" style="border: 2px solid black; border-radius: 15px; background-color: lightgreen;">'.
-                                    '<input type="radio" name="CurSelEdit" id="CurSel'.$cols.'" style="display: none;" value="'.$ArrConsul[$cols]['NomCuest'].'" onchange="this.form.submit();">'.
-                                    '<label for="CurSelEdit'.$cols.'">'.$ArrConsul[$cols]['NomCuest'].'<br>Con: '.$ArrCant[$cols].' preguntas</label>'.
-                                '</div>';
-                        }
-                        echo    '</div>'.
-                        '</div>';
-                    }
-                ?>-->
-                <br><br>
-            </form>
             <div class="form-group">
                 <div class="col-md-3 col-md-offset-5 regreso">
                     <a href="Sel_Edit_Cuesti.php" class="btn btn-danger"><i class="fas fa-arrow-left"></i> Regresar</a>

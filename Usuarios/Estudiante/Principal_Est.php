@@ -136,7 +136,7 @@
                     <div class="opciones">
                         <ul class="nav nav-justified">
                             <li><a href="Mod_Info_Est.php">Modificar Informacion</a></li>
-                            <li><a href="">Salir De Cursos</a></li>
+                            <li><a href="Sal_Cur.php">Salir De Cursos</a></li>
                             <li><a href="">Consultar Estadisticas De Mis Cursos</a></li>
                             <li><a href="parentesco.php">Consultar Parentesco</a></li>
                         </ul>                        

@@ -158,6 +158,86 @@ function CantList_Opc(Pregunta)
     }
 }
 
+//Determinar cuantas listas de opciones se van a mostrar para el completado de la oracion
+function CantList_Opc1() 
+{
+    var Cadena=document.getElementById('TextPreg').value;
+    var Cadena1=Cadena;
+    //Contar cuantas palabras hay en la pregunta para evitar varios guion bajo seguidos
+    //Cadena1=Cadena1.replace(/^(_)\1{4}$/," ");
+    //Convierte a espacios todos los guion bajo
+    Cadena1=Cadena1.replace(/^_+$/," ");
+    //Reemplazar los saltos de lineas por espacios
+    Cadena1=Cadena1.replace(/\r?\n/g," ");
+    //Reemplazar los espacios seguidos por uno solo
+    Cadena1=Cadena1.replace(/[ ]+/g," ");
+    //Quitar espacios de principio y final
+    Cadena1=Cadena1.replace(/^ /,"");
+    Cadena1=Cadena1.replace(/ $/,"");
+    //Se separa el texto por los espacios
+    var Espacios=Cadena1.split(" ");
+    //Si se cuenta con mas de una palabra puede proceder a completar
+    if(Espacios.length>1)
+    {
+        var CantCarac=[];
+        for (var cont=0;cont<Cadena.length;cont++) 
+        {
+            if(Cadena[cont]==="_")
+                CantCarac.push(cont);
+        }
+
+        switch (CantCarac.length) 
+        {
+            case 0:
+            document.getElementById('Lista1').style.display='none';
+            document.getElementById('Lista2').style.display='none';
+            document.getElementById('Lista3').style.display='none';
+            document.getElementById('Lista4').style.display='none';
+            document.getElementById('Lista5').style.display='none';
+            alert('Error: favor de incluir por lo menos un guion bajo para mostrar una lista');
+            break;
+
+            case 1:
+            document.getElementById('Lista1').style.display='block';
+            break;
+
+            case 2:
+            document.getElementById('Lista1').style.display='block';
+            document.getElementById('Lista2').style.display='block';
+            break;
+
+            case 3:
+            document.getElementById('Lista1').style.display='block';
+            document.getElementById('Lista2').style.display='block';
+            document.getElementById('Lista3').style.display='block';
+            break;
+
+            case 4:
+            document.getElementById('Lista1').style.display='block';
+            document.getElementById('Lista2').style.display='block';
+            document.getElementById('Lista3').style.display='block';
+            document.getElementById('Lista4').style.display='block';
+            break;
+
+            case 5:
+            document.getElementById('Lista1').style.display='block';
+            document.getElementById('Lista2').style.display='block';
+            document.getElementById('Lista3').style.display='block';
+            document.getElementById('Lista4').style.display='block';
+            document.getElementById('Lista5').style.display='block';
+            break;
+                
+            default:
+                alert('Error no se puede incluir mas de 5 listas de opciones, favor de reducir su cantidad de completado');
+                break;
+        }
+    }
+    else
+    {
+        alert('Favor de incluir al menos una palabra');
+    }
+}
+
 function BloqOrdSel(Pos,SecInvo)
 {
     switch (SecInvo) 

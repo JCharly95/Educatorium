@@ -9,8 +9,9 @@
 
     $user=$_SESSION['Username'];
     $Iden_Mat=$_SESSION['Mat'];
-    $ID_Mat=0;
+    $ID_Mat=$ID_Cur=$ID_Est=0;
     $Name_Cur=$ContraCmp=$PassBD="";
+    $Reg_Est=false;
     //Nombre del curso a buscar en la BD
     if(isset($_POST['NameCurSel']))
     {
@@ -22,6 +23,28 @@
         $Name_Cur=$_SESSION['SelCur'];
     }
 
+    //Buscar el ID del curso
+    $sql="select ID_Curso from Curso where Nombre='".$Name_Cur."';";
+    if($consulta=$conexion->query($sql))
+    {
+        while($res=$consulta->fetch_assoc())
+        {
+            $ID_Cur=$res['ID_Curso'];
+        }
+    }
+
+    //Buscar el ID del usuario
+    $sql="select ID_Estudiante from Estudiante where Username='".$user."';";
+    $consulta=$conexion->query($sql);
+    if(mysqli_num_rows($consulta)>0)
+    {
+        while($res=$consulta->fetch_assoc())
+        {
+            $ID_Est=$res['ID_Estudiante'];
+        }
+        $Reg_Est=true;
+    }
+
     $sql="select ID_Materia from Materia where Nombre='".$Iden_Mat."';";    
     if($consulta=$conexion->query($sql))
     {
@@ -31,15 +54,22 @@
         }
     }
 
-    $sql1="select Curso.Password as ContraBD from Curso inner join Profesor";
-    $sql2=" on (Profesor_ID=ID_Profesor) where Curso.Nombre='".$Name_Cur."' and";
-    $sql3=" Materia_ID=".$ID_Mat." and Username='".$user."';";
-    $sql=$sql1.$sql2.$sql3;
-    $consulta=$conexion->query($sql);
-    
-    while($res=$consulta->fetch_assoc())
+    $sql="select Curso.Password as ContraBD from Curso where Curso.Nombre='".$Name_Cur."' and Materia_ID=".$ID_Mat.";";
+    if($consulta=$conexion->query($sql))
     {
-        $PassBD=$res['ContraBD'];//Si tiene contraseña, esta se extrae de la base de datos para su comparacion
+        while($res=$consulta->fetch_assoc())
+        {
+            $PassBD=$res['ContraBD'];//Si tiene contraseña, esta se extrae de la base de datos para su comparacion
+        }
+    }
+
+    //Buscar si el estudiante ya esta registrado en el curso
+    $sql="select * from Curso_Estudiante where Curso_ID=".$ID_Cur." and Estudiante_ID=".$ID_Est.";";
+    $consulta=$conexion->query($sql);
+    if(mysqli_num_rows($consulta)>0)
+    {
+        $Reg_Est=false;
+        $PassBD='';
     }
 
     if(!empty($PassBD))//Se busca en la base de datos si el curso seleccionado para entrar tiene contraseña
@@ -55,6 +85,11 @@
             {
                 if($ContraCmp==$PassBD)//Se procede con la comparacion de cadenas
                 {
+                    if($Reg_Est)
+                    {
+                        $sql="insert into Curso_Estudiante (Curso_ID,Estudiante_ID) values (".$ID_Cur.",".$ID_Est.");";
+                        $consulta=$conexion->query($sql);
+                    }
                     echo "<script>alert('Bienvenido a ".$Name_Cur."');</script>";
                     echo '<META HTTP-EQUIV="REFRESH" CONTENT="1;URL=Curso.php">';
                 }

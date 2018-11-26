@@ -27,7 +27,6 @@
     $consulta=$conexion->query($sql);
     if($consulta->num_rows>0)
     {
-        $cont=0;
         while($res=$consulta->fetch_assoc())
         {
             $ArrConsul[$cont]=$res;

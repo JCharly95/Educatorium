@@ -50,7 +50,7 @@
         <div class="form-group text-center">
             <h3>Estos son los cuestionarios disponibles para <?php echo $VerCur; ?>:</h3>
             <br>
-            <form action="" method="post">
+            <form action="Pregunta.php" method="post">
                 <?php
                     for($fils=0;$fils<$cont/3;$fils++)
                     {
@@ -67,7 +67,7 @@
                                 $consulta=$conexion->query($sql);
                                 $ArrCant[$cols]=mysqli_num_rows($consulta);
                             echo '<div class="col-md-3 col-md-offset-1 text-center" style="border: 2px solid black; border-radius: 15px; background-color: lightgreen;">'.
-                                    '<input type="radio" name="CurSelEdit"  id="CurSelEdit'.$cols.'" style="display: none;" value="'.$ArrConsul[$cols]['NomCuest'].'" onchange="this.form.submit();">'.
+                                    '<input type="radio" name="CuestResp" id="CurSelEdit'.$cols.'" style="display: none;" value="'.$ArrConsul[$cols]['NomCuest'].'" onchange="this.form.submit();">'.
                                     '<label for="CurSelEdit'.$cols.'">'.$ArrConsul[$cols]['NomCuest'].'<br>Con: '.$ArrCant[$cols].' preguntas</label>'.
                                 '</div>';
                         }

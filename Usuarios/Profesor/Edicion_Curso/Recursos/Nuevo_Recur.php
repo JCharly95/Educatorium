@@ -54,7 +54,40 @@
                     </div>
                     <div class="panel-body">
                         <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-                            <!--Contenido de la pagina-->
+                            <table class="table table-borderless">
+                                <thead class="thead-dark">
+                                    <tr>
+                                        <th><span class="fas fa-file"></span>&nbsp;Archivo</th>
+                                        <th><span class="far fa-sticky-note"></span>&nbsp;Notas</th>
+                                        <th><span class="fas fa-info-circle"></span>&nbsp;Ver</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                        <?php
+                                            foreach($docs as $docs){
+                                                echo '<tr>';
+                                                echo '<td>' . $docs['name'] . '</td>';
+                                                echo '<td>' . $docs['note'] . '</td>';
+                                                echo '<td><a href="'.$docs['documentPath'].'"><button class="btn btn-outline-primary">Ver</button></a></td>';
+                                                echo '</tr>';
+                                            }
+                                        ?>
+                                </tbody>
+                            </table>
+                            <?php $config = array('class' => 'was-validated'); echo form_open_multipart('Records/upLoadFile',$config); ?>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="validatedCustomFile" required name="file" accept="application/pdf">
+                                    <label class="custom-file-label" for="validatedCustomFile">Eligue un archivo...</label>
+                                </div>
+                                <br><br>
+                                <div class="form-group">
+                                    <textarea class="form-control" name="note" id="note" rows="3"></textarea>
+                                    <input type="text" name="slug" value="<?php echo $slug; ?>" hidden>
+                                    <input type="text" name="type" value="1" hidden>
+                                    <br>
+                                    <div class="text-center"><input type="submit" value="Guardar" name="submit" class="btn btn-outline-primary"></div>
+                                </div>
+                            <?php echo form_close(); ?>
                         </form>
                     </div>
                 </div>
