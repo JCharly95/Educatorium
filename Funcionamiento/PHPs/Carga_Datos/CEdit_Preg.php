@@ -12,11 +12,11 @@
     $Pregunta=$Tipo="";
     $Alterns=array();
 
-    /*if(isset($_POST['enviar']))
+    if(isset($_POST['enviar']))
     {
         $ID_Preg_Edit=$_POST['SelEditPreg'];
         $_SESSION['ID_Preg']=$ID_Preg_Edit;
-    }*/
+    }
 
     $sql="select Contenido, Tipo from Pregunta where ID_Pregunta=".$ID_Preg_Edit.";";
     $consulta=$conexion->query($sql);
@@ -29,34 +29,5 @@
         {
             $Pregunta='Vacia';
         }
-    }
-
-    if($Tipo==1)
-    {
-        echo "document.getElementById('RespTip1').style.display='block';";
-    }
-    elseif ($Tipo==2)
-    {
-        echo "document.getElementById('RespTip2').style.display='block';";
-    }
-    elseif ($Tipo==3)
-    {
-        echo "document.getElementById('RespTip3').style.display='block';";
-    }
-    elseif ($Tipo==4)
-    {
-        echo "document.getElementById('RespTip4').style.display='block';";
-    }
-    elseif ($Tipo==5)
-    {
-        echo "document.getElementById('RespTip5').style.display='block';";
-    }
-    elseif ($Tipo==6)
-    {
-        echo "document.getElementById('RespTip6').style.display='block';";
-    }
-    else
-    {
-        echo "document.getElementById('RespTip7').style.display='block';";
     }
 ?>

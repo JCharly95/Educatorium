@@ -66,7 +66,7 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <a href="#" class="btn btn-danger" style="width: 100%;" onclick="window.location.replace();">
+                                    <a href="Preguntas/Sel_Del_Preg.php" class="btn btn-danger" style="width: 100%;" onclick="window.location.replace();">
                                         <i class="fas fa-times fa-4x"></i>
                                         <span style="vertical-align: 75%;">&nbsp; <b>Eliminar pregunta</b></span>
                                     </a>

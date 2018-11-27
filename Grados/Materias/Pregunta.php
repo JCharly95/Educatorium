@@ -47,53 +47,30 @@
                 <div class="text-center">
                     <div class="panel panel-success">
                         <div class="panel-heading">
-                            <h3>¿<?php echo $Preg;?>?</h3>
+                            <h3>¿<?php echo $Text_Preg[0];?>?</h3>
                         </div>
                         <div class="panel-body">
                             <?php
-                                for($fils=0;$fils<count($Cursos);$fils++)
+                                for($fils=0;$fils<count($Alterns)/2;$fils++)
                                 {
                                     echo '<div class="form-group">'.
                                             '<div class="row">';
-                                            echo '<div class="col-md-8 col-md-offset-2" style="border: 2px solid black; border-radius: 15px; background-color: lime;">'.
-                                                    '<input type="radio" name="CurSelDel" id="CurSel'.$fils.'" style="display: none;" value="'.$Cursos[$fils][0].'">'.
-                                                    '<label for="CurSel'.$fils.'">'.$Cursos[$fils][1].'</label>'.
+                                        for($cols=$fils*2,$cont=0;$cont<=1;$cols++,$cont++)
+                                        {
+                                            if($cols==count($Alterns))
+                                            {
+                                                break;
+                                            }
+                                            echo '<div class="col-md-3 col-md-offset-2" style="border: 2px solid black; border-radius: 15px; background-color: lime;">'.
+                                                    '<input type="radio" name="ResPregTip1[]" id="Res'.($cols+1).'Preg'.($fils+1).'" style="display: none;" value="'.$Alterns[$cols].'">'.
+                                                    '<label for="Res'.($cols+1).'Preg'.($fils+1).'">'.$Alterns[$cols].'</label>'.
                                                 '</div>';
+                                        }
                                     echo    '</div>'.
-                                    '</div>';
+                                        '</div>';
                                 }
                             ?>
-                            <div class="form-group row">
-                                <?php
-                                    for()
-                                    for($fils=0;$fils<count($Preguntas)/7;$fils++)
-                                    {
-                                        for($cols=0;$cols<=1;$cols++)
-                                        {
-                                            echo '<div class="col-md-6">';
-                                                echo '<div class="col-md-8 col-md-offset-2" style="border: 2px solid black; border-radius: 15px; background-color: lime;">';
-                                                echo '<input type="radio" name="ResPregTip1[]" id="Res1Preg'.$Alterns[$cols].'" style="display:none;" value="'.$Alterns[$cols].'">';
-                                                echo '<label for="Res1Preg'.$Alterns[$cols].'">&nbsp;&nbsp; '.$Alterns[$cols].'&nbsp;&nbsp;</label>';
-                                            echo '</div>
-                                            </div>';
-                                        }
-                                    }
-                                ?>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-md-6">
-                                    <div class="col-md-8 col-md-offset-2" style="border: 2px solid black; border-radius: 15px; background-color: lime;">
-                                        <input type="radio" name="ResPregTip1[]" id="Res3Preg1" style="display:none;" value="<?php echo $Alterns[2]; ?>">
-                                        <label for="Res3Preg1">&nbsp;&nbsp;C) <?php echo $Alterns[2]; ?>&nbsp;&nbsp;</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="col-md-8 col-md-offset-2" style="border: 2px solid black; border-radius: 15px; background-color: lime;">
-                                        <input type="radio" name="ResPregTip1[]" id="Res4Preg1" style="display:none;" value="<?php echo $Alterns[3]; ?>">
-                                        <label for="Res4Preg1">&nbsp;&nbsp;D) <?php echo $Alterns[3]; ?>&nbsp;&nbsp;</label>
-                                    </div>
-                                </div>
-                            </div>
+                            <br>
                             <div class="form-group row">
                                 <div class="col-md-6">
                                     <div class="col-md-8 col-md-offset-2">
@@ -119,59 +96,30 @@
                 <div class="text-center">
                     <div class="panel panel-success">
                         <div class="panel-heading">
-                            <h3>¿Selecciona las especialidades del Ceti Colomos?</h3>
+                            <h3>¿<?php echo $Text_Preg[1];?>?</h3>
                         </div>
                         <div class="panel-body">
-                            <div class="form-group row">
-                                <div class="col-md-6">
-                                    <div class="col-md-8 col-md-offset-2" style="border: 2px solid black; border-radius: 15px; background-color: lime;">
-                                        <input type="checkbox" name="ResPregTip2[]" id="Res1Preg2" style="display:none;" value="">
-                                        <label for="Res1Preg2">&nbsp;&nbsp;A) Respuesta 1&nbsp;&nbsp;</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="col-md-8 col-md-offset-2" style="border: 2px solid black; border-radius: 15px; background-color: lime;">
-                                        <input type="checkbox" name="ResPregTip2[]" id="Res2Preg2" style="display:none;" value="">
-                                        <label for="Res2Preg2">&nbsp;&nbsp;B) Respuesta 2&nbsp;&nbsp;</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-md-6">
-                                    <div class="col-md-8 col-md-offset-2" style="border: 2px solid black; border-radius: 15px; background-color: lime;">
-                                        <input type="checkbox" name="ResPregTip2[]" id="Res3Preg2" style="display:none;" value="">
-                                        <label for="Res3Preg2">&nbsp;&nbsp;C) Respuesta 3&nbsp;&nbsp;</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="col-md-8 col-md-offset-2" style="border: 2px solid black; border-radius: 15px; background-color: lime;">
-                                        <input type="checkbox" name="ResPregTip2[]" id="Res4Preg2" style="display:none;" value="">
-                                        <label for="Res4Preg2">&nbsp;&nbsp;D) Respuesta 4&nbsp;&nbsp;</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-md-6">
-                                    <div class="col-md-8 col-md-offset-2" style="border: 2px solid black; border-radius: 15px; background-color: lime;">
-                                        <input type="checkbox" name="ResPregTip2[]" id="Res5Preg2" style="display:none;" value="">
-                                        <label for="Res5Preg2">&nbsp;&nbsp;E) Respuesta 5&nbsp;&nbsp;</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="col-md-8 col-md-offset-2" style="border: 2px solid black; border-radius: 15px; background-color: lime;">
-                                        <input type="checkbox" name="ResPregTip2[]" id="Res6Preg2" style="display:none;" value="">
-                                        <label for="Res6Preg2">&nbsp;&nbsp;F) Respuesta 6&nbsp;&nbsp;</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-md-6">
-                                    <div class="col-md-8 col-md-offset-2" style="border: 2px solid black; border-radius: 15px; background-color: lime;">
-                                        <input type="checkbox" name="ResPregTip2[]" id="Res7Preg2" style="display:none;" value="">
-                                        <label for="Res7Preg2">&nbsp;&nbsp;G) Respuesta 7&nbsp;&nbsp;</label>
-                                    </div>
-                                </div>
-                            </div>
+                            <?php
+                                for($fils=0;$fils<count($Alterns)/2;$fils++)
+                                {
+                                    echo '<div class="form-group">'.
+                                            '<div class="row">';
+                                        for($cols=$fils*2,$cont=0;$cont<=1;$cols++,$cont++)
+                                        {
+                                            if($cols==count($Alterns))
+                                            {
+                                                break;
+                                            }
+                                            echo '<div class="col-md-3 col-md-offset-2" style="border: 2px solid black; border-radius: 15px; background-color: lime;">'.
+                                                    '<input type="radio" name="ResPregTip2[]" id="Res'.($cols+1).'Preg'.($fils+1).'" style="display: none;" value="'.$Alterns[$cols].'">'.
+                                                    '<label for="Res'.($cols+1).'Preg'.($fils+1).'">'.$Alterns[$cols].'</label>'.
+                                                '</div>';
+                                        }
+                                    echo    '</div>'.
+                                        '</div>';
+                                }
+                            ?>
+                            <br>
                             <div class="form-group row">
                                 <div class="col-md-6">
                                     <div class="col-md-8 col-md-offset-2">
@@ -183,7 +131,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="col-md-8 col-md-offset-2">
-                                        <button type="button" class="btn btn-danger" onclick="CleanResp('ResPregTip2[]');">
+                                        <button type="button" class="btn btn-danger" onclick="CleanResp('ResPregTip1[]');">
                                             <i class="fas fa-times"></i> Limpiar respuestas
                                         </button>
                                     </div>
@@ -197,23 +145,30 @@
                 <div class="text-center">
                     <div class="panel panel-success">
                         <div class="panel-heading">
-                            <h3>¿Es cierto que este proyecto funcionara?</h3>
+                            <h3>¿<?php echo $Text_Preg[2];?>?</h3>
                         </div>
                         <div class="panel-body">
-                            <div class="form-group row">
-                                <div class="col-md-6">
-                                    <div class="col-md-8 col-md-offset-2" style="border: 2px solid black; border-radius: 15px; background-color: lime;">
-                                        <input type="radio" name="ResPregTip3[]" id="Res1Preg3" style="display:none;" value="Cierto">
-                                        <label for="Res1Preg3">&nbsp;&nbsp;A) &nbsp;&nbsp;</label>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="col-md-8 col-md-offset-2" style="border: 2px solid black; border-radius: 15px; background-color: lime;">
-                                        <input type="radio" name="ResPregTip3[]" id="Res2Preg3" style="display:none;"  value="Falso">
-                                        <label for="Res2Preg3">&nbsp;&nbsp;B) &nbsp;&nbsp;</label>
-                                    </div>
-                                </div>
-                            </div>
+                            <?php
+                                for($fils=0;$fils<count($Alterns)/2;$fils++)
+                                {
+                                    echo '<div class="form-group">'.
+                                            '<div class="row">';
+                                        for($cols=$fils*2,$cont=0;$cont<=1;$cols++,$cont++)
+                                        {
+                                            if($cols==count($Alterns))
+                                            {
+                                                break;
+                                            }
+                                            echo '<div class="col-md-3 col-md-offset-2" style="border: 2px solid black; border-radius: 15px; background-color: lime;">'.
+                                                    '<input type="radio" name="ResPregTip3[]" id="Res'.($cols+1).'Preg'.($fils+1).'" style="display: none;" value="'.$Alterns[$cols].'">'.
+                                                    '<label for="Res'.($cols+1).'Preg'.($fils+1).'">'.$Alterns[$cols].'</label>'.
+                                                '</div>';
+                                        }
+                                    echo    '</div>'.
+                                        '</div>';
+                                }
+                            ?>
+                            <br>
                             <div class="form-group row">
                                 <div class="col-md-6">
                                     <div class="col-md-8 col-md-offset-2">
@@ -225,7 +180,7 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="col-md-8 col-md-offset-2">
-                                        <button type="button" class="btn btn-danger" onclick="CleanResp('ResPregTip3[]');">
+                                        <button type="button" class="btn btn-danger" onclick="CleanResp('ResPregTip1[]');">
                                             <i class="fas fa-times"></i> Limpiar respuestas
                                         </button>
                                     </div>
@@ -239,9 +194,37 @@
                 <div class="text-center">
                     <div class="panel panel-success">
                         <div class="panel-heading">
-                            <h3>Relacione especialidad con actividad</h3>
+                            <h3>¿<?php echo $Text_Preg[3];?>?</h3>
                         </div>
                         <div class="panel-body">
+                            <?php
+                                for($fils=0;$fils<count($AlternsIzq)/2;$fils++)
+                                {
+                                    echo '<div class="form-group">'.
+                                            '<div class="row">';
+                                        for($cols=$fils*2,$cont=0;$cont<=1;$cols++,$cont++)
+                                        {
+                                            if($cols==count($AlternsIzq))
+                                            {
+                                                break;
+                                            }
+                                            echo '<div class="col-md-2 col-md-offset-2" style="border: 2px solid black; border-radius: 15px; background-color: lime;">'.
+                                                    '<label>'.$AlternsIzq[$cols].'</label>'.
+                                                '</div>';
+                                            echo '<div class="col-md-3 col-md-offset-3" style="border: 2px solid black; border-radius: 15px; background-color: lime;">'.
+                                                    '<select class="btn btn-danger" name="Res'.$cols.'PregTip4[]" id="Opc'.$cols.'Preg'.$fils.'">';
+                                                for($ColDer=0;$ColDer<count($AlternsDer);$ColDer++)
+                                                {
+                                                    echo '<option value="">'.$AlternsDer[$ColDer].'</option>';
+                                                }
+                                                echo'<select/>'.
+                                                '</div>';
+                                        }
+                                    echo    '</div>'.
+                                        '</div>';
+                                }
+                            ?>
+                            <br>
                             <div class="form-group row">
                                 <div class="col-md-6">
                                     <div class="col-md-4 col-md-offset-4" style="border: 2px solid black; border-radius: 15px; background-color: lime;">
@@ -350,7 +333,7 @@
                 <div class="text-center">
                     <div class="panel panel-success">
                         <div class="panel-heading">
-                            <h3>Ordena de mas antiguo a mas nuevo los eventos</h3>
+                            <h3>¿<?php echo $Text_Preg[4];?>?</h3>
                         </div>
                         <div class="panel-body">
                             <div class="form-group row">
@@ -461,7 +444,7 @@
                 <div class="text-center">
                     <div class="panel panel-success">
                         <div class="panel-heading">
-                            <h3>Camaron que se _ se lo lleva la _</h3>
+                            <h3>¿<?php echo $Text_Preg[5];?>?</h3>
                         </div>
                         <div class="panel-body">
                             <div class="form-group row">
@@ -558,7 +541,7 @@
                 <div class="text-center">
                     <div class="panel panel-success">
                         <div class="panel-heading">
-                            <h3>Que tanto te gusta este curso</h3>
+                            <h3>¿<?php echo $Text_Preg[6];?>?</h3>
                         </div>
                         <div class="panel-body">
                             <div class="form-group row">
