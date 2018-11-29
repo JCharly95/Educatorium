@@ -2,15 +2,14 @@
     require $_SERVER['DOCUMENT_ROOT'].'/Educatorium/Funcionamiento/PHPs/Conn_Ses/conexion.php';
 
     //Variables del sistema
-    $GradPri = $GradSeg = $GradTer = "";
-    $PriMat1 = $PriMat2 = $PriMat3 = $PriMat4 = $PriMat5 = $PriMat6 = $PriMat7 = "";
-    $SegMat1 = $SegMat2 = $SegMat3 = $SegMat4 = $SegMat5 = $SegMat6 = "";
-    $TerMat1 = $TerMat2 = $TerMat3 = $TerMat4 = $TerMat5 = $TerMat6 = "";
-    $Mat1 = $Mat2 = $Mat3 = false;
+    $GradPri=$GradSeg=$GradTer="";
+    $PriMat1=$PriMat2=$PriMat3=$PriMat4=$PriMat5=$PriMat6=$PriMat7="";
+    $SegMat1=$SegMat2=$SegMat3=$SegMat4=$SegMat5=$SegMat6="";
+    $TerMat1=$TerMat2=$TerMat3=$TerMat4=$TerMat5=$TerMat6="";
+    $Mat1=$Mat2=$Mat3=false;
     
     //Variables de errores y aciertos en la validacion
-    $Gr_right = $Mat_right = "";
-    $Gr_err = $Mat_err = "";
+    $Gr_right=$Mat_right=$Gr_err=$Mat_err="";
 
     if(isset($_POST['enviar']))
     {
@@ -130,46 +129,32 @@
             $TerMat6="";
 
         if(empty($GradPri) && empty($GradSeg) && empty($GradTer))//Si no se selecciono ningun grado, significa que no hay datos para validar
-        {
             $Gr_err="* Favor de seleccionar al menos un grado";
-        }
         else
         {
             $Gr_right="Ha seleccionado alguno de los grados";
             if(!empty($GradPri))//Si primero fue seleccionado, corroborar que hay por lo menos una materia seleccionada
             {
                 if(empty($PriMat1) && empty($PriMat2) && empty($PriMat3) && empty($PriMat4) && empty($PriMat5) && empty($PriMat6) && empty($PriMat7))
-                {
                     $Mat_err="* Favor de seleccionar al menos una materia de primer grado";
-                }
                 else
-                {
-                    $Mat_right = "Materia(s) de primer grado seleccionadas";
-                }
+                    $Mat_right="Materia(s) de primer grado seleccionadas";
             }
 
             if(!empty($GradSeg))//Si segundo fue seleccionado, corroborar que hay por lo menos una materia seleccionada
             {
                 if(empty($SegMat1) && empty($SegMat2) && empty($SegMat3) && empty($SegMat4) && empty($SegMat5) && empty($SegMat6))
-                {
                     $Mat_err="* Favor de seleccionar al menos una materia de segundo grado";
-                }
                 else
-                {
-                    $Mat_right = "Materia(s) de segundo grado seleccionadas";
-                }
+                    $Mat_right="Materia(s) de segundo grado seleccionadas";
             }
 
             if(!empty($GradTer))//Si tercero fue seleccionado, corroborar que hay por lo menos una materia seleccionada
             {
                 if(empty($TerMat1) && empty($TerMat2) && empty($TerMat3) && empty($TerMat4) && empty($TerMat5) && empty($TerMat6))
-                {
                     $Mat_err="* Favor de seleccionar al menos una materia de tercer grado";
-                }
                 else
-                {
-                    $Mat_right = "Materia(s) de tercer grado seleccionadas";
-                }
+                    $Mat_right="Materia(s) de tercer grado seleccionadas";
             }
         }
 
@@ -181,40 +166,34 @@
         foreach ($ArrayPri as $Arrvalue)
         {
             if(!empty($Arrvalue))
-            {
                 MatProfe($Arrvalue,$Username,$conexion); //Se crean las relaciones con las materias de primero, solo si el valor del arreglo no esta vacio
-            }
         }
+
         if(isset($Arrvalue))
-        {
             $Mat1=true;
-        }
+
         unset($Arrvalue);
 
         foreach ($ArraySeg as $Arrvalue)
         {
             if(!empty($Arrvalue))
-            {
                 MatProfe($Arrvalue,$Username,$conexion); //Se crean las relaciones con las materias de segundo, solo si el valor del arreglo no esta vacio
-            }
         }
+
         if(isset($Arrvalue))
-        {
             $Mat2=true;
-        }
+
         unset($Arrvalue);
 
         foreach ($ArrayTer as $Arrvalue)
         {
             if(!empty($Arrvalue))
-            {
                 MatProfe($Arrvalue,$Username,$conexion); //Se crean las relaciones con las materias de tercero, solo si el valor del arreglo no esta vacio
-            }
         }
+
         if(isset($Arrvalue))
-        {
             $Mat3=true;
-        }
+
         unset($Arrvalue);
 
         if($Mat1||$Mat2||$Mat3)
@@ -242,9 +221,7 @@
             $consulta->free();
         }
         else
-        {
             echo '<script>alert("No sabemos como paso esto pero, materia no encontrada");</script>';
-        }
 
         $IDProfe=BusProfe($User,$conexion);
 

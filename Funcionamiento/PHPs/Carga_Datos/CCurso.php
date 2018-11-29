@@ -3,9 +3,7 @@
     require $_SERVER['DOCUMENT_ROOT'].'/Educatorium/Funcionamiento/PHPs/Conn_Ses/conexion.php';
     
     if(!isset($_SESSION['Username']) || empty($_SESSION['Username']))
-    {
         header("location: ../../Acceso/FAcces.php");
-    }
     
     $cont=0;
     //Nombre del curso a buscar en la BD
@@ -51,13 +49,9 @@
     }
 
     if(!is_null($MsgBien))
-    {
         $Msg='<label>'.$MsgBien.'</label>';
-    }
     else
-    {
         $Msg='<label>Bienvenidos al curso, espero que lo disfruten y tengan un gran aprendizaje.</label>';
-    }
 
     //Obtencion de los nombres de los cuestionarios
     $ArrConsul=array();

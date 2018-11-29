@@ -7,9 +7,7 @@ function CleanResp(BtnGroup)
     for (var cont=0;cont<Botones.length;cont++) 
     {
         if(Botones[cont].checked)
-        {
             Botones[cont].checked=false;
-        }
     }
 }
 

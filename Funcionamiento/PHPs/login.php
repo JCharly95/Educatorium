@@ -17,7 +17,7 @@
         if(!empty($usuario) && !empty($contraseña))
         {
             //Buscar si el usuario a entrar es un estudiante
-            $sele = "SELECT * FROM Estudiante WHERE Username = '".$usuario."';";
+            $sele="select * from Estudiante where Username='".$usuario."';";
             $verificar = $conexion->query($sele);
             $NumRes=$verificar->num_rows;
             if($NumRes > 0)//Si el usuario existe, se comienza con la validacion de la contraseña
@@ -33,13 +33,11 @@
                     }
                 }
                 if($busUser==true&&$busContra==false)
-                {
                     $pas_err = "* Contraseña incorrecta";
-                }
             }
             
             //Buscar si el usuario a entrar es un profesor
-            $sele = "SELECT * FROM Profesor WHERE Username = '".$usuario."';";
+            $sele="select * from Profesor where Username='".$usuario."';";
             $verificar = $conexion->query($sele);
             $NumRes=$verificar->num_rows;
             if($NumRes > 0)//Si el usuario existe, se comienza con la validacion de la contraseña
@@ -55,13 +53,11 @@
                     }
                 }
                 if($busUser==true&&$busContra==false)
-                {
                     $pas_err = "* Contraseña incorrecta";
-                }
             }
             
             //Buscar si el usuario a entrar es un padre
-            $sele = "SELECT * FROM Padre WHERE Username = '".$usuario."';";
+            $sele="select * from Padre where Username='".$usuario."';";
             $verificar = $conexion->query($sele);
             $NumRes=$verificar->num_rows;
             if($NumRes > 0)//Si el usuario existe, se comienza con la validacion de la contraseña
@@ -77,9 +73,7 @@
                     }
                 }
                 if($busUser==true&&$busContra==false)
-                {
                     $pas_err = "* Contraseña incorrecta";
-                }
             }
             else
             {
@@ -93,14 +87,10 @@
         else
         {
             if(empty($usuario))
-            {
                 $us_err = "* Complete el campo usuario";
-            }
 
             if(empty($contraseña))
-            {
                 $pas_err = "* Complete el campo contraseña";
-            }
         }
     }
     //require '../interfaces/acceder.php';

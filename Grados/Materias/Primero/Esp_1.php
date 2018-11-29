@@ -48,18 +48,13 @@
                             for($cols=$fils*3,$cont1=0;$cont1<=2;$cols++,$cont1++)
                             {
                                 if($cols==$cont)
-                                {
                                     break;
-                                }
 
                                 if(isset($ArrConsul[$cols]['PassCur']))
-                                {
                                     $StatusCur="Privado";
-                                }
                                 else
-                                {
                                     $StatusCur="Publico";
-                                }
+                                    
                                 echo '<div class="col-md-3 col-md-offset-1 text-center" style="border: 2px solid black; border-radius: 15px; background-color: lightgreen;">'.
                                         '<input type="radio" name="NameCurSel" id="CurSel'.$cols.'" style="display: none;" value="'.$ArrConsul[$cols]['NomCur'].'" onchange="this.form.submit();">'.
                                         '<label for="CurSel'.$cols.'">'.$ArrConsul[$cols]['NomCur'].'<br>Impartido por: '.$ArrConsul[$cols]['NomProf'].' '.$ArrConsul[$cols]['Ape_Pat'].

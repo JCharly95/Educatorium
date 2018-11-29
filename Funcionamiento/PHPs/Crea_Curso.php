@@ -3,15 +3,13 @@
     require $_SERVER['DOCUMENT_ROOT'].'/Educatorium/Funcionamiento/PHPs/Conn_Ses/conexion.php';
 
     if(!isset($_SESSION['Username']) || empty($_SESSION['Username']))
-    {
         header("location: ../../Acceso/FAcces.php");
-    }
 
     $user=$_SESSION['Username'];
     $MatGen=$_SESSION['Mat'];
 
     //Variables que almacenaran los datos recibidos por el formulario
-    $NomCur = $OpcMsg = $MsgBienvenida = $OpcContra = $Contra = $CfnContra ="";
+    $NomCur=$OpcMsg=$MsgBienvenida=$OpcContra=$Contra=$CfnContra="";
     //Variables de avisos
     $NomCurAd = $ImgBienAd = $MsgBienAd = $PassAd = $CfnPassAd= "";
     //Variables de ID´s usadas posteriormente
@@ -299,6 +297,7 @@
         {
             $AdCfnPass=$AdDan.'Las contraseñas ingresadas no coinciden'.$AdClo;
             echo "<script>alert('Las contraseñas ingresadas no coinciden');</script>";
+            $HContra=false;
         }
         else
         {

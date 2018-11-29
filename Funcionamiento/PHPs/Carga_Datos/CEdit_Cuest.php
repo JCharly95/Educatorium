@@ -2,20 +2,14 @@
     require $_SERVER['DOCUMENT_ROOT'].'/Educatorium/Funcionamiento/PHPs/Conn_Ses/conexion.php';
 
     if(!isset($_SESSION['Username']) || empty($_SESSION['Username']))
-    {
         header("location: ../../Acceso/FAcces.php");
-    }
 
     $user=$_SESSION['Username'];
 
     if(isset($_POST['enviar']))
-    {
         $NomCuest=$_POST['SelEditCuest'];
-    }
     else
-    {
         $NomCuest=$_SESSION['CuestEdit'];
-    }
     
     $_SESSION['CuestEdit']=$NomCuest;
     /*echo $NomCuest;

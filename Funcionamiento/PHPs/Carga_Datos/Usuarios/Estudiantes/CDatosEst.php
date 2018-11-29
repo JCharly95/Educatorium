@@ -3,9 +3,7 @@
     require $_SERVER['DOCUMENT_ROOT'].'/Educatorium/Funcionamiento/PHPs/Conn_Ses/conexion.php';
     
     if(!isset($_SESSION['Username']) || empty($_SESSION['Username']))
-    {
         header("location: ../../Acceso/FAcces.php");
-    }
     
     $user = $_SESSION['Username'];
     $_SESSION['Tip_User']='Estu';
@@ -18,7 +16,7 @@
     $NomEsc="";
     $Grado="";
     $DirCorr="";    
-    $fecha="";
+    $keyPal="";
     //Obtencion de la ruta de la imagen
     $sql="select Username,Ruta from Estudiante inner join Apoyo on (Estudiante.Apoyo_ID=Apoyo.ID_Apoyo)"
             ." where Username='".$user."';";
@@ -56,7 +54,7 @@
             $Ape_Pat=$res['Ape_Pat'];
             $Ape_Mat=$res['Ape_Mat'];
             $tel=$res['Tel'];
-            $fecha=$res['Keyword'];
+            $keyPal=$res['Keyword'];
         }
     }
 ?>

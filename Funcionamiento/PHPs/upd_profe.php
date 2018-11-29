@@ -119,22 +119,22 @@
             $PassAd=$AdWar."La contraseña no fue actualizada".$AdClo;
         else
         {
-            if(strlen($pass)<8)//Verificar que la contraseña no contenga menos de 8 caracteres
+            if(strlen($NPass)<8)//Verificar que la contraseña no contenga menos de 8 caracteres
                 $PassAd=$AdDan."La contraseña es muy corta".$AdClo;
             else
             {
                 //Verificar que la contraseña contenga un numero de al menos un digito
-                if(!preg_match('/(?=\d)/', $pass))
+                if(!preg_match('/(?=\d)/', $NPass))
                     $PassAd=$AdDan."La contraseña debe contener al menos un numero".$AdClo;
                 else
                 {
                     //Verificar que la contraseña contenga por lo menos una letra minuscula
-                    if(!preg_match('/(?=[a-z])/', $pass))
+                    if(!preg_match('/(?=[a-z])/', $NPass))
                         $PassAd=$AdDan."La contraseña debe contener al menos una letra minúscula".$AdClo;
                     else
                     {
                         //Verificar que la contraseña contenga por lo menos una letra mayuscula
-                        if(!preg_match('/(?=[A-Z])/', $pass))
+                        if(!preg_match('/(?=[A-Z])/', $NPass))
                             $PassAd=$AdDan."La contraseña debe contener al menos una letra mayuscula".$AdClo;
                         else
                         {
@@ -143,11 +143,13 @@
                             if(empty($CNPass))
                                 $CPassAd=$AdDan."Favor de introducir otra vez su contraseña".$AdClo;
                             else
-                            {// Se verifica que la confirmacion coincida
+                            {
+                                // Se verifica que la confirmacion coincida
                                 if($NPass!=$CNPass)
                                     $CPassAd=$AdDan."Las contraseñas no coinciden".$AdClo;
                                 else
-                                {//Si todo coincide, se procede a encriptar la contraseña y actualizarla en la BD
+                                {
+                                    //Si todo coincide, se procede a encriptar la contraseña y actualizarla en la BD
                                     $cifrado = password_hash($NPass, PASSWORD_DEFAULT);
                                     $sql="Update Profesor SET Password='".$cifrado."' where Username='".$user."';";
                                     if($conexion->query($sql)==true)
@@ -462,12 +464,8 @@
         $ver = $link->query($sql);
         $result =$ver->num_rows;
         if($result>0)
-        {
             return true;
-        }
         else
-        {
             return false;
-        }
     }
 ?>

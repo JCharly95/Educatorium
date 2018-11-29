@@ -3,9 +3,7 @@
     require $_SERVER['DOCUMENT_ROOT'].'/Educatorium/Funcionamiento/PHPs/Conn_Ses/conexion.php';
 
     if(!isset($_SESSION['Username']) || empty($_SESSION['Username']))
-    {
         header("location: ../../Acceso/FAcces.php");
-    }
     
     $user = $_SESSION['Username'];
     $_SESSION['Tip_User']='Profe';
@@ -88,99 +86,62 @@
     function ChangNomMat($NomMat)
     {
         if($NomMat=='Espa 1')
-        {
             $NomMat='Español I';
-        }
 
         if($NomMat=='Mate 1')
-        {
             $NomMat='Matematicas I';
-        }
 
         if($NomMat=='Biolo')
-        {
             $NomMat='Ciencias I: Biologia';
-        }
 
         if($NomMat=='Geogra')
-        {
             $NomMat='Geografia';
-        }
 
         if($NomMat=='Ingl 1')
-        {
             $NomMat='Ingles I';
-        }
 
         if($NomMat=='CyE 11')
-        {
             $NomMat='Civica y Etica I: Parte I';
-        }
 
         if($NomMat=='Hist 11')
-        {
             $NomMat='Historia I: Parte I';
-        }
 
         if($NomMat=='Espa 2')
-        {
             $NomMat='Español II';
-        }
 
         if($NomMat=='Mate 2')
-        {
             $NomMat='Matematicas II';
-        }
 
         if($NomMat=='Fisica')
-        {
             $NomMat='Ciencias II: Fisica';
-        }
 
         if($NomMat=='Ingl 2')
-        {
             $NomMat='Ingles II';
-        }
 
         if($NomMat=='CyE 12')
-        {
             $NomMat='Civica y Etica I: Parte II';
-        }
 
         if($NomMat=='Hist 12')
-        {
             $NomMat='Historia I: Parte II';
-        }
 
         if($NomMat=='Espa 3')
-        {
             $NomMat='Español III';
-        }
 
         if($NomMat=='Mate 3')
-        {
             $NomMat='Matematicas III';
-        }
 
         if($NomMat=='Quimic')
-        {
             $NomMat='Ciencias III: Quimica';
-        }
 
         if($NomMat=='Ingl 3')
-        {
             $NomMat='Ingles III';
-        }
 
         if($NomMat=='CyE 2')
-        {
             $NomMat='Civica y Etica II';
-        }
 
         if($NomMat=='Hist 2')
-        {
             $NomMat='Historia II';
-        }
+
         return $NomMat;
     }
 
@@ -189,19 +150,13 @@
         foreach($ConsGrados as $Grado)
         {
             if($Grado==1)
-            {
                 $BtnGrads[0]="";
-            }
                 
             if($Grado==2)
-            {
                 $BtnGrads[1]="";
-            }
                 
             if($Grado==3)
-            {
                 $BtnGrads[2]="";
-            }
         }
         return $BtnGrads;
     }

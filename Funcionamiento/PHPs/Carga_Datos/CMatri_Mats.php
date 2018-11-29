@@ -1,6 +1,9 @@
 <?php
     session_start();
     require $_SERVER['DOCUMENT_ROOT'].'/Educatorium/Funcionamiento/PHPs/Conn_Ses/conexion.php';
+
+    if(!isset($_SESSION['Username']) || empty($_SESSION['Username']))
+        header("location: ../../Acceso/FAcces.php");
     
     $Username=$_SESSION['Username'];
 

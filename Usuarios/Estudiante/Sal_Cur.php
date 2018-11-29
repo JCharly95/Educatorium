@@ -1,5 +1,5 @@
 <?php
-    require '../../Funcionamiento/PHPs/CDelCur_Est.php';
+    require '../../Funcionamiento/PHPs/Carga_Datos/CDelCur_Est.php';
 ?>
 <!DOCTYPE html>
 <html>

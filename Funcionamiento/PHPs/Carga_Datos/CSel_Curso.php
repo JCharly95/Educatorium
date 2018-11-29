@@ -2,9 +2,7 @@
     require $_SERVER['DOCUMENT_ROOT'].'/Educatorium/Funcionamiento/PHPs/Conn_Ses/conexion.php';
 
     if(!isset($_SESSION['Username']) || empty($_SESSION['Username']))
-    {
         header("location: ../../Acceso/FAcces.php");
-    }
 
     $user = $_SESSION['Username'];
     $Iden_Mat=$_SESSION['Mat'];

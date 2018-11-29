@@ -3,9 +3,7 @@
     require $_SERVER['DOCUMENT_ROOT'].'/Educatorium/Funcionamiento/PHPs/Conn_Ses/conexion.php';
     
     if(!isset($_SESSION['Username']) || empty($_SESSION['Username']))
-    {
         header("location: ../../Acceso/FAcces.php");
-    }
 
     $user = $_SESSION['Username'];
     //Curso a buscar
@@ -26,7 +24,5 @@
     }
 
     if(is_null($Contra))
-    {
         $Contra="No tiene contraseña";
-    }
 ?>

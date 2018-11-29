@@ -3,9 +3,7 @@
     require $_SERVER['DOCUMENT_ROOT'].'/Educatorium/Funcionamiento/PHPs/Conn_Ses/conexion.php';
     
     if(!isset($_SESSION['Username']) || empty($_SESSION['Username']))
-    {
         header("location: ../../Acceso/FAcces.php");
-    }
 
     $user=$_SESSION['Username'];
     $Iden_Mat=$_SESSION['Mat'];
@@ -19,9 +17,7 @@
         $Name_Cur=$_SESSION['SelCur'];
     }
     else
-    {
         $Name_Cur=$_SESSION['SelCur'];
-    }
 
     //Buscar el ID del curso
     $sql="select ID_Curso from Curso where Nombre='".$Name_Cur."';";
@@ -78,9 +74,7 @@
         {
             $ContraCmp=$_POST['Pass'];
             if(empty($ContraCmp))//Se verifica que no se haya querido entrar con un campo vacio
-            {
                 echo "<script>alert('Error: No se ingreso una contraseña');</script>";
-            }
             else
             {
                 if($ContraCmp==$PassBD)//Se procede con la comparacion de cadenas
