@@ -135,37 +135,55 @@
                 switch ($Tip_Keyword) 
                 {
                     case 1:
-                        $sql="Select * from Tipo_Pal_Rec where Tipo_Keyword='¿Cual es el nombre de tu mascota?';";
-                        $ver=$conexion->query($sql);
-                        $res=$ver->num_rows;
-                        if ($res==0)//Se da de alta la escuela ingresada por el profesor
+                        $sql="Select ID_Tip_Key from Tipo_Pal_Rec where Tipo_Keyword='Cual es el nombre de tu mascota';";
+                        $consulta=$conexion->query($sql);
+                        if($consulta->num_rows>0)    
                         {
-                            $sql="Insert into Tipo_Pal_Rec (Tipo_Keyword) values('¿Cual es el nombre de tu mascota?');";
-                            $ver=$conexion->query($sql);
+                            while($res=$consulta->fetch_assoc())
+                            {
+                                $ID_Tip_Rec=$res['ID_Tip_Key'];
+                            }
+                        }
+                        else
+                        {
+                            $sql="Insert into Tipo_Pal_Rec (Tipo_Keyword) values('Cual es el nombre de tu mascota');";
+                            $consulta=$conexion->query($sql);
                             $ID_Tip_Rec=$conexion->insert_id;
                         }
                         break;
                     
                     case 2:
-                        $sql="Select * from Tipo_Pal_Rec where Tipo_Keyword='¿Cual es tu comida favorita?';";
-                        $ver=$conexion->query($sql);
-                        $res=$ver->num_rows;
-                        if ($res==0)//Se da de alta la escuela ingresada por el profesor
+                        $sql="Select ID_Tip_Key from Tipo_Pal_Rec where Tipo_Keyword='Cual es tu comida favorita';";
+                        $consulta=$conexion->query($sql);
+                        if($consulta->num_rows>0)    
                         {
-                            $sql="Insert into Tipo_Pal_Rec (Tipo_Keyword) values('¿Cual es tu comida favorita?');";
-                            $ver=$conexion->query($sql);
+                            while($res=$consulta->fetch_assoc())
+                            {
+                                $ID_Tip_Rec=$res['ID_Tip_Key'];
+                            }
+                        }
+                        else
+                        {
+                            $sql="Insert into Tipo_Pal_Rec (Tipo_Keyword) values('Cual es tu comida favorita');";
+                            $consulta=$conexion->query($sql);
                             $ID_Tip_Rec=$conexion->insert_id;
                         }
                         break;
 
                     case 3:
-                        $sql="Select * from Tipo_Pal_Rec where Tipo_Keyword='¿Cual es el estado o pais al que te gustaria ir?';";
-                        $ver=$conexion->query($sql);
-                        $res=$ver->num_rows;
-                        if ($res==0)//Se da de alta la escuela ingresada por el profesor
+                        $sql="Select ID_Tip_Key from Tipo_Pal_Rec where Tipo_Keyword='Cual es el estado o pais al que te gustaria ir';";
+                        $consulta=$conexion->query($sql);
+                        if($consulta->num_rows>0)    
                         {
-                            $sql="Insert into Tipo_Pal_Rec (Tipo_Keyword) values('¿Cual es el estado o pais al que te gustaria ir?');";
-                            $ver=$conexion->query($sql);
+                            while($res=$consulta->fetch_assoc())
+                            {
+                                $ID_Tip_Rec=$res['ID_Tip_Key'];
+                            }
+                        }
+                        else
+                        {
+                            $sql="Insert into Tipo_Pal_Rec (Tipo_Keyword) values('Cual es el estado o pais al que te gustaria ir');";
+                            $consulta=$conexion->query($sql);
                             $ID_Tip_Rec=$conexion->insert_id;
                         }
                         break;
@@ -192,8 +210,8 @@
                     //Solo si todas las validaciones anteriores son positivas, se almacena la imagen en el servidor                    
                     $destino=$_SERVER['DOCUMENT_ROOT'].'/Educatorium/imagenes/';
                     $dir_ruta=$destino.$nombre_imagen;
-                    move_uploaded_file($_FILES['imagen']['tmp_name'], $dir_ruta);
-                    //$id_img=mysqli_insert_id();
+                    if(move_uploaded_file($_FILES['imagen']['tmp_name'], $dir_ruta))
+                    echo "<script>alert('Se subio correctamente la imagen');</script>";
                 }
                 else
                     $Img_err="La imagen es muy grande";

@@ -12,20 +12,6 @@
     <link rel="stylesheet" type="text/css" href="../../CmpVis/fontawesome-free-5.0.10/web-fonts-with-css/css/fontawesome-all.css">
     <link rel="stylesheet" type="text/css" href="../../Funcionamiento/Estilos_Extras/Registro.css">
     <title>Editando Perfil Profesor...</title>
-    <!--<style type="text/css">
-        .error 
-        {
-            color: red;
-            font-style: italic;
-            font-size: 12px;
-            font-weight: 700;
-            margin-left: 30px;
-        }
-        input[type=text]:focus, input[type=email]:focus, input[type=password]:focus 
-        {
-            border: 2px solid #333;
-        }
-    </style>-->
 </head>
 <body class="bg-primary">     
     <div class="container">

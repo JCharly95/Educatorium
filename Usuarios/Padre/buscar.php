@@ -1,7 +1,6 @@
 <?php
 	require '../../Funcionamiento/PHPs/buscar.php';
 ?>
-
 <!DOCTYPE html>
 <html>
     <head>
@@ -19,7 +18,7 @@
                 <div class="col-md-12">
                     <div class="panel panel-default">   
                         <div class="panel-heading" style="line-height: 2;">
-                            <span style="color: orangered;"><b>Ingrese el usuario del estudiante a buscar:</b></span>
+                            <span class="text-danger" ><b>Ingrese el usuario del estudiante a buscar:</b></span>
                         </div>
                         <div class="panel-body">
                             <form action="<?php echo $_SERVER['PHP_SELF'];?>" method="POST">
@@ -43,7 +42,7 @@
                     <div class="panel-body">
                         <strong class="text-success"><?php echo $registros;?></strong>
                         <form action="../../Funcionamiento/PHPs/enviar_notificacion.php" method="POST">
-                            <input type="hidden" name="id" value="<?php echo $texto2; ?>">
+                            <input type="hidden" name="aidi" value="<?php echo $texto2; ?>">
                             <?php
                                 echo $texto1;
                             ?>

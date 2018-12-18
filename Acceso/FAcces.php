@@ -43,7 +43,7 @@
                     </div>
                 </div>
             </div>
-            <div class="panel panel-default" style="box-shadow: 0 2px 2px 2px rgba(0,0,0,0.3);">                
+            <div class="panel panel-default" style="box-shadow: 0 2px 2px 2px rgba(0,0,0,0.3); background-color:rgb(3, 170, 128);">                
                 <div class="panel-body">
                     <div class="panel-heading">
                         <div class="row">
@@ -58,7 +58,7 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-2 col-md-offset-1">
-                                        <label for="Username" class="text-info"><h4>Nombre de Usuario:</h4></label>
+                                        <label for="Username"><h4>Nombre de Usuario:</h4></label>
                                     </div>                                            
                                     <div class="col-md-6">
                                         <input type="text" id="Username" name="Username" class="form-control" placeholder="Introduce tu nombre de usuario" value="<?php echo $usuario;?>">
@@ -72,7 +72,7 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-md-2 col-md-offset-1">
-                                        <label for="pass" class="text-info"><h4>Contraseña:</h4></label>
+                                        <label for="pass"><h4>Contraseña:</h4></label>
                                     </div>                                            
                                     <div class="col-md-6">
                                         <input type="password" id="pass" name="Pass" class="form-control" placeholder="Introduce tu contraseña" value="<?php echo $contraseña;?>">

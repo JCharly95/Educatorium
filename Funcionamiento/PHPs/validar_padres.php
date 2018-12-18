@@ -230,7 +230,7 @@
                 echo '<META HTTP-EQUIV="REFRESH" CONTENT="1;URL=../Usuarios/Padre/Principal_Pad.php">';
             }
             else
-                echo "<script>alert('el usuario ya existe')</script>";
+                echo "<script>alert('El usuario ya existe')</script>";
         }        
     }
 

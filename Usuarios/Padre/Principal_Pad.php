@@ -1,7 +1,6 @@
 <?php
     require '../../Funcionamiento/PHPs/Carga_Datos/Usuarios/Padres/CDatosPad.php';
 ?>
-
 <!DOCTYPE html>
 <html>
     <head>

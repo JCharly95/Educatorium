@@ -244,9 +244,7 @@
                     $destino=$_SERVER['DOCUMENT_ROOT'].'/Educatorium/imagenes/';
                     $dir_ruta=$destino.$nombre_imagen;
                     if(move_uploaded_file($_FILES['imagen']['tmp_name'], $dir_ruta))
-                    {
                         echo "<script>alert('Se subio correctamente la imagen');</script>";
-                    }
                 }
                 else
                     $Img_err="La imagen es muy grande";
@@ -264,9 +262,8 @@
         if(!empty($nom_right) && !empty($pat_right) && !empty($mat_right) && !empty($tel_right) && !empty($cor_right) && !empty($esc_right) && !empty($us_right) && !empty($pas_right) && !empty($cpa_right) && !empty($key_right))
         {
             $sql="select * from Profesor where Username='".$user."';";
-            //mysqli_set_charset($conexion, "utf-8");
             $consulta=$conexion->query($sql);
-            $result=$ver->num_rows;
+            $result=$consulta->num_rows;
             if($result == 0)
             {
                 if(empty($reg_esc))//Registrar una escuela si el usuario no selecciono una de la lista mostrada

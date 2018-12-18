@@ -148,6 +148,6 @@
             @Copyright Educatorium 2018. Todos los derechos reservados
         </footer>
         <script type="text/javascript" src="../../CmpVis/jquery/jquery-3.3.1.js"></script>
-	<script type="text/javascript" src="../../CmpVis/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+	    <script type="text/javascript" src="../../CmpVis/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
     </body>
 </html>

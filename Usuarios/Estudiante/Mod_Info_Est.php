@@ -11,21 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../../CmpVis/bootstrap-3.3.7-dist/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../../CmpVis/fontawesome-free-5.0.10/web-fonts-with-css/css/fontawesome-all.css">
-    <title>Estudiante</title>
-    <style type="text/css">
-        .error
-        {
-            color: red;
-            font-style: italic;
-            font-size: 12px;
-            font-weight: 700;
-            margin-left: 30px;
-        }
-        input[type=text]:focus, input[type=email]:focus, input[type=password]:focus 
-        {
-            border: 2px solid #333;
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="../../Funcionamiento/Estilos_Extras/Registro.css">
+    <title>Editando Perfil Estudiante...</title>
 </head>
 <body class="bg-primary">
     <div class="container">
@@ -33,10 +20,10 @@
             <div class="panel-heading">
                 <div class="row">
                     <div class="col-md-10">
-                        <h1 class="text-center">Actualizar Datos del Perfil</h1>
+                        <h1 class="text-danger text-center text-capitalize">Actualizar Datos del Perfil</h1>
                     </div>
-                    <div class="col-md-2">
-                        <a data-toggle="modal" href="#myModal" ><i class="fas fa-question-circle fa-4x"></i></a>
+                    <div class="col-md-2" style="padding-top: 0.7%;">
+                        <a data-toggle="modal" href="#myModal"><i class="fas fa-question-circle fa-4x"></i></a>
                     </div>
                     <div id="myModal" class="modal fade" role="dialog">
                         <div class="modal-dialog">
@@ -58,97 +45,144 @@
                     </div>
                 </div>
             </div>
-            <div class="panel-body">
-                <div class="panel panel-info">
-                    <div class="panel-heading">
-                        <h3 class="text-center">Información</h3>
-                    </div>        
-                    <div class="panel-body">
-                        <form action="<?php echo $_SERVER['PHP_SELF']; ?> " method="POST" autocomplete="off">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="text-center text-primary">Información del usuario</h3>
+                </div>
+                <div class="panel-body">
+                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST" enctype="multipart/form-data" autocomplete="off">
                         <div class="form-group">
-                            <div class="form-group col-md-6">
-                                <h3><span class="label label-default">Nombre: </span><span class="error"> <?php echo $nom_err; ?> </span></h3>
-                                <input type="text" name="nombre" id="nombre" class="form-control" onfocus="this.value='' " value="<?php echo $NomAlu; ?>">
-                                <span class="help-block">Sólo letras y espacios en blanco.</span>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <h3><span class="label label-default">Apellido Paterno: </span><span class="error"> <?php echo $app_err; ?> </span></h3>
-                                <input type="text" name="ap_pat" class="form-control" onfocus="this.value='' " value="<?php echo $Ape_Pat;?>">
-                                <span class="help-block">Sólo letras y espacios en blanco.</span>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <h3><span class="label label-default">Apellido Materno: </span><span class="error"> <?php echo $apm_err; ?> </span></h3>
-                                <input type="text" name="ap_mat" class="form-control" onfocus="this.value='' " value="<?php echo $Ape_Mat;?>">
-                                <span class="help-block">Sólo letras y espacios en blanco.</span>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <h3><span class="label label-default">Teléfono: </span><span class="error"> <?php echo $tel_err; ?> </span></h3>
-                                <input type="text" name="tel" class="form-control" onfocus="this.value='' " value="<?php echo $NumTel;?>">
-                                <span class="help-block">El teléfono debe estar conformado por 8 o 10 números.</span>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <h3><span class="label label-default">Correo: </span><span class="error"> <?php echo $cor_err; ?> </span></h3>
-                                <input type="email" name="correo" class="form-control" onfocus="this.value='' " value="<?php echo $DirCorr;?>">
-                                <span class="help-block">Introduzca un correo válido. Ej. ejemplo@gmail.com</span>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <h3><span class="label label-default">Usuario: </span><span class="error"> <?php echo $us_err; ?> </span></h3>
-                                <input type="text" name="usuario" class="form-control" onfocus="this.value='' " value="<?php echo $user;?>">
-                                <span class="help-block">Máximo 10 caracteres. Letras y números solamente.</span>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <h3><span class="label label-default">Contraseña: </span><span class="error"> <?php echo $pass_err; ?> </span></h3>
-                                <input type="password" name="pass" class="form-control" placeholder="">
-                                <span class="help-block">Debe constar de al menos un dígito, mayúsculas y minúsculas (8 caracteres).</span>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <h3><span class="label label-default">Fecha de nacimiento: </span><span class="error"> <?php echo $key_err; ?> </span></h3>
-                                <input type="text" name="key" class="form-control" onfocus="this.value=''" value="<?php echo $fecha;?>">
-                                <p class="help-block">Ingrese con el formato dd-mm-aaaa. Ej. 29/04/1997</p>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <h3><span class="label label-default">Escuela donde estudia: </span><span class="error"> <?php echo $esc_err; ?> </span></h3>
-                                <select class="btn btn-default form-control" name="escuelas" id="secus">
-                                    <option hidden value="" ><?php echo $NomEsc; ?></option>
-                                    <?php
-                                        $sql = "Select * from Escuela where ID_Escuela>1;";
-                                        $ver = $conexion->query($sql);
-                                                            
-                                        while ($cont=$ver->fetch_assoc())
-                                        {
-                                        echo '<option value="'.$cont["ID_Escuela"].'">Secundaria '.$cont["Tipo"].' '.$cont["Num_Esc"].', '.$cont["Nombre"].'</option>';
-                                        }
-                                    ?>
-                                </select>
-                                <span class="help-block">Seleccione una escuela.</span>
-                            </div>
-                            <div class="form-group col-md-6">
-                                <h3><span class="label label-default">Grado en curso: </span><span class="error"> <?php echo $grado_err; ?> </span></h3>
-                                <select class="btn btn-default form-control" name="grado" id="Grado_Cur">
-                                    <option hidden value="" selected> <?php echo $Grado; ?> </option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                </select>
-                                <span class="help-block">Seleccione un grado.</span>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <h3><span class="label label-default">Numero telefonico: </span></h3>
+                                    <input type="text" name="tel" class="form-control" onfocus="this.value='' " placeholder="<?php echo $tel;?>">
+                                    <span class="help-block">El teléfono debe estar conformado por 8 o 10 números.</span>
+                                    <span><!--<?php echo $tel_err; ?>--></span>
+                                </div>                  
+                                <div class="form-group col-md-6">
+                                    <h3><span class="label label-default">Direccion de correo: </span></h3>
+                                    <input type="email" name="correo" class="form-control" onfocus="this.value='' " placeholder="<?php echo $DirCorr;?>">
+                                    <span class="help-block">Introduzca un correo válido. Ej. ejemplo@gmail.com</span>
+                                    <span><!--<?php echo $cor_err; ?>--></span>
+                                </div>            
+                                <div class="form-group col-md-6">
+                                    <h3><span class="label label-default">Nombre de usuario: </span></h3>
+                                    <input type="text" name="usuario" class="form-control" onfocus="this.value='' " placeholder="<?php echo $user;?>">
+                                    <span class="help-block">Máximo 10 caracteres. Letras y números solamente.</span>
+                                    <span><!--<?php echo $us_err; ?>--></span>
+                                </div>            
+                                <div class="form-group col-md-6">
+                                    <h3><span class="label label-default">Contraseña: </span></h3>
+                                    <input type="password" name="pass" class="form-control">
+                                    <span class="help-block">Debe constar de al menos un dígito, mayúsculas y minúsculas (8 caracteres).</span>
+                                    <span><!--<?php echo $pass_err; ?>--></span>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <h3><span class="label label-default">Tipo de palabra de recuperacion: </span></h3>
+                                    <div class="col-md-offset-2">
+                                        <select class="btn btn-default" name="Tipo_Keyword">
+                                            <option hidden value="" selected>Opciones para la palabra de recuperacion:</option>
+                                            <option value="1">¿Cual es el nombre de su mascota?</option>
+                                            <option value="2">¿Cual es su comida favorita?</option>
+                                            <option value="3">¿Cual es el estado o pais al que le gustaria ir?</option>
+                                        </select>
+                                    </div>
+                                    <span class="help-block">Favor de seleccionar de que tipo sera su nueva palabra de recuperacion</span>
+                                    <span><!--<?php echo $pass_err; ?>--></span>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <h3><span class="label label-default">Confirmar Contraseña: </span></h3>
+                                    <input type="password" name="cpass" class="form-control">
+                                    <span class="help-block">Ambas contraseñas deben coincidir para proceder con el cambio.</span>
+                                    <span><!--<?php echo $pass_err; ?>--></span>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <h3><span class="label label-default">Palabra de recuperacion: </span></h3>
+                                    <input type="text" name="keyword" class="form-control" onfocus="this.value='' " placeholder="<?php echo $keyPal;?>">
+                                    <span class="help-block">Favor de completar este campo si desea cambiar su palabra de recuperacion.</span>
+                                    <span><!--<?php echo $pass_err; ?>--></span>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <h3><span class="label label-default">Imagen de perfil: </span></h3>
+                                    <div class="form-group row">
+                                        <div class="col-md-12">
+                                            <output id="list">
+                                            </output>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-12">
+                                            <label class="btn btn-primary">
+                                                <input type="file" id="files" name="imagen" style="display: none;" />
+                                                Seleccionar imagen de perfil...
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-12">
+                                            <span class="error"><!--<?php echo $Img_err;?>--></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <h3><span class="label label-default">Secundaria donde estudias: </span></h3>
+                                    <div class="row">
+                                        <div class="col-md-6 col-md-offset-2">
+                                            <select class="btn btn-default" name="escuelas" id="secus" onchange="">
+                                                <option hidden value="" selected><?php echo $NomEsc; ?> </option>
+                                                <?php
+                                                    require $_SERVER['DOCUMENT_ROOT'].'/educatorium/Funcionamiento/PHPs/Conn_Ses/conexion.php';
+                                                    $sql = "SELECT * FROM escuela;";
+                                                    $ver = $conexion->query($sql);
+                                                                        
+                                                    while ($cont=$ver->fetch_assoc())
+                                                    {
+                                                        echo '<option value="'.$cont["ID_Escuela"].'">Secundaria '.$cont["Tipo"].' '.$cont["Num_Esc"].', '.$cont["Nombre"].'</option>';
+                                                    }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <span class="help-block">Seleccione una escuela.</span>
+                                    <div class="form-group row">
+                                        <div class="col-md-12">
+                                            <span class="error"><!--<?php echo $esc_err;?>--></span>
+                                            <span class="bien"><!--<?php echo $esc_right;?>--></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <h3><span class="label label-default">Grado en curso: </span><span class="error"></span></h3>
+                                    <div class="col-md-offset-5">
+                                        <select class="btn btn-default" name="grado" id="Grado_Cur">
+                                            <option hidden value="" selected> <?php echo $Grado; ?> </option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                        </select>
+                                    </div>
+                                    <span class="help-block">Seleccione un grado.</span>
+                                    <div class="form-group row">
+                                        <div class="col-md-12">
+                                            <span class="error"><!--<?php echo $esc_err;?>--></span>
+                                            <span class="bien"><!--<?php echo $esc_right;?>--></span>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div>
-                                <div class="form-group col-md-6">
-                                    <button type="submit" class="form-control btn btn-default active" name="actualizar">Actualizar</button>
-                                </div>
-                                <div class="form-group col-md-6">
-                                    <a href="Principal_Est.php" class="form-control btn btn-danger"><span class="glyphicon glyphicon-remove-circle"></span> Cancelar</a>
-                                </div>
-                            </div>
-                        </div>            
-                        </form>
-                    </div>
+                        <div class="form-group col-md-6">
+                            <button type="submit" class="form-control btn btn-default active" name="actualizar">Actualizar</button>
+                        </div>
+                        <div class="form-group col-md-6">
+                            <a href="Principal_Est.php" class="form-control btn btn-danger"> Cancelar</a>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+    <script type="text/javascript" src="../../Funcionamiento/Javascripts/ver-foto.js"></script>
     <script type="text/javascript" src="../../CmpVis/jquery/jquery-3.3.1.js"></script>
     <script type="text/javascript" src="../../CmpVis/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
 </body>
